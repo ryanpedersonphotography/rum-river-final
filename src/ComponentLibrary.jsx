@@ -1,0 +1,717 @@
+import { useEffect } from 'react'
+
+export default function ComponentLibrary() {
+  useEffect(() => {
+    // Example scroll effect for header
+    const handleScroll = () => {
+      const header = document.getElementById('header')
+      if (header) {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled')
+        } else {
+          header.classList.remove('scrolled')
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    // FAQ accordion click handler
+    const faqItems = document.querySelectorAll('.faq-item')
+    faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Toggle active class
+        const wasActive = item.classList.contains('active')
+
+        // Close all items
+        faqItems.forEach(i => i.classList.remove('active'))
+
+        // Open clicked item if it wasn't active
+        if (!wasActive) {
+          item.classList.add('active')
+        }
+      })
+    })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      faqItems.forEach(item => {
+        item.replaceWith(item.cloneNode(true))
+      })
+    }
+  }, [])
+
+  return (
+    <>
+      {/* Header Pattern */}
+      <header id="header" className="header-enhanced">
+        <div className="content-wrapper">
+          <div className="header-content">
+            <div className="logo-wrapper">
+              <div className="logo-circle">RR</div>
+              <div className="logo-text">
+                <div className="logo-name">Component Library</div>
+                <div className="logo-tagline">Design Patterns</div>
+              </div>
+            </div>
+            <nav>
+              <ul className="nav-menu">
+                <li><a href="#buttons">Buttons</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#sections">Sections</a></li>
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#blog">Blog</a></li>
+              </ul>
+            </nav>
+            <div className="header-cta">
+              <a href="#contact" className="romantic-button">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Pattern */}
+      <section className="hero-enhanced">
+        <div className="romantic-overlay"></div>
+        <div className="content-wrapper">
+          <div className="hero-content">
+            <div className="hero-year-badge">Pattern Library</div>
+            <div className="script-accent">Reusable Components</div>
+            <h1 className="hero-headline">
+              Rum River<br />
+              <span className="hero-accent">Design System</span>
+            </h1>
+            <p className="lead hero-lead">
+              A collection of beautifully crafted, ready-to-use components for building elegant wedding venue websites.
+            </p>
+            <div className="hero-buttons">
+              <button className="romantic-button primary">Get Started</button>
+              <button className="romantic-button outline">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div className="hero-scroll-indicator">
+          <span>Explore Components</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </section>
+
+      {/* Buttons Section */}
+      <section id="buttons" className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Interactive Elements</div>
+            <h2 className="section-title">Button Components</h2>
+            <p className="lead">Elegant buttons with hover animations and multiple variants</p>
+          </div>
+
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
+            <button className="romantic-button primary">Primary Button</button>
+            <button className="romantic-button outline">Outline Button</button>
+            <button className="romantic-button">Default Button</button>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<button className="romantic-button primary">Primary Button</button>
+<button className="romantic-button outline">Outline Button</button>
+<button className="romantic-button">Default Button</button>`}</pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Typography Section */}
+      <section id="typography" className="section" style={{ background: 'var(--blush-pink)' }}>
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Beautiful Text</div>
+            <h2 className="section-title">Typography System</h2>
+          </div>
+
+          <div className="typography-examples">
+            <div className="script-accent">Script Accent Text</div>
+            <h1 className="hero-headline">Hero Headline Text</h1>
+            <h2 className="section-title">Section Title</h2>
+            <p className="lead">Lead paragraph text with increased font size and reduced opacity for hierarchy.</p>
+            <p>Regular body text with standard styling for comfortable reading.</p>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<div className="script-accent">Script Text</div>
+<h1 className="hero-headline">Hero Headline</h1>
+<h2 className="section-title">Section Title</h2>
+<p className="lead">Lead paragraph</p>`}</pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Card Components */}
+      <section id="cards" className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Content Containers</div>
+            <h2 className="section-title">Card Components</h2>
+          </div>
+
+          <div className="venue-grid">
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Card Example" width="800" height="600" />
+                <div className="venue-card-badge">Featured</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Venue Card Pattern</h3>
+                <p>Cards with image reveals, badges, and structured content areas.</p>
+                <div className="venue-features">
+                  <span>• Feature one</span>
+                  <span>• Feature two</span>
+                  <span>• Feature three</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Card Example" width="800" height="600" />
+                <div className="venue-card-badge">Popular</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Image Hover Effect</h3>
+                <p>Hover over cards to see the image scale and overlay animations.</p>
+                <div className="venue-features">
+                  <span>• Smooth transitions</span>
+                  <span>• Scale effect</span>
+                  <span>• Gradient overlay</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800" alt="Card Example" width="800" height="600" />
+                <div className="venue-card-badge">New</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Flexible Layout</h3>
+                <p>Responsive grid that adapts to different screen sizes.</p>
+                <div className="venue-features">
+                  <span>• Auto-fit columns</span>
+                  <span>• Consistent spacing</span>
+                  <span>• Mobile-friendly</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<div className="venue-card image-reveal">
+  <div className="venue-card-image">
+    <img src="..." alt="..." />
+    <div className="venue-card-badge">Badge</div>
+  </div>
+  <div className="venue-card-content">
+    <h3>Title</h3>
+    <p>Description</p>
+    <div className="venue-features">
+      <span>• Feature</span>
+    </div>
+  </div>
+</div>`}</pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Package Cards */}
+      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Pricing Tables</div>
+            <h2 className="section-title">Package Cards</h2>
+          </div>
+
+          <div className="packages-grid">
+            <div className="package-card">
+              <div className="package-header">
+                <h3>Basic</h3>
+                <div className="package-price">
+                  <span className="amount">$3,500</span>
+                  <span className="detail">starting price</span>
+                </div>
+              </div>
+              <div className="package-features">
+                <div className="feature">✓ Feature one</div>
+                <div className="feature">✓ Feature two</div>
+                <div className="feature">✓ Feature three</div>
+                <div className="feature">✓ Feature four</div>
+              </div>
+              <button className="romantic-button outline full-width">Learn More</button>
+            </div>
+
+            <div className="package-card featured">
+              <div className="package-badge">Most Popular</div>
+              <div className="package-header">
+                <h3>Premium</h3>
+                <div className="package-price">
+                  <span className="amount">$5,500</span>
+                  <span className="detail">starting price</span>
+                </div>
+              </div>
+              <div className="package-features">
+                <div className="feature">✓ Everything in Basic</div>
+                <div className="feature">✓ Extra feature one</div>
+                <div className="feature">✓ Extra feature two</div>
+                <div className="feature">✓ Extra feature three</div>
+                <div className="feature">✓ Extra feature four</div>
+              </div>
+              <button className="romantic-button primary full-width">Get Started</button>
+            </div>
+
+            <div className="package-card">
+              <div className="package-header">
+                <h3>Enterprise</h3>
+                <div className="package-price">
+                  <span className="amount">$8,500</span>
+                  <span className="detail">starting price</span>
+                </div>
+              </div>
+              <div className="package-features">
+                <div className="feature">✓ Everything in Premium</div>
+                <div className="feature">✓ Pro feature one</div>
+                <div className="feature">✓ Pro feature two</div>
+                <div className="feature">✓ Pro feature three</div>
+              </div>
+              <button className="romantic-button outline full-width">Contact Us</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two Column Layout */}
+      <section id="sections" className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Layout Patterns</div>
+            <h2 className="section-title">Content Grid Layouts</h2>
+          </div>
+
+          <div className="content-grid">
+            <div className="experience-content">
+              <div className="script-accent">Left Column</div>
+              <h2 className="section-title">Golden Ratio Grid</h2>
+              <p className="lead">
+                Two-column layout using the golden ratio (1:1.618) for visual harmony.
+              </p>
+
+              <div className="experience-features">
+                <div className="feature-item">
+                  <div className="feature-icon">🎨</div>
+                  <div className="feature-content">
+                    <h4>Visual Balance</h4>
+                    <p>Content and images sized according to golden ratio proportions.</p>
+                  </div>
+                </div>
+
+                <div className="feature-item">
+                  <div className="feature-icon">📱</div>
+                  <div className="feature-content">
+                    <h4>Responsive Design</h4>
+                    <p>Automatically stacks on mobile for optimal readability.</p>
+                  </div>
+                </div>
+
+                <div className="feature-item">
+                  <div className="feature-icon">⚡</div>
+                  <div className="feature-content">
+                    <h4>Flexible Content</h4>
+                    <p>Works with any combination of text, images, or components.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="experience-image image-reveal">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Layout Example" width="800" height="600" />
+            </div>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<div className="content-grid">
+  <div className="experience-content">
+    {/* Left column content */}
+  </div>
+  <div className="experience-image image-reveal">
+    <img src="..." alt="..." />
+  </div>
+</div>`}</pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Cards */}
+      <section className="section" style={{ background: 'var(--blush-pink)' }}>
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Social Proof</div>
+            <h2 className="section-title">Testimonial Cards</h2>
+          </div>
+
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div className="five-star-rating">★★★★★</div>
+              <blockquote className="testimonial-quote">
+                "Beautiful design system with elegant components that are easy to customize and implement."
+              </blockquote>
+              <div className="testimonial-author">
+                <div className="author-name">Jane & John Doe</div>
+                <div className="author-detail">Married June 2024</div>
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <div className="five-star-rating">★★★★★</div>
+              <blockquote className="testimonial-quote">
+                "The attention to detail and cohesive styling made building our website a breeze."
+              </blockquote>
+              <div className="testimonial-author">
+                <div className="author-name">Sarah & Mike Smith</div>
+                <div className="author-detail">Married August 2024</div>
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <div className="five-star-rating">★★★★★</div>
+              <blockquote className="testimonial-quote">
+                "Responsive, accessible, and absolutely gorgeous. Everything we needed in one place."
+              </blockquote>
+              <div className="testimonial-author">
+                <div className="author-name">Emily & David Johnson</div>
+                <div className="author-detail">Married October 2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Form Components */}
+      <section id="forms" className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">User Input</div>
+            <h2 className="section-title">Form Components</h2>
+          </div>
+
+          <div className="contact-form-wrapper" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <form className="contact-form">
+              <div className="form-header">
+                <h3>Contact Form Pattern</h3>
+                <p>Clean, accessible form with validation-ready styling.</p>
+              </div>
+
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input type="text" placeholder="Your first name" />
+                </div>
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input type="text" placeholder="Your last name" />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="your@email.com" />
+              </div>
+
+              <div className="form-group">
+                <label>Select Option</label>
+                <select>
+                  <option>Choose an option</option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Message</label>
+                <textarea rows={4} placeholder="Your message here..."></textarea>
+              </div>
+
+              <button type="submit" className="romantic-button primary full-width">
+                Submit Form
+              </button>
+            </form>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<div className="form-group">
+  <label>Field Label</label>
+  <input type="text" placeholder="Placeholder" />
+</div>
+
+<div className="form-grid">
+  <div className="form-group">...</div>
+  <div className="form-group">...</div>
+</div>`}</pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="trust-section">
+        <div className="content-wrapper">
+          <div className="script-accent center">Trust Indicators</div>
+          <div className="trust-badges">
+            <div className="trust-badge">Badge One</div>
+            <div className="trust-badge">Badge Two</div>
+            <div className="trust-badge">Badge Three</div>
+            <div className="trust-badge">Badge Four</div>
+            <div className="trust-badge">Badge Five</div>
+          </div>
+          <div className="trust-stats">
+            <div className="stat-item">
+              <div className="stat-number">500+</div>
+              <div className="stat-label">Projects</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">4.9</div>
+              <div className="stat-label">Rating</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">100%</div>
+              <div className="stat-label">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Pattern */}
+      <section className="love-stories-section section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Visual Storytelling</div>
+            <h2 className="section-title">Gallery Grid</h2>
+            <p className="lead">Masonry-style image gallery with overlay interactions</p>
+          </div>
+
+          <div className="wedding-gallery">
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200" alt="Gallery 1" width="1200" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Large Item</div>
+                <div className="gallery-season">Spans 2x2</div>
+                <div className="gallery-details">First item gets special sizing</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800" alt="Gallery 2" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Regular Item</div>
+                <div className="gallery-season">1x1 Grid</div>
+                <div className="gallery-details">Standard size</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Gallery 3" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Regular Item</div>
+                <div className="gallery-season">1x1 Grid</div>
+                <div className="gallery-details">Standard size</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Gallery 4" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Regular Item</div>
+                <div className="gallery-season">1x1 Grid</div>
+                <div className="gallery-details">Standard size</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Gallery 5" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Regular Item</div>
+                <div className="gallery-season">1x1 Grid</div>
+                <div className="gallery-details">Standard size</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=1200" alt="Gallery 6" width="1200" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Wide Item</div>
+                <div className="gallery-season">2x1 Grid</div>
+                <div className="gallery-details">Sixth item spans 2 columns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Accordion Pattern */}
+      <section id="faq" className="faq-section">
+        <div className="container">
+          <div className="faq-header">
+            <p className="script-font">Questions?</p>
+            <h2>Everything You Need to Know</h2>
+          </div>
+          <div className="faq-container">
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>Can we bring our own vendors?</h3>
+                <span className="faq-toggle">+</span>
+              </div>
+              <div className="faq-answer">
+                <p>Absolutely! We believe in giving you complete creative freedom. Bring your preferred caterers, florists, photographers, and musicians. We also have a list of trusted local vendors if you need recommendations.</p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>What's included with the venue rental?</h3>
+                <span className="faq-toggle">+</span>
+              </div>
+              <div className="faq-answer">
+                <p>Your rental includes exclusive use of our historic barn, ceremony sites, bridal suite, groom's quarters, tables, chairs, and access to our 400-acre property for photos. We also provide setup and breakdown assistance.</p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>Do you have indoor and outdoor options?</h3>
+                <span className="faq-toggle">+</span>
+              </div>
+              <div className="faq-answer">
+                <p>Yes! Our property offers multiple ceremony sites including the vineyard overlook, oak grove, and brookside garden. Our barn provides a beautiful indoor space that can be decorated to match any theme or season.</p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>How far in advance should we book?</h3>
+                <span className="faq-toggle">+</span>
+              </div>
+              <div className="faq-answer">
+                <p>We recommend booking 12-18 months in advance, especially for peak season dates (May through October). However, we sometimes have last-minute availability, so don't hesitate to call us at 612-801-0546.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Cards Pattern */}
+      <section id="blog" className="blog-section">
+        <div className="container">
+          <div className="blog-header">
+            <h2>Stories from the Barn</h2>
+            <p>Insights, inspiration, and behind-the-scenes moments</p>
+          </div>
+          <div className="blog-grid">
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600" alt="Fall Wedding" />
+              </div>
+              <div className="blog-content">
+                <span className="blog-category">Planning Tips</span>
+                <h3>Creating Your Perfect Fall Wedding</h3>
+                <p>Discover how autumn colors and seasonal touches can make your wedding day magical...</p>
+                <div className="blog-meta">
+                  <span>October 15, 2024</span>
+                  <span>5 min read</span>
+                </div>
+              </div>
+            </div>
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="Real Wedding" />
+              </div>
+              <div className="blog-content">
+                <span className="blog-category">Real Weddings</span>
+                <h3>Sarah & Michael's Rustic Romance</h3>
+                <p>A beautiful June celebration that perfectly blended elegant details with countryside charm...</p>
+                <div className="blog-meta">
+                  <span>September 28, 2024</span>
+                  <span>8 min read</span>
+                </div>
+              </div>
+            </div>
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="Winter Wedding" />
+              </div>
+              <div className="blog-content">
+                <span className="blog-category">Seasonal Guide</span>
+                <h3>Winter Wonderland Weddings</h3>
+                <p>Embrace the magic of winter with cozy details and breathtaking snowy landscapes...</p>
+                <div className="blog-meta">
+                  <span>September 12, 2024</span>
+                  <span>6 min read</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Breadcrumbs Pattern */}
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <div className="container">
+          <span>
+            <a href="/">Home</a>
+          </span>
+          <span>
+            <span className="breadcrumb-separator">/</span>
+            <a href="/components">Components</a>
+          </span>
+          <span>
+            <span className="breadcrumb-separator">/</span>
+            <span className="current">Breadcrumbs</span>
+          </span>
+        </div>
+      </nav>
+
+      {/* Floating CTA */}
+      <div className="floating-cta">
+        <span>💡</span>
+        Component Library
+      </div>
+
+      <style jsx>{`
+        .code-block {
+          background: var(--deep-forest);
+          color: var(--cream-pearl);
+          padding: 2rem;
+          border-radius: 8px;
+          margin-top: 3rem;
+          overflow-x: auto;
+        }
+
+        .code-block h4 {
+          color: var(--champagne-gold);
+          margin-bottom: 1rem;
+          font-family: var(--font-display);
+        }
+
+        .code-block pre {
+          font-family: 'Courier New', monospace;
+          font-size: 0.875rem;
+          line-height: 1.6;
+          margin: 0;
+          white-space: pre-wrap;
+        }
+
+        .typography-examples > * {
+          margin-bottom: 1.5rem;
+        }
+      `}</style>
+    </>
+  )
+}
