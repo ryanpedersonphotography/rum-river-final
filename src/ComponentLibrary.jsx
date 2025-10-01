@@ -2208,6 +2208,332 @@ export default function ComponentLibrary() {
           }
         }
       `}</style>
+
+      {/* Event Components Section */}
+      <EventComponents />
     </>
   )
+}
+
+// Event Components Section
+function EventComponents() {
+  const sampleEventData = [
+    {
+      id: 'weddings',
+      name: 'Wedding Events',
+      description: 'Celebrate your love story in our tranquil, charming barn setting with indoor and outdoor spaces.',
+      features: ['Indoor and outdoor ceremony spaces', 'Year-round venue availability', 'Picturesque grounds for photography'],
+      image: { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800', alt: 'Wedding Events', width: 800, height: 600 }
+    },
+    {
+      id: 'engagement',
+      name: 'Engagement Parties',
+      description: 'Host your engagement celebration in our White Barn Loft overlooking acres of natural beauty.',
+      features: ['Bring both families together', 'Rustic venue setting', 'Vineyard views'],
+      image: { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800', alt: 'Engagement Parties', width: 800, height: 600 }
+    },
+    {
+      id: 'birthday',
+      name: 'Birthday Parties',
+      description: 'Whether turning 16 or 60, celebrate your birthday in our beautiful, recently renovated rustic space.',
+      features: ['Recently renovated rustic space', 'Suitable for all ages', 'Seasonal outdoor mezzanine'],
+      image: { src: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800', alt: 'Birthday Parties', width: 800, height: 600 }
+    }
+  ];
+
+  return (
+    <>
+      <style>{`
+        /* Event Components CSS */
+        .rrb-section {
+          display: grid;
+          gap: 1.25rem;
+          color: var(--warm-walnut);
+          padding: 2rem 0;
+        }
+
+        .rrb-header h2 {
+          margin: 0;
+          font-size: clamp(1.5rem, 2.5vw, 2rem);
+          line-height: 1.2;
+          font-family: var(--font-display);
+          color: var(--warm-walnut);
+        }
+        .rrb-header p {
+          margin: 0.25rem 0 0 0;
+          color: var(--sage-green);
+        }
+
+        .rrb-card {
+          background: white;
+          border-radius: 16px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .rrb-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+        .rrb-card__body {
+          display: grid;
+          gap: .75rem;
+          padding: 1rem 1.25rem 1.25rem;
+        }
+        .rrb-card__title {
+          margin: 0;
+          font-size: 1.25rem;
+          line-height: 1.2;
+          font-family: var(--font-display);
+          color: var(--warm-walnut);
+        }
+        .rrb-card__desc {
+          margin: 0;
+          color: var(--sage-green);
+          line-height: 1.6;
+        }
+        .rrb-card__bullets {
+          display: grid; 
+          gap: .5rem; 
+          list-style: none; 
+          padding: 0; 
+          margin: 0;
+        }
+        .rrb-card__bullets li { 
+          display: grid; 
+          grid-template-columns: auto 1fr; 
+          gap: .5rem; 
+          font-size: 0.875rem;
+          color: var(--sage-green);
+        }
+        .rrb-dot { 
+          margin-top: .25rem; 
+          color: var(--warm-walnut);
+          font-weight: 600;
+        }
+
+        .rrb-btn {
+          display: inline-block; 
+          text-decoration: none;
+          margin-top: .5rem; 
+          padding: .6rem 1rem;
+          background: var(--warm-walnut); 
+          color: #fff; 
+          border-radius: 999px;
+          font-size: 0.875rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+        .rrb-btn:hover { 
+          background: var(--sage-green);
+          transform: translateY(-2px);
+        }
+
+        .rrb-aspect {
+          position: relative; 
+          width: 100%;
+        }
+        .rrb-aspect::before { 
+          content: ""; 
+          display: block; 
+          padding-top: var(--rrb-aspect-ratio, 56.25%); 
+        }
+        .rrb-aspect > img {
+          position: absolute; 
+          inset: 0; 
+          width: 100%; 
+          height: 100%; 
+          object-fit: cover; 
+          display: block;
+        }
+
+        .rrb-carousel {
+          overflow-x: auto;
+          display: grid;
+          grid-auto-flow: column;
+          grid-auto-columns: 85%;
+          gap: 1rem;
+          padding: .25rem .25rem .5rem;
+          scroll-snap-type: x mandatory;
+        }
+        .rrb-carousel > * { 
+          scroll-snap-align: start; 
+        }
+
+        .rrb-grid {
+          display: none;
+        }
+
+        @media (min-width: 900px) {
+          .rrb-grid {
+            display: grid; 
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          }
+          .rrb-carousel { 
+            display: none; 
+          }
+        }
+
+        .rrb-hero-strip {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          align-items: center;
+          padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+          .rrb-hero-strip {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+        }
+      `}</style>
+
+      <section className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Event Components</div>
+            <h2 className="section-title">Modern Event Display Components</h2>
+            <p className="lead">Responsive components for showcasing venue events with scroll-snap on mobile and grid on desktop</p>
+          </div>
+
+          {/* Hero Strip Component */}
+          <div style={{ marginBottom: '3rem' }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.5rem', 
+              color: 'var(--warm-walnut)', 
+              marginBottom: '1rem' 
+            }}>
+              Hero Strip Component
+            </h3>
+            <div className="rrb-hero-strip">
+              <div style={{ display: 'grid', gap: '.5rem' }}>
+                <h1 style={{ 
+                  margin: 0, 
+                  fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
+                  lineHeight: 1.15,
+                  fontFamily: 'var(--font-display)',
+                  color: 'var(--warm-walnut)'
+                }}>
+                  Events & Celebrations
+                </h1>
+                <p style={{ 
+                  margin: 0, 
+                  color: 'var(--sage-green)',
+                  fontSize: '1.125rem',
+                  lineHeight: 1.6
+                }}>
+                  From intimate gatherings to grand celebrations, our historic barn venue creates unforgettable memories
+                </p>
+                <div>
+                  <a className="rrb-btn" href="/contact">Check availability</a>
+                </div>
+              </div>
+              <div className="rrb-aspect" style={{ '--rrb-aspect-ratio': '66.67%' }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" 
+                  alt="Wedding celebration at barn venue"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '12px'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Event Carousel Component */}
+          <div>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.5rem', 
+              color: 'var(--warm-walnut)', 
+              marginBottom: '1rem' 
+            }}>
+              Event Carousel Component
+            </h3>
+            <EventCarousel 
+              title="Events & Celebrations"
+              intro="Swipe through our most popular event options or browse the grid on desktop"
+              items={sampleEventData}
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// Event Card Component
+function EventCard({ data }) {
+  const { name, description, features, image, ctaHref = "/contact", ctaLabel = "Inquire" } = data;
+  return (
+    <article id={data.id} className="rrb-card">
+      <div className="rrb-aspect" style={{ '--rrb-aspect-ratio': '66.67%' }}>
+        <img 
+          src={image.src}
+          alt={image.alt}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      </div>
+      <div className="rrb-card__body">
+        <h3 className="rrb-card__title">{name}</h3>
+        <p className="rrb-card__desc">{description}</p>
+        <ul className="rrb-card__bullets">
+          {features.map((feature, index) => (
+            <li key={index}>
+              <span className="rrb-dot">✓</span>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <div>
+          <a className="rrb-btn" href={ctaHref}>{ctaLabel}</a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+// Event Carousel Component
+function EventCarousel({ title = "Events & Celebrations", intro = "Swipe through our most popular event options or browse the grid on desktop.", items }) {
+  return (
+    <section className="rrb-section">
+      <header className="rrb-header">
+        <h2>{title}</h2>
+        <p>{intro}</p>
+      </header>
+
+      {/* Mobile: horizontal scroll-snap */}
+      <div className="rrb-carousel" aria-label="Event categories">
+        {items.map((item) => (
+          <div key={item.id} style={{ scrollSnapAlign: 'start' }}>
+            <EventCard data={item} />
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: grid */}
+      <div className="rrb-grid">
+        {items.map((item) => (
+          <EventCard key={`${item.id}-grid`} data={item} />
+        ))}
+      </div>
+    </section>
+  );
 }
