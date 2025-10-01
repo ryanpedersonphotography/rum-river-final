@@ -139,8 +139,8 @@ export const realWeddings = [
             "alt": "Anthony & Linnea ceremony 1"
           },
           {
-            "src": "/wedding-photos/anthony-and-linnea/030.jpg",
-            "alt": "Anthony & Linnea ceremony 2"
+            "src": "/real-wedding-blogs/anthony-and-linnea/anthony-linnea-wedding-ceremony-candid.jpg",
+            "alt": "Anthony & Linnea ceremony candid moment"
           },
           {
             "src": "/wedding-photos/anthony-and-linnea/031.jpg",
@@ -457,12 +457,12 @@ export const realWeddings = [
             "alt": "Anthony & Linnea portraits 21"
           },
           {
-            "src": "/wedding-photos/anthony-and-linnea/107.jpg",
-            "alt": "Anthony & Linnea portraits 22"
+            "src": "/real-wedding-blogs/anthony-and-linnea/anthony-linnea-wedding-reception-portrait.jpg",
+            "alt": "Anthony & Linnea wedding reception portrait"
           },
           {
-            "src": "/wedding-photos/anthony-and-linnea/108.jpg",
-            "alt": "Anthony & Linnea portraits 23"
+            "src": "/real-wedding-blogs/anthony-and-linnea/anthony-linnea-wedding-couple-portrait.jpg",
+            "alt": "Anthony & Linnea wedding couple portrait"
           },
           {
             "src": "/wedding-photos/anthony-and-linnea/109.jpg",
@@ -1848,8 +1848,8 @@ export const realWeddings = [
   {
     "slug": "emily-and-barron-nixon",
     "coupleName": "Emily & Barron Nixon",
-    "heroImage": "/wedding-photos/emily-and-barron-nixon/001.jpg",
-    "coverImage": "/wedding-photos/emily-and-barron-nixon/003.jpg",
+    "heroImage": "/real-wedding-blogs/emily-and-barron-nixon/emily-barron-wedding-portrait-hires.jpg",
+    "coverImage": "/real-wedding-blogs/emily-and-barron-nixon/emily-barron-wedding-reception.jpg",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
     "intro": "A beautiful celebration at Rum River Barn filled with love, laughter, and unforgettable moments.",
@@ -1860,7 +1860,7 @@ export const realWeddings = [
         "title": "Getting Ready",
         "photos": [
           {
-            "src": "/wedding-photos/emily-and-barron-nixon/001.jpg",
+            "src": "/real-wedding-blogs/emily-and-barron-nixon/emily-barron-wedding-portrait-hires.jpg",
             "alt": "Emily & Barron Nixon getting ready 1"
           },
           {
@@ -2778,8 +2778,8 @@ export const realWeddings = [
   {
     "slug": "dave-kayla",
     "coupleName": "Dave Kayla",
-    "heroImage": "/wedding-photos/dave-kayla/001.jpg",
-    "coverImage": "/wedding-photos/dave-kayla/003.jpg",
+    "heroImage": "/real-wedding-blogs/dave-kayla/dave-kayla-wedding-ceremony.jpg",
+    "coverImage": "/real-wedding-blogs/dave-kayla/dave-kayla-wedding-reception.jpg",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
     "intro": "A beautiful celebration at Rum River Barn filled with love, laughter, and unforgettable moments.",
@@ -2790,16 +2790,16 @@ export const realWeddings = [
         "title": "Ceremony & Portraits",
         "photos": [
           {
-            "src": "/wedding-photos/dave-kayla/001.jpg",
-            "alt": "Dave Kayla ceremony photo 1"
+            "src": "/real-wedding-blogs/dave-kayla/dave-kayla-wedding-ceremony.jpg",
+            "alt": "Dave Kayla wedding ceremony"
           },
           {
-            "src": "/wedding-photos/dave-kayla/002.jpg",
-            "alt": "Dave Kayla ceremony photo 2"
+            "src": "/real-wedding-blogs/dave-kayla/dave-kayla-wedding-portrait.jpg",
+            "alt": "Dave Kayla wedding portrait"
           },
           {
-            "src": "/wedding-photos/dave-kayla/003.jpg",
-            "alt": "Dave Kayla ceremony photo 3"
+            "src": "/real-wedding-blogs/dave-kayla/dave-kayla-wedding-reception.jpg",
+            "alt": "Dave Kayla wedding reception"
           },
           {
             "src": "/wedding-photos/dave-kayla/004.jpg",
@@ -3028,8 +3028,8 @@ export const realWeddings = [
   {
     "slug": "allison-and-will",
     "coupleName": "Allison & Will",
-    "heroImage": "/wedding-photos/allison-and-will/001.jpg",
-    "coverImage": "/wedding-photos/allison-and-will/003.jpg",
+    "heroImage": "/real-wedding-blogs/allison-and-will/allison-will-wedding-ceremony.jpg",
+    "coverImage": "/real-wedding-blogs/allison-and-will/allison-will-wedding-portrait.jpg",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
     "intro": "From the ceremony to the last dance, Allison & Will's wedding was a perfect blend of elegance and rustic charm.",
@@ -3040,16 +3040,16 @@ export const realWeddings = [
         "title": "The Day",
         "photos": [
           {
-            "src": "/wedding-photos/allison-and-will/001.jpg",
-            "alt": "Allison & Will wedding photo 1"
+            "src": "/real-wedding-blogs/allison-and-will/allison-will-wedding-ceremony.jpg",
+            "alt": "Allison & Will wedding ceremony"
           },
           {
-            "src": "/wedding-photos/allison-and-will/002.jpg",
-            "alt": "Allison & Will wedding photo 2"
+            "src": "/real-wedding-blogs/allison-and-will/allison-will-wedding-reception.jpg",
+            "alt": "Allison & Will wedding reception"
           },
           {
-            "src": "/wedding-photos/allison-and-will/003.jpg",
-            "alt": "Allison & Will wedding photo 3"
+            "src": "/real-wedding-blogs/allison-and-will/allison-will-wedding-portrait.jpg",
+            "alt": "Allison & Will wedding portrait"
           },
           {
             "src": "/wedding-photos/allison-and-will/004.jpg",
