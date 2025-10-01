@@ -124,15 +124,6 @@ export default function VendorsPage() {
       {/* Vendor Categories Section */}
       <section id="vendors" className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
-            <div className="script-accent">Our Network</div>
-            <h2 className="section-title">Trusted Wedding Professionals</h2>
-            <p className="lead">
-              These are companies we have enjoyed working with and would recommend, but do not require you to use. 
-              Each vendor has experience working at Rum River Barn and understands our venue.
-            </p>
-          </div>
-
           {vendorCategories.map((category, categoryIndex) => (
             <div key={categoryIndex} style={{ marginBottom: '3rem' }}>
               {/* Category Header */}
