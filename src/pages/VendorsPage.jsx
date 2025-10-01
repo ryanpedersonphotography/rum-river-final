@@ -125,23 +125,50 @@ export default function VendorsPage() {
       <section id="vendors" className="section">
         <div className="content-wrapper">
           {vendorCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="vendor-category-section">
+            <div key={categoryIndex} className="mb-16">
               {/* Category Header */}
-              <div className="vendor-category-header">
-                <span className="category-icon">{category.icon}</span>
-                <h3 className="category-title">{category.title}</h3>
+              <div className="flex items-center gap-4 mb-10 pb-4 border-b border-pink-200">
+                <span className="text-3xl opacity-80">{category.icon}</span>
+                <h3 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '2rem',
+                  fontWeight: 400,
+                  color: 'var(--warm-walnut)',
+                  margin: 0,
+                  letterSpacing: '-0.02em'
+                }}>
+                  {category.title}
+                </h3>
               </div>
 
               {/* Vendor List */}
-              <div className="vendor-list">
+              <div className="flex flex-col gap-8">
                 {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} className="vendor-item">
-                    <div className="vendor-content">
-                      <h4 className="vendor-name">{vendor.name}</h4>
-                      <p className="vendor-description">{vendor.description}</p>
+                  <div key={vendorIndex} className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-0 py-6 border-b border-amber-100 last:border-b-0 transition-all duration-300 hover:bg-amber-50 hover:px-4 hover:-mx-4 hover:rounded-lg">
+                    <div className="flex-1 md:mr-8">
+                      <h4 className="text-xl md:text-2xl mb-2" style={{
+                        fontFamily: 'var(--font-display)',
+                        fontWeight: 400,
+                        color: 'var(--warm-walnut)',
+                        letterSpacing: '-0.01em'
+                      }}>
+                        {vendor.name}
+                      </h4>
+                      <p className="leading-relaxed text-base max-w-2xl" style={{
+                        color: 'var(--sage-green)',
+                        margin: 0
+                      }}>
+                        {vendor.description}
+                      </p>
                     </div>
-                    <div className="vendor-contact">
-                      <span className="vendor-phone">{vendor.phone}</span>
+                    <div className="flex-shrink-0 md:text-right flex items-center">
+                      <span className="inline-block px-4 py-2 bg-amber-50 border border-pink-200 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-pink-300 hover:text-white hover:scale-105" style={{
+                        fontFamily: 'var(--font-body)',
+                        color: 'var(--warm-walnut)',
+                        letterSpacing: '0.02em'
+                      }}>
+                        {vendor.phone}
+                      </span>
                     </div>
                   </div>
                 ))}
