@@ -2211,6 +2211,9 @@ export default function ComponentLibrary() {
 
       {/* Event Components Section */}
       <EventComponents />
+
+      {/* Animation Style Guide */}
+      <AnimationStyleGuide />
     </>
   )
 }
@@ -2535,5 +2538,629 @@ function EventCarousel({ title = "Events & Celebrations", intro = "Swipe through
         ))}
       </div>
     </section>
+  );
+}
+
+// Animation Style Guide Component
+function AnimationStyleGuide() {
+  const animationExamples = [
+    {
+      name: 'Primary Card Hover',
+      timing: '1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transform: 'translateY(-8px)',
+      shadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+      description: 'Elegant slow rise for main content cards',
+      usage: 'Venue cards, gallery cards, feature showcases'
+    },
+    {
+      name: 'Button Hover',
+      timing: '0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      transform: 'translateY(-3px)',
+      shadow: '0 8px 30px rgba(212, 165, 116, 0.3)',
+      description: 'Quick responsive lift with subtle bounce',
+      usage: 'CTAs, form buttons, navigation items'
+    },
+    {
+      name: 'Image Zoom',
+      timing: '1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transform: 'scale(1.08)',
+      shadow: 'none',
+      description: 'Slow graceful zoom for image overlays',
+      usage: 'Gallery images, hero images, card images'
+    },
+    {
+      name: 'Micro Interaction',
+      timing: '0.3s ease',
+      transform: 'translateY(-2px)',
+      shadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+      description: 'Subtle feedback for small elements',
+      usage: 'Links, tags, badges, small buttons'
+    }
+  ];
+
+  const cssVariables = [
+    { name: '--transition-elegant', value: 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)', description: 'Slow, luxurious movement' },
+    { name: '--transition-smooth', value: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', description: 'Responsive with bounce' },
+    { name: '--transition', value: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', description: 'Standard easing' }
+  ];
+
+  return (
+    <>
+      <style>{`
+        .animation-guide-demo {
+          background: white;
+          padding: 2rem;
+          border-radius: 12px;
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+          cursor: pointer;
+        }
+
+        .animation-guide-demo.elegant-hover {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .animation-guide-demo.elegant-hover:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .animation-guide-demo.button-hover {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animation-guide-demo.button-hover:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .animation-guide-demo.zoom-hover {
+          overflow: hidden;
+        }
+        .animation-guide-demo.zoom-hover img {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          display: block;
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+        .animation-guide-demo.zoom-hover:hover img {
+          transform: scale(1.08);
+        }
+
+        .animation-guide-demo.micro-hover {
+          transition: all 0.3s ease;
+        }
+        .animation-guide-demo.micro-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .animation-timeline {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin: 1rem 0;
+        }
+
+        .animation-bar {
+          flex: 1;
+          height: 4px;
+          background: var(--cream-pearl);
+          position: relative;
+          border-radius: 2px;
+          overflow: hidden;
+        }
+
+        .animation-progress {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background: var(--warm-walnut);
+          width: 0;
+        }
+
+        .animation-guide-demo.elegant-hover:hover .animation-progress {
+          width: 100%;
+          transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animation-guide-demo.button-hover:hover .animation-progress {
+          width: 100%;
+          transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .animation-guide-demo.micro-hover:hover .animation-progress {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
+
+        .timing-badge {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          background: var(--cream-pearl);
+          color: var(--warm-walnut);
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-family: 'Monaco', monospace;
+          margin: 0.5rem 0.5rem 0 0;
+        }
+
+        .usage-tag {
+          display: inline-block;
+          padding: 0.125rem 0.5rem;
+          background: rgba(124, 139, 127, 0.1);
+          color: var(--sage-green);
+          border-radius: 12px;
+          font-size: 0.75rem;
+          margin: 0.25rem;
+        }
+      `}</style>
+
+      <section className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Design System</div>
+            <h2 className="section-title">Animation Style Guide</h2>
+            <p className="lead">Consistent hover animations that create a luxurious, cohesive experience</p>
+          </div>
+
+          {/* Philosophy Section */}
+          <div style={{
+            background: 'var(--cream-pearl)',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '3rem'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.75rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1rem'
+            }}>
+              Animation Philosophy
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '2rem',
+              marginTop: '1.5rem'
+            }}>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>🎯 Purposeful</h4>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem' }}>
+                  Every animation should guide attention and provide feedback, not distract
+                </p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>⏱️ Elegant Timing</h4>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem' }}>
+                  Slow, graceful transitions (1.2s) for primary actions create a luxurious feel
+                </p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>📐 Consistent Scale</h4>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem' }}>
+                  Vertical lifts of 2px, 3px, or 8px maintain visual hierarchy
+                </p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>💫 Natural Easing</h4>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem' }}>
+                  Cubic-bezier curves that feel organic and sophisticated
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* CSS Variables Reference */}
+          <div style={{ marginBottom: '3rem' }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.5rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1rem'
+            }}>
+              Core Animation Variables
+            </h3>
+            <div style={{
+              background: 'white',
+              padding: '1.5rem',
+              borderRadius: '12px',
+              border: '1px solid var(--cream-pearl)'
+            }}>
+              {cssVariables.map((variable, index) => (
+                <div key={index} style={{
+                  display: 'grid',
+                  gridTemplateColumns: '200px 1fr auto',
+                  gap: '1rem',
+                  padding: '1rem 0',
+                  borderBottom: index < cssVariables.length - 1 ? '1px solid var(--cream-pearl)' : 'none'
+                }}>
+                  <code style={{
+                    color: 'var(--warm-walnut)',
+                    fontFamily: 'Monaco, monospace',
+                    fontSize: '0.875rem'
+                  }}>
+                    {variable.name}
+                  </code>
+                  <code style={{
+                    color: 'var(--sage-green)',
+                    fontFamily: 'Monaco, monospace',
+                    fontSize: '0.75rem'
+                  }}>
+                    {variable.value}
+                  </code>
+                  <span style={{
+                    color: 'var(--sage-green)',
+                    fontSize: '0.875rem'
+                  }}>
+                    {variable.description}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Animation Examples */}
+          <h3 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.5rem',
+            color: 'var(--warm-walnut)',
+            marginBottom: '1.5rem'
+          }}>
+            Standard Hover Patterns
+          </h3>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '3rem'
+          }}>
+            {/* Primary Card Example */}
+            <div>
+              <h4 style={{ fontSize: '1rem', color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                Primary Card Hover
+              </h4>
+              <div className="animation-guide-demo elegant-hover">
+                <h5 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>
+                  Venue Card Example
+                </h5>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                  Hover to see the elegant 1.2s rise
+                </p>
+                <div className="animation-timeline">
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>0s</span>
+                  <div className="animation-bar">
+                    <div className="animation-progress"></div>
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>1.2s</span>
+                </div>
+                <div style={{ marginTop: '1rem' }}>
+                  <div className="timing-badge">1.2s elegant</div>
+                  <div className="timing-badge">translateY(-8px)</div>
+                </div>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <span className="usage-tag">Venue Cards</span>
+                  <span className="usage-tag">Gallery</span>
+                  <span className="usage-tag">Features</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button Example */}
+            <div>
+              <h4 style={{ fontSize: '1rem', color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                Button Hover
+              </h4>
+              <div className="animation-guide-demo button-hover">
+                <h5 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>
+                  CTA Button Example
+                </h5>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                  Hover for quick responsive lift
+                </p>
+                <div className="animation-timeline">
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>0s</span>
+                  <div className="animation-bar">
+                    <div className="animation-progress"></div>
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>0.4s</span>
+                </div>
+                <div style={{ marginTop: '1rem' }}>
+                  <div className="timing-badge">0.4s bounce</div>
+                  <div className="timing-badge">translateY(-3px)</div>
+                </div>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <span className="usage-tag">Buttons</span>
+                  <span className="usage-tag">CTAs</span>
+                  <span className="usage-tag">Forms</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Zoom Example */}
+            <div>
+              <h4 style={{ fontSize: '1rem', color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                Image Zoom
+              </h4>
+              <div className="animation-guide-demo zoom-hover">
+                <img 
+                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800"
+                  alt="Gallery hover example"
+                />
+                <div style={{ padding: '1rem' }}>
+                  <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem' }}>
+                    Hover for graceful zoom
+                  </p>
+                  <div style={{ marginTop: '1rem' }}>
+                    <div className="timing-badge">1.2s elegant</div>
+                    <div className="timing-badge">scale(1.08)</div>
+                  </div>
+                  <div style={{ marginTop: '0.5rem' }}>
+                    <span className="usage-tag">Gallery</span>
+                    <span className="usage-tag">Heroes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Micro Interaction Example */}
+            <div>
+              <h4 style={{ fontSize: '1rem', color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                Micro Interaction
+              </h4>
+              <div className="animation-guide-demo micro-hover">
+                <h5 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>
+                  Link/Tag Example
+                </h5>
+                <p style={{ color: 'var(--sage-green)', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                  Hover for subtle feedback
+                </p>
+                <div className="animation-timeline">
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>0s</span>
+                  <div className="animation-bar">
+                    <div className="animation-progress"></div>
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--sage-green)' }}>0.3s</span>
+                </div>
+                <div style={{ marginTop: '1rem' }}>
+                  <div className="timing-badge">0.3s ease</div>
+                  <div className="timing-badge">translateY(-2px)</div>
+                </div>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <span className="usage-tag">Links</span>
+                  <span className="usage-tag">Tags</span>
+                  <span className="usage-tag">Badges</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Implementation Guide */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '2px solid var(--cream-pearl)'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.5rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1.5rem'
+            }}>
+              Implementation Guide
+            </h3>
+            
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                For Primary Content Cards (Venues, Events, Features)
+              </h4>
+              <pre style={{
+                background: 'var(--cream-pearl)',
+                padding: '1rem',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                overflow: 'auto'
+              }}>
+{`.card {
+  transition: var(--transition-elegant);
+  /* or: transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}`}
+              </pre>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                For Buttons and CTAs
+              </h4>
+              <pre style={{
+                background: 'var(--cream-pearl)',
+                padding: '1rem',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                overflow: 'auto'
+              }}>
+{`.button {
+  transition: var(--transition-smooth);
+  /* or: transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.3);
+}`}
+              </pre>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                For Images within Cards
+              </h4>
+              <pre style={{
+                background: 'var(--cream-pearl)',
+                padding: '1rem',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                overflow: 'auto'
+              }}>
+{`.card-image {
+  overflow: hidden;
+}
+
+.card-image img {
+  transition: var(--transition-elegant);
+  /* Matches parent card timing for cohesion */
+}
+
+.card:hover .card-image img {
+  transform: scale(1.08);
+}`}
+              </pre>
+            </div>
+
+            <div>
+              <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '1rem' }}>
+                Animation Hierarchy Rules
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0
+              }}>
+                <li style={{
+                  padding: '0.75rem',
+                  marginBottom: '0.5rem',
+                  background: 'var(--cream-pearl)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>👑</span>
+                  <div>
+                    <strong style={{ color: 'var(--warm-walnut)' }}>Primary Cards:</strong>
+                    <span style={{ color: 'var(--sage-green)', marginLeft: '0.5rem' }}>
+                      1.2s elegant timing, 8px lift, large shadow
+                    </span>
+                  </div>
+                </li>
+                <li style={{
+                  padding: '0.75rem',
+                  marginBottom: '0.5rem',
+                  background: 'var(--cream-pearl)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>🎯</span>
+                  <div>
+                    <strong style={{ color: 'var(--warm-walnut)' }}>CTAs & Buttons:</strong>
+                    <span style={{ color: 'var(--sage-green)', marginLeft: '0.5rem' }}>
+                      0.4s smooth bounce, 3px lift, medium shadow
+                    </span>
+                  </div>
+                </li>
+                <li style={{
+                  padding: '0.75rem',
+                  marginBottom: '0.5rem',
+                  background: 'var(--cream-pearl)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>🖼️</span>
+                  <div>
+                    <strong style={{ color: 'var(--warm-walnut)' }}>Images:</strong>
+                    <span style={{ color: 'var(--sage-green)', marginLeft: '0.5rem' }}>
+                      1.2s elegant timing, scale 1.08, no shadow
+                    </span>
+                  </div>
+                </li>
+                <li style={{
+                  padding: '0.75rem',
+                  background: 'var(--cream-pearl)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>✨</span>
+                  <div>
+                    <strong style={{ color: 'var(--warm-walnut)' }}>Micro Elements:</strong>
+                    <span style={{ color: 'var(--sage-green)', marginLeft: '0.5rem' }}>
+                      0.3s ease, 2px lift, subtle shadow
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Best Practices */}
+          <div style={{
+            marginTop: '3rem',
+            padding: '2rem',
+            background: 'linear-gradient(135deg, var(--cream-pearl), white)',
+            borderRadius: '12px'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.5rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1.5rem'
+            }}>
+              Best Practices
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem', fontSize: '1rem' }}>
+                  ✅ DO
+                </h4>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  fontSize: '0.875rem',
+                  color: 'var(--sage-green)'
+                }}>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use --transition-elegant for primary cards</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Match timing across related elements</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Keep vertical lifts consistent (2px, 3px, 8px)</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use scale transforms sparingly (1.08 max)</li>
+                  <li>• Add will-change: transform for performance</li>
+                </ul>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem', fontSize: '1rem' }}>
+                  ❌ DON'T
+                </h4>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  fontSize: '0.875rem',
+                  color: 'var(--sage-green)'
+                }}>
+                  <li style={{ marginBottom: '0.5rem' }}>• Mix timing speeds randomly</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use transforms larger than 10px</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Animate too many properties</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Forget to test on mobile</li>
+                  <li>• Use instant transitions (0s)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
