@@ -1,4 +1,5 @@
 import PageTemplate from '../components/PageTemplate'
+import NetlifyForm from '../components/NetlifyForm'
 
 export default function ContactPage() {
   const heroContent = (
@@ -31,51 +32,67 @@ export default function ContactPage() {
       {/* ID: CONTACT_FORM_001 - Let's Connect Form Section */}
       <section id="lets-connect-form" className="cta-contact-section">
         <div className="cta-contact-container">
-          <form className="cta-contact-form" id="contactForm">
-            <div className="cta-form-row">
-              <div className="cta-form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required />
-              </div>
-            </div>
-            <div className="cta-form-row">
-              <div className="cta-form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" />
-              </div>
-            </div>
-            <div className="cta-form-row">
-              <div className="cta-form-group">
-                <label htmlFor="eventDate">Preferred Event Date</label>
-                <input type="date" id="eventDate" name="eventDate" />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="guestCount">Estimated Guest Count</label>
-                <select id="guestCount" name="guestCount">
-                  <option value="">Select Range</option>
-                  <option value="50-100">50-100 Guests</option>
-                  <option value="100-150">100-150 Guests</option>
-                  <option value="150-200">150-200 Guests</option>
-                  <option value="200+">200+ Guests</option>
-                </select>
-              </div>
-            </div>
-            <div className="cta-form-group cta-full-width">
-              <label htmlFor="message">Tell Us About Your Dream Wedding</label>
-              <textarea id="message" name="message" placeholder="Share your vision with us..."></textarea>
-            </div>
-            <button type="submit" className="cta-submit-button">
-              <span>SEND MESSAGE</span>
-            </button>
-          </form>
+          <NetlifyForm name="contact" action="/thank-you">
+            {({ handleSubmit, submitting, error }) => (
+              <form className="cta-contact-form" id="contactForm" onSubmit={handleSubmit}>
+                {error && (
+                  <div style={{
+                    background: '#fee',
+                    border: '1px solid #fcc',
+                    color: '#c33',
+                    padding: '1rem',
+                    borderRadius: '8px',
+                    marginBottom: '1.5rem'
+                  }}>
+                    {error}
+                  </div>
+                )}
+                <div className="cta-form-row">
+                  <div className="cta-form-group">
+                    <label htmlFor="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required disabled={submitting} />
+                  </div>
+                  <div className="cta-form-group">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required disabled={submitting} />
+                  </div>
+                </div>
+                <div className="cta-form-row">
+                  <div className="cta-form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input type="email" id="email" name="email" required disabled={submitting} />
+                  </div>
+                  <div className="cta-form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" disabled={submitting} />
+                  </div>
+                </div>
+                <div className="cta-form-row">
+                  <div className="cta-form-group">
+                    <label htmlFor="eventDate">Preferred Event Date</label>
+                    <input type="date" id="eventDate" name="eventDate" disabled={submitting} />
+                  </div>
+                  <div className="cta-form-group">
+                    <label htmlFor="guestCount">Estimated Guest Count</label>
+                    <select id="guestCount" name="guestCount" disabled={submitting}>
+                      <option value="">Select Range</option>
+                      <option value="50-100">50-100 Guests</option>
+                      <option value="100-150">100-150 Guests</option>
+                      <option value="150-200">150-200 Guests</option>
+                      <option value="200+">200+ Guests</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="cta-form-group cta-full-width">
+                  <label htmlFor="message">Tell Us About Your Dream Wedding</label>
+                  <textarea id="message" name="message" placeholder="Share your vision with us..." disabled={submitting}></textarea>
+                </div>
+                <button type="submit" className="cta-submit-button" disabled={submitting}>
+                  <span>{submitting ? 'SENDING...' : 'SEND MESSAGE'}</span>
+                </button>
+              </form>
+            )}
+          </NetlifyForm>
         </div>
       </section>
 

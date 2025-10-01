@@ -11,6 +11,7 @@ import RealWeddingsPage from './pages/RealWeddingsPage'
 import RealWeddingPost from './pages/RealWeddingPost'
 import HistoryPage from './pages/HistoryPage'
 import EventsPage from './pages/EventsPage'
+import ThankYouPage from './pages/ThankYouPage'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/location" element={<LocationPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
