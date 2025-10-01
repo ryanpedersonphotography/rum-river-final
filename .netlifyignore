@@ -1,0 +1,11 @@
+# Exclude subdirectory projects from Netlify deployment
+rumrivermn-website-old-sandbox/
+rum-river-wedding-barn/
+
+# Standard ignores
+node_modules/
+.git/
+.env
+.env.local
+.env.production.local
+.env.development.local

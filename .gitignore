@@ -31,3 +31,9 @@ dist-ssr
 
 # Old sandbox site (don't commit the old WordPress export)
 rumrivermn-website-old-sandbox/
+
+# Wedding barn site (separate Next.js project)
+rum-river-wedding-barn/
+
+# Local Netlify folder
+.netlify
