@@ -22,7 +22,7 @@ export default function PageTemplate({
           padding: '4rem 0'
         }}>
           <div className="content-wrapper">
-            <div style={{ maxWidth: '600px', padding: '0 2rem' }}>
+            <div style={{ padding: '0 2rem' }}>
               {heroContent}
             </div>
           </div>
