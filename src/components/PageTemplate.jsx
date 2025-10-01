@@ -19,7 +19,7 @@ export default function PageTemplate({
           alignItems: 'center',
           color: 'white',
           position: 'relative',
-          padding: '4rem 0'
+          padding: '5rem 0'
         }}>
           <div className="content-wrapper">
             <div style={{ padding: '0 2rem' }}>

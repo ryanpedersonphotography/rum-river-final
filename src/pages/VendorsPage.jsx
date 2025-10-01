@@ -3,28 +3,25 @@ import PageTemplate from '../components/PageTemplate'
 export default function VendorsPage() {
   const heroContent = (
     <>
-      <div className="script-accent">Trusted Partners</div>
       <h1 style={{
         fontFamily: 'var(--font-display)',
         fontSize: 'clamp(2rem, 5vw, 3rem)',
         fontWeight: 400,
         lineHeight: 1.2,
-        marginBottom: '1rem',
+        marginBottom: '1.5rem',
         color: 'white'
       }}>
         Preferred Vendor Directory
       </h1>
       <p className="lead" style={{
-        fontSize: '1rem',
-        lineHeight: 1.6,
+        fontSize: '1.125rem',
+        lineHeight: 1.7,
         opacity: 0.9,
-        marginBottom: '1.5rem'
+        marginBottom: '0',
+        maxWidth: '800px'
       }}>
         Our carefully curated list of trusted wedding professionals who understand our venue and share our commitment to making your day perfect.
       </p>
-      <a href="#vendors" className="romantic-button primary">
-        Browse Vendors
-      </a>
     </>
   )
 
