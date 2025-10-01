@@ -137,14 +137,14 @@ export default function VendorsPage() {
           </div>
 
           {vendorCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} style={{ marginBottom: '4rem' }}>
+            <div key={categoryIndex} style={{ marginBottom: '3rem' }}>
               {/* Category Header */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                marginBottom: '2.5rem',
-                paddingBottom: '1rem',
+                marginBottom: '1.5rem',
+                paddingBottom: '0.75rem',
                 borderBottom: '2px solid var(--dusty-rose)'
               }}>
                 <span style={{ fontSize: '2rem' }}>{category.icon}</span>
@@ -162,12 +162,12 @@ export default function VendorsPage() {
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                gap: '2rem'
+                gap: '1.5rem'
               }}>
                 {category.vendors.map((vendor, vendorIndex) => (
                   <div key={vendorIndex} style={{
                     background: 'white',
-                    padding: '2rem',
+                    padding: '1.5rem',
                     borderRadius: '12px',
                     boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
                     border: '1px solid var(--blush-pink)',
@@ -192,7 +192,7 @@ export default function VendorsPage() {
                     <p style={{
                       color: 'var(--sage-green)',
                       lineHeight: 1.6,
-                      marginBottom: '1.5rem'
+                      marginBottom: '1rem'
                     }}>
                       {vendor.description}
                     </p>
@@ -214,7 +214,7 @@ export default function VendorsPage() {
       {/* Vendor Application CTA */}
       <section style={{
         background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
-        padding: '5rem 0'
+        padding: '3.5rem 0'
       }}>
         <div className="content-wrapper">
           <div style={{
@@ -224,7 +224,7 @@ export default function VendorsPage() {
           }}>
             <div className="script-accent">Join Our Network</div>
             <h2 className="section-title">Are You a Wedding Professional?</h2>
-            <p className="lead" style={{ marginBottom: '2.5rem' }}>
+            <p className="lead" style={{ marginBottom: '2rem' }}>
               We're always looking for talented professionals to join our preferred vendor network. 
               If you're interested in working with couples at Rum River Barn, we'd love to hear from you.
             </p>
