@@ -34,7 +34,7 @@ function DiamondCards() {
     backgroundPosition: "center",
     transform: active ? "scale(1.1)" : "scale(1)",
     transition: "transform .6s ease",
-    filter: "saturate(.98) contrast(1.03) brightness(.95)",
+    filter: "saturate(.98) contrast(1.03) brightness(.75)",
     pointerEvents: "none",
   });
 
@@ -60,6 +60,56 @@ function DiamondCards() {
     mixBlendMode: "overlay",
     pointerEvents: "none",
   });
+
+  // Glass overlay for jewel-like appearance
+  const GlassOverlay = () => (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+      }}
+    >
+      {/* Top highlight - creates polished surface effect */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "50%",
+          background: "linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.25) 30%, transparent 100%)",
+          mixBlendMode: "overlay",
+        }}
+      />
+      {/* Edge highlights for faceted look */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(135deg, rgba(255,255,255,.55) 0%, transparent 15%, transparent 85%, rgba(255,255,255,.35) 100%)",
+          mixBlendMode: "soft-light",
+        }}
+      />
+      {/* Diagonal facet reflection */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,.3) 50%, transparent 70%)",
+          mixBlendMode: "overlay",
+        }}
+      />
+      {/* Inner shadow for depth */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          boxShadow: "inset 0 3px 20px rgba(255,255,255,.2), inset 0 -12px 32px rgba(0,0,0,.5)",
+        }}
+      />
+    </div>
+  );
 
   // Animated diagonal sheen that sweeps across on hover
   const Sheen = ({ active }) => (
@@ -109,7 +159,7 @@ function DiamondCards() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "1rem",
+            gap: ".5rem",
           }}
         >
           {/* WEDDINGS — top-left cut, title bottom-right — Rose Quartz */}
@@ -121,6 +171,7 @@ function DiamondCards() {
             <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
               <div style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered === "weddings")} />
               <div style={gem("rgba(255, 76, 152, .42)", "rgba(255, 120, 180, .26)")} />
+              <GlassOverlay />
               <Sheen active={hovered === "weddings"} />
               <div style={label({ bottom: "1rem", right: "1rem" })}>WEDDINGS</div>
             </div>
@@ -135,6 +186,7 @@ function DiamondCards() {
             <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
               <div style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered === "property")} />
               <div style={gem("rgba(0, 200, 140, .42)", "rgba(40, 255, 180, .26)")} />
+              <GlassOverlay />
               <Sheen active={hovered === "property"} />
               <div style={label({ bottom: "1rem", left: "1rem" })}>THE PROPERTY</div>
             </div>
@@ -149,6 +201,7 @@ function DiamondCards() {
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
               <div style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered === "gallery")} />
               <div style={gem("rgba(70, 150, 255, .40)", "rgba(20, 90, 255, .25)")} />
+              <GlassOverlay />
               <Sheen active={hovered === "gallery"} />
               <div style={label({ top: "1rem", right: "1rem" })}>PHOTO GALLERY</div>
             </div>
@@ -163,6 +216,7 @@ function DiamondCards() {
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
               <div style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered === "engagement")} />
               <div style={gem("rgba(255, 186, 0, .42)", "rgba(255, 140, 0, .26)")} />
+              <GlassOverlay />
               <Sheen active={hovered === "engagement"} />
               <div style={label({ top: "1rem", left: "1rem" })}>ENGAGEMENT PARTIES</div>
             </div>
