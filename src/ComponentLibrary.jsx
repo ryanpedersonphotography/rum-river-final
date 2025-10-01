@@ -48,11 +48,11 @@ function DiamondCards() {
     background: "#000",
   });
 
-  // BG image — zoom + micro-tilt + cursor-follow bloom
-  const bg = (img, active, glowPos) => ({
+  // BG image — zoom + micro-tilt
+  const bg = (img, active) => ({
     position: "absolute",
     inset: 0,
-    backgroundImage: `radial-gradient(340px 240px at ${glowPos.x}% ${glowPos.y}%, rgba(255,255,255,.10), transparent 60%), url(${img})`,
+    backgroundImage: `url(${img})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     transform: active ? "translateY(-6px) scale(1.08) rotate3d(1,0,0,0.6deg)" : "none",
@@ -72,38 +72,50 @@ function DiamondCards() {
     pointerEvents: "none",
   });
 
-  // Upgraded "glass" overlay with conic + radial highlights
-  const GlassOverlay = () => (
-    <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-      {/* facet rings */}
-      <div
-        style={{
-          position: "absolute",
-          inset: "-10% -10%",
-          background:
-            "conic-gradient(from 210deg at 50% 60%, rgba(255,255,255,.08), rgba(255,255,255,0) 20% 40%, rgba(255,255,255,.10) 52%, rgba(255,255,255,0) 70% 100%)",
-          mixBlendMode: "screen",
-          opacity: .9,
-        }}
-      />
-      {/* top polish */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, height: "54%",
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,.18) 32%, rgba(255,255,255,0) 100%)",
-          mixBlendMode: "screen",
-        }}
-      />
-      {/* inner edge definition */}
-      <div
-        style={{
-          position: "absolute", inset: 0,
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,.10), inset 0 22px 55px rgba(255,255,255,.08), inset 0 -36px 60px rgba(0,0,0,.6)",
-        }}
-      />
-    </div>
+  // 1) Thicker glassy edge using stacked inset shadows
+  const EdgeGlass = () => (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        // layered inner strokes + inner glow/darkening
+        boxShadow: [
+          "inset 0 0 0 12px rgba(255,255,255,.10)",   // main thick edge
+          "inset 0 0 0 3px rgba(255,255,255,.22)",    // fine highlight line
+          "inset 0 28px 60px rgba(255,255,255,.08)",  // top polish
+          "inset 0 -48px 80px rgba(0,0,0,.55)"        // base depth
+        ].join(", "),
+      }}
+    />
+  );
+
+  // 2) Iridescent edge band (only near the perimeter)
+  const EdgeIridescence = () => (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        // colorful conic sheen that will be masked to the rim
+        background:
+          "conic-gradient(from 210deg at 50% 55%, " +
+          "rgba(255,255,255,.00) 0deg," +
+          "rgba(135,206,250,.20) 40deg," +   // light blue
+          "rgba(255,192,203,.18) 110deg," +  // pink
+          "rgba(173,255,47,.18) 190deg," +   // lime
+          "rgba(255,255,255,.00) 270deg)",
+        mixBlendMode: "screen",
+
+        // mask out the center so the conic only hugs the edges:
+        // transparent (alpha 0) at center, opaque (#000) at the outer ring
+        WebkitMaskImage:
+          "radial-gradient(closest-side, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 45%, #000 50%)",
+        maskImage:
+          "radial-gradient(closest-side, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 45%, #000 50%)",
+        // more gradual transition to avoid visible circle edge
+      }}
+    />
   );
 
   // Animated diagonal sheen that sweeps on hover
@@ -195,9 +207,10 @@ function DiamondCards() {
             aria-label="Weddings"
           >
             <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
-              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered==="weddings", cursor)} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered==="weddings")} />
               <div style={gem("rgba(255, 76, 152, .42)", "rgba(255, 120, 180, .26)")} />
-              <GlassOverlay />
+              <EdgeIridescence />
+              <EdgeGlass />
               <Sheen active={hovered==="weddings"} />
               <div style={title({ bottom: "1rem", right: "1rem" }, "right", hovered==="weddings", "down")}>
                 WEDDINGS
@@ -215,9 +228,10 @@ function DiamondCards() {
             aria-label="The Property"
           >
             <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
-              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered==="property", cursor)} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered==="property")} />
               <div style={gem("rgba(0, 200, 140, .42)", "rgba(40, 255, 180, .26)")} />
-              <GlassOverlay />
+              <EdgeIridescence />
+              <EdgeGlass />
               <Sheen active={hovered==="property"} />
               <div style={title({ bottom: "1rem", left: "1rem" }, "left", hovered==="property", "down")}>
                 THE PROPERTY
@@ -235,9 +249,10 @@ function DiamondCards() {
             aria-label="Photo Gallery"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
-              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered==="gallery", cursor)} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered==="gallery")} />
               <div style={gem("rgba(70, 150, 255, .40)", "rgba(20, 90, 255, .25)")} />
-              <GlassOverlay />
+              <EdgeIridescence />
+              <EdgeGlass />
               <Sheen active={hovered==="gallery"} />
               <div style={title({ top: "1rem", right: "1rem" }, "right", hovered==="gallery")}>
                 PHOTO GALLERY
@@ -255,9 +270,10 @@ function DiamondCards() {
             aria-label="Engagement Parties"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
-              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered==="engagement", cursor)} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered==="engagement")} />
               <div style={gem("rgba(255, 186, 0, .42)", "rgba(255, 140, 0, .26)")} />
-              <GlassOverlay />
+              <EdgeIridescence />
+              <EdgeGlass />
               <Sheen active={hovered==="engagement"} />
               <div style={title({ top: "1rem", left: "1rem" }, "left", hovered==="engagement")}>
                 ENGAGEMENT PARTIES
