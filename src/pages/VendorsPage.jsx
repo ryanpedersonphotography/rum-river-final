@@ -125,62 +125,23 @@ export default function VendorsPage() {
       <section id="vendors" className="section">
         <div className="content-wrapper">
           {vendorCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} style={{ marginBottom: '3rem' }}>
+            <div key={categoryIndex} className="vendor-category-section">
               {/* Category Header */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                marginBottom: '1.5rem',
-                paddingBottom: '0.75rem',
-                borderBottom: '2px solid var(--dusty-rose)'
-              }}>
-                <span style={{ fontSize: '2rem' }}>{category.icon}</span>
-                <h3 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '2rem',
-                  color: 'var(--warm-walnut)',
-                  margin: 0
-                }}>
-                  {category.title}
-                </h3>
+              <div className="vendor-category-header">
+                <span className="category-icon">{category.icon}</span>
+                <h3 className="category-title">{category.title}</h3>
               </div>
 
-              {/* Vendor Cards */}
-              <div className="testimonials-grid">
+              {/* Vendor List */}
+              <div className="vendor-list">
                 {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} className="vendor-card-clean">
-                    <div style={{
-                      fontSize: '2rem',
-                      marginBottom: '1rem',
-                      textAlign: 'center'
-                    }}>
-                      {category.icon}
+                  <div key={vendorIndex} className="vendor-item">
+                    <div className="vendor-content">
+                      <h4 className="vendor-name">{vendor.name}</h4>
+                      <p className="vendor-description">{vendor.description}</p>
                     </div>
-                    <h4 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.5rem',
-                      color: 'var(--warm-walnut)',
-                      marginBottom: '1rem',
-                      textAlign: 'center'
-                    }}>
-                      {vendor.name}
-                    </h4>
-                    <p style={{
-                      color: 'var(--sage-green)',
-                      lineHeight: 1.6,
-                      marginBottom: '1.5rem',
-                      textAlign: 'center'
-                    }}>
-                      {vendor.description}
-                    </p>
-                    <div style={{
-                      color: 'var(--warm-walnut)',
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      textAlign: 'center'
-                    }}>
-                      📞 {vendor.phone}
+                    <div className="vendor-contact">
+                      <span className="vendor-phone">{vendor.phone}</span>
                     </div>
                   </div>
                 ))}
