@@ -153,7 +153,11 @@ function DiamondCards() {
   );
 
   return (
-    <section style={{ background: "#0b0b0b", padding: "2.75rem 2rem" }}>
+    <section style={{
+      background: "linear-gradient(to bottom, #ffffff 0%, rgba(88, 28, 135, 0.15) 15%, rgba(88, 28, 135, 0.3) 50%, rgba(88, 28, 135, 0.15) 85%, #ffffff 100%)",
+      padding: "2.75rem 2rem",
+      position: "relative"
+    }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
