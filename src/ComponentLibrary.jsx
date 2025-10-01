@@ -1,20 +1,42 @@
 import { useEffect, useState } from 'react'
 
 /**
- * DiamondCards with gemstone tints + animated sheen on hover.
- * - Clip-path sits on an inner wrapper (prevents shape disappearing)
- * - BG zooms on hover
- * - Colored glass overlays per card
- * - Diagonal sheen sweeps across on hover
+ * DiamondCards — upgraded hover, glass overlay, and title chip.
+ * - shape clip on inner wrapper (WebKit-safe)
+ * - hover: zoom + lift + micro-tilt + cursor-follow glow
+ * - glass: layered conic/radial highlights for gem feel
+ * - title chip: glass pill w/ gradient stroke + subtle shine
+ * - reduced-motion friendly
  */
 function DiamondCards() {
   const [hovered, setHovered] = useState(null);
+  const [cursor, setCursor]   = useState({ x: 50, y: 50 }); // % within card
+
+  // --- tiny CSS for reduced motion + stronger GPU stability ---
+  const css = `
+    @media (prefers-reduced-motion: reduce) {
+      .dc-bg, .dc-sheen, .dc-card { transition: none !important; transform: none !important; }
+    }
+  `;
 
   // cross-browser clip-path helper
   const clip = (poly) => ({ clipPath: poly, WebkitClipPath: poly });
 
-  const card = { position: "relative", height: "340px", cursor: "pointer" };
+  // outer grid (locked 2x2)
+  const grid = {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: ".5rem",
+  };
 
+  // outer card shell (no clip or transform here)
+  const card = {
+    position: "relative",
+    height: 340,
+    cursor: "pointer",
+  };
+
+  // inner wrapper that owns the clip (never animates)
   const shapeBox = (poly) => ({
     ...clip(poly),
     position: "relative",
@@ -23,126 +45,91 @@ function DiamondCards() {
     borderRadius: 0,
     boxShadow: "0 18px 40px rgba(0,0,0,.46)",
     isolation: "isolate",
-    background: "#000", // helps blend modes
+    background: "#000",
   });
 
-  const bg = (img, active) => ({
+  // BG image — zoom + micro-tilt + cursor-follow bloom
+  const bg = (img, active, glowPos) => ({
     position: "absolute",
     inset: 0,
-    backgroundImage: `url(${img})`,
+    backgroundImage: `radial-gradient(340px 240px at ${glowPos.x}% ${glowPos.y}%, rgba(255,255,255,.10), transparent 60%), url(${img})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    transform: active ? "scale(1.1)" : "scale(1)",
-    transition: "transform .6s ease",
-    filter: "saturate(.98) contrast(1.03) brightness(.75)",
+    transform: active ? "translateY(-6px) scale(1.08) rotate3d(1,0,0,0.6deg)" : "none",
+    transition: "transform .55s cubic-bezier(.22,.61,.36,1)",
+    filter: "saturate(1.02) contrast(1.05) brightness(.93)",
     pointerEvents: "none",
+    willChange: "transform",
   });
 
-  const label = (pos) => ({
-    position: "absolute",
-    ...pos,
-    padding: ".85rem 1.1rem",
-    background: "rgba(15,15,15,.58)",
-    color: "#fff",
-    fontWeight: 800,
-    letterSpacing: ".02em",
-    borderRadius: ".55rem",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
-    boxShadow: "0 4px 14px rgba(0,0,0,.35)",
-  });
-
+  // Gem tint overlay — uses blend to color but keep detail
   const gem = (a, b) => ({
     position: "absolute",
     inset: 0,
     background: `linear-gradient(145deg, ${a}, ${b})`,
-    opacity: 0.28,
+    opacity: 0.26,
     mixBlendMode: "overlay",
     pointerEvents: "none",
   });
 
-  // Glass overlay for jewel-like appearance
+  // Upgraded "glass" overlay with conic + radial highlights
   const GlassOverlay = () => (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        pointerEvents: "none",
-      }}
-    >
-      {/* Top highlight - creates polished surface effect */}
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      {/* facet rings */}
       <div
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "50%",
-          background: "linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.25) 30%, transparent 100%)",
-          mixBlendMode: "overlay",
+          inset: "-10% -10%",
+          background:
+            "conic-gradient(from 210deg at 50% 60%, rgba(255,255,255,.08), rgba(255,255,255,0) 20% 40%, rgba(255,255,255,.10) 52%, rgba(255,255,255,0) 70% 100%)",
+          mixBlendMode: "screen",
+          opacity: .9,
         }}
       />
-      {/* Edge highlights for faceted look */}
+      {/* top polish */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
-          background: "linear-gradient(135deg, rgba(255,255,255,.55) 0%, transparent 15%, transparent 85%, rgba(255,255,255,.35) 100%)",
-          mixBlendMode: "soft-light",
+          top: 0, left: 0, right: 0, height: "54%",
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,.18) 32%, rgba(255,255,255,0) 100%)",
+          mixBlendMode: "screen",
         }}
       />
-      {/* Diagonal facet reflection */}
+      {/* inner edge definition */}
       <div
         style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,.3) 50%, transparent 70%)",
-          mixBlendMode: "overlay",
-        }}
-      />
-      {/* Inner shadow for depth */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          boxShadow: "inset 0 3px 20px rgba(255,255,255,.2), inset 0 -12px 32px rgba(0,0,0,.5)",
+          position: "absolute", inset: 0,
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,.10), inset 0 22px 55px rgba(255,255,255,.08), inset 0 -36px 60px rgba(0,0,0,.6)",
         }}
       />
     </div>
   );
 
-  // Animated diagonal sheen that sweeps across on hover
+  // Animated diagonal sheen that sweeps on hover
   const Sheen = ({ active }) => (
     <div
+      className="dc-sheen"
       style={{
         position: "absolute",
-        inset: "-30% -10%",     // oversize so it covers at angle
+        inset: "-30% -10%",
         pointerEvents: "none",
         transform: active ? "translateX(120%)" : "translateX(-120%)",
         transition: "transform .9s cubic-bezier(.22,.61,.36,1)",
       }}
     >
-      {/* bright angled band */}
       <div
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          transform: "rotate(20deg)",
+          position: "absolute", inset: 0, transform: "rotate(20deg)",
           background:
-            "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.18) 45%, rgba(255,255,255,.33) 50%, rgba(255,255,255,.18) 55%, rgba(255,255,255,0) 100%)",
+            "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.16) 45%, rgba(255,255,255,.33) 50%, rgba(255,255,255,.16) 55%, rgba(255,255,255,0) 100%)",
           mixBlendMode: "screen",
-          filter: "blur(0.5px)",
+          filter: "blur(.5px)",
         }}
       />
-      {/* soft glow around the band */}
       <div
         style={{
-          position: "absolute",
-          inset: 0,
-          transform: "rotate(20deg)",
+          position: "absolute", inset: 0, transform: "rotate(20deg)",
           background:
             "linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.08) 50%, rgba(255,255,255,0) 60%)",
           mixBlendMode: "screen",
@@ -152,32 +139,70 @@ function DiamondCards() {
     </div>
   );
 
+  // Title chip — glass pill with gradient stroke + shine
+  const title = (pos, align="left", active, direction="up") => ({
+    position: "absolute",
+    ...pos,
+    padding: ".85rem 1.05rem",
+    color: "#fff",
+    fontWeight: 800,
+    letterSpacing: ".02em",
+    textAlign: align,
+    borderRadius: 12,
+    background:
+      "linear-gradient(180deg, rgba(18,18,18,.70), rgba(18,18,18,.55))",
+    border: "1px solid transparent",
+    backgroundClip: "padding-box",
+    boxShadow:
+      "inset 0 1px 0 rgba(255,255,255,.20), 0 10px 24px rgba(0,0,0,.45)",
+    transform: active ? `translateY(${direction === "down" ? "4px" : "-4px"}) scale(1.02)` : "none",
+    transition: "transform .4s cubic-bezier(.22,.61,.36,1)",
+    positionShine: "relative",
+  });
+
+  const titleShine = {
+    position: "absolute",
+    top: 0, left: 0, right: 0, height: 2,
+    borderRadius: 12,
+    background: "linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.0))",
+    pointerEvents: "none",
+  };
+
+  // pointer tracking to move the bloom toward cursor
+  const onMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setCursor({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
+  };
+
   return (
     <section style={{
       background: "linear-gradient(to bottom, #ffffff 0%, rgba(88, 28, 135, 0.15) 15%, rgba(88, 28, 135, 0.3) 50%, rgba(88, 28, 135, 0.15) 85%, #ffffff 100%)",
       padding: "2.75rem 2rem",
       position: "relative"
     }}>
+      <style>{css}</style>
+
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: ".5rem",
-          }}
-        >
-          {/* WEDDINGS — top-left cut, title bottom-right — Rose Quartz */}
+        <div style={grid}>
+          {/* WEDDINGS — top-left cut, title bottom-right — Rose */}
           <div
             style={card}
             onMouseEnter={() => setHovered("weddings")}
             onMouseLeave={() => setHovered(null)}
+            onMouseMove={onMove}
+            aria-label="Weddings"
           >
             <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered === "weddings")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered==="weddings", cursor)} />
               <div style={gem("rgba(255, 76, 152, .42)", "rgba(255, 120, 180, .26)")} />
               <GlassOverlay />
-              <Sheen active={hovered === "weddings"} />
-              <div style={label({ bottom: "1rem", right: "1rem" })}>WEDDINGS</div>
+              <Sheen active={hovered==="weddings"} />
+              <div style={title({ bottom: "1rem", right: "1rem" }, "right", hovered==="weddings", "down")}>
+                WEDDINGS
+                <div style={titleShine} />
+              </div>
             </div>
           </div>
 
@@ -186,13 +211,18 @@ function DiamondCards() {
             style={card}
             onMouseEnter={() => setHovered("property")}
             onMouseLeave={() => setHovered(null)}
+            onMouseMove={onMove}
+            aria-label="The Property"
           >
             <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered === "property")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered==="property", cursor)} />
               <div style={gem("rgba(0, 200, 140, .42)", "rgba(40, 255, 180, .26)")} />
               <GlassOverlay />
-              <Sheen active={hovered === "property"} />
-              <div style={label({ bottom: "1rem", left: "1rem" })}>THE PROPERTY</div>
+              <Sheen active={hovered==="property"} />
+              <div style={title({ bottom: "1rem", left: "1rem" }, "left", hovered==="property", "down")}>
+                THE PROPERTY
+                <div style={titleShine} />
+              </div>
             </div>
           </div>
 
@@ -201,13 +231,18 @@ function DiamondCards() {
             style={card}
             onMouseEnter={() => setHovered("gallery")}
             onMouseLeave={() => setHovered(null)}
+            onMouseMove={onMove}
+            aria-label="Photo Gallery"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered === "gallery")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered==="gallery", cursor)} />
               <div style={gem("rgba(70, 150, 255, .40)", "rgba(20, 90, 255, .25)")} />
               <GlassOverlay />
-              <Sheen active={hovered === "gallery"} />
-              <div style={label({ top: "1rem", right: "1rem" })}>PHOTO GALLERY</div>
+              <Sheen active={hovered==="gallery"} />
+              <div style={title({ top: "1rem", right: "1rem" }, "right", hovered==="gallery")}>
+                PHOTO GALLERY
+                <div style={titleShine} />
+              </div>
             </div>
           </div>
 
@@ -216,13 +251,18 @@ function DiamondCards() {
             style={card}
             onMouseEnter={() => setHovered("engagement")}
             onMouseLeave={() => setHovered(null)}
+            onMouseMove={onMove}
+            aria-label="Engagement Parties"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered === "engagement")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered==="engagement", cursor)} />
               <div style={gem("rgba(255, 186, 0, .42)", "rgba(255, 140, 0, .26)")} />
               <GlassOverlay />
-              <Sheen active={hovered === "engagement"} />
-              <div style={label({ top: "1rem", left: "1rem" })}>ENGAGEMENT PARTIES</div>
+              <Sheen active={hovered==="engagement"} />
+              <div style={title({ top: "1rem", left: "1rem" }, "left", hovered==="engagement")}>
+                ENGAGEMENT PARTIES
+                <div style={titleShine} />
+              </div>
             </div>
           </div>
         </div>
