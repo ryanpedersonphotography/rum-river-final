@@ -37,3 +37,13 @@ rum-river-wedding-barn/
 
 # Local Netlify folder
 .netlify
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.svg
+*.webp
+*.ico
