@@ -147,49 +147,57 @@ export default function VendorsPage() {
               </div>
 
               {/* Vendor Cards */}
-              <div style={{
+              <div className="vendor-cards-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                gap: '1.5rem'
+                gap: '2rem'
               }}>
                 {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} style={{
-                    background: 'white',
-                    padding: '1.5rem',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                    border: '1px solid var(--blush-pink)',
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                  }}
+                  <div key={vendorIndex} className="vendor-card"
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-5px)'
-                    e.target.style.boxShadow = '0 12px 32px rgba(0,0,0,0.15)'
+                    e.target.style.transform = 'translateY(-8px)'
+                    e.target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15)'
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0)'
-                    e.target.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'
+                    e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)'
                   }}>
+                    <div className="vendor-icon">
+                      {category.icon}
+                    </div>
                     <h4 style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: '1.5rem',
                       color: 'var(--warm-walnut)',
-                      marginBottom: '0.5rem'
+                      marginBottom: '0.75rem',
+                      textAlign: 'center'
                     }}>
                       {vendor.name}
                     </h4>
                     <p style={{
                       color: 'var(--sage-green)',
-                      lineHeight: 1.6,
-                      marginBottom: '1rem'
+                      lineHeight: 1.7,
+                      marginBottom: '1.5rem',
+                      textAlign: 'center',
+                      fontSize: '0.95rem'
                     }}>
                       {vendor.description}
                     </p>
-                    <div style={{
-                      color: 'var(--warm-walnut)',
-                      fontSize: '1rem',
-                      fontWeight: 600
+                    <div className="vendor-contact" style={{
+                      textAlign: 'center',
+                      padding: '1rem',
+                      background: 'var(--cream-pearl)',
+                      borderRadius: '8px',
+                      border: '1px solid var(--blush-pink)'
                     }}>
-                      📞 {vendor.phone}
+                      <div style={{
+                        color: 'var(--warm-walnut)',
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.5px'
+                      }}>
+                        📞 {vendor.phone}
+                      </div>
                     </div>
                   </div>
                 ))}
