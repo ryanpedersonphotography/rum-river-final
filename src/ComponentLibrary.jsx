@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 /**
+ * ID: DIAMOND_CARDS_001
  * DiamondCards — upgraded hover, glass overlay, and title chip.
  * - shape clip on inner wrapper (WebKit-safe)
  * - hover: zoom + lift + micro-tilt + cursor-follow glow
@@ -365,7 +366,7 @@ export default function ComponentLibrary() {
         </div>
       </header>
 
-      {/* Hero Pattern */}
+      {/* ID: HERO_001 - Hero Pattern */}
       <section className="hero-enhanced">
         <div className="romantic-overlay"></div>
         <div className="content-wrapper">
@@ -391,7 +392,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Buttons Section */}
+      {/* ID: BUTTONS_001 - Buttons Section */}
       <section id="buttons" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -406,16 +407,10 @@ export default function ComponentLibrary() {
             <button className="romantic-button">Default Button</button>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<button className="romantic-button primary">Primary Button</button>
-<button className="romantic-button outline">Outline Button</button>
-<button className="romantic-button">Default Button</button>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Typography Section */}
+      {/* ID: TYPOGRAPHY_001 - Typography Section */}
       <section id="typography" className="section" style={{ background: 'var(--blush-pink)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
@@ -431,17 +426,10 @@ export default function ComponentLibrary() {
             <p>Regular body text with standard styling for comfortable reading.</p>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<div className="script-accent">Script Text</div>
-<h1 className="hero-headline">Hero Headline</h1>
-<h2 className="section-title">Section Title</h2>
-<p className="lead">Lead paragraph</p>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Card Components */}
+      {/* ID: VENUE_CARDS_001 - Card Components */}
       <section id="cards" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -499,26 +487,10 @@ export default function ComponentLibrary() {
             </div>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<div className="venue-card image-reveal">
-  <div className="venue-card-image">
-    <img src="..." alt="..." />
-    <div className="venue-card-badge">Badge</div>
-  </div>
-  <div className="venue-card-content">
-    <h3>Title</h3>
-    <p>Description</p>
-    <div className="venue-features">
-      <span>• Feature</span>
-    </div>
-  </div>
-</div>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Package Cards */}
+      {/* ID: PACKAGE_CARDS_001 - Package Cards */}
       <section className="section" style={{ background: 'var(--cream-pearl)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
@@ -583,7 +555,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Two Column Layout */}
+      {/* ID: TWO_COLUMN_LAYOUT_001 - Two Column Layout */}
       <section id="sections" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -631,21 +603,10 @@ export default function ComponentLibrary() {
             </div>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<div className="content-grid">
-  <div className="experience-content">
-    {/* Left column content */}
-  </div>
-  <div className="experience-image image-reveal">
-    <img src="..." alt="..." />
-  </div>
-</div>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Testimonial Cards */}
+      {/* ID: TESTIMONIAL_CARDS_001 - Testimonial Cards */}
       <section className="section" style={{ background: 'var(--blush-pink)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
@@ -690,7 +651,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Numbered Feature Blocks */}
+      {/* ID: FEATURE_BLOCKS_001 - Numbered Feature Blocks */}
       <section id="feature-blocks" className="alternating-blocks">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -758,34 +719,10 @@ export default function ComponentLibrary() {
             </div>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<div className="block-item">
-  <div className="block-content">
-    <div className="number">01</div>
-    <h3>Title</h3>
-    <p>Description...</p>
-    <ul className="feature-list">
-      <li>Feature one</li>
-      <li>Feature two</li>
-    </ul>
-    <a href="#" className="btn-outline">CTA Button</a>
-  </div>
-  <div className="block-image">
-    <img src="..." alt="..." />
-    <span className="image-badge">Badge Text</span>
-  </div>
-</div>
-
-<!-- Reverse layout -->
-<div className="block-item reverse">
-  <!-- Same structure -->
-</div>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Form Components */}
+      {/* ID: FORMS_001 - Form Components */}
       <section id="forms" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -837,22 +774,10 @@ export default function ComponentLibrary() {
             </form>
           </div>
 
-          <div className="code-block">
-            <h4>Usage:</h4>
-            <pre>{`<div className="form-group">
-  <label>Field Label</label>
-  <input type="text" placeholder="Placeholder" />
-</div>
-
-<div className="form-grid">
-  <div className="form-group">...</div>
-  <div className="form-group">...</div>
-</div>`}</pre>
-          </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* ID: STATS_001 - Stats Section */}
       <section className="trust-section">
         <div className="content-wrapper">
           <div className="script-accent center">Trust Indicators</div>
@@ -880,7 +805,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Love Stories Gallery */}
+      {/* ID: LOVE_STORIES_GALLERY_001 - Love Stories Gallery */}
       <section className="love-stories-section section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -951,7 +876,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* FAQ Accordion Pattern */}
+      {/* ID: FAQ_ACCORDION_001 - FAQ Accordion Pattern */}
       <section id="faq" className="faq-section">
         <div className="container">
           <div className="faq-header">
@@ -999,7 +924,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Blog Cards Pattern */}
+      {/* ID: BLOG_CARDS_001 - Blog Cards Pattern */}
       <section id="blog" className="blog-section">
         <div className="container">
           <div className="blog-header">
@@ -1053,7 +978,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Social Proof Quote */}
+      {/* ID: SOCIAL_PROOF_001 - Social Proof Quote */}
       <section id="social-proof" className="social-proof">
         <div className="container social-content">
           <div className="social-logos">
@@ -1072,7 +997,7 @@ export default function ComponentLibrary() {
 
       <DiamondCards />
 
-      {/* Hero Image Cards - 5 Column */}
+      {/* ID: HERO_CARDS_001 - Hero Image Cards - 4 Column */}
       <section id="hero-cards" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
@@ -1283,7 +1208,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Trust Badges & Stats Section */}
+      {/* ID: TRUST_BADGES_001 - Trust Badges & Stats Section */}
       <section id="trust-badges" className="trust-section">
         <div className="content-wrapper">
           <div className="script-accent center">As Featured In</div>
@@ -1311,7 +1236,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Explore Our Spaces - Tabbed Venue Display */}
+      {/* ID: VENUE_TABS_001 - Explore Our Spaces - Tabbed Venue Display */}
       <section id="venue-tabs" className="section-warm">
         <div className="content-wrapper venue-content">
           <div className="venue-header center">
@@ -1354,7 +1279,7 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Breadcrumbs Pattern */}
+      {/* ID: BREADCRUMBS_001 - Breadcrumbs Pattern */}
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <div className="container">
           <span>
@@ -1371,34 +1296,543 @@ export default function ComponentLibrary() {
         </div>
       </nav>
 
-      {/* Floating CTA */}
+      {/* ID: FLOATING_CTA_001 - Floating CTA */}
       <div className="floating-cta">
         <span>💡</span>
         Component Library
       </div>
 
+      {/* ID: CONTACT_FORM_001 - Let's Connect Form Section */}
+      <section id="lets-connect-form" className="cta-contact-section">
+        <div className="cta-contact-container">
+          <div className="cta-contact-header">
+            <p className="script-font">Let&apos;s Connect</p>
+            <h2>Start Planning Your Perfect Day</h2>
+            <p>We&apos;d love to hear about your vision and show you around our beautiful venue.</p>
+          </div>
+          <form className="cta-contact-form" id="contactForm">
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required />
+              </div>
+            </div>
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+            </div>
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="eventDate">Preferred Event Date</label>
+                <input type="date" id="eventDate" name="eventDate" />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="guestCount">Estimated Guest Count</label>
+                <select id="guestCount" name="guestCount">
+                  <option value="">Select Range</option>
+                  <option value="50-100">50-100 Guests</option>
+                  <option value="100-150">100-150 Guests</option>
+                  <option value="150-200">150-200 Guests</option>
+                  <option value="200+">200+ Guests</option>
+                </select>
+              </div>
+            </div>
+            <div className="cta-form-group cta-full-width">
+              <label htmlFor="message">Tell Us About Your Dream Wedding</label>
+              <textarea id="message" name="message" placeholder="Share your vision with us..."></textarea>
+            </div>
+            <button type="submit" className="cta-submit-button">
+              <span>SEND MESSAGE</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* ID: MAP_DIRECTIONS_001 - Map & Directions Section */}
+      <section id="map-directions" className="map-section">
+        <div className="map-container">
+          <div className="map-info">
+            <h2>Find Your Way to Forever</h2>
+            <div className="location-details">
+              <div className="location-item">
+                <div className="location-icon">📍</div>
+                <div className="location-text">
+                  <h4>Address</h4>
+                  <p>12500 Rum River Drive<br />Princeton, MN 55371</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">🚗</div>
+                <div className="location-text">
+                  <h4>Easy Access From</h4>
+                  <p>45 min from Minneapolis<br />30 min from St. Cloud<br />1 hour from Brainerd</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">✈️</div>
+                <div className="location-text">
+                  <h4>Nearest Airport</h4>
+                  <p>Minneapolis-St. Paul International<br />55 miles (1 hour drive)</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">🏨</div>
+                <div className="location-text">
+                  <h4>Accommodations</h4>
+                  <p>Partner hotels in Princeton & Milaca<br />Group rates available</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="map-embed">
+            <div className="map-placeholder">
+              <p>Interactive Map</p>
+              <p style={{fontSize: '16px', marginTop: '10px'}}>Click to view on Google Maps</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ID: FOOTER_PATTERNS_001 - Footer Patterns */}
+      <section id="footer-patterns" style={{ background: 'white', padding: '0' }}>
+        <div className="content-wrapper" style={{ padding: '4rem 2rem 0' }}>
+          <div className="section-header center">
+            <div className="script-accent">Footer Components</div>
+            <h2 className="section-title">Footer Patterns</h2>
+            <p className="lead">Two footer styles - rendered exactly as they appear on the site</p>
+          </div>
+        </div>
+
+        {/* ID: FOOTER_SIMPLE_CTA_001 - Simple CTA Footer */}
+        <div style={{ marginTop: '3rem' }}>
+          <div style={{
+            padding: '60px 20px',
+            background: 'linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <div style={{
+              maxWidth: '800px',
+              margin: '0 auto'
+            }}>
+              <h2 style={{
+                fontSize: '48px',
+                marginBottom: '20px',
+                color: 'white',
+                fontFamily: 'Playfair Display, serif',
+                lineHeight: 1.2
+              }}>Begin Your Love Story</h2>
+              <p style={{
+                fontSize: '18px',
+                marginBottom: '40px',
+                opacity: 0.9,
+                lineHeight: 1.6
+              }}>
+                Let us help you create the wedding of your dreams<br />
+                at Rum River Barn & Vineyard
+              </p>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '30px',
+                marginBottom: '50px',
+                flexWrap: 'wrap'
+              }}>
+                <a href="#" style={{
+                  background: '#D4A574',
+                  color: 'white',
+                  padding: '15px 40px',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  fontWeight: 600,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  fontSize: '14px',
+                  transition: 'all 0.3s ease'
+                }}>SCHEDULE A TOUR</a>
+                <a href="#" style={{
+                  background: '#D4A574',
+                  color: 'white',
+                  padding: '15px 40px',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  fontWeight: 600,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  fontSize: '14px',
+                  transition: 'all 0.3s ease'
+                }}>REQUEST PRICING</a>
+              </div>
+              <p style={{
+                fontSize: '16px',
+                opacity: 0.8,
+                lineHeight: 1.8
+              }}>
+                📍 12500 Rum River Drive, Princeton, MN 55371<br />
+                📞 (555) 123-4567 | ✉️ weddings@rumriverbarn.com
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ID: FOOTER_ENHANCED_001 - Enhanced 3-Column Footer */}
+        <div style={{ marginTop: '5rem' }}>
+          <footer style={{
+            padding: '60px 20px 40px',
+            background: '#2C2416',
+            color: 'rgba(255,255,255,0.7)',
+            textAlign: 'center'
+          }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '40px',
+                marginBottom: '40px',
+                textAlign: 'left'
+              }}>
+                <div>
+                  <h4 style={{
+                    color: 'white',
+                    marginBottom: '1rem',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>Rum River Barn</h4>
+                  <p style={{ lineHeight: 1.8, fontFamily: 'Montserrat, sans-serif' }}>
+                    Minnesota&apos;s premier wedding venue<br />
+                    where dreams come to life
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{
+                    color: 'white',
+                    marginBottom: '1rem',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>Visit Us</h4>
+                  <p style={{ lineHeight: 1.8, fontFamily: 'Montserrat, sans-serif' }}>
+                    42618 78th Street<br />
+                    Hillman, MN 56338<br />
+                    (320) 492-8584
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{
+                    color: 'white',
+                    marginBottom: '1rem',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>Follow Along</h4>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Facebook</a>
+                    <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Instagram</a>
+                    <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Pinterest</a>
+                  </div>
+                </div>
+              </div>
+              <div style={{
+                borderTop: '1px solid rgba(255,255,255,0.1)',
+                paddingTop: '2rem',
+                fontSize: '0.875rem',
+                textAlign: 'center'
+              }}>
+                <p>&copy; 2025 Rum River Barn. All rights reserved. | Designed with love in Minnesota</p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </section>
+
       <style jsx>{`
-        .code-block {
-          background: var(--deep-forest);
-          color: var(--cream-pearl);
-          padding: 2rem;
-          border-radius: 8px;
-          margin-top: 3rem;
-          overflow-x: auto;
+        /* Contact Form Section Styles */
+        .cta-contact-section {
+          padding: 120px 40px;
+          background: linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%);
+          position: relative;
+          overflow: hidden;
         }
 
-        .code-block h4 {
-          color: var(--champagne-gold);
-          margin-bottom: 1rem;
-          font-family: var(--font-display);
+        .cta-contact-section::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+          animation: rotate 30s linear infinite;
         }
 
-        .code-block pre {
-          font-family: 'Courier New', monospace;
-          font-size: 0.875rem;
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .cta-contact-container {
+          max-width: 800px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+
+        .cta-contact-header {
+          text-align: center;
+          margin-bottom: 80px;
+        }
+
+        .cta-contact-header h2 {
+          font-size: 48px;
+          line-height: 1.2;
+          color: white;
+          margin-bottom: 15px;
+          letter-spacing: 2px;
+          font-family: 'Playfair Display', serif;
+        }
+
+        .cta-contact-header .script-font {
+          font-size: 28px;
+          color: #D4A574;
+          margin-bottom: 20px;
+          font-family: 'Dancing Script', cursive;
+        }
+
+        .cta-contact-header p {
+          font-size: 18px;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.8;
+        }
+
+        .cta-contact-form {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 50px;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .cta-form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+          margin-bottom: 30px;
+        }
+
+        .cta-form-group {
+          position: relative;
+        }
+
+        .cta-form-group.cta-full-width {
+          grid-column: 1 / -1;
+        }
+
+        .cta-form-group label {
+          display: block;
+          margin-bottom: 10px;
+          color: #2C2416;
+          font-size: 14px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        .cta-form-group input,
+        .cta-form-group select,
+        .cta-form-group textarea {
+          width: 100%;
+          padding: 15px;
+          border: 2px solid rgba(139, 99, 55, 0.1);
+          border-radius: 10px;
+          font-size: 16px;
+          font-family: 'Georgia', serif;
+          transition: all 0.3s ease;
+          background: white;
+        }
+
+        .cta-form-group input:focus,
+        .cta-form-group select:focus,
+        .cta-form-group textarea:focus {
+          outline: none;
+          border-color: #D4A574;
+          box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .cta-form-group textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+
+        .cta-submit-button {
+          background: #D4A574;
+          color: white;
+          padding: 18px 50px;
+          border: none;
+          border-radius: 50px;
+          font-size: 16px;
+          letter-spacing: 2px;
+          cursor: pointer;
+          transition: all 0.4s ease;
+          box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
+          display: block;
+          margin: 40px auto 0;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cta-submit-button::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: #6B4E3D;
+          transform: translate(-50%, -50%);
+          transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .cta-submit-button span {
+          position: relative;
+          z-index: 1;
+        }
+
+        .cta-submit-button:hover::before {
+          width: 300px;
+          height: 300px;
+        }
+
+        .cta-submit-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(212, 165, 116, 0.5);
+        }
+
+        /* Map Section Styles */
+        .map-section {
+          padding: 0;
+          background: #FAF6F2;
+          position: relative;
+        }
+
+        .map-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 600px;
+        }
+
+        .map-info {
+          padding: 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background: white;
+        }
+
+        .map-info h2 {
+          font-size: 42px;
+          line-height: 1.25;
+          color: #4A3426;
+          margin-bottom: 30px;
+          font-family: 'Playfair Display', serif;
+        }
+
+        .location-details {
+          margin-bottom: 40px;
+        }
+
+        .location-item {
+          display: flex;
+          align-items: start;
+          margin-bottom: 25px;
+          color: #2C2416;
+        }
+
+        .location-icon {
+          width: 40px;
+          height: 40px;
+          background: #D4A574;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          margin-right: 20px;
+          flex-shrink: 0;
+        }
+
+        .location-text h4 {
+          color: #4A3426;
+          margin-bottom: 5px;
+          font-size: 18px;
+          font-family: 'Playfair Display', serif;
+        }
+
+        .location-text p {
+          color: #7A8B7F;
           line-height: 1.6;
           margin: 0;
-          white-space: pre-wrap;
+        }
+
+        .map-embed {
+          background: #4A3426;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 24px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .map-embed::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, rgba(122, 139, 127, 0.9) 0%, rgba(74, 52, 38, 0.9) 100%);
+        }
+
+        .map-placeholder {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+        }
+
+        @media (max-width: 768px) {
+          .cta-contact-section {
+            padding: 80px 20px;
+          }
+
+          .cta-contact-header h2 {
+            font-size: 36px;
+          }
+
+          .cta-form-row {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .cta-contact-form {
+            padding: 30px;
+          }
+
+          .map-container {
+            grid-template-columns: 1fr;
+          }
+
+          .map-info {
+            padding: 40px 20px;
+          }
         }
 
         .typography-examples > * {
