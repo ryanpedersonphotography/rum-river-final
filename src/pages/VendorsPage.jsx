@@ -153,51 +153,38 @@ export default function VendorsPage() {
                 gap: '2rem'
               }}>
                 {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} className="vendor-card"
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-8px)'
-                    e.target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)'
-                    e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)'
-                  }}>
-                    <div className="vendor-icon">
+                  <div key={vendorIndex} className="testimonial-card">
+                    <div style={{
+                      fontSize: '2rem',
+                      marginBottom: '1rem',
+                      textAlign: 'center'
+                    }}>
                       {category.icon}
                     </div>
                     <h4 style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: '1.5rem',
                       color: 'var(--warm-walnut)',
-                      marginBottom: '0.75rem',
+                      marginBottom: '1rem',
                       textAlign: 'center'
                     }}>
                       {vendor.name}
                     </h4>
                     <p style={{
                       color: 'var(--sage-green)',
-                      lineHeight: 1.7,
+                      lineHeight: 1.6,
                       marginBottom: '1.5rem',
-                      textAlign: 'center',
-                      fontSize: '0.95rem'
+                      textAlign: 'center'
                     }}>
                       {vendor.description}
                     </p>
-                    <div className="vendor-contact" style={{
-                      textAlign: 'center',
-                      padding: '1rem',
-                      background: 'var(--cream-pearl)',
-                      borderRadius: '8px',
-                      border: '1px solid var(--blush-pink)'
+                    <div style={{
+                      color: 'var(--warm-walnut)',
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      textAlign: 'center'
                     }}>
-                      <div style={{
-                        color: 'var(--warm-walnut)',
-                        fontSize: '0.9rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.5px'
-                      }}>
-                        📞 {vendor.phone}
-                      </div>
+                      📞 {vendor.phone}
                     </div>
                   </div>
                 ))}
