@@ -90,10 +90,10 @@ export default function HomePage() {
       <Header />
 
       {/* Floating CTA Button */}
-      <div className="floating-cta">
+      <a href="#lets-connect-form" className="floating-cta">
         <span>📅</span>
         Schedule Your Tour
-      </div>
+      </a>
 
       {/* Hero Section - Enhanced */}
       <section id="home" className="hero-enhanced">

@@ -8,6 +8,38 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Hidden forms for Netlify Forms detection -->
+    <form name="home-contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="date" name="eventDate" />
+      <select name="guestCount">
+        <option value="50-100">50-100 Guests</option>
+        <option value="100-150">100-150 Guests</option>
+        <option value="150-200">150-200 Guests</option>
+        <option value="200+">200+ Guests</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="date" name="eventDate" />
+      <select name="guestCount">
+        <option value="50-100">50-100 Guests</option>
+        <option value="100-150">100-150 Guests</option>
+        <option value="150-200">150-200 Guests</option>
+        <option value="200+">200+ Guests</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -83,12 +83,17 @@ export default function NetlifyForm({
     // Add form-name for Netlify
     data['form-name'] = name
 
+    console.log('Submitting form data:', data)
+
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode(data)
       })
+
+      console.log('Response status:', response.status)
+      console.log('Response:', response)
 
       if (response.ok) {
         setSuccess(true)
@@ -97,7 +102,9 @@ export default function NetlifyForm({
           window.location.href = action
         }, 500)
       } else {
-        throw new Error('Form submission failed')
+        const responseText = await response.text()
+        console.error('Response error:', responseText)
+        throw new Error(`Form submission failed with status ${response.status}`)
       }
     } catch (err) {
       console.error('Form submission error:', err)
