@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
 
+/**
+ * DiamondCards with gemstone tints + animated sheen on hover.
+ * - Clip-path sits on an inner wrapper (prevents shape disappearing)
+ * - BG zooms on hover
+ * - Colored glass overlays per card
+ * - Diagonal sheen sweeps across on hover
+ */
 function DiamondCards() {
   const [hovered, setHovered] = useState(null);
 
-  // helper: clip-path for cross-browser
-  const clip = (poly) => ({
-    clipPath: poly,
-    WebkitClipPath: poly,
-  });
+  // cross-browser clip-path helper
+  const clip = (poly) => ({ clipPath: poly, WebkitClipPath: poly });
 
-  const card = {
-    position: "relative",
-    height: "340px",
-    cursor: "pointer",
-  };
+  const card = { position: "relative", height: "340px", cursor: "pointer" };
 
   const shapeBox = (poly) => ({
     ...clip(poly),
@@ -23,6 +23,7 @@ function DiamondCards() {
     borderRadius: 0,
     boxShadow: "0 18px 40px rgba(0,0,0,.46)",
     isolation: "isolate",
+    background: "#000", // helps blend modes
   });
 
   const bg = (img, active) => ({
@@ -40,17 +41,17 @@ function DiamondCards() {
   const label = (pos) => ({
     position: "absolute",
     ...pos,
-    padding: ".8rem 1rem",
-    background: "rgba(20,20,20,.6)",
+    padding: ".85rem 1.1rem",
+    background: "rgba(15,15,15,.58)",
     color: "#fff",
     fontWeight: 800,
     letterSpacing: ".02em",
-    borderRadius: ".5rem",
+    borderRadius: ".55rem",
     backdropFilter: "blur(2px)",
     WebkitBackdropFilter: "blur(2px)",
+    boxShadow: "0 4px 14px rgba(0,0,0,.35)",
   });
 
-  // gem overlay generator
   const gem = (a, b) => ({
     position: "absolute",
     inset: 0,
@@ -60,64 +61,109 @@ function DiamondCards() {
     pointerEvents: "none",
   });
 
+  // Animated diagonal sheen that sweeps across on hover
+  const Sheen = ({ active }) => (
+    <div
+      style={{
+        position: "absolute",
+        inset: "-30% -10%",     // oversize so it covers at angle
+        pointerEvents: "none",
+        transform: active ? "translateX(120%)" : "translateX(-120%)",
+        transition: "transform .9s cubic-bezier(.22,.61,.36,1)",
+      }}
+    >
+      {/* bright angled band */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          transform: "rotate(20deg)",
+          background:
+            "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.18) 45%, rgba(255,255,255,.33) 50%, rgba(255,255,255,.18) 55%, rgba(255,255,255,0) 100%)",
+          mixBlendMode: "screen",
+          filter: "blur(0.5px)",
+        }}
+      />
+      {/* soft glow around the band */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          transform: "rotate(20deg)",
+          background:
+            "linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.08) 50%, rgba(255,255,255,0) 60%)",
+          mixBlendMode: "screen",
+          filter: "blur(8px)",
+        }}
+      />
+    </div>
+  );
+
   return (
-    <section style={{ background: "#0b0b0b", padding: "2.5rem 2rem" }}>
+    <section style={{ background: "#0b0b0b", padding: "2.75rem 2rem" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: "1rem",
           }}
         >
-          {/* WEDDINGS — top-left cut, title bottom-right */}
+          {/* WEDDINGS — top-left cut, title bottom-right — Rose Quartz */}
           <div
             style={card}
             onMouseEnter={() => setHovered("weddings")}
             onMouseLeave={() => setHovered(null)}
           >
             <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1200", hovered === "weddings")} />
-              <div style={gem("rgba(255, 76, 152, .4)", "rgba(255, 120, 180, .25)")} />
+              <div style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered === "weddings")} />
+              <div style={gem("rgba(255, 76, 152, .42)", "rgba(255, 120, 180, .26)")} />
+              <Sheen active={hovered === "weddings"} />
               <div style={label({ bottom: "1rem", right: "1rem" })}>WEDDINGS</div>
             </div>
           </div>
 
-          {/* PROPERTY — top-right cut, title bottom-left */}
+          {/* PROPERTY — top-right cut, title bottom-left — Emerald */}
           <div
             style={card}
             onMouseEnter={() => setHovered("property")}
             onMouseLeave={() => setHovered(null)}
           >
             <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1200", hovered === "property")} />
-              <div style={gem("rgba(0, 200, 140, .4)", "rgba(40, 255, 180, .25)")} />
+              <div style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered === "property")} />
+              <div style={gem("rgba(0, 200, 140, .42)", "rgba(40, 255, 180, .26)")} />
+              <Sheen active={hovered === "property"} />
               <div style={label({ bottom: "1rem", left: "1rem" })}>THE PROPERTY</div>
             </div>
           </div>
 
-          {/* PHOTO GALLERY — bottom-left cut, title top-right */}
+          {/* GALLERY — bottom-left cut, title top-right — Sapphire */}
           <div
             style={card}
             onMouseEnter={() => setHovered("gallery")}
             onMouseLeave={() => setHovered(null)}
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200", hovered === "gallery")} />
-              <div style={gem("rgba(70, 150, 255, .4)", "rgba(20, 90, 255, .25)")} />
+              <div style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered === "gallery")} />
+              <div style={gem("rgba(70, 150, 255, .40)", "rgba(20, 90, 255, .25)")} />
+              <Sheen active={hovered === "gallery"} />
               <div style={label({ top: "1rem", right: "1rem" })}>PHOTO GALLERY</div>
             </div>
           </div>
 
-          {/* ENGAGEMENT — bottom-right cut, title top-left */}
+          {/* ENGAGEMENT — bottom-right cut, title top-left — Amber */}
           <div
             style={card}
             onMouseEnter={() => setHovered("engagement")}
             onMouseLeave={() => setHovered(null)}
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
-              <div style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200", hovered === "engagement")} />
-              <div style={gem("rgba(255, 186, 0, .4)", "rgba(255, 140, 0, .25)")} />
+              <div style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered === "engagement")} />
+              <div style={gem("rgba(255, 186, 0, .42)", "rgba(255, 140, 0, .26)")} />
+              <Sheen active={hovered === "engagement"} />
               <div style={label({ top: "1rem", left: "1rem" })}>ENGAGEMENT PARTIES</div>
             </div>
           </div>
