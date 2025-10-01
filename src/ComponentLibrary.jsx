@@ -48,7 +48,7 @@ function DiamondCards() {
     background: "#000",
   });
 
-  // BG image — zoom + micro-tilt
+  // BG image — zoom + micro-tilt + opacity change
   const bg = (img, active) => ({
     position: "absolute",
     inset: 0,
@@ -56,10 +56,11 @@ function DiamondCards() {
     backgroundSize: "cover",
     backgroundPosition: "center",
     transform: active ? "translateY(-6px) scale(1.08) rotate3d(1,0,0,0.6deg)" : "none",
-    transition: "transform .55s cubic-bezier(.22,.61,.36,1)",
-    filter: "saturate(1.02) contrast(1.05) brightness(.93)",
+    transition: "transform .55s cubic-bezier(.22,.61,.36,1), opacity .4s ease, filter .4s ease",
+    filter: active ? "saturate(1.1) contrast(1.1) brightness(1.05)" : "saturate(1.02) contrast(1.05) brightness(.65)",
+    opacity: active ? 1 : 0.7,
     pointerEvents: "none",
-    willChange: "transform",
+    willChange: "transform, opacity, filter",
   });
 
   // Gem tint overlay — uses blend to color but keep detail
