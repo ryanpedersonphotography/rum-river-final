@@ -196,6 +196,15 @@ function DiamondCards() {
       padding: "2.75rem 2rem",
       position: "relative"
     }}>
+      {/* Internal ID tag */}
+      <div style={{ textAlign: 'center', paddingBottom: '1rem' }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: DIAMOND_CARDS_001</div>
+        <div style={{ fontFamily: 'Dancing Script, cursive', fontSize: '1.75rem', color: '#7A1CAC', marginBottom: '0.5rem' }}>Gemstone Effect</div>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2.5rem', color: '#2C2416', marginBottom: '1rem' }}>Diamond Cards</h2>
+        <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '1.125rem', color: '#4A3426', maxWidth: '800px', margin: '0 auto' }}>
+          Interactive diamond-shaped cards with iridescent edges, animated sheen effects, and hover interactions
+        </p>
+      </div>
       <style>{css}</style>
 
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -663,6 +672,110 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
+      {/* ID: VENDOR_CARDS_001 - Vendor Directory Cards */}
+      <section className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: VENDOR_CARDS_001</div>
+            <div className="script-accent">Business Listings</div>
+            <h2 className="section-title">Vendor Directory Cards</h2>
+            <p className="lead">Clean, information-focused cards for vendor listings with contact details</p>
+          </div>
+
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <h3 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.75rem',
+                fontWeight: 400,
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                Sprunk Entertainment
+              </h3>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: 'var(--sage-green)',
+                marginBottom: '1.5rem'
+              }}>
+                Professional DJ and entertainment services for weddings and special events.
+              </p>
+              <div style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--warm-walnut)',
+                letterSpacing: '0.02em'
+              }}>
+                📞 612-440-0777
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <h3 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.75rem',
+                fontWeight: 400,
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                Princeton Floral
+              </h3>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: 'var(--sage-green)',
+                marginBottom: '1.5rem'
+              }}>
+                Local florist specializing in wedding arrangements, bridal bouquets, and venue decorations.
+              </p>
+              <div style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--warm-walnut)',
+                letterSpacing: '0.02em'
+              }}>
+                📞 763-389-3433
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <h3 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.75rem',
+                fontWeight: 400,
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                Fable Catering
+              </h3>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: 'var(--sage-green)',
+                marginBottom: '1.5rem'
+              }}>
+                Creative catering services with custom menu options for special events.
+              </p>
+              <div style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--warm-walnut)',
+                letterSpacing: '0.02em'
+              }}>
+                📞 612-500-6838
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ID: FEATURE_BLOCKS_001 - Numbered Feature Blocks */}
       <section id="feature-blocks" className="alternating-blocks">
         <div className="content-wrapper">
@@ -1014,9 +1127,6 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      <section style={{ padding: '1rem 2rem 0', textAlign: 'center' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: DIAMOND_CARDS_001</div>
-      </section>
       <DiamondCards />
 
       {/* ID: HERO_CARDS_001 - Hero Image Cards - 4 Column */}
