@@ -400,8 +400,9 @@ export default function HomePage() {
             <p>We'd love to hear about your vision and show you around our beautiful venue.</p>
           </div>
           <NetlifyForm name="home-contact" action="/thank-you">
-            {({ handleSubmit, submitting, error }) => (
+            {({ handleSubmit, submitting, error, honeypotField }) => (
               <form className="cta-contact-form" id="contactForm" onSubmit={handleSubmit}>
+                {honeypotField}
                 {error && (
                   <div style={{
                     background: '#fee',

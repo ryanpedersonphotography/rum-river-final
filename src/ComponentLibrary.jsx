@@ -341,6 +341,42 @@ export default function ComponentLibrary() {
 
   return (
     <>
+      {/* ComponentLibrary-specific elegant hover overrides */}
+      <style>{`
+        /* Apply elegant hover animation to all card types in ComponentLibrary */
+        .package-card {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        .package-card:hover {
+          transform: translateY(-8px) !important;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+        }
+        .package-card.featured:hover {
+          transform: scale(1.05) translateY(-8px) !important;
+        }
+        
+        .testimonial-card {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        .testimonial-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-card {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        .blog-card:hover {
+          transform: translateY(-8px) !important;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        /* Keep image animations synced with parent timing */
+        .blog-card:hover .blog-image img {
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+      `}</style>
+      
       {/* ID: HEADER_001 - Header Pattern */}
       <div style={{ padding: '0.5rem 2rem', background: '#f5f5f5', borderBottom: '1px solid #ddd', textAlign: 'center' }}>
         <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px' }}>ID: HEADER_001</div>
@@ -1328,8 +1364,12 @@ export default function ComponentLibrary() {
           </div>
 
           <style jsx>{`
+            .event-hero-card {
+              transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
             .event-hero-card:hover {
               transform: translateY(-8px) !important;
+              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             }
             .event-hero-card:hover img {
               filter: brightness(1) !important;
@@ -2274,11 +2314,11 @@ function EventComponents() {
           overflow: hidden;
           display: grid;
           grid-template-columns: 1fr;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .rrb-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
         .rrb-card__body {
           display: grid;

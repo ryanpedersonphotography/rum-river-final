@@ -33,8 +33,9 @@ export default function ContactPage() {
       <section id="lets-connect-form" className="cta-contact-section">
         <div className="cta-contact-container">
           <NetlifyForm name="contact" action="/thank-you">
-            {({ handleSubmit, submitting, error }) => (
+            {({ handleSubmit, submitting, error, honeypotField }) => (
               <form className="cta-contact-form" id="contactForm" onSubmit={handleSubmit}>
+                {honeypotField}
                 {error && (
                   <div style={{
                     background: '#fee',

@@ -1,87 +1,50 @@
 import PageTemplate from '../components/PageTemplate'
 
-const events = [
-  {
-    id: 'weddings',
-    icon: '💍',
-    title: 'Wedding Events',
-    tagline: 'Your Dream Day',
-    description: 'Celebrate your love story in our tranquil, charming barn setting with indoor and outdoor spaces. Our immaculate grounds provide the perfect backdrop for photography in every season.',
-    capacity: 'Up to 600 guests',
-    features: [
-      'Indoor and outdoor ceremony spaces',
-      'Year-round venue availability',
-      'Picturesque grounds for photography',
-      'White Barn Loft with natural beauty',
-      'One of the longest-running barn venues in Minnesota'
-    ],
-    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800'
-  },
-  {
-    id: 'engagement',
-    icon: '💕',
-    title: 'Engagement Parties',
-    tagline: 'Celebrate Your Love',
-    description: 'Host your engagement celebration in our White Barn Loft overlooking acres of natural beauty and picturesque vineyards. The perfect way to bring both sides of your family together.',
-    capacity: 'Flexible capacity',
-    features: [
-      'Bring both families together before the wedding',
-      'Relax with a beautiful celebration',
-      'Rustic venue setting with vineyard views',
-      'Celebrate with the people you love most',
-      'Pre-wedding planning celebration'
-    ],
-    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800'
-  },
-  {
-    id: 'birthday',
-    icon: '🎂',
-    title: 'Birthday Parties',
-    tagline: 'Milestone Celebrations',
-    description: 'Whether turning 16 or 60, celebrate your birthday in our beautiful, recently renovated rustic space. Our picturesque location provides the perfect setting for birthdays of all ages.',
-    capacity: 'Up to 200 guests',
-    features: [
-      'Recently renovated rustic space',
-      'Suitable for all ages',
-      'Seasonal outdoor mezzanine',
-      'Picturesque celebration setting',
-      'Flexible event space'
-    ],
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800'
-  },
-  {
-    id: 'graduation',
-    icon: '🎓',
-    title: 'Graduation Parties',
-    tagline: 'Honor Their Achievement',
-    description: 'Celebrate high school, college, or military graduations with plenty of space for eating, dancing, and games. Warm summer sunlight creates an ideal backdrop for memorable photos.',
-    capacity: 'Large groups welcome',
-    features: [
-      'High school & college graduations',
-      'Military graduation celebrations',
-      'Spacious areas for dining and dancing',
-      'Perfect for graduation photos',
-      'Room for games and activities'
-    ],
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800'
-  },
-  {
-    id: 'holiday',
-    icon: '🎄',
-    title: 'Holiday Parties',
-    tagline: 'Seasonal Celebrations',
-    description: 'Host your holiday celebration with plenty of indoor and outdoor space for eating and dancing. Perfect for Christmas, Valentine\'s Day, Fourth of July, and more.',
-    capacity: 'Large gatherings',
-    features: [
-      'Indoor and outdoor celebration spaces',
-      'Perfect for Christmas parties',
-      'Valentine\'s Day celebrations',
-      'Fourth of July gatherings',
-      'Preferred catering and alcohol vendors available'
-    ],
-    image: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800'
-  }
-]
+
+// Hero Strip Component
+function EventHeroStrip({ title, subtitle, image, ctaHref = "/contact", ctaLabel = "Check availability" }) {
+  return (
+    <div className="rrb-hero-strip">
+      <div style={{ display: 'grid', gap: '.5rem' }}>
+        <h1 style={{ 
+          margin: 0, 
+          fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
+          lineHeight: 1.15,
+          fontFamily: 'var(--font-display)',
+          color: 'var(--warm-walnut)'
+        }}>
+          {title}
+        </h1>
+        <p style={{ 
+          margin: 0, 
+          color: 'var(--sage-green)',
+          fontSize: '1.125rem',
+          lineHeight: 1.6
+        }}>
+          {subtitle}
+        </p>
+        <div>
+          <a className="rrb-btn" href={ctaHref}>{ctaLabel}</a>
+        </div>
+      </div>
+      <div className="rrb-aspect" style={{ '--rrb-aspect-ratio': '66.67%' }}>
+        <img 
+          src={image.src} 
+          alt={image.alt}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '12px'
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 
 export default function EventsPage() {
   const heroContent = (
@@ -109,118 +72,298 @@ export default function EventsPage() {
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <>
+      {/* Hero Strip Component CSS */}
+      <style>{`
+        .rrb-hero-strip {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          align-items: center;
+          padding: 2rem 0;
+        }
 
-      {/* Intro Section */}
-      <section className="section">
+        .rrb-aspect {
+          position: relative; 
+          width: 100%;
+        }
+        .rrb-aspect::before { 
+          content: ""; 
+          display: block; 
+          padding-top: var(--rrb-aspect-ratio, 56.25%); 
+        }
+        .rrb-aspect > img {
+          position: absolute; 
+          inset: 0; 
+          width: 100%; 
+          height: 100%; 
+          object-fit: cover; 
+          display: block;
+        }
+
+        .rrb-btn {
+          display: inline-block; 
+          text-decoration: none;
+          margin-top: .5rem; 
+          padding: .6rem 1rem;
+          background: var(--warm-walnut); 
+          color: #fff; 
+          border-radius: 999px;
+          font-size: 0.875rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+        .rrb-btn:hover { 
+          background: var(--sage-green);
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+          .rrb-hero-strip {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+        }
+      `}</style>
+      
+      <PageTemplate heroContent={heroContent}>
+
+
+      {/* Wedding Events - Dark Section */}
+      <section style={{ 
+        background: 'linear-gradient(135deg, rgba(74, 52, 38, 1) 0%, rgba(45, 58, 47, 1) 100%)',
+        color: 'white',
+        padding: '100px 0'
+      }}>
         <div className="content-wrapper">
-          <div style={{
-            maxWidth: '800px',
-            margin: '0 auto',
-            textAlign: 'center'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Your Special Day</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Celebrate Life's Milestones
-            </h2>
-            <p className="lead" style={{ marginBottom: '0' }}>
-              At Rum River Barn & Vineyard, we provide the perfect rustic setting for all of life's most important celebrations.
-              Located in Hillman, MN, near St. Cloud and St. Paul, our venue offers flexible indoor and outdoor spaces
-              surrounded by natural beauty and picturesque vineyards.
-            </p>
+          <div className="block-item">
+            <div className="block-content">
+              <h3 style={{
+                fontSize: '42px',
+                marginBottom: '25px',
+                fontFamily: 'var(--font-display)',
+                color: 'white'
+              }}>Wedding Events</h3>
+              <p style={{
+                fontSize: '17px',
+                lineHeight: 1.8,
+                marginBottom: '30px',
+                color: 'rgba(255, 255, 255, 0.9)'
+              }}>
+                Celebrate your love story in our tranquil, charming barn setting with indoor and outdoor spaces. 
+                Our immaculate grounds provide the perfect backdrop for photography in every season, creating 
+                memories that will last a lifetime.
+              </p>
+              <ul className="feature-list" style={{
+                listStyle: 'none',
+                marginBottom: '30px',
+                paddingLeft: 0
+              }}>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Indoor and outdoor ceremony spaces with flexible configurations</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Year-round venue availability with climate-controlled comfort</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Picturesque grounds perfect for wedding photography</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Capacity for up to 600 guests with authentic barn charm</li>
+              </ul>
+              <a href="/contact" className="btn-outline" style={{
+                borderColor: 'var(--champagne-gold)',
+                color: 'var(--champagne-gold)'
+              }}>Plan Your Wedding</a>
+            </div>
+            <div className="block-image">
+              <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Wedding Events at Rum River Barn" width="800" height="500" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Events Grid - Alternating Layout */}
-      {events.map((event, index) => (
-        <section
-          key={event.id}
-          className="section"
-          style={{
-            background: index % 2 === 0 ? 'white' : 'var(--cream-pearl)'
-          }}
-        >
-          <div className="content-wrapper">
-            <div className="content-grid" style={{
-              flexDirection: index % 2 === 0 ? 'row' : 'row-reverse'
-            }}>
-              <div className="experience-content">
-                <div style={{
-                  fontSize: '3rem',
-                  marginBottom: '1rem'
-                }}>
-                  {event.icon}
-                </div>
-                <div className="script-accent">{event.tagline}</div>
-                <h2 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '2.5rem',
-                  fontWeight: 400,
-                  color: 'var(--warm-walnut)',
-                  marginBottom: '1.5rem'
-                }}>
-                  {event.title}
-                </h2>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.125rem',
-                  lineHeight: 1.8,
-                  color: 'var(--sage-green)',
-                  marginBottom: '1.5rem'
-                }}>
-                  {event.description}
-                </p>
-
-                <div style={{
-                  marginBottom: '1.5rem',
-                  padding: '1rem',
-                  background: index % 2 === 0 ? 'var(--cream-pearl)' : 'white',
-                  borderRadius: '8px'
-                }}>
-                  <div style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.875rem',
-                    fontWeight: 600,
-                    color: 'var(--warm-walnut)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    marginBottom: '0.5rem'
-                  }}>
-                    Capacity
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '1rem',
-                    color: 'var(--sage-green)'
-                  }}>
-                    {event.capacity}
-                  </div>
-                </div>
-
-                <div className="experience-features">
-                  {event.features.map((feature, i) => (
-                    <div key={i} className="feature-item">
-                      <div className="feature-icon">✓</div>
-                      <div className="feature-content">
-                        <p>{feature}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <a href="/contact" className="romantic-button" style={{ marginTop: '1.5rem' }}>
-                  Inquire About {event.title}
-                </a>
-              </div>
-
-              <div className="experience-image image-reveal">
-                <img src={event.image} alt={event.title} width="800" height="600" />
-              </div>
+      {/* Engagement Parties - Light Section */}
+      <section style={{ 
+        background: 'var(--cream-pearl)',
+        color: 'var(--warm-walnut)',
+        padding: '100px 0'
+      }}>
+        <div className="content-wrapper">
+          <div className="block-item reverse" style={{ direction: 'rtl' }}>
+            <div className="block-content" style={{ direction: 'ltr' }}>
+              <h3 style={{
+                fontSize: '42px',
+                marginBottom: '25px',
+                fontFamily: 'var(--font-display)',
+                color: 'var(--warm-walnut)'
+              }}>Engagement Parties</h3>
+              <p style={{
+                fontSize: '17px',
+                lineHeight: 1.8,
+                marginBottom: '30px',
+                color: 'var(--sage-green)'
+              }}>
+                Host your engagement celebration in our White Barn Loft overlooking acres of natural beauty and 
+                picturesque vineyards. The perfect way to bring both sides of your family together before your 
+                special day in an intimate, rustic setting.
+              </p>
+              <ul className="feature-list" style={{
+                listStyle: 'none',
+                marginBottom: '30px',
+                paddingLeft: 0
+              }}>
+                <li style={{ color: 'var(--sage-green)' }}>Bring both families together in a relaxed, beautiful setting</li>
+                <li style={{ color: 'var(--sage-green)' }}>Rustic venue setting with stunning vineyard views</li>
+                <li style={{ color: 'var(--sage-green)' }}>Flexible capacity arrangements for intimate gatherings</li>
+                <li style={{ color: 'var(--sage-green)' }}>Pre-wedding celebration planning with experienced staff</li>
+              </ul>
+              <a href="/contact" className="btn-outline" style={{
+                borderColor: 'var(--warm-walnut)',
+                color: 'var(--warm-walnut)'
+              }}>Plan Your Engagement</a>
+            </div>
+            <div className="block-image">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Engagement Parties at Rum River Barn" width="800" height="500" />
             </div>
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
+
+      {/* Birthday Parties - Dark Section */}
+      <section style={{ 
+        background: 'linear-gradient(135deg, rgba(74, 52, 38, 1) 0%, rgba(45, 58, 47, 1) 100%)',
+        color: 'white',
+        padding: '100px 0'
+      }}>
+        <div className="content-wrapper">
+          <div className="block-item">
+            <div className="block-content">
+              <h3 style={{
+                fontSize: '42px',
+                marginBottom: '25px',
+                fontFamily: 'var(--font-display)',
+                color: 'white'
+              }}>Birthday Parties</h3>
+              <p style={{
+                fontSize: '17px',
+                lineHeight: 1.8,
+                marginBottom: '30px',
+                color: 'rgba(255, 255, 255, 0.9)'
+              }}>
+                Whether turning 16 or 60, celebrate your birthday in our beautiful, recently renovated rustic space. 
+                Our picturesque location provides the perfect setting for birthdays of all ages, with both indoor 
+                comfort and outdoor charm.
+              </p>
+              <ul className="feature-list" style={{
+                listStyle: 'none',
+                marginBottom: '30px',
+                paddingLeft: 0
+              }}>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Recently renovated rustic space with modern amenities</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Suitable for milestone birthdays of all ages</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Seasonal outdoor mezzanine for additional space</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Capacity for up to 200 guests in picturesque setting</li>
+              </ul>
+              <a href="/contact" className="btn-outline" style={{
+                borderColor: 'var(--champagne-gold)',
+                color: 'var(--champagne-gold)'
+              }}>Book Birthday Party</a>
+            </div>
+            <div className="block-image">
+              <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800" alt="Birthday Parties at Rum River Barn" width="800" height="500" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Graduation Parties - Light Section */}
+      <section style={{ 
+        background: 'var(--cream-pearl)',
+        color: 'var(--warm-walnut)',
+        padding: '100px 0'
+      }}>
+        <div className="content-wrapper">
+          <div className="block-item reverse" style={{ direction: 'rtl' }}>
+            <div className="block-content" style={{ direction: 'ltr' }}>
+              <h3 style={{
+                fontSize: '42px',
+                marginBottom: '25px',
+                fontFamily: 'var(--font-display)',
+                color: 'var(--warm-walnut)'
+              }}>Graduation Parties</h3>
+              <p style={{
+                fontSize: '17px',
+                lineHeight: 1.8,
+                marginBottom: '30px',
+                color: 'var(--sage-green)'
+              }}>
+                Celebrate high school, college, or military graduations with plenty of space for eating, dancing, and games. 
+                Warm summer sunlight creates an ideal backdrop for memorable photos, honoring achievements in a setting 
+                that matches the significance of the milestone.
+              </p>
+              <ul className="feature-list" style={{
+                listStyle: 'none',
+                marginBottom: '30px',
+                paddingLeft: 0
+              }}>
+                <li style={{ color: 'var(--sage-green)' }}>Perfect for high school, college, and military graduations</li>
+                <li style={{ color: 'var(--sage-green)' }}>Spacious areas for dining, dancing, and celebration activities</li>
+                <li style={{ color: 'var(--sage-green)' }}>Ideal natural lighting for graduation photos and memories</li>
+                <li style={{ color: 'var(--sage-green)' }}>Large group capacity with flexible event arrangements</li>
+              </ul>
+              <a href="/contact" className="btn-outline" style={{
+                borderColor: 'var(--warm-walnut)',
+                color: 'var(--warm-walnut)'
+              }}>Celebrate Graduation</a>
+            </div>
+            <div className="block-image">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="Graduation Parties at Rum River Barn" width="800" height="500" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Holiday Parties - Dark Section */}
+      <section style={{ 
+        background: 'linear-gradient(135deg, rgba(74, 52, 38, 1) 0%, rgba(45, 58, 47, 1) 100%)',
+        color: 'white',
+        padding: '100px 0'
+      }}>
+        <div className="content-wrapper">
+          <div className="block-item">
+            <div className="block-content">
+              <h3 style={{
+                fontSize: '42px',
+                marginBottom: '25px',
+                fontFamily: 'var(--font-display)',
+                color: 'white'
+              }}>Holiday Parties</h3>
+              <p style={{
+                fontSize: '17px',
+                lineHeight: 1.8,
+                marginBottom: '30px',
+                color: 'rgba(255, 255, 255, 0.9)'
+              }}>
+                Host your holiday celebration with plenty of indoor and outdoor space for eating and dancing. 
+                Perfect for Christmas parties, Valentine's Day celebrations, Fourth of July gatherings, and more. 
+                Create magical holiday memories in our festive barn setting.
+              </p>
+              <ul className="feature-list" style={{
+                listStyle: 'none',
+                marginBottom: '30px',
+                paddingLeft: 0
+              }}>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Indoor and outdoor celebration spaces for any season</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Perfect venue for Christmas and winter holiday parties</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Beautiful setting for Valentine's Day and spring celebrations</li>
+                <li style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Preferred catering and alcohol vendors available for events</li>
+              </ul>
+              <a href="/contact" className="btn-outline" style={{
+                borderColor: 'var(--champagne-gold)',
+                color: 'var(--champagne-gold)'
+              }}>Plan Holiday Event</a>
+            </div>
+            <div className="block-image">
+              <img src="https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800" alt="Holiday Parties at Rum River Barn" width="800" height="500" />
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Contact Info Section */}
       <section className="section" style={{ background: 'var(--warm-walnut)', color: 'white' }}>
@@ -340,6 +483,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-    </PageTemplate>
+      </PageTemplate>
+    </>
   )
 }

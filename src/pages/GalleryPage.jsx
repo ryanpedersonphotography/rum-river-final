@@ -173,17 +173,6 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          {/* Photo Count */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '2rem',
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.875rem',
-            color: 'var(--sage-green)',
-            letterSpacing: '1px'
-          }}>
-            Showing {filteredPhotos.length} {filteredPhotos.length === 1 ? 'item' : 'items'}
-          </div>
         </div>
       </section>
 
