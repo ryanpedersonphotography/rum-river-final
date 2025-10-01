@@ -147,11 +147,7 @@ export default function VendorsPage() {
               </div>
 
               {/* Vendor Cards */}
-              <div className="vendor-cards-grid" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                gap: '2rem'
-              }}>
+              <div className="testimonials-grid">
                 {category.vendors.map((vendor, vendorIndex) => (
                   <div key={vendorIndex} className="testimonial-card">
                     <div style={{
