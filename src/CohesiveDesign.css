@@ -2400,3 +2400,136 @@ body {
   }
 }
 
+/* Interactive Property Gallery */
+.property-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--blush-pink);
+}
+
+.property-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  border: 2px solid var(--blush-pink);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--warm-walnut);
+  min-width: 140px;
+}
+
+.property-tab:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--dusty-rose);
+}
+
+.property-tab.active {
+  background: var(--dusty-rose);
+  color: white;
+  border-color: var(--dusty-rose);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+}
+
+.tab-icon {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.tab-label {
+  text-align: center;
+  line-height: 1.3;
+}
+
+.property-content {
+  margin-bottom: 4rem;
+}
+
+.property-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.property-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.property-info {
+  padding: 2rem 0;
+}
+
+.property-features {
+  margin-bottom: 2rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  position: relative;
+  padding: 0.75rem 0 0.75rem 2rem;
+  color: var(--sage-green);
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(228, 200, 150, 0.2);
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.features-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--dusty-rose);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .property-tabs {
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+  
+  .property-tab {
+    min-width: 120px;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .tab-icon {
+    font-size: 1.5rem;
+  }
+  
+  .property-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .property-info {
+    padding: 1rem 0;
+  }
+}
+

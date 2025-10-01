@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import VendorsPage from './pages/VendorsPage'
+import PropertyPage from './pages/PropertyPage'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 
@@ -22,7 +23,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/vendor-list" element={<VendorsPage />} />
-        <Route path="/property" element={<div>Property Page</div>} />
+        <Route path="/property" element={<PropertyPage />} />
         <Route path="/history" element={<div>History Page</div>} />
         <Route path="/testimonials" element={<div>Testimonials Page</div>} />
         <Route path="/location" element={<div>Location Page</div>} />
