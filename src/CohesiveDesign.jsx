@@ -405,102 +405,59 @@ export default function CohesiveDesign() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="contact-section section">
-        <div className="content-wrapper">
-          <div className="contact-grid">
-            <div className="contact-content">
-              <div className="script-accent">Let's Start Planning</div>
-              <h2 className="section-title">Schedule Your Visit</h2>
-              <p className="lead">
-                Ready to see where your love story will unfold? Schedule a private tour
-                and let us show you why Rum River Wedding Barn is the perfect setting for your celebration.
-              </p>
-
-              <div className="contact-info">
-                <div className="info-item">
-                  <div className="info-icon">📍</div>
-                  <div className="info-content">
-                    <h4>Visit Us</h4>
-                    <p>12500 Rum River Drive<br />Princeton, MN 55371</p>
-                  </div>
-                </div>
-
-                <div className="info-item">
-                  <div className="info-icon">📞</div>
-                  <div className="info-content">
-                    <h4>Call Us</h4>
-                    <p>(763) 555-BARN<br />Available 7 days a week</p>
-                  </div>
-                </div>
-
-                <div className="info-item">
-                  <div className="info-icon">✉️</div>
-                  <div className="info-content">
-                    <h4>Email Us</h4>
-                    <p>hello@rumriverweddings.com<br />We respond within 24 hours</p>
-                  </div>
-                </div>
+      {/* Contact Section - ID: CONTACT_FORM_001 from Component Library */}
+      <section id="lets-connect-form" className="cta-contact-section">
+        <div className="cta-contact-container">
+          <div className="cta-contact-header">
+            <p className="script-font">Let's Connect</p>
+            <h2>Start Planning Your Perfect Day</h2>
+            <p>We'd love to hear about your vision and show you around our beautiful venue.</p>
+          </div>
+          <form className="cta-contact-form" id="contactForm">
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required />
               </div>
             </div>
-
-            <div className="contact-form-wrapper">
-              <form className="contact-form">
-                <div className="form-header">
-                  <h3>Book Your Tour</h3>
-                  <p>Fill out the form below and we'll be in touch within 24 hours.</p>
-                </div>
-
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label>Bride's Name</label>
-                    <input type="text" placeholder="Your name" />
-                  </div>
-                  <div className="form-group">
-                    <label>Partner's Name</label>
-                    <input type="text" placeholder="Partner's name" />
-                  </div>
-                </div>
-
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="your@email.com" />
-                  </div>
-                  <div className="form-group">
-                    <label>Phone</label>
-                    <input type="tel" placeholder="(123) 456-7890" />
-                  </div>
-                </div>
-
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label>Wedding Date</label>
-                    <input type="date" />
-                  </div>
-                  <div className="form-group">
-                    <label>Guest Count</label>
-                    <select>
-                      <option>Select guest count</option>
-                      <option>50-100 guests</option>
-                      <option>100-150 guests</option>
-                      <option>150-200 guests</option>
-                      <option>200+ guests</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label>Tell us about your dream wedding</label>
-                  <textarea rows={4} placeholder="Share your vision with us..."></textarea>
-                </div>
-
-                <button type="submit" className="romantic-button primary full-width">
-                  Schedule My Tour
-                </button>
-              </form>
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
             </div>
-          </div>
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="eventDate">Preferred Event Date</label>
+                <input type="date" id="eventDate" name="eventDate" />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="guestCount">Estimated Guest Count</label>
+                <select id="guestCount" name="guestCount">
+                  <option value="">Select Range</option>
+                  <option value="50-100">50-100 Guests</option>
+                  <option value="100-150">100-150 Guests</option>
+                  <option value="150-200">150-200 Guests</option>
+                  <option value="200+">200+ Guests</option>
+                </select>
+              </div>
+            </div>
+            <div className="cta-form-group cta-full-width">
+              <label htmlFor="message">Tell Us About Your Dream Wedding</label>
+              <textarea id="message" name="message" placeholder="Share your vision with us..."></textarea>
+            </div>
+            <button type="submit" className="cta-submit-button">
+              <span>SEND MESSAGE</span>
+            </button>
+          </form>
         </div>
       </section>
 

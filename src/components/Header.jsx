@@ -41,12 +41,7 @@ export default function Header() {
                   <li><a href="/events/graduation">Graduation Event Venue</a></li>
                 </ul>
               </li>
-              <li className="dropdown">
-                <a href="/rental-info">Rental Info ▾</a>
-                <ul className="dropdown-menu">
-                  <li><a href="/rental-info/contracts">Rental Contracts</a></li>
-                </ul>
-              </li>
+              <li><a href="/vendor-list">Vendor List</a></li>
               <li className="dropdown">
                 <a href="/property">The Property ▾</a>
                 <ul className="dropdown-menu">

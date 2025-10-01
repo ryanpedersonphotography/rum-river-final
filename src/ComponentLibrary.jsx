@@ -332,7 +332,10 @@ export default function ComponentLibrary() {
 
   return (
     <>
-      {/* Header Pattern */}
+      {/* ID: HEADER_001 - Header Pattern */}
+      <div style={{ padding: '0.5rem 2rem', background: '#f5f5f5', borderBottom: '1px solid #ddd', textAlign: 'center' }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px' }}>ID: HEADER_001</div>
+      </div>
       <header id="header" className="header-enhanced">
         <div className="content-wrapper">
           <div className="header-content">
@@ -370,6 +373,9 @@ export default function ComponentLibrary() {
       <section className="hero-enhanced">
         <div className="romantic-overlay"></div>
         <div className="content-wrapper">
+          <div style={{ position: 'relative', zIndex: 2, paddingTop: '1rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '1px', marginBottom: '0.5rem', textAlign: 'center' }}>ID: HERO_001</div>
+          </div>
           <div className="hero-content">
             <div className="hero-year-badge">Pattern Library</div>
             <div className="script-accent">Reusable Components</div>
@@ -396,6 +402,7 @@ export default function ComponentLibrary() {
       <section id="buttons" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: BUTTONS_001</div>
             <div className="script-accent">Interactive Elements</div>
             <h2 className="section-title">Button Components</h2>
             <p className="lead">Elegant buttons with hover animations and multiple variants</p>
@@ -414,6 +421,7 @@ export default function ComponentLibrary() {
       <section id="typography" className="section" style={{ background: 'var(--blush-pink)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: TYPOGRAPHY_001</div>
             <div className="script-accent">Beautiful Text</div>
             <h2 className="section-title">Typography System</h2>
           </div>
@@ -433,6 +441,7 @@ export default function ComponentLibrary() {
       <section id="cards" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: VENUE_CARDS_001</div>
             <div className="script-accent">Content Containers</div>
             <h2 className="section-title">Card Components</h2>
           </div>
@@ -494,6 +503,7 @@ export default function ComponentLibrary() {
       <section className="section" style={{ background: 'var(--cream-pearl)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: PACKAGE_CARDS_001</div>
             <div className="script-accent">Pricing Tables</div>
             <h2 className="section-title">Package Cards</h2>
           </div>
@@ -559,6 +569,7 @@ export default function ComponentLibrary() {
       <section id="sections" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: TWO_COLUMN_LAYOUT_001</div>
             <div className="script-accent">Layout Patterns</div>
             <h2 className="section-title">Content Grid Layouts</h2>
           </div>
@@ -610,6 +621,7 @@ export default function ComponentLibrary() {
       <section className="section" style={{ background: 'var(--blush-pink)' }}>
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: TESTIMONIAL_CARDS_001</div>
             <div className="script-accent">Social Proof</div>
             <h2 className="section-title">Testimonial Cards</h2>
           </div>
@@ -655,6 +667,7 @@ export default function ComponentLibrary() {
       <section id="feature-blocks" className="alternating-blocks">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: FEATURE_BLOCKS_001</div>
             <div className="script-accent">Alternating Layouts</div>
             <h2 className="section-title">Numbered Feature Blocks</h2>
             <p className="lead">Elegant alternating content blocks with numbered badges, perfect for highlighting venue features</p>
@@ -726,6 +739,7 @@ export default function ComponentLibrary() {
       <section id="forms" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: FORMS_001</div>
             <div className="script-accent">User Input</div>
             <h2 className="section-title">Form Components</h2>
           </div>
@@ -780,6 +794,7 @@ export default function ComponentLibrary() {
       {/* ID: STATS_001 - Stats Section */}
       <section className="trust-section">
         <div className="content-wrapper">
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem', textAlign: 'center' }}>ID: STATS_001</div>
           <div className="script-accent center">Trust Indicators</div>
           <div className="trust-badges">
             <div className="trust-badge">Badge One</div>
@@ -809,6 +824,7 @@ export default function ComponentLibrary() {
       <section className="love-stories-section section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: LOVE_STORIES_GALLERY_001</div>
             <div className="script-accent">Real Love Stories</div>
             <h2 className="section-title">Weddings at the Barn</h2>
             <p className="lead">Every celebration tells a unique story of love, laughter, and happily ever after.</p>
@@ -880,6 +896,7 @@ export default function ComponentLibrary() {
       <section id="faq" className="faq-section">
         <div className="container">
           <div className="faq-header">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem', textAlign: 'center' }}>ID: FAQ_ACCORDION_001</div>
             <p className="script-font">Questions?</p>
             <h2>Everything You Need to Know</h2>
           </div>
@@ -928,6 +945,7 @@ export default function ComponentLibrary() {
       <section id="blog" className="blog-section">
         <div className="container">
           <div className="blog-header">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem', textAlign: 'center' }}>ID: BLOG_CARDS_001</div>
             <h2>Stories from the Barn</h2>
             <p>Insights, inspiration, and behind-the-scenes moments</p>
           </div>
@@ -981,6 +999,7 @@ export default function ComponentLibrary() {
       {/* ID: SOCIAL_PROOF_001 - Social Proof Quote */}
       <section id="social-proof" className="social-proof">
         <div className="container social-content">
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '1rem', textAlign: 'center' }}>ID: SOCIAL_PROOF_001</div>
           <div className="social-logos">
             <span className="social-logo">THE KNOT</span>
             <span className="social-logo">WEDDINGWIRE</span>
@@ -995,12 +1014,16 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
+      <section style={{ padding: '1rem 2rem 0', textAlign: 'center' }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: DIAMOND_CARDS_001</div>
+      </section>
       <DiamondCards />
 
       {/* ID: HERO_CARDS_001 - Hero Image Cards - 4 Column */}
       <section id="hero-cards" className="section">
         <div className="content-wrapper">
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: HERO_CARDS_001</div>
             <div className="script-accent">Your Perfect Setting</div>
             <h2 className="section-title">Discover Our Spaces</h2>
             <p className="lead">From the historic barn to enchanted forests, explore the stunning settings for your celebration</p>
@@ -1211,6 +1234,7 @@ export default function ComponentLibrary() {
       {/* ID: TRUST_BADGES_001 - Trust Badges & Stats Section */}
       <section id="trust-badges" className="trust-section">
         <div className="content-wrapper">
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem', textAlign: 'center' }}>ID: TRUST_BADGES_001</div>
           <div className="script-accent center">As Featured In</div>
           <div className="trust-badges">
             <div className="trust-badge">The Knot</div>
@@ -1240,6 +1264,7 @@ export default function ComponentLibrary() {
       <section id="venue-tabs" className="section-warm">
         <div className="content-wrapper venue-content">
           <div className="venue-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: VENUE_TABS_001</div>
             <h2 className="section-title">Explore Our Spaces</h2>
             <p className="lead">Every corner tells a story, every space creates memories</p>
           </div>
@@ -1282,6 +1307,7 @@ export default function ComponentLibrary() {
       {/* ID: BREADCRUMBS_001 - Breadcrumbs Pattern */}
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <div className="container">
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: BREADCRUMBS_001</div>
           <span>
             <a href="/">Home</a>
           </span>
@@ -1297,15 +1323,124 @@ export default function ComponentLibrary() {
       </nav>
 
       {/* ID: FLOATING_CTA_001 - Floating CTA */}
+      <div style={{ padding: '1rem 2rem', textAlign: 'center', background: '#f5f5f5' }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: FLOATING_CTA_001</div>
+      </div>
       <div className="floating-cta">
         <span>💡</span>
         Component Library
       </div>
 
+      {/* ID: SCHEDULE_VISIT_FORM_001 - Schedule Your Visit Form (ARCHIVED from home page) */}
+      <section className="contact-section section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: SCHEDULE_VISIT_FORM_001</div>
+            <div className="script-accent">Archived Component</div>
+            <h2 className="section-title">Schedule Your Visit Form</h2>
+            <p className="lead">Original contact form from home page - archived for reference</p>
+          </div>
+          <div className="contact-grid">
+            <div className="contact-content">
+              <div className="script-accent">Let's Start Planning</div>
+              <h2 className="section-title">Schedule Your Visit</h2>
+              <p className="lead">
+                Ready to see where your love story will unfold? Schedule a private tour
+                and let us show you why Rum River Wedding Barn is the perfect setting for your celebration.
+              </p>
+
+              <div className="contact-info">
+                <div className="info-item">
+                  <div className="info-icon">📍</div>
+                  <div className="info-content">
+                    <h4>Visit Us</h4>
+                    <p>12500 Rum River Drive<br />Princeton, MN 55371</p>
+                  </div>
+                </div>
+
+                <div className="info-item">
+                  <div className="info-icon">📞</div>
+                  <div className="info-content">
+                    <h4>Call Us</h4>
+                    <p>(763) 555-BARN<br />Available 7 days a week</p>
+                  </div>
+                </div>
+
+                <div className="info-item">
+                  <div className="info-icon">✉️</div>
+                  <div className="info-content">
+                    <h4>Email Us</h4>
+                    <p>hello@rumriverweddings.com<br />We respond within 24 hours</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-form-wrapper">
+              <form className="contact-form">
+                <div className="form-header">
+                  <h3>Book Your Tour</h3>
+                  <p>Fill out the form below and we'll be in touch within 24 hours.</p>
+                </div>
+
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label>Bride's Name</label>
+                    <input type="text" placeholder="Your name" />
+                  </div>
+                  <div className="form-group">
+                    <label>Partner's Name</label>
+                    <input type="text" placeholder="Partner's name" />
+                  </div>
+                </div>
+
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="your@email.com" />
+                  </div>
+                  <div className="form-group">
+                    <label>Phone</label>
+                    <input type="tel" placeholder="(123) 456-7890" />
+                  </div>
+                </div>
+
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label>Wedding Date</label>
+                    <input type="date" />
+                  </div>
+                  <div className="form-group">
+                    <label>Guest Count</label>
+                    <select>
+                      <option>Select guest count</option>
+                      <option>50-100 guests</option>
+                      <option>100-150 guests</option>
+                      <option>150-200 guests</option>
+                      <option>200+ guests</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Tell us about your dream wedding</label>
+                  <textarea rows={4} placeholder="Share your vision with us..."></textarea>
+                </div>
+
+                <button type="submit" className="romantic-button primary full-width">
+                  Schedule My Tour
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ID: CONTACT_FORM_001 - Let's Connect Form Section */}
       <section id="lets-connect-form" className="cta-contact-section">
         <div className="cta-contact-container">
           <div className="cta-contact-header">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: CONTACT_FORM_001</div>
             <p className="script-font">Let&apos;s Connect</p>
             <h2>Start Planning Your Perfect Day</h2>
             <p>We&apos;d love to hear about your vision and show you around our beautiful venue.</p>
@@ -1362,6 +1497,7 @@ export default function ComponentLibrary() {
       <section id="map-directions" className="map-section">
         <div className="map-container">
           <div className="map-info">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: MAP_DIRECTIONS_001</div>
             <h2>Find Your Way to Forever</h2>
             <div className="location-details">
               <div className="location-item">
@@ -1407,6 +1543,7 @@ export default function ComponentLibrary() {
       <section id="footer-patterns" style={{ background: 'white', padding: '0' }}>
         <div className="content-wrapper" style={{ padding: '4rem 2rem 0' }}>
           <div className="section-header center">
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: FOOTER_PATTERNS_001</div>
             <div className="script-accent">Footer Components</div>
             <h2 className="section-title">Footer Patterns</h2>
             <p className="lead">Two footer styles - rendered exactly as they appear on the site</p>
@@ -1415,6 +1552,9 @@ export default function ComponentLibrary() {
 
         {/* ID: FOOTER_SIMPLE_CTA_001 - Simple CTA Footer */}
         <div style={{ marginTop: '3rem' }}>
+          <div style={{ padding: '1rem 2rem', background: '#f5f5f5', borderTop: '1px solid #ddd' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', textAlign: 'center' }}>ID: FOOTER_SIMPLE_CTA_001</div>
+          </div>
           <div style={{
             padding: '60px 20px',
             background: 'linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%)',
@@ -1487,6 +1627,9 @@ export default function ComponentLibrary() {
 
         {/* ID: FOOTER_ENHANCED_001 - Enhanced 3-Column Footer */}
         <div style={{ marginTop: '5rem' }}>
+          <div style={{ padding: '1rem 2rem', background: '#f5f5f5', borderTop: '1px solid #ddd' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px', textAlign: 'center' }}>ID: FOOTER_ENHANCED_001</div>
+          </div>
           <footer style={{
             padding: '60px 20px 40px',
             background: '#2C2416',
