@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import PageTemplate from '../components/PageTemplate'
 
 export default function PropertyPage() {
-  const [activeTab, setActiveTab] = useState('barn')
-
   const heroContent = (
     <>
       <h1 style={{
@@ -14,7 +11,7 @@ export default function PropertyPage() {
         marginBottom: '1.5rem',
         color: 'white'
       }}>
-        Explore Our Property
+        The Property
       </h1>
       <p className="lead" style={{
         fontSize: '1.125rem',
@@ -23,177 +20,86 @@ export default function PropertyPage() {
         marginBottom: '0',
         maxWidth: '800px'
       }}>
-        Discover the stunning spaces and natural beauty that make Rum River Barn the perfect setting for your celebration.
+        Discover the beautiful spaces and natural settings that make Rum River Barn the perfect venue for your celebration.
       </p>
     </>
   )
 
-  const propertyAreas = {
-    barn: {
-      title: "The Historic Barn",
-      subtitle: "Rustic Elegance for Your Celebration",
-      description: "Our crown jewel features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into historic charm. The barn can accommodate up to 300 guests for your reception with a spacious dance floor and elegant lighting.",
-      features: [
-        "Capacity: Up to 300 guests",
-        "Climate controlled year-round", 
-        "Professional lighting system",
-        "Built-in bar area",
-        "Bridal suite access",
-        "Historic timber frame construction"
-      ],
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600",
-      details: "The barn dates back over 100 years and has been lovingly restored to maintain its historic character while providing modern comfort for your guests."
-    },
-    ceremony: {
-      title: "Ceremony Sites",
-      subtitle: "Picture-Perfect Outdoor Settings",
-      description: "Choose from multiple breathtaking outdoor ceremony locations, each offering its own unique charm. From vineyard views to forest clearings, find the perfect backdrop for your vows.",
-      features: [
-        "Multiple ceremony site options",
-        "Vineyard overlook location",
-        "Forest clearing with natural arch",
-        "Garden setting with pergola",
-        "Weather backup plan available",
-        "Professional sound system included"
-      ],
-      image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600",
-      details: "Each ceremony site can be customized with seating arrangements, altar decorations, and aisle treatments to match your vision."
-    },
-    grounds: {
-      title: "The Grounds",
-      subtitle: "400 Acres of Natural Beauty",
-      description: "Sprawling across 400 acres of pristine Minnesota countryside, our grounds offer endless opportunities for photos and guest enjoyment. Explore vineyards, oak forests, and peaceful walking trails.",
-      features: [
-        "400 acres of manicured grounds",
-        "Working vineyard with grape vines",
-        "Mile-long oak forest trails",
-        "Creek-side photo opportunities",
-        "Vintage farm equipment displays",
-        "Seasonal wildflower gardens"
-      ],
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600",
-      details: "The property has been carefully developed over 100 years, creating a perfect blend of natural beauty and thoughtful landscaping."
-    },
-    bridal: {
-      title: "Bridal Suite",
-      subtitle: "Your Private Preparation Space",
-      description: "A beautifully appointed bridal suite provides the perfect space for getting ready on your special day. Complete with natural lighting, seating areas, and all the amenities you need.",
-      features: [
-        "Private entrance and exit",
-        "Large windows with natural light",
-        "Comfortable seating for bridal party",
-        "Full-length mirrors",
-        "Refreshment station",
-        "Climate controlled environment"
-      ],
-      image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1600",
-      details: "The suite is designed to be your peaceful retreat where you can relax and prepare with your closest friends and family."
-    },
-    reception: {
-      title: "Reception Areas",
-      subtitle: "Celebrate in Style",
-      description: "Multiple reception areas allow for flexible event planning. From intimate gatherings to grand celebrations, we have the perfect space for your vision.",
-      features: [
-        "Indoor and outdoor options",
-        "Full catering kitchen access",
-        "Professional bar service area",
-        "Dance floor with lighting",
-        "Sound system throughout",
-        "Flexible seating arrangements"
-      ],
-      image: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=1600",
-      details: "Our reception areas can be configured to accommodate everything from plated dinners to cocktail receptions and everything in between."
-    }
-  }
-
-  const tabs = [
-    { id: 'barn', label: 'Historic Barn', icon: '🏛️' },
-    { id: 'ceremony', label: 'Ceremony Sites', icon: '💒' },
-    { id: 'grounds', label: 'The Grounds', icon: '🌳' },
-    { id: 'bridal', label: 'Bridal Suite', icon: '👰' },
-    { id: 'reception', label: 'Reception Areas', icon: '🎉' }
-  ]
-
   return (
     <PageTemplate heroContent={heroContent}>
       
-      {/* Interactive Property Gallery */}
-      <section className="section">
-        <div className="content-wrapper">
-          
-          {/* Tab Navigation */}
-          <div className="property-tabs">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                className={`property-tab ${activeTab === tab.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                <span className="tab-icon">{tab.icon}</span>
-                <span className="tab-label">{tab.label}</span>
-              </button>
-            ))}
+      {/* Discover Our Spaces Section */}
+      <section id="venue-tabs" className="section-warm">
+        <div className="content-wrapper venue-content">
+          <div className="venue-header center">
+            <h2 className="section-title">Discover Our Spaces</h2>
+            <p className="lead">Every corner tells a story, every space creates memories</p>
           </div>
 
-          {/* Active Area Content */}
-          <div className="property-content">
-            <div className="property-layout">
-              <div className="property-image">
-                <img 
-                  src={propertyAreas[activeTab].image} 
-                  alt={propertyAreas[activeTab].title}
-                  style={{ width: '100%', height: '500px', objectFit: 'cover', borderRadius: '8px' }}
-                />
+          <div className="venue-grid">
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="White Barn Loft" width="800" height="600" />
+                <div className="venue-card-badge">Main Event Space</div>
               </div>
-              
-              <div className="property-info">
-                <div className="script-accent">{propertyAreas[activeTab].subtitle}</div>
-                <h2 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '2.5rem',
-                  fontWeight: 400,
-                  color: 'var(--warm-walnut)',
-                  marginBottom: '1.5rem'
-                }}>
-                  {propertyAreas[activeTab].title}
-                </h2>
-                
-                <p style={{
-                  fontSize: '1.125rem',
-                  lineHeight: 1.7,
-                  color: 'var(--sage-green)',
-                  marginBottom: '2rem'
-                }}>
-                  {propertyAreas[activeTab].description}
-                </p>
+              <div className="venue-card-content">
+                <h3>White Barn Loft</h3>
+                <p>The white barn is the main event barn consisting of the large loft area and the lower level lounge. The original hay loft is spacious and open with tall ceilings and hardwood floors. The loft can accommodate guests for a ceremony, reception dinner, and/or a dance.</p>
+              </div>
+            </div>
 
-                <div className="property-features">
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.5rem',
-                    color: 'var(--warm-walnut)',
-                    marginBottom: '1rem'
-                  }}>
-                    Features & Amenities
-                  </h3>
-                  <ul className="features-list">
-                    {propertyAreas[activeTab].features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Frame Barn" width="800" height="600" />
+                <div className="venue-card-badge">Ceremony Space</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Frame Barn</h3>
+                <p>This open timber frame barn is a rustic shelter just begging for white sheers hanging in the breeze with string lights overhead at an outdoor ceremony. Either as first choice or a rain back-up location, there is plenty of space for a wedding ceremony. Also, with an expanse of grassy fields surrounding, the area is perfect for setting up a canopy tent, lawn games, or a dinner under the stars.</p>
+              </div>
+            </div>
 
-                <div className="property-details">
-                  <p style={{
-                    fontSize: '1rem',
-                    lineHeight: 1.6,
-                    color: 'var(--sage-green)',
-                    fontStyle: 'italic',
-                    marginTop: '2rem'
-                  }}>
-                    {propertyAreas[activeTab].details}
-                  </p>
-                </div>
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="The Grounds" width="800" height="600" />
+                <div className="venue-card-badge">22 Acres</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>The Grounds</h3>
+                <p>With plenty of open space and grassy fields, the grounds offer many places for outdoor celebrations. The Vineyards boast 14 of the 22 Minnesota hardy grapes produced by the University of Minnesota for making wine. These grapevines make a beautiful natural backdrop for an outdoor ceremony or cocktails on the lawn.</p>
+              </div>
+            </div>
+
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800" alt="Lounge" width="800" height="600" />
+                <div className="venue-card-badge">Intimate Setting</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Lounge</h3>
+                <p>Located on the main level of the white barn, the Lounge is a perfect place for an intimate dinner or cocktail hour. Complete with high top tables, low lighting, and a full size bar, guests can have a drink or appetizers before moving to dinner or dancing upstairs.</p>
+              </div>
+            </div>
+
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Bridal Room" width="800" height="600" />
+                <div className="venue-card-badge">Getting Ready</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Bridal Room</h3>
+                <p>As the original homestead of the property, this former one room house is a lovely little retreat for the Bride and bridal party to relax and get ready for the big day.</p>
+              </div>
+            </div>
+
+            <div className="venue-card image-reveal">
+              <div className="venue-card-image">
+                <img src="https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=800" alt="Bridal Courtyard" width="800" height="600" />
+                <div className="venue-card-badge">Private Outdoor Space</div>
+              </div>
+              <div className="venue-card-content">
+                <h3>Bridal Courtyard</h3>
+                <p>This outdoor courtyard is the perfect place for the Bride to enjoy the beauty of the day while remaining private before her walk down the isle.</p>
               </div>
             </div>
           </div>
