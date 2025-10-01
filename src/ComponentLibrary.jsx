@@ -1,4 +1,131 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+function DiamondCards() {
+  const [hovered, setHovered] = useState(null);
+
+  // helper: clip-path for cross-browser
+  const clip = (poly) => ({
+    clipPath: poly,
+    WebkitClipPath: poly,
+  });
+
+  const card = {
+    position: "relative",
+    height: "340px",
+    cursor: "pointer",
+  };
+
+  const shapeBox = (poly) => ({
+    ...clip(poly),
+    position: "relative",
+    height: "100%",
+    overflow: "hidden",
+    borderRadius: 0,
+    boxShadow: "0 18px 40px rgba(0,0,0,.46)",
+    isolation: "isolate",
+  });
+
+  const bg = (img, active) => ({
+    position: "absolute",
+    inset: 0,
+    backgroundImage: `url(${img})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    transform: active ? "scale(1.1)" : "scale(1)",
+    transition: "transform .6s ease",
+    filter: "saturate(.98) contrast(1.03) brightness(.95)",
+    pointerEvents: "none",
+  });
+
+  const label = (pos) => ({
+    position: "absolute",
+    ...pos,
+    padding: ".8rem 1rem",
+    background: "rgba(20,20,20,.6)",
+    color: "#fff",
+    fontWeight: 800,
+    letterSpacing: ".02em",
+    borderRadius: ".5rem",
+    backdropFilter: "blur(2px)",
+    WebkitBackdropFilter: "blur(2px)",
+  });
+
+  // gem overlay generator
+  const gem = (a, b) => ({
+    position: "absolute",
+    inset: 0,
+    background: `linear-gradient(145deg, ${a}, ${b})`,
+    opacity: 0.28,
+    mixBlendMode: "overlay",
+    pointerEvents: "none",
+  });
+
+  return (
+    <section style={{ background: "#0b0b0b", padding: "2.5rem 2rem" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "1rem",
+          }}
+        >
+          {/* WEDDINGS — top-left cut, title bottom-right */}
+          <div
+            style={card}
+            onMouseEnter={() => setHovered("weddings")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
+              <div style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1200", hovered === "weddings")} />
+              <div style={gem("rgba(255, 76, 152, .4)", "rgba(255, 120, 180, .25)")} />
+              <div style={label({ bottom: "1rem", right: "1rem" })}>WEDDINGS</div>
+            </div>
+          </div>
+
+          {/* PROPERTY — top-right cut, title bottom-left */}
+          <div
+            style={card}
+            onMouseEnter={() => setHovered("property")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
+              <div style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1200", hovered === "property")} />
+              <div style={gem("rgba(0, 200, 140, .4)", "rgba(40, 255, 180, .25)")} />
+              <div style={label({ bottom: "1rem", left: "1rem" })}>THE PROPERTY</div>
+            </div>
+          </div>
+
+          {/* PHOTO GALLERY — bottom-left cut, title top-right */}
+          <div
+            style={card}
+            onMouseEnter={() => setHovered("gallery")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
+              <div style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200", hovered === "gallery")} />
+              <div style={gem("rgba(70, 150, 255, .4)", "rgba(20, 90, 255, .25)")} />
+              <div style={label({ top: "1rem", right: "1rem" })}>PHOTO GALLERY</div>
+            </div>
+          </div>
+
+          {/* ENGAGEMENT — bottom-right cut, title top-left */}
+          <div
+            style={card}
+            onMouseEnter={() => setHovered("engagement")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
+              <div style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200", hovered === "engagement")} />
+              <div style={gem("rgba(255, 186, 0, .4)", "rgba(255, 140, 0, .25)")} />
+              <div style={label({ top: "1rem", left: "1rem" })}>ENGAGEMENT PARTIES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function ComponentLibrary() {
   useEffect(() => {
@@ -60,9 +187,12 @@ export default function ComponentLibrary() {
                 <li><a href="#typography">Typography</a></li>
                 <li><a href="#cards">Cards</a></li>
                 <li><a href="#sections">Sections</a></li>
+                <li><a href="#feature-blocks">Feature Blocks</a></li>
                 <li><a href="#forms">Forms</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#blog">Blog</a></li>
+                <li><a href="#social-proof">Social Proof</a></li>
+                <li><a href="#feature-cards">Feature Cards</a></li>
               </ul>
             </nav>
             <div className="header-cta">
@@ -397,6 +527,101 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
+      {/* Numbered Feature Blocks */}
+      <section id="feature-blocks" className="alternating-blocks">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Alternating Layouts</div>
+            <h2 className="section-title">Numbered Feature Blocks</h2>
+            <p className="lead">Elegant alternating content blocks with numbered badges, perfect for highlighting venue features</p>
+          </div>
+
+          <div className="blocks-container">
+            <div className="block-item">
+              <div className="block-content">
+                <div className="number">01</div>
+                <h3>The Historic Barn</h3>
+                <p>Step into a piece of Minnesota history. Our meticulously restored barn combines century-old craftsmanship with modern amenities, creating the perfect backdrop for your celebration.</p>
+                <ul className="feature-list">
+                  <li>Climate-controlled comfort year-round</li>
+                  <li>Original exposed beam architecture</li>
+                  <li>Capacity for up to 300 guests</li>
+                  <li>State-of-the-art lighting system</li>
+                </ul>
+                <a href="#" className="btn-outline">Explore The Barn</a>
+              </div>
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800" alt="Historic barn interior" width="800" height="500" />
+                <span className="image-badge">100+ Years</span>
+              </div>
+            </div>
+
+            <div className="block-item reverse">
+              <div className="block-content">
+                <div className="number">02</div>
+                <h3>Vineyard Ceremonies</h3>
+                <p>Exchange vows surrounded by rolling hills and grape vines. Our vineyard offers multiple ceremony sites, each with its own unique charm and breathtaking views.</p>
+                <ul className="feature-list">
+                  <li>Sunset ceremony perfection</li>
+                  <li>Natural amphitheater setting</li>
+                  <li>Rain backup in covered pavilion</li>
+                  <li>Complimentary wine tasting for couples</li>
+                </ul>
+                <a href="#" className="btn-outline">View Ceremony Sites</a>
+              </div>
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1474112704314-8162b7749a90?w=800" alt="Vineyard ceremony site" width="800" height="500" />
+                <span className="image-badge">5 Locations</span>
+              </div>
+            </div>
+
+            <div className="block-item">
+              <div className="block-content">
+                <div className="number">03</div>
+                <h3>Enchanted Forest</h3>
+                <p>Wander through our mile-long paths beneath ancient oaks and whispering pines. The forest provides endless opportunities for stunning photography and intimate moments.</p>
+                <ul className="feature-list">
+                  <li>Professional trail lighting available</li>
+                  <li>Hidden clearings for portraits</li>
+                  <li>Seasonal wildflower meadows</li>
+                  <li>Private couple's photography hour</li>
+                </ul>
+                <a href="#" className="btn-outline">Discover The Grounds</a>
+              </div>
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Enchanted forest" width="800" height="500" />
+                <span className="image-badge">400 Acres</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="code-block">
+            <h4>Usage:</h4>
+            <pre>{`<div className="block-item">
+  <div className="block-content">
+    <div className="number">01</div>
+    <h3>Title</h3>
+    <p>Description...</p>
+    <ul className="feature-list">
+      <li>Feature one</li>
+      <li>Feature two</li>
+    </ul>
+    <a href="#" className="btn-outline">CTA Button</a>
+  </div>
+  <div className="block-image">
+    <img src="..." alt="..." />
+    <span className="image-badge">Badge Text</span>
+  </div>
+</div>
+
+<!-- Reverse layout -->
+<div className="block-item reverse">
+  <!-- Same structure -->
+</div>`}</pre>
+          </div>
+        </div>
+      </section>
+
       {/* Form Components */}
       <section id="forms" className="section">
         <div className="content-wrapper">
@@ -492,69 +717,73 @@ export default function ComponentLibrary() {
         </div>
       </section>
 
-      {/* Gallery Pattern */}
+      {/* Love Stories Gallery */}
       <section className="love-stories-section section">
         <div className="content-wrapper">
           <div className="section-header center">
-            <div className="script-accent">Visual Storytelling</div>
-            <h2 className="section-title">Gallery Grid</h2>
-            <p className="lead">Masonry-style image gallery with overlay interactions</p>
+            <div className="script-accent">Real Love Stories</div>
+            <h2 className="section-title">Weddings at the Barn</h2>
+            <p className="lead">Every celebration tells a unique story of love, laughter, and happily ever after.</p>
           </div>
 
           <div className="wedding-gallery">
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200" alt="Gallery 1" width="1200" height="800" />
+              <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200" alt="Emma & James Wedding" width="1200" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Large Item</div>
-                <div className="gallery-season">Spans 2x2</div>
-                <div className="gallery-details">First item gets special sizing</div>
+                <div className="gallery-couple-names">Emma & James</div>
+                <div className="gallery-season">Summer 2024</div>
+                <div className="gallery-details">200 Guests • Garden Ceremony</div>
               </div>
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800" alt="Gallery 2" width="800" height="800" />
+              <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800" alt="Sarah & Michael Wedding" width="800" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Regular Item</div>
-                <div className="gallery-season">1x1 Grid</div>
-                <div className="gallery-details">Standard size</div>
+                <div className="gallery-couple-names">Sarah & Michael</div>
+                <div className="gallery-season">Fall 2024</div>
+                <div className="gallery-details">150 Guests • Barn Reception</div>
               </div>
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Gallery 3" width="800" height="800" />
+              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Rachel & David Wedding" width="800" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Regular Item</div>
-                <div className="gallery-season">1x1 Grid</div>
-                <div className="gallery-details">Standard size</div>
+                <div className="gallery-couple-names">Rachel & David</div>
+                <div className="gallery-season">Spring 2024</div>
+                <div className="gallery-details">175 Guests • Vineyard Ceremony</div>
               </div>
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Gallery 4" width="800" height="800" />
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Jessica & Ryan Wedding" width="800" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Regular Item</div>
-                <div className="gallery-season">1x1 Grid</div>
-                <div className="gallery-details">Standard size</div>
+                <div className="gallery-couple-names">Jessica & Ryan</div>
+                <div className="gallery-season">Summer 2024</div>
+                <div className="gallery-details">125 Guests • Forest Ceremony</div>
               </div>
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Gallery 5" width="800" height="800" />
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Amanda & Chris Wedding" width="800" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Regular Item</div>
-                <div className="gallery-season">1x1 Grid</div>
-                <div className="gallery-details">Standard size</div>
+                <div className="gallery-couple-names">Amanda & Chris</div>
+                <div className="gallery-season">Winter 2023</div>
+                <div className="gallery-details">75 Guests • Intimate Celebration</div>
               </div>
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=1200" alt="Gallery 6" width="1200" height="800" />
+              <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=1200" alt="Lauren & Mark Wedding" width="1200" height="800" />
               <div className="gallery-overlay">
-                <div className="gallery-couple-names">Wide Item</div>
-                <div className="gallery-season">2x1 Grid</div>
-                <div className="gallery-details">Sixth item spans 2 columns</div>
+                <div className="gallery-couple-names">Lauren & Mark</div>
+                <div className="gallery-season">Fall 2023</div>
+                <div className="gallery-details">250 Guests • Full Weekend</div>
               </div>
             </div>
+          </div>
+
+          <div className="gallery-footer">
+            <button className="romantic-button outline">View Full Gallery</button>
           </div>
         </div>
       </section>
@@ -660,6 +889,25 @@ export default function ComponentLibrary() {
           </div>
         </div>
       </section>
+
+      {/* Social Proof Quote */}
+      <section id="social-proof" className="social-proof">
+        <div className="container social-content">
+          <div className="social-logos">
+            <span className="social-logo">THE KNOT</span>
+            <span className="social-logo">WEDDINGWIRE</span>
+            <span className="social-logo">MARTHA STEWART</span>
+            <span className="social-logo">MINNESOTA BRIDE</span>
+          </div>
+          <p className="social-text">
+            "Rum River Barn isn't just a venue—it's <span className="highlight">where dreams come to life</span>.
+            Their commitment to saying 'yes' to every couple's vision sets them apart as
+            <span className="highlight">Minnesota's most accommodating wedding destination</span>."
+          </p>
+        </div>
+      </section>
+
+      <DiamondCards />
 
       {/* Breadcrumbs Pattern */}
       <nav className="breadcrumbs" aria-label="Breadcrumb">
