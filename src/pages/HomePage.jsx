@@ -1,7 +1,90 @@
+import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
+const venueData = {
+  barn: {
+    title: 'The Historic Barn',
+    images: [
+      'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800'
+    ],
+    description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
+    features: [
+      { label: 'Capacity', value: 'Up to 300 guests' },
+      { label: 'Features', value: 'Built-in bar & dance floor' },
+      { label: 'Lighting', value: 'Edison bulbs & chandeliers' },
+      { label: 'Climate', value: 'Heated & air conditioned' }
+    ]
+  },
+  bridal: {
+    title: 'Bridal Suite',
+    images: [
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800',
+      'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800'
+    ],
+    description: 'A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.',
+    features: [
+      { label: 'Capacity', value: 'Up to 12 people' },
+      { label: 'Features', value: 'Professional lighting & mirrors' },
+      { label: 'Amenities', value: 'Private bathroom & kitchenette' },
+      { label: 'Style', value: 'Vintage charm meets modern comfort' }
+    ]
+  },
+  groom: {
+    title: "Groom's Quarters",
+    images: [
+      'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=800',
+      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800',
+      'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800'
+    ],
+    description: 'A sophisticated space designed for the groom and groomsmen to prepare, relax, and enjoy the moments before the ceremony.',
+    features: [
+      { label: 'Capacity', value: 'Up to 10 people' },
+      { label: 'Features', value: 'Pool table & lounge seating' },
+      { label: 'Amenities', value: 'Private entrance & facilities' },
+      { label: 'Style', value: 'Rustic elegance' }
+    ]
+  },
+  pavilion: {
+    title: 'Garden Pavilion',
+    images: [
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800',
+      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
+      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800'
+    ],
+    description: 'An enchanting outdoor space surrounded by lush gardens, perfect for ceremonies or cocktail hours under the open sky.',
+    features: [
+      { label: 'Capacity', value: 'Up to 150 guests' },
+      { label: 'Features', value: 'Natural canopy & string lights' },
+      { label: 'Setting', value: 'Garden ceremony site' },
+      { label: 'Backup', value: 'Weather protection available' }
+    ]
+  }
+}
+
 export default function HomePage() {
+  const [activeVenue, setActiveVenue] = useState('barn')
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const handleVenueChange = (venue) => {
+    setActiveVenue(venue)
+    setCurrentImageIndex(0)
+  }
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) =>
+      (prev + 1) % venueData[activeVenue].images.length
+    )
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? venueData[activeVenue].images.length - 1 : prev - 1
+    )
+  }
   return (
     <>
       <Header />
@@ -29,7 +112,6 @@ export default function HomePage() {
             </p>
             <div className="hero-buttons">
               <a href="/contact" className="romantic-button primary">Schedule Your Visit</a>
-              <a href="/gallery" className="romantic-button outline">View Our Gallery</a>
             </div>
           </div>
         </div>
@@ -39,89 +121,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Badges Section */}
-      <section className="trust-section">
-        <div className="content-wrapper">
-          <div className="script-accent center">As Featured In</div>
-          <div className="trust-badges">
-            <div className="trust-badge">The Knot</div>
-            <div className="trust-badge">WeddingWire</div>
-            <div className="trust-badge">Martha Stewart Weddings</div>
-            <div className="trust-badge">Minnesota Bride</div>
-            <div className="trust-badge">Style Me Pretty</div>
-          </div>
-          <div className="trust-stats">
-            <div className="stat-item">
-              <div className="stat-number">500+</div>
-              <div className="stat-label">Couples Married</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">4.9</div>
-              <div className="stat-label">Star Rating</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Venue Showcase Section */}
-      <section className="venue-showcase-enhanced section">
-        <div className="content-wrapper">
-          <div className="section-header center">
+      {/* Discover Our Spaces - Tabbed Venue Display */}
+      <section className="section-warm">
+        <div className="content-wrapper venue-content">
+          <div className="venue-header center">
             <div className="script-accent">Your Perfect Setting</div>
             <h2 className="section-title">Discover Our Spaces</h2>
-            <p className="lead">Every corner tells a story, every space creates memories that last a lifetime.</p>
+            <p className="lead">Every corner tells a story, every space creates memories</p>
           </div>
-
-          <div className="venue-grid">
-            <div className="venue-card image-reveal">
-              <div className="venue-card-image">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Historic Barn Interior" width="800" height="600" />
-                <div className="venue-card-badge">Historic Barn</div>
-              </div>
-              <div className="venue-card-content">
-                <h3>The Grand Barn</h3>
-                <p>Our crown jewel features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into historic charm.</p>
-                <div className="venue-features">
-                  <span>• Up to 300 guests</span>
-                  <span>• Climate controlled</span>
-                  <span>• Original 1920s architecture</span>
-                </div>
+          <div className="venue-tabs">
+            <button
+              className={`venue-tab ${activeVenue === 'barn' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('barn')}
+            >
+              The Barn
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'bridal' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('bridal')}
+            >
+              Bridal Suite
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'groom' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('groom')}
+            >
+              Groom's Quarters
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'pavilion' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('pavilion')}
+            >
+              Garden Pavilion
+            </button>
+          </div>
+          <div className="venue-display">
+            <div className="venue-main-image">
+              <button className="carousel-nav prev" onClick={prevImage} aria-label="Previous image">‹</button>
+              <img src={venueData[activeVenue].images[currentImageIndex]} alt={venueData[activeVenue].title} width="800" height="500" />
+              <button className="carousel-nav next" onClick={nextImage} aria-label="Next image">›</button>
+              <div className="carousel-dots">
+                {venueData[activeVenue].images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-dot ${index === currentImageIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
-
-            <div className="venue-card image-reveal">
-              <div className="venue-card-image">
-                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Vineyard Ceremony" width="800" height="600" />
-                <div className="venue-card-badge">Ceremony Sites</div>
-              </div>
-              <div className="venue-card-content">
-                <h3>Vineyard Ceremonies</h3>
-                <p>Exchange vows surrounded by rolling hills and grape vines, with multiple ceremony locations to choose from.</p>
-                <div className="venue-features">
-                  <span>• 5 ceremony locations</span>
-                  <span>• Natural amphitheater</span>
-                  <span>• Sunset perfection</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="venue-card image-reveal">
-              <div className="venue-card-image">
-                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800" alt="Bridal Suite" width="800" height="600" />
-                <div className="venue-card-badge">Bridal Suite</div>
-              </div>
-              <div className="venue-card-content">
-                <h3>Bridal Retreat</h3>
-                <p>A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.</p>
-                <div className="venue-features">
-                  <span>• Professional lighting</span>
-                  <span>• Garden views</span>
-                  <span>• Vintage charm</span>
-                </div>
+            <div className="venue-details">
+              <h3>{venueData[activeVenue].title}</h3>
+              <p>{venueData[activeVenue].description}</p>
+              <div className="venue-features">
+                {venueData[activeVenue].features.map((feature, index) => (
+                  <div key={index} className="venue-feature">
+                    <h5>{feature.label}</h5>
+                    <p>{feature.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -245,71 +304,41 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Investment Packages */}
-      <section className="investment-section section">
+      {/* Numbered Feature Blocks */}
+      <section className="alternating-blocks">
         <div className="content-wrapper">
           <div className="section-header center">
-            <div className="script-accent">Investment in Forever</div>
-            <h2 className="section-title">Wedding Collections</h2>
-            <p className="lead">Choose the collection that best fits your celebration, with transparent pricing and no hidden fees.</p>
+            <div className="script-accent">Your Perfect Venue</div>
+            <h2 className="section-title">Why Choose Rum River Barn</h2>
+            <p className="lead">Discover what makes our venue the perfect setting for your unforgettable celebration</p>
           </div>
 
-          <div className="packages-grid">
-            <div className="package-card">
-              <div className="package-header">
-                <h3>Intimate</h3>
-                <div className="package-price">
-                  <span className="amount">$3,500</span>
-                  <span className="detail">up to 75 guests</span>
-                </div>
+          <div className="blocks-container">
+            <div className="block-item">
+              <div className="block-content">
+                <div className="number">01</div>
+                <h3>A Picturesque Location For Your Special Event</h3>
+                <p className="lead">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</p>
+                <p>When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.</p>
+                <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
+                <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
               </div>
-              <div className="package-features">
-                <div className="feature">✓ 6-hour venue rental</div>
-                <div className="feature">✓ Ceremony & reception spaces</div>
-                <div className="feature">✓ Tables, chairs & linens</div>
-                <div className="feature">✓ Bridal suite access</div>
-                <div className="feature">✓ Setup & breakdown</div>
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Special event venue" width="800" height="500" />
               </div>
-              <a href="/rental-info" className="romantic-button outline full-width">Learn More</a>
             </div>
 
-            <div className="package-card featured">
-              <div className="package-badge">Most Popular</div>
-              <div className="package-header">
-                <h3>Classic</h3>
-                <div className="package-price">
-                  <span className="amount">$5,500</span>
-                  <span className="detail">up to 150 guests</span>
-                </div>
+            <div className="block-item reverse">
+              <div className="block-content">
+                <div className="number">02</div>
+                <h3>Rum River Barn & Vineyard</h3>
+                <p className="lead">Milaca, St. Cloud, Saint Paul, and Brainerd MN</p>
+                <p>Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured old oak forests, and white pines next to a whispering brook, we offer Minnesota's premier barn wedding venue and country special events venue for your custom special event.</p>
+                <p>Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years.</p>
               </div>
-              <div className="package-features">
-                <div className="feature">✓ 10-hour venue rental</div>
-                <div className="feature">✓ Full property access</div>
-                <div className="feature">✓ Premium décor package</div>
-                <div className="feature">✓ Both suites included</div>
-                <div className="feature">✓ Day-before setup</div>
-                <div className="feature">✓ Complimentary rehearsal</div>
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Rum River Barn and Vineyard" width="800" height="500" />
               </div>
-              <a href="/contact" className="romantic-button primary full-width">Book Consultation</a>
-            </div>
-
-            <div className="package-card">
-              <div className="package-header">
-                <h3>Grand</h3>
-                <div className="package-price">
-                  <span className="amount">$8,500</span>
-                  <span className="detail">up to 300 guests</span>
-                </div>
-              </div>
-              <div className="package-features">
-                <div className="feature">✓ Full weekend rental</div>
-                <div className="feature">✓ All spaces included</div>
-                <div className="feature">✓ Luxury décor collection</div>
-                <div className="feature">✓ Golf cart transportation</div>
-                <div className="feature">✓ Welcome reception</div>
-                <div className="feature">✓ Morning-after brunch</div>
-              </div>
-              <a href="/rental-info" className="romantic-button outline full-width">Learn More</a>
             </div>
           </div>
         </div>

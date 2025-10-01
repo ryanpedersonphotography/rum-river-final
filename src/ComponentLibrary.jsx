@@ -354,6 +354,8 @@ export default function ComponentLibrary() {
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#social-proof">Social Proof</a></li>
                 <li><a href="#feature-cards">Feature Cards</a></li>
+                <li><a href="#venue-tabs">Venue Tabs</a></li>
+                <li><a href="#trust-badges">Trust Badges</a></li>
               </ul>
             </nav>
             <div className="header-cta">
@@ -1070,6 +1072,288 @@ export default function ComponentLibrary() {
 
       <DiamondCards />
 
+      {/* Hero Image Cards - 5 Column */}
+      <section id="hero-cards" className="section">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Your Perfect Setting</div>
+            <h2 className="section-title">Discover Our Spaces</h2>
+            <p className="lead">From the historic barn to enchanted forests, explore the stunning settings for your celebration</p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '1.5rem',
+            marginTop: '3rem'
+          }}>
+            {/* Historic Barn Card */}
+            <div className="block-image event-hero-card" style={{ position: 'relative', height: '400px', cursor: 'pointer', overflow: 'hidden', transition: 'transform 0.4s ease', transform: 'translateY(0)' }}>
+              <img
+                src="/images/wedding-32-1j9.jpg"
+                alt="The Historic Barn"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'brightness(0.65)',
+                  transition: 'filter 0.4s ease'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
+                transition: 'opacity 0.4s ease'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '0.35rem 1.25rem',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  borderRadius: '20px',
+                  minWidth: '180px'
+                }}>
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1.25rem',
+                    fontWeight: 400,
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '0.025em',
+                    margin: 0
+                  }}>The Historic Barn</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Vineyard Card */}
+            <div className="block-image event-hero-card" style={{ position: 'relative', height: '400px', cursor: 'pointer', overflow: 'hidden', transition: 'transform 0.4s ease', transform: 'translateY(0)' }}>
+              <img
+                src="/images/d4-7e6.jpg"
+                alt="The Vineyard"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'brightness(0.65)',
+                  transition: 'filter 0.4s ease'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
+                transition: 'opacity 0.4s ease'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '0.35rem 1.25rem',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  borderRadius: '20px',
+                  minWidth: '180px'
+                }}>
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1.25rem',
+                    fontWeight: 400,
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '0.025em',
+                    margin: 0
+                  }}>The Vineyard</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Oak Forest Card */}
+            <div className="block-image event-hero-card" style={{ position: 'relative', height: '400px', cursor: 'pointer', overflow: 'hidden', transition: 'transform 0.4s ease', transform: 'translateY(0)' }}>
+              <img
+                src="/images/6-9e8.jpg"
+                alt="Oak Forest"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'brightness(0.65)',
+                  transition: 'filter 0.4s ease'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
+                transition: 'opacity 0.4s ease'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '0.35rem 1.25rem',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  borderRadius: '20px',
+                  minWidth: '180px'
+                }}>
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1.25rem',
+                    fontWeight: 400,
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '0.025em',
+                    margin: 0
+                  }}>Oak Forest</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Bridal Suite Card */}
+            <div className="block-image event-hero-card" style={{ position: 'relative', height: '400px', cursor: 'pointer', overflow: 'hidden', transition: 'transform 0.4s ease', transform: 'translateY(0)' }}>
+              <img
+                src="/images/d16-8j3.jpg"
+                alt="Bridal Suite"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'brightness(0.65)',
+                  transition: 'filter 0.4s ease'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
+                transition: 'opacity 0.4s ease'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '0.35rem 1.25rem',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  borderRadius: '20px',
+                  minWidth: '180px'
+                }}>
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1.25rem',
+                    fontWeight: 400,
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '0.025em',
+                    margin: 0
+                  }}>Bridal Suite</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <style jsx>{`
+            .event-hero-card:hover {
+              transform: translateY(-8px) !important;
+            }
+            .event-hero-card:hover img {
+              filter: brightness(1) !important;
+            }
+            .event-hero-card:hover > div:nth-child(2) {
+              opacity: 0.3;
+            }
+          `}</style>
+        </div>
+      </section>
+
+      {/* Trust Badges & Stats Section */}
+      <section id="trust-badges" className="trust-section">
+        <div className="content-wrapper">
+          <div className="script-accent center">As Featured In</div>
+          <div className="trust-badges">
+            <div className="trust-badge">The Knot</div>
+            <div className="trust-badge">WeddingWire</div>
+            <div className="trust-badge">Martha Stewart Weddings</div>
+            <div className="trust-badge">Minnesota Bride</div>
+            <div className="trust-badge">Style Me Pretty</div>
+          </div>
+          <div className="trust-stats">
+            <div className="stat-item">
+              <div className="stat-number">500+</div>
+              <div className="stat-label">Couples Married</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">4.9</div>
+              <div className="stat-label">Star Rating</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">100%</div>
+              <div className="stat-label">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Our Spaces - Tabbed Venue Display */}
+      <section id="venue-tabs" className="section-warm">
+        <div className="content-wrapper venue-content">
+          <div className="venue-header center">
+            <h2 className="section-title">Explore Our Spaces</h2>
+            <p className="lead">Every corner tells a story, every space creates memories</p>
+          </div>
+          <div className="venue-tabs">
+            <button className="venue-tab active">The Barn</button>
+            <button className="venue-tab">Bridal Suite</button>
+            <button className="venue-tab">Groom's Quarters</button>
+            <button className="venue-tab">Garden Pavilion</button>
+          </div>
+          <div className="venue-display">
+            <div className="venue-main-image">
+              <img src="https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800" alt="The Historic Barn" width="800" height="500" />
+            </div>
+            <div className="venue-details">
+              <h3>The Historic Barn</h3>
+              <p>Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.</p>
+              <div className="venue-features">
+                <div className="venue-feature">
+                  <h5>Capacity</h5>
+                  <p>Up to 300 guests</p>
+                </div>
+                <div className="venue-feature">
+                  <h5>Features</h5>
+                  <p>Built-in bar & dance floor</p>
+                </div>
+                <div className="venue-feature">
+                  <h5>Lighting</h5>
+                  <p>Edison bulbs & chandeliers</p>
+                </div>
+                <div className="venue-feature">
+                  <h5>Climate</h5>
+                  <p>Heated & air conditioned</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Breadcrumbs Pattern */}
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <div className="container">
@@ -1119,6 +1403,122 @@ export default function ComponentLibrary() {
 
         .typography-examples > * {
           margin-bottom: 1.5rem;
+        }
+
+        /* Explore Our Spaces - Tabbed Venue Display */
+        .venue-content {
+          padding: 3rem 0;
+        }
+
+        .venue-header {
+          text-align: center;
+          margin-bottom: 3.5rem;
+        }
+
+        .venue-tabs {
+          display: flex;
+          justify-content: center;
+          gap: 1.25rem;
+          margin-bottom: 3.5rem;
+          flex-wrap: wrap;
+        }
+
+        .venue-tab {
+          padding: 0.875rem 1.875rem;
+          background: transparent;
+          border: 2px solid var(--primary-plum);
+          color: var(--primary-plum);
+          font-family: var(--font-display);
+          font-size: 1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 4px;
+        }
+
+        .venue-tab.active,
+        .venue-tab:hover {
+          background: var(--primary-plum);
+          color: white;
+        }
+
+        .venue-display {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 5rem;
+          align-items: center;
+        }
+
+        .venue-main-image {
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .venue-main-image img {
+          width: 100%;
+          height: 500px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .venue-details h3 {
+          font-size: 2.625rem;
+          color: var(--text-dark);
+          margin-bottom: 1.5rem;
+          font-family: var(--font-display);
+        }
+
+        .venue-details > p {
+          font-size: 1.125rem;
+          color: var(--text-medium);
+          line-height: 1.8;
+          margin-bottom: 2.5rem;
+        }
+
+        .venue-features {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.875rem;
+        }
+
+        .venue-feature h5 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--accent-gold);
+          margin-bottom: 0.5rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .venue-feature p {
+          font-size: 1rem;
+          color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+          .venue-display {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
+
+          .venue-tabs {
+            gap: 0.625rem;
+          }
+
+          .venue-tab {
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+          }
+
+          .venue-details h3 {
+            font-size: 2rem;
+          }
+
+          .venue-features {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
         }
       `}</style>
     </>
