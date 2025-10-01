@@ -2400,3 +2400,12 @@ body {
   }
 }
 
+/* Clean vendor cards without conflicting shadows */
+.vendor-card-clean {
+  background: white;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}

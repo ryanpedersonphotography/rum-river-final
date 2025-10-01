@@ -149,7 +149,7 @@ export default function VendorsPage() {
               {/* Vendor Cards */}
               <div className="testimonials-grid">
                 {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} className="testimonial-card">
+                  <div key={vendorIndex} className="vendor-card-clean">
                     <div style={{
                       fontSize: '2rem',
                       marginBottom: '1rem',
