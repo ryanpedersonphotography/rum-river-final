@@ -1302,288 +1302,6 @@ export const realWeddings = [
     "isPremier": true
   },
   {
-    "slug": "2014-2",
-    "coupleName": "2014 2",
-    "heroImage": "/wedding-photos/2014-2/001.jpg",
-    "coverImage": "/wedding-photos/2014-2/003.jpg",
-    "date": "Summer 2024",
-    "location": "Rum River Barn • Hillman, Minnesota",
-    "intro": "From the ceremony to the last dance, 2014 2's wedding was a perfect blend of elegance and rustic charm.",
-    "photographer": null,
-    "photoCount": 62,
-    "galleries": [
-      {
-        "title": "Getting Ready",
-        "photos": [
-          {
-            "src": "/wedding-photos/2014-2/001.jpg",
-            "alt": "2014 2 getting ready 1"
-          },
-          {
-            "src": "/wedding-photos/2014-2/002.jpg",
-            "alt": "2014 2 getting ready 2"
-          },
-          {
-            "src": "/wedding-photos/2014-2/003.jpg",
-            "alt": "2014 2 getting ready 3"
-          },
-          {
-            "src": "/wedding-photos/2014-2/004.jpg",
-            "alt": "2014 2 getting ready 4"
-          },
-          {
-            "src": "/wedding-photos/2014-2/005.jpg",
-            "alt": "2014 2 getting ready 5"
-          },
-          {
-            "src": "/wedding-photos/2014-2/006.jpg",
-            "alt": "2014 2 getting ready 6"
-          },
-          {
-            "src": "/wedding-photos/2014-2/007.jpg",
-            "alt": "2014 2 getting ready 7"
-          },
-          {
-            "src": "/wedding-photos/2014-2/008.jpg",
-            "alt": "2014 2 getting ready 8"
-          },
-          {
-            "src": "/wedding-photos/2014-2/009.jpg",
-            "alt": "2014 2 getting ready 9"
-          },
-          {
-            "src": "/wedding-photos/2014-2/010.jpg",
-            "alt": "2014 2 getting ready 10"
-          },
-          {
-            "src": "/wedding-photos/2014-2/011.jpg",
-            "alt": "2014 2 getting ready 11"
-          },
-          {
-            "src": "/wedding-photos/2014-2/012.jpg",
-            "alt": "2014 2 getting ready 12"
-          },
-          {
-            "src": "/wedding-photos/2014-2/013.jpg",
-            "alt": "2014 2 getting ready 13"
-          },
-          {
-            "src": "/wedding-photos/2014-2/014.jpg",
-            "alt": "2014 2 getting ready 14"
-          },
-          {
-            "src": "/wedding-photos/2014-2/015.jpg",
-            "alt": "2014 2 getting ready 15"
-          }
-        ]
-      },
-      {
-        "title": "The Ceremony",
-        "photos": [
-          {
-            "src": "/wedding-photos/2014-2/016.jpg",
-            "alt": "2014 2 ceremony 1"
-          },
-          {
-            "src": "/wedding-photos/2014-2/017.jpg",
-            "alt": "2014 2 ceremony 2"
-          },
-          {
-            "src": "/wedding-photos/2014-2/018.jpg",
-            "alt": "2014 2 ceremony 3"
-          },
-          {
-            "src": "/wedding-photos/2014-2/019.jpg",
-            "alt": "2014 2 ceremony 4"
-          },
-          {
-            "src": "/wedding-photos/2014-2/020.jpg",
-            "alt": "2014 2 ceremony 5"
-          },
-          {
-            "src": "/wedding-photos/2014-2/021.jpg",
-            "alt": "2014 2 ceremony 6"
-          },
-          {
-            "src": "/wedding-photos/2014-2/022.jpg",
-            "alt": "2014 2 ceremony 7"
-          },
-          {
-            "src": "/wedding-photos/2014-2/023.jpg",
-            "alt": "2014 2 ceremony 8"
-          },
-          {
-            "src": "/wedding-photos/2014-2/024.jpg",
-            "alt": "2014 2 ceremony 9"
-          },
-          {
-            "src": "/wedding-photos/2014-2/025.jpg",
-            "alt": "2014 2 ceremony 10"
-          },
-          {
-            "src": "/wedding-photos/2014-2/026.jpg",
-            "alt": "2014 2 ceremony 11"
-          },
-          {
-            "src": "/wedding-photos/2014-2/027.jpg",
-            "alt": "2014 2 ceremony 12"
-          },
-          {
-            "src": "/wedding-photos/2014-2/028.jpg",
-            "alt": "2014 2 ceremony 13"
-          },
-          {
-            "src": "/wedding-photos/2014-2/029.jpg",
-            "alt": "2014 2 ceremony 14"
-          },
-          {
-            "src": "/wedding-photos/2014-2/030.jpg",
-            "alt": "2014 2 ceremony 15"
-          },
-          {
-            "src": "/wedding-photos/2014-2/031.jpg",
-            "alt": "2014 2 ceremony 16"
-          }
-        ]
-      },
-      {
-        "title": "Reception & Celebration",
-        "photos": [
-          {
-            "src": "/wedding-photos/2014-2/032.jpg",
-            "alt": "2014 2 reception 1"
-          },
-          {
-            "src": "/wedding-photos/2014-2/033.jpg",
-            "alt": "2014 2 reception 2"
-          },
-          {
-            "src": "/wedding-photos/2014-2/034.jpg",
-            "alt": "2014 2 reception 3"
-          },
-          {
-            "src": "/wedding-photos/2014-2/035.jpg",
-            "alt": "2014 2 reception 4"
-          },
-          {
-            "src": "/wedding-photos/2014-2/036.jpg",
-            "alt": "2014 2 reception 5"
-          },
-          {
-            "src": "/wedding-photos/2014-2/037.jpg",
-            "alt": "2014 2 reception 6"
-          },
-          {
-            "src": "/wedding-photos/2014-2/038.jpg",
-            "alt": "2014 2 reception 7"
-          },
-          {
-            "src": "/wedding-photos/2014-2/039.jpg",
-            "alt": "2014 2 reception 8"
-          },
-          {
-            "src": "/wedding-photos/2014-2/040.jpg",
-            "alt": "2014 2 reception 9"
-          },
-          {
-            "src": "/wedding-photos/2014-2/041.jpg",
-            "alt": "2014 2 reception 10"
-          },
-          {
-            "src": "/wedding-photos/2014-2/042.jpg",
-            "alt": "2014 2 reception 11"
-          },
-          {
-            "src": "/wedding-photos/2014-2/043.jpg",
-            "alt": "2014 2 reception 12"
-          },
-          {
-            "src": "/wedding-photos/2014-2/044.jpg",
-            "alt": "2014 2 reception 13"
-          },
-          {
-            "src": "/wedding-photos/2014-2/045.jpg",
-            "alt": "2014 2 reception 14"
-          },
-          {
-            "src": "/wedding-photos/2014-2/046.jpg",
-            "alt": "2014 2 reception 15"
-          }
-        ]
-      },
-      {
-        "title": "Golden Hour & Details",
-        "photos": [
-          {
-            "src": "/wedding-photos/2014-2/047.jpg",
-            "alt": "2014 2 portraits 1"
-          },
-          {
-            "src": "/wedding-photos/2014-2/048.jpg",
-            "alt": "2014 2 portraits 2"
-          },
-          {
-            "src": "/wedding-photos/2014-2/049.jpg",
-            "alt": "2014 2 portraits 3"
-          },
-          {
-            "src": "/wedding-photos/2014-2/050.jpg",
-            "alt": "2014 2 portraits 4"
-          },
-          {
-            "src": "/wedding-photos/2014-2/051.jpg",
-            "alt": "2014 2 portraits 5"
-          },
-          {
-            "src": "/wedding-photos/2014-2/052.jpg",
-            "alt": "2014 2 portraits 6"
-          },
-          {
-            "src": "/wedding-photos/2014-2/053.jpg",
-            "alt": "2014 2 portraits 7"
-          },
-          {
-            "src": "/wedding-photos/2014-2/054.jpg",
-            "alt": "2014 2 portraits 8"
-          },
-          {
-            "src": "/wedding-photos/2014-2/055.jpg",
-            "alt": "2014 2 portraits 9"
-          },
-          {
-            "src": "/wedding-photos/2014-2/056.jpg",
-            "alt": "2014 2 portraits 10"
-          },
-          {
-            "src": "/wedding-photos/2014-2/057.jpg",
-            "alt": "2014 2 portraits 11"
-          },
-          {
-            "src": "/wedding-photos/2014-2/058.jpg",
-            "alt": "2014 2 portraits 12"
-          },
-          {
-            "src": "/wedding-photos/2014-2/059.jpg",
-            "alt": "2014 2 portraits 13"
-          },
-          {
-            "src": "/wedding-photos/2014-2/060.jpg",
-            "alt": "2014 2 portraits 14"
-          },
-          {
-            "src": "/wedding-photos/2014-2/061.jpg",
-            "alt": "2014 2 portraits 15"
-          },
-          {
-            "src": "/wedding-photos/2014-2/062.jpg",
-            "alt": "2014 2 portraits 16"
-          }
-        ]
-      }
-    ],
-    "isPremier": true
-  },
-  {
     "slug": "kyle-carrie",
     "coupleName": "Kyle Carrie",
     "heroImage": "/wedding-photos/kyle-carrie/001.jpg",
@@ -2026,7 +1744,7 @@ export const realWeddings = [
   {
     "slug": "joshua-and-teri",
     "coupleName": "Joshua & Teri",
-    "heroImage": "/wedding-photos/joshua-and-teri/001.jpg",
+    "heroImage": "/wedding-photos/joshua-and-teri/002.jpg",
     "coverImage": "/wedding-photos/joshua-and-teri/003.jpg",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
@@ -2038,7 +1756,7 @@ export const realWeddings = [
         "title": "Getting Ready",
         "photos": [
           {
-            "src": "/wedding-photos/joshua-and-teri/001.jpg",
+            "src": "/wedding-photos/joshua-and-teri/002.jpg",
             "alt": "Joshua & Teri getting ready 1"
           },
           {
@@ -2366,8 +2084,8 @@ export const realWeddings = [
   {
     "slug": "kerry-dominic",
     "coupleName": "Kerry Dominic",
-    "heroImage": "/wedding-photos/kerry-dominic/001.jpg",
-    "coverImage": "/wedding-photos/kerry-dominic/003.jpg",
+    "heroImage": "/wedding-photos/kerry-dominic/001.png",
+    "coverImage": "/wedding-photos/kerry-dominic/003.png",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
     "intro": "A magical day celebrating Kerry Dominic at Rum River Barn, where every detail came together beautifully.",
@@ -2378,47 +2096,47 @@ export const realWeddings = [
         "title": "Ceremony & Portraits",
         "photos": [
           {
-            "src": "/wedding-photos/kerry-dominic/001.jpg",
+            "src": "/wedding-photos/kerry-dominic/001.png",
             "alt": "Kerry Dominic ceremony photo 1"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/002.jpg",
+            "src": "/wedding-photos/kerry-dominic/002.png",
             "alt": "Kerry Dominic ceremony photo 2"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/003.jpg",
+            "src": "/wedding-photos/kerry-dominic/003.png",
             "alt": "Kerry Dominic ceremony photo 3"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/004.jpg",
+            "src": "/wedding-photos/kerry-dominic/004.png",
             "alt": "Kerry Dominic ceremony photo 4"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/005.jpg",
+            "src": "/wedding-photos/kerry-dominic/005.png",
             "alt": "Kerry Dominic ceremony photo 5"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/006.jpg",
+            "src": "/wedding-photos/kerry-dominic/006.png",
             "alt": "Kerry Dominic ceremony photo 6"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/007.jpg",
+            "src": "/wedding-photos/kerry-dominic/007.png",
             "alt": "Kerry Dominic ceremony photo 7"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/008.jpg",
+            "src": "/wedding-photos/kerry-dominic/008.png",
             "alt": "Kerry Dominic ceremony photo 8"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/009.jpg",
+            "src": "/wedding-photos/kerry-dominic/009.png",
             "alt": "Kerry Dominic ceremony photo 9"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/010.jpg",
+            "src": "/wedding-photos/kerry-dominic/010.png",
             "alt": "Kerry Dominic ceremony photo 10"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/011.jpg",
+            "src": "/wedding-photos/kerry-dominic/011.png",
             "alt": "Kerry Dominic ceremony photo 11"
           }
         ]
@@ -2427,47 +2145,47 @@ export const realWeddings = [
         "title": "Reception & Celebration",
         "photos": [
           {
-            "src": "/wedding-photos/kerry-dominic/012.jpg",
+            "src": "/wedding-photos/kerry-dominic/012.png",
             "alt": "Kerry Dominic reception photo 1"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/013.jpg",
+            "src": "/wedding-photos/kerry-dominic/013.png",
             "alt": "Kerry Dominic reception photo 2"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/014.jpg",
+            "src": "/wedding-photos/kerry-dominic/014.png",
             "alt": "Kerry Dominic reception photo 3"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/015.jpg",
+            "src": "/wedding-photos/kerry-dominic/015.png",
             "alt": "Kerry Dominic reception photo 4"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/016.jpg",
+            "src": "/wedding-photos/kerry-dominic/016.png",
             "alt": "Kerry Dominic reception photo 5"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/017.jpg",
+            "src": "/wedding-photos/kerry-dominic/017.png",
             "alt": "Kerry Dominic reception photo 6"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/018.jpg",
+            "src": "/wedding-photos/kerry-dominic/018.png",
             "alt": "Kerry Dominic reception photo 7"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/019.jpg",
+            "src": "/wedding-photos/kerry-dominic/019.png",
             "alt": "Kerry Dominic reception photo 8"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/020.jpg",
+            "src": "/wedding-photos/kerry-dominic/020.png",
             "alt": "Kerry Dominic reception photo 9"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/021.jpg",
+            "src": "/wedding-photos/kerry-dominic/021.png",
             "alt": "Kerry Dominic reception photo 10"
           },
           {
-            "src": "/wedding-photos/kerry-dominic/022.jpg",
+            "src": "/wedding-photos/kerry-dominic/022.png",
             "alt": "Kerry Dominic reception photo 11"
           }
         ]
@@ -3173,8 +2891,8 @@ export const realWeddings = [
   {
     "slug": "kristine-leuze-rum-river",
     "coupleName": "Kristine Leuze",
-    "heroImage": "/wedding-photos/kristine-leuze-rum-river/001.jpg",
-    "coverImage": "/wedding-photos/kristine-leuze-rum-river/003.jpg",
+    "heroImage": "/wedding-photos/kristine-leuze-rum-river/001.png",
+    "coverImage": "/wedding-photos/kristine-leuze-rum-river/003.png",
     "date": "Summer 2024",
     "location": "Rum River Barn • Hillman, Minnesota",
     "intro": "A beautiful celebration at Rum River Barn filled with love, laughter, and unforgettable moments.",
@@ -3185,27 +2903,27 @@ export const realWeddings = [
         "title": "The Day",
         "photos": [
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/001.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/001.png",
             "alt": "Kristine Leuze wedding photo 1"
           },
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/002.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/002.png",
             "alt": "Kristine Leuze wedding photo 2"
           },
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/003.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/003.png",
             "alt": "Kristine Leuze wedding photo 3"
           },
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/004.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/004.png",
             "alt": "Kristine Leuze wedding photo 4"
           },
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/005.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/005.png",
             "alt": "Kristine Leuze wedding photo 5"
           },
           {
-            "src": "/wedding-photos/kristine-leuze-rum-river/006.jpg",
+            "src": "/wedding-photos/kristine-leuze-rum-river/006.png",
             "alt": "Kristine Leuze wedding photo 6"
           }
         ]

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { getWeddingBySlug } from '../data/realWeddings'
+import SmartImageSimple from '../components/SmartImageSimple'
 
 // Sample wedding data (fallback for old URLs)
 const sampleWeddingData = {
@@ -113,6 +114,7 @@ export default function RealWeddingPost() {
   }
 
   const slides = allPhotos.map(photo => ({
+    type: "enhanced-image",
     src: photo.src,
     alt: photo.alt
   }))
@@ -328,6 +330,30 @@ export default function RealWeddingPost() {
         close={() => setLightboxOpen(false)}
         slides={slides}
         index={lightboxIndex}
+        render={{
+          slide: ({ slide }) =>
+            slide.type === "enhanced-image" ? (
+              <div style={{ 
+                width: '100%', 
+                height: '100%', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center' 
+              }}>
+                <SmartImageSimple
+                  src={slide.src}
+                  alt={slide.alt}
+                  style={{
+                    minWidth: '35%',
+                    minHeight: '35%',
+                    maxWidth: '55%',
+                    maxHeight: '55%',
+                    objectFit: 'contain'
+                  }}
+                />
+              </div>
+            ) : undefined
+        }}
       />
 
       <style>{`
