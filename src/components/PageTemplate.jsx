@@ -4,6 +4,7 @@ export default function PageTemplate({
   children, 
   title = "Rum River Barn", 
   heroContent = null,
+  heroImage = "/images/venue/barn-exterior-full-view-landscape.jpg",
   className = ""
 }) {
   return (
@@ -12,17 +13,14 @@ export default function PageTemplate({
       
       {/* Hero Section - Optional */}
       {heroContent && (
-        <section style={{
-          minHeight: '40vh',
-          background: 'linear-gradient(135deg, rgba(74, 52, 38, 0.9) 0%, rgba(45, 58, 47, 0.8) 100%), url("/images/venue/barn-exterior-full-view-landscape.jpg") center/cover',
-          display: 'flex',
-          alignItems: 'center',
-          color: 'white',
-          position: 'relative',
-          padding: '5rem 0'
-        }}>
+        <section 
+          className="page-hero dark-section"
+          style={{
+            background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("${heroImage}") center/cover`
+          }}
+        >
           <div className="content-wrapper">
-            <div style={{ padding: '0 2rem' }}>
+            <div className="page-hero-content">
               {heroContent}
             </div>
           </div>

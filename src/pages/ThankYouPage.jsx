@@ -3,23 +3,10 @@ import PageTemplate from '../components/PageTemplate'
 export default function ThankYouPage() {
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Thank You!
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         We've received your message and can't wait to help make your special day unforgettable
       </p>
     </>
@@ -27,7 +14,7 @@ export default function ThankYouPage() {
 
   return (
     <PageTemplate heroContent={heroContent}>
-      <section className="section" style={{ background: 'white' }}>
+      <section className="section section-white">
         <div className="content-wrapper">
           <div style={{
             maxWidth: '800px',

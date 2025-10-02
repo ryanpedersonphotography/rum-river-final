@@ -5,30 +5,20 @@ import { realWeddings } from '../data/realWeddings'
 export default function RealWeddingsPage() {
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Real Weddings
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         Every celebration tells a unique story of love, laughter, and happily ever after
       </p>
     </>
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/2014/04/Loria-Jason-wedding-2-0026.jpg"
+    >
 
       {/* Weddings Gallery Grid */}
       <section className="section">
@@ -66,7 +56,7 @@ export default function RealWeddingsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div style={{
             textAlign: 'center',

@@ -1,13 +1,14 @@
 import React from 'react';
+import CTAButton from './CTAButton';
 
 /**
  * VRTourButton Component
  * Specialized button for launching VR tours
- * Follows button system rules with vr-* variant classes
+ * Now uses standard CTAButton for consistency
  */
 export const VRTourButton = ({ 
   tourUrl, 
-  variant = 'special', // special, barn, bridal
+  variant = 'primary', // Use standard button variants
   children,
   icon = '🥽',
   showIcon = true,
@@ -26,15 +27,15 @@ export const VRTourButton = ({
   };
 
   return (
-    <button
-      className={`romantic-button vr-${variant} ${className}`.trim()}
+    <CTAButton
+      variant={variant}
+      className={className}
       onClick={handleClick}
-      type="button"
-      aria-label={`Launch virtual tour${variant !== 'special' ? ` of ${variant}` : ''}`}
+      ariaLabel="Launch virtual tour"
     >
       {showIcon && <span style={{ marginRight: '0.5rem' }}>{icon}</span>}
       {children}
-    </button>
+    </CTAButton>
   );
 };
 

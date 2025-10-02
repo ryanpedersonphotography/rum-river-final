@@ -7,33 +7,23 @@ import Icon from '../components/Icon'
 export default function ContactPage() {
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Get in Touch
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         We'd love to hear from you! Reach out to schedule a tour, ask questions, or start planning your special day.
       </p>
     </>
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/barn-exterior-entrance-lighting-view.jpg"
+    >
 
       {/* Virtual Preview Section */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div className="section-header center">
             <div className="script-accent">Take a Peek Inside</div>
@@ -89,7 +79,7 @@ export default function ContactPage() {
               </p>
               <VRTourButton
                 tourUrl="https://my.matterport.com/show/?m=P25ecLeSZdF"
-                variant="barn"
+                variant="primary"
                 icon="🥽"
               >
                 Explore Wedding Barn
@@ -138,7 +128,7 @@ export default function ContactPage() {
               </p>
               <VRTourButton
                 tourUrl="https://my.matterport.com/show/?m=sFjR96cKfqv"
-                variant="bridal"
+                variant="primary"
                 icon="🥽"
               >
                 Explore Bridal Suite

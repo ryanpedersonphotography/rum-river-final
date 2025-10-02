@@ -118,30 +118,20 @@ export default function PropertyPage() {
 
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         The Property
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         Discover the beautiful spaces and natural settings that make Rum River Barn the perfect venue for your celebration.
       </p>
     </>
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/barn-interior-ceiling-beams-lighting.jpg"
+    >
       
       {/* Discover Our Spaces - Tabbed Venue Display */}
       <section className="section-warm">

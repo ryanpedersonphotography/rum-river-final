@@ -1,3 +1,5 @@
+import CTAButton from './CTAButton'
+
 export default function Footer() {
   return (
     <footer className="footer-contact">
@@ -8,8 +10,8 @@ export default function Footer() {
           at Rum River Wedding Barn
         </p>
         <div className="footer-buttons">
-          <a href="/contact" className="footer-contact-button">SCHEDULE A TOUR</a>
-          <a href="/rental-info" className="footer-contact-button">REQUEST PRICING</a>
+          <CTAButton href="/contact" variant="primary">SCHEDULE A TOUR</CTAButton>
+          <CTAButton href="/rental-info" variant="primary">REQUEST PRICING</CTAButton>
         </div>
         <p className="footer-address">
           📍 42618 78th Street, Hillman, MN 56338<br />

@@ -118,7 +118,7 @@ export default function HomePage() {
               the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.
             </p>
             <div className="hero-buttons">
-              <a href="/contact" className="romantic-button primary">Schedule Your Visit</a>
+              <CTAButton href="/contact" variant="primary">Schedule Your Visit</CTAButton>
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function HomePage() {
                     tourUrl={activeVenue === 'barn' 
                       ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
                       : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
-                    variant="special"
+                    variant="primary"
                     showIcon={false}
                   >
                     Launch Virtual Tour
@@ -256,7 +256,7 @@ export default function HomePage() {
           </div>
 
           <div className="gallery-footer">
-            <Link to="/real-weddings" className="romantic-button outline">View All Real Weddings</Link>
+            <CTAButton to="/real-weddings" variant="primary">View All Real Weddings</CTAButton>
           </div>
         </div>
       </section>
@@ -407,64 +407,6 @@ export default function HomePage() {
         className="" 
       />
 
-      {/* ID: MAP_DIRECTIONS_001 - Map & Directions Section */}
-      <section id="map-directions" className="map-section">
-        <div className="map-container">
-          <div className="map-info">
-            <h2>Find Your Way to Forever</h2>
-            <div className="location-details">
-              <div className="location-item">
-                <div className="location-icon">
-                  <Icon name="location" size="lg" color="primary" />
-                </div>
-                <div className="location-text">
-                  <h4>Address</h4>
-                  <p>42618 78th Street<br />Hillman, MN 56338</p>
-                </div>
-              </div>
-              <div className="location-item">
-                <div className="location-icon">
-                  <Icon name="map" size="lg" color="primary" />
-                </div>
-                <div className="location-text">
-                  <h4>Easy Access From</h4>
-                  <p>45 min from Minneapolis<br />30 min from St. Cloud<br />1 hour from Brainerd</p>
-                </div>
-              </div>
-              <div className="location-item">
-                <div className="location-icon">
-                  <Icon name="globe" size="lg" color="primary" />
-                </div>
-                <div className="location-text">
-                  <h4>Nearest Airport</h4>
-                  <p>Minneapolis-St. Paul International<br />55 miles (1 hour drive)</p>
-                </div>
-              </div>
-              <div className="location-item">
-                <div className="location-icon">
-                  <Icon name="building" size="lg" color="primary" />
-                </div>
-                <div className="location-text">
-                  <h4>Accommodations</h4>
-                  <p>Partner hotels in Princeton & Milaca<br />Group rates available</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="map-embed">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2817.8985775673544!2d-93.7851842!3d45.8936111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b39b1c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s42618%2078th%20St%2C%20Hillman%2C%20MN%2056338!5e0!3m2!1sen!2sus!4v1704067200000!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: '600px' }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Rum River Barn Location - 42618 78th Street, Hillman, MN 56338"
-            ></iframe>
-          </div>
-        </div>
-      </section>
 
       {/* ID: FOOTER_ENHANCED_001 - Enhanced 3-Column Footer */}
       <footer style={{

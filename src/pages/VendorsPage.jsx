@@ -4,23 +4,10 @@ import Icon from '../components/Icon'
 export default function VendorsPage() {
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Preferred Vendor Directory
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         Our carefully curated list of trusted wedding professionals who understand our venue and share our commitment to making your day perfect.
       </p>
     </>
@@ -120,7 +107,10 @@ export default function VendorsPage() {
   ]
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/details-building-porch-architectural.jpg"
+    >
       
       {/* Vendor Categories Section */}
       <section id="vendors" className="section">

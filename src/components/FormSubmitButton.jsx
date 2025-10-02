@@ -20,7 +20,7 @@ export const FormSubmitButton = ({
   return (
     <button 
       type="submit" 
-      className={`cta-submit-button ${className}`.trim()}
+      className={`romantic-button primary ${className}`.trim()}
       disabled={isDisabled}
       aria-busy={submitting}
       aria-disabled={isDisabled}

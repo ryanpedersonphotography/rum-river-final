@@ -3,23 +3,10 @@ import PageTemplate from '../components/PageTemplate'
 export default function TestimonialsPage() {
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Love Stories & Testimonials
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         Hear from the couples who celebrated their special day at Rum River Barn
       </p>
     </>
@@ -89,10 +76,13 @@ export default function TestimonialsPage() {
   ]
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/barn-exterior-deck-swing-under-tree.jpg"
+    >
 
       {/* Featured Testimonial */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div style={{
             maxWidth: '900px',
@@ -156,7 +146,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div className="section-header center">
             <div className="script-accent">By the Numbers</div>

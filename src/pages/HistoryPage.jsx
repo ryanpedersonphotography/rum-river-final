@@ -24,30 +24,20 @@ export default function HistoryPage() {
 
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Our History
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         From Norwegian settlers to Minnesota's premier barn venue - a journey spanning 170 years
       </p>
     </>
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/barn-exterior-deck-stairs-trees.jpg"
+    >
 
       {/* Intro Section */}
       <section className="section">
@@ -71,7 +61,7 @@ export default function HistoryPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div className="section-header center" style={{ marginBottom: '3rem' }}>
             <div className="script-accent">Journey Through Time</div>
@@ -481,7 +471,7 @@ export default function HistoryPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section" style={{ background: 'var(--cream-pearl)' }}>
+      <section className="section section-cream">
         <div className="content-wrapper">
           <div style={{
             textAlign: 'center',

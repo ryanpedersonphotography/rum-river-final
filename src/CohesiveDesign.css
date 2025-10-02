@@ -26,10 +26,10 @@
   --sage-green: #7A8B7F;
   --soft-white: #FEFDFB;
 
-  /* Typography */
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Montserrat', sans-serif;
-  --font-script: 'Dancing Script', cursive;
+  /* Typography - TWO FONT SYSTEM */
+  --font-display: 'Playfair Display', serif;  /* PRIMARY: Headings & Brand */
+  --font-body: 'Montserrat', sans-serif;      /* SECONDARY: Body Text */
+  --font-script: 'Dancing Script', cursive;   /* ACCENT: Special elements */
 
   /* Typography Scale */
   --text-xs: 0.75rem;    /* 12px */
@@ -85,7 +85,55 @@ body {
   overflow-x: hidden;
 }
 
-/* Typography Hierarchy */
+/* ============================================
+   PAGE HERO SYSTEM
+   Unified hero section for all pages
+   Usage: Applied via PageTemplate component
+   ============================================ */
+
+/* Page Hero Container - Applied to hero sections on interior pages */
+.page-hero {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 5rem 0;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Page Hero Title - Standard title for all page heroes */
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+/* Page Hero Lead - Standard description text for page heroes */
+.page-hero-lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 0;
+  max-width: 800px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hero Content Container - Wrapper for hero text */
+.page-hero-content {
+  padding: 0 2rem;
+}
+
+/* ============================================
+   HOMEPAGE HERO SYSTEM (Enhanced)
+   Special styles for homepage only
+   ============================================ */
+
+/* Homepage Hero - Larger, more dramatic */
 .hero-headline {
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 5.5rem);
@@ -364,112 +412,154 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   color: white !important;  /* WCAG compliant with new dusty-rose #9D6B7B */
 }
 
-/* Romantic Button System */
+/* ============================================
+   UNIFIED BUTTON SYSTEM
+   All buttons across the site controlled here
+   Automatically adapts to dark/light backgrounds
+   ============================================ */
+
 .romantic-button {
+  /* Base button styles - EDIT THESE TO CHANGE ALL BUTTONS */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: 2px solid var(--dusty-rose);
   font-family: var(--font-body);
   font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 1rem;
-  text-transform: uppercase;
-  background: transparent;
-  color: var(--dusty-rose);
+  
+  /* Default colors for light backgrounds */
+  background: var(--dusty-rose);
+  color: white;
 }
 
-.header-enhanced .romantic-button {
-  color: var(--warm-cream);
-  border-color: var(--warm-cream);
-}
-
-.header-enhanced.scrolled .romantic-button {
-  color: var(--dusty-rose);
-  border-color: var(--dusty-rose);
-}
-
-.romantic-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.romantic-button:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
+/* Hover effect for all buttons */
 .romantic-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(212, 165, 165, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  /* Slightly darker background on hover */
+  filter: brightness(0.9);
 }
 
+/* Primary variant (filled button) - for light backgrounds */
 .romantic-button.primary {
   background: var(--dusty-rose);
-  color: white;  /* WCAG compliant with new dusty-rose #9D6B7B */
+  color: white;
   border-color: var(--dusty-rose);
 }
 
+.romantic-button.primary:hover {
+  background: var(--warm-walnut);
+  border-color: var(--warm-walnut);
+  color: white;
+}
+
+/* Outline variant - for light backgrounds */
 .romantic-button.outline {
   background: transparent;
   color: var(--dusty-rose);
+  border-color: var(--dusty-rose);
 }
 
 .romantic-button.outline:hover {
   background: var(--dusty-rose);
-  color: white;  /* WCAG compliant with new dusty-rose #9D6B7B */
+  color: white;
+  border-color: var(--dusty-rose);
 }
 
-/* Dark Section Button Variants */
-.dark-section .romantic-button.primary,
-.romantic-button.primary.on-dark {
+/* ============================================
+   AUTOMATIC DARK BACKGROUND ADAPTATION
+   Buttons automatically change on dark sections
+   ============================================ */
+
+/* Dark section detection - ANY of these parent classes trigger dark mode */
+.dark-section .romantic-button,
+.dark-gradient-section .romantic-button,
+.alternating-blocks .romantic-button,
+.contact-info-section .romantic-button,
+.hero-enhanced .romantic-button,
+.footer-contact .romantic-button {
+  /* Auto-switch to light colors on dark backgrounds */
   background: white;
   color: var(--warm-walnut);
   border-color: white;
 }
 
-.dark-section .romantic-button.primary:hover,
-.romantic-button.primary.on-dark:hover {
-  background: var(--romantic-ivory);
+.dark-section .romantic-button:hover,
+.dark-gradient-section .romantic-button:hover,
+.alternating-blocks .romantic-button:hover,
+.contact-info-section .romantic-button:hover,
+.hero-enhanced .romantic-button:hover,
+.footer-contact .romantic-button:hover {
+  background: var(--champagne-gold);
   color: var(--warm-walnut);
-  border-color: var(--romantic-ivory);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  border-color: var(--champagne-gold);
 }
 
+/* Outline variant on dark backgrounds */
 .dark-section .romantic-button.outline,
-.romantic-button.outline.on-dark {
+.dark-gradient-section .romantic-button.outline,
+.alternating-blocks .romantic-button.outline,
+.contact-info-section .romantic-button.outline,
+.footer-contact .romantic-button.outline {
   background: transparent;
   color: white;
   border-color: white;
 }
 
 .dark-section .romantic-button.outline:hover,
-.romantic-button.outline.on-dark:hover {
+.dark-gradient-section .romantic-button.outline:hover,
+.alternating-blocks .romantic-button.outline:hover,
+.contact-info-section .romantic-button.outline:hover,
+.footer-contact .romantic-button.outline:hover {
   background: white;
   color: var(--warm-walnut);
   border-color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+}
+
+/* Special header button behavior */
+.header-enhanced .romantic-button {
+  background: transparent;
+  color: var(--warm-cream);
+  border-color: var(--warm-cream);
+}
+
+.header-enhanced .romantic-button:hover {
+  background: var(--warm-cream);
+  color: var(--warm-walnut);
+}
+
+.header-enhanced.scrolled .romantic-button {
+  background: transparent;
+  color: var(--dusty-rose);
+  border-color: var(--dusty-rose);
+}
+
+.header-enhanced.scrolled .romantic-button:hover {
+  background: var(--dusty-rose);
+  color: white;
 }
 
 .romantic-button.full-width {
   width: 100%;
+}
+
+/* Center and style form submit buttons */
+.cta-contact-form .romantic-button {
+  margin: 2rem auto 0;
+  display: flex;
+  padding: 0.875rem 2.5rem;
+  min-width: 200px;
+  justify-content: center;
 }
 
 .romantic-button.vr-special {
@@ -2374,10 +2464,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .hero-card:nth-child(4) { animation-delay: 0.4s; }
 
 /* Explore Our Spaces - Tabbed Venue Display */
-.section-warm {
-  padding: 5rem 0;
-  background: var(--warm-cream);
-}
+/* Removed duplicate - see line 3139 for .section-warm definition */
 
 .venue-content {
   padding: 0;
@@ -2876,6 +2963,398 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
   .hero-lead {
     margin-bottom: 2.5rem;
+  }
+}
+
+/* ============================================
+   EVENTS PAGE STYLES
+   ============================================ */
+
+/* Event Hero Strip Component */
+.event-hero-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.event-hero-content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.event-hero-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  font-family: var(--font-display);
+  color: var(--warm-walnut);
+}
+
+.event-hero-subtitle {
+  margin: 0;
+  color: var(--sage-green);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+.event-hero-cta {
+  margin-top: 0.5rem;
+}
+
+.event-hero-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.event-hero-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark Gradient Section for Events */
+.dark-gradient-section {
+  background: linear-gradient(135deg, rgba(74, 52, 38, 1) 0%, rgba(45, 58, 47, 1) 100%);
+  color: white;
+  padding: 100px 0;
+}
+
+/* ============================================
+   UNIFIED TEXT SYSTEM
+   Two-Font System:
+   - Primary Font (Playfair Display): Headings & Brand
+   - Secondary Font (Montserrat): Body Text
+   Edit these values to change ALL text site-wide
+   Automatically adapts to light/dark backgrounds
+   ============================================ */
+
+/* PRIMARY HEADINGS - Uses PRIMARY FONT (Playfair Display) */
+.section-title,
+.block-title,
+h1, h2, h3 {
+  /* EDIT THESE TO CHANGE ALL MAIN HEADINGS */
+  font-family: var(--font-display);  /* PRIMARY FONT for headings */
+  font-size: 2.625rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  
+  /* Default color for light backgrounds */
+  color: var(--warm-walnut);
+}
+
+/* BODY TEXT - Uses SECONDARY FONT (Montserrat) */
+.block-description,
+.lead,
+p {
+  /* EDIT THESE TO CHANGE ALL BODY TEXT */
+  font-family: var(--font-body);  /* SECONDARY FONT for body text */
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  margin-bottom: 1.875rem;
+  
+  /* Default color for light backgrounds */
+  color: var(--warm-walnut);
+  opacity: 0.85;
+}
+
+/* LIST ITEMS - Uses SECONDARY FONT (Montserrat) */
+.feature-list {
+  /* EDIT THESE TO CHANGE ALL LISTS */
+  list-style: none;
+  margin-bottom: 1.875rem;
+  padding-left: 0;
+}
+
+.feature-list li,
+ul li {
+  /* EDIT THESE TO CHANGE ALL LIST ITEMS */
+  font-family: var(--font-body);  /* SECONDARY FONT for lists */
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem;
+  
+  /* Default color for light backgrounds */
+  color: var(--warm-walnut);
+  opacity: 0.85;
+}
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-weight: bold;
+  opacity: 1;
+}
+
+/* ============================================
+   AUTOMATIC DARK BACKGROUND ADAPTATION
+   Text automatically changes on dark sections
+   ============================================ */
+
+/* Dark sections - auto white text for headings */
+.dark-section .section-title,
+.dark-section .block-title,
+.dark-section h2,
+.dark-gradient-section .section-title,
+.dark-gradient-section .block-title,
+.dark-gradient-section h2,
+.section-walnut .section-title,
+.section-walnut .block-title,
+.section-walnut h2,
+.section-forest .section-title,
+.section-forest .block-title,
+.section-forest h2,
+.section-brown .section-title,
+.section-brown .block-title,
+.section-brown h2,
+.alternating-blocks .section-title,
+.alternating-blocks .block-title,
+.alternating-blocks h2,
+.contact-info-section .section-title,
+.contact-info-section .block-title,
+.contact-info-section h2,
+.hero-enhanced .section-title,
+.hero-enhanced .block-title,
+.hero-enhanced h2,
+.footer-contact .section-title,
+.footer-contact .block-title,
+.footer-contact h2,
+.cta-contact-section .section-title,
+.cta-contact-section .block-title,
+.cta-contact-section h2 {
+  color: white;
+  opacity: 1;
+}
+
+/* Dark sections - auto white text for body */
+.dark-section .block-description,
+.dark-section .lead,
+.dark-section p,
+.dark-gradient-section .block-description,
+.dark-gradient-section .lead,
+.dark-gradient-section p,
+.section-walnut .block-description,
+.section-walnut .lead,
+.section-walnut p,
+.section-forest .block-description,
+.section-forest .lead,
+.section-forest p,
+.section-brown .block-description,
+.section-brown .lead,
+.section-brown p,
+.alternating-blocks .block-description,
+.alternating-blocks .lead,
+.alternating-blocks p,
+.contact-info-section .block-description,
+.contact-info-section .lead,
+.contact-info-section p,
+.hero-enhanced .block-description,
+.hero-enhanced .lead,
+.hero-enhanced p,
+.footer-contact .block-description,
+.footer-contact .lead,
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}
+
+/* Dark sections - auto white text for lists */
+.dark-section .feature-list li,
+.dark-section ul li,
+.dark-gradient-section .feature-list li,
+.dark-gradient-section ul li,
+.section-walnut .feature-list li,
+.section-walnut ul li,
+.section-forest .feature-list li,
+.section-forest ul li,
+.section-brown .feature-list li,
+.section-brown ul li,
+.alternating-blocks .feature-list li,
+.alternating-blocks ul li,
+.contact-info-section .feature-list li,
+.contact-info-section ul li,
+.hero-enhanced .feature-list li,
+.hero-enhanced ul li,
+.footer-contact .feature-list li,
+.footer-contact ul li {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
+}
+
+/* Dark sections - lighter checkmark color */
+.dark-section .feature-list li::before,
+.dark-gradient-section .feature-list li::before,
+.alternating-blocks .feature-list li::before,
+.contact-info-section .feature-list li::before,
+.hero-enhanced .feature-list li::before,
+.footer-contact .feature-list li::before {
+  color: var(--champagne-gold);
+}
+
+/* ============================================
+   CTA SECTION SYSTEM
+   Unified call-to-action sections
+   ============================================ */
+
+.cta-section-wrapper {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-section-wrapper .script-accent {
+  margin-bottom: 1rem;
+}
+
+.cta-section-wrapper .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.cta-section-wrapper .lead {
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   SECTION BACKGROUND SYSTEM
+   Unified background classes for all sections
+   Usage: <section className="section section-cream">
+   ============================================ */
+
+/* Light Backgrounds */
+.section-cream {
+  background: var(--cream-pearl);
+}
+
+.section-ivory {
+  background: var(--romantic-ivory);
+}
+
+.section-blush {
+  background: var(--blush-pink);
+}
+
+.section-white {
+  background: var(--soft-white);
+}
+
+.section-warm-cream {
+  background: var(--warm-cream);
+}
+
+/* Dark Backgrounds (auto white text via existing rules) */
+.section-walnut {
+  background: var(--warm-walnut);
+}
+
+.section-forest {
+  background: var(--deep-forest);
+}
+
+.section-brown {
+  background: var(--deep-brown);
+}
+
+/* Legacy alias - DEPRECATED, use .section-cream instead */
+.section-warm {
+  background: var(--cream-pearl) !important;  /* Force light background */
+  padding: 100px 0;
+}
+
+/* Ensure proper text colors on light sections */
+.section-warm .block-title,
+.section-warm h1,
+.section-warm h2,
+.section-warm h3 {
+  color: var(--warm-walnut) !important;
+}
+
+.section-warm .block-description,
+.section-warm p {
+  color: var(--text-dark) !important;  /* Darker text for better contrast */
+  opacity: 1 !important;  /* Full opacity for readability */
+}
+
+.section-warm .feature-list li {
+  color: var(--text-dark) !important;
+  opacity: 0.9 !important;
+}
+
+/* Contact Info Section Styles */
+.contact-info-section {
+  background: var(--warm-walnut);
+  color: white;
+  padding: 5rem 0;
+}
+
+.contact-info-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0 3rem;
+}
+
+.contact-info-item {
+  text-align: center;
+}
+
+.contact-info-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+  font-family: var(--font-body);
+}
+
+.contact-info-main {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.contact-info-secondary {
+  font-size: 1rem;
+  opacity: 0.8;
+  font-family: var(--font-body);
+}
+
+/* Dark Section Updates */
+.dark-section {
+  background: var(--warm-walnut);
+  color: white;
+}
+
+/* Responsive Styles for Event Hero Strip */
+@media (max-width: 768px) {
+  .event-hero-strip {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 

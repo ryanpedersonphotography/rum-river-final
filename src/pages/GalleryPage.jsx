@@ -136,30 +136,20 @@ export default function GalleryPage() {
 
   const heroContent = (
     <>
-      <h1 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(2rem, 5vw, 3rem)',
-        fontWeight: 400,
-        lineHeight: 1.2,
-        marginBottom: '1.5rem',
-        color: 'white'
-      }}>
+      <h1 className="page-hero-title">
         Venue & Gallery
       </h1>
-      <p className="lead" style={{
-        fontSize: '1.125rem',
-        lineHeight: 1.7,
-        opacity: 0.9,
-        marginBottom: '0',
-        maxWidth: '800px'
-      }}>
+      <p className="page-hero-lead">
         Tour our stunning property, historic barn, and beautiful grounds. See why Rum River Barn is Minnesota's premier wedding venue.
       </p>
     </>
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroContent={heroContent}
+      heroImage="/images/venue/barn-interior-exposed-beams-chandeliers.jpg"
+    >
 
       {/* Filter Tabs */}
       <section className="section" style={{ paddingTop: '3rem', paddingBottom: '2rem' }}>
