@@ -5,20 +5,11 @@ import ScheduleTourForm from '../components/ScheduleTourForm'
 import Icon from '../components/Icon'
 
 export default function ContactPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Get in Touch
-      </h1>
-      <p className="page-hero-lead">
-        We'd love to hear from you! Reach out to schedule a tour, ask questions, or start planning your special day.
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="contact"
+      heroTitle="Get in Touch"
+      heroDescription="We'd love to hear from you! Reach out to schedule a tour, ask questions, or start planning your special day."
       heroImage="/images/venue/barn-exterior-entrance-lighting-view.jpg"
     >
 

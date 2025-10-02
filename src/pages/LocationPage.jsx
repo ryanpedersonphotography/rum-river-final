@@ -2,20 +2,11 @@ import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
 
 export default function LocationPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Find Your Way to Forever
-      </h1>
-      <p className="page-hero-lead">
-        Nestled in the heart of Minnesota, our venue is conveniently accessible from major cities while offering the peaceful charm of the countryside.
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="location"
+      heroTitle="Find Your Way to Forever"
+      heroDescription="Nestled in the heart of Minnesota, our venue is conveniently accessible from major cities while offering the peaceful charm of the countryside."
       heroImage="/images/venue/property-field-wildflowers-natural.jpg"
     >
 

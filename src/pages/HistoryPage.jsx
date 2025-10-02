@@ -22,20 +22,11 @@ export default function HistoryPage() {
     }
   }, [])
 
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Our History
-      </h1>
-      <p className="page-hero-lead">
-        From Norwegian settlers to Minnesota's premier barn venue - a journey spanning 170 years
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="history"
+      heroTitle="Our History"
+      heroDescription="From Norwegian settlers to Minnesota's premier barn venue - a journey spanning 170 years"
       heroImage="/images/venue/barn-exterior-deck-stairs-trees.jpg"
     >
 

@@ -23,7 +23,7 @@ export const ScheduleTourForm = ({
       <div className="cta-contact-container">
         {showHeader && (
           <div className="cta-contact-header">
-            <p className="script-font">{subtitle}</p>
+            {subtitle && <p className="script-font">{subtitle}</p>}
             <h2>{title}</h2>
             <p>{description}</p>
           </div>

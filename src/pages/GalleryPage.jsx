@@ -134,20 +134,11 @@ export default function GalleryPage() {
     title: photo.alt
   }))
 
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Venue & Gallery
-      </h1>
-      <p className="page-hero-lead">
-        Tour our stunning property, historic barn, and beautiful grounds. See why Rum River Barn is Minnesota's premier wedding venue.
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="gallery"
+      heroTitle="Venue & Gallery"
+      heroDescription="Tour our stunning property, historic barn, and beautiful grounds. See why Rum River Barn is Minnesota's premier wedding venue."
       heroImage="/images/venue/barn-interior-exposed-beams-chandeliers.jpg"
     >
 

@@ -23,21 +23,12 @@ function EventHeroStrip({ title, subtitle, image, ctaHref = "/contact", ctaLabel
 }
 
 export default function EventsPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Events & Celebrations
-      </h1>
-      <p className="page-hero-lead">
-        From intimate gatherings to grand celebrations, our historic barn venue creates unforgettable memories for every occasion
-      </p>
-    </>
-  )
-
   return (
     <>
       <PageTemplate 
-        heroContent={heroContent}
+        currentPage="events"
+        heroTitle="Events & Celebrations"
+        heroDescription="From intimate gatherings to grand celebrations, our historic barn venue creates unforgettable memories for every occasion"
         heroImage="/images/2014/05/Reins-Wedding_3-193.jpg"
       >
 

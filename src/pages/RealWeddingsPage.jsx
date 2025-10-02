@@ -3,20 +3,11 @@ import PageTemplate from '../components/PageTemplate'
 import { realWeddings } from '../data/realWeddings'
 
 export default function RealWeddingsPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Real Weddings
-      </h1>
-      <p className="page-hero-lead">
-        Every celebration tells a unique story of love, laughter, and happily ever after
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="real-weddings"
+      heroTitle="Real Weddings"
+      heroDescription="Every celebration tells a unique story of love, laughter, and happily ever after"
       heroImage="/images/2014/04/Loria-Jason-wedding-2-0026.jpg"
     >
 

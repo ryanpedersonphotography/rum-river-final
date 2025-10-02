@@ -352,12 +352,23 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--dusty-rose);
+  background: var(--champagne-gold);
   transition: width 0.3s ease;
 }
 
 .nav-menu a:hover::after {
   width: 100%;
+}
+
+/* Active Page Indicator */
+.nav-menu a.active {
+  font-weight: 700;
+  color: var(--champagne-gold) !important;
+}
+
+.header-enhanced.scrolled .nav-menu a.active {
+  font-weight: 700;
+  color: var(--champagne-gold) !important;
 }
 
 /* Dropdown Navigation */
@@ -2678,6 +2689,125 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   background: linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%);
   position: relative;
   overflow: hidden;
+}
+
+/* When using white container, override text colors back to dark */
+.cta-contact-container h2,
+.cta-contact-container p,
+.cta-contact-container label {
+  color: var(--warm-walnut) !important;
+}
+
+.cta-contact-container .script-font {
+  color: var(--dusty-rose) !important;
+}
+
+/* ============================================
+   SECTION SYSTEM - Systematic section styling
+   ============================================ */
+
+/* Variant styles */
+.section-muted {
+  background: var(--warm-cream);
+}
+
+.section-solid {
+  /* Solid backgrounds use tone colors */
+}
+
+/* Tone colors (apply to solid variant) */
+.section-solid.tone-brand {
+  background: linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%);
+  color: white;
+}
+
+.section-solid.tone-brown {
+  background: var(--warm-walnut);
+  color: white;
+}
+
+.section-solid.tone-walnut {
+  background: var(--deep-brown);
+  color: white;
+}
+
+.section-solid.tone-forest {
+  background: var(--sage-green);
+  color: white;
+}
+
+.section-solid.tone-cream {
+  background: var(--warm-cream);
+  color: var(--text-dark);
+}
+
+.section-solid.tone-ivory {
+  background: var(--cream-pearl);
+  color: var(--text-dark);
+}
+
+.section-solid.tone-sage {
+  background: #8FA68E;
+  color: white;
+}
+
+.section-solid.tone-blush {
+  background: var(--blush-pink);
+  color: var(--text-dark);
+}
+
+/* Container styles */
+.container-fixed {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Alignment */
+.align-center {
+  text-align: center;
+}
+
+.align-center .section-header,
+.align-center .section-cta {
+  text-align: center;
+}
+
+/* Padding scale */
+.py-xs { padding-top: 2rem; padding-bottom: 2rem; }
+.py-sm { padding-top: 3rem; padding-bottom: 3rem; }
+.py-md { padding-top: 4rem; padding-bottom: 4rem; }
+.py-lg { padding-top: 6rem; padding-bottom: 6rem; }
+.py-xl { padding-top: 8rem; padding-bottom: 8rem; }
+.py-2xl { padding-top: 10rem; padding-bottom: 10rem; }
+
+/* Contrast overrides */
+.contrast-light,
+.contrast-light .section-header,
+.contrast-light .section-title,
+.contrast-light .lead,
+.contrast-light .script-accent {
+  color: white !important;
+}
+
+.contrast-dark,
+.contrast-dark .section-header,
+.contrast-dark .section-title,
+.contrast-dark .lead,
+.contrast-dark .script-accent {
+  color: var(--text-dark) !important;
+}
+
+/* Section CTA wrapper */
+.section-cta {
+  margin-top: 3rem;
+}
+
+.section-cta.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .cta-contact-section::before {

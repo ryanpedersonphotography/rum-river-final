@@ -3,25 +3,34 @@ import Header from './Header'
 export default function PageTemplate({ 
   children, 
   title = "Rum River Barn", 
+  heroTitle = null,
+  heroDescription = null,
   heroContent = null,
   heroImage = "/images/venue/barn-exterior-full-view-landscape.jpg",
-  className = ""
+  heroBackground = "linear-gradient(135deg, rgba(107, 78, 61, 0.9) 0%, rgba(58, 74, 60, 0.8) 100%)",
+  className = "",
+  currentPage = ""
 }) {
   return (
     <>
-      <Header />
+      <Header currentPage={currentPage} />
       
       {/* Hero Section - Optional */}
-      {heroContent && (
+      {(heroContent || heroTitle || heroDescription) && (
         <section 
           className="page-hero dark-section"
           style={{
-            background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("${heroImage}") center/cover`
+            background: `${heroBackground}, url("${heroImage}") center/cover`
           }}
         >
           <div className="content-wrapper">
             <div className="page-hero-content">
-              {heroContent}
+              {heroContent ? heroContent : (
+                <>
+                  {heroTitle && <h1 className="page-hero-title">{heroTitle}</h1>}
+                  {heroDescription && <p className="page-hero-lead">{heroDescription}</p>}
+                </>
+              )}
             </div>
           </div>
         </section>

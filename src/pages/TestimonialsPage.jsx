@@ -1,17 +1,7 @@
 import PageTemplate from '../components/PageTemplate'
+import CTAFormSection from '../components/CTAFormSection'
 
 export default function TestimonialsPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Love Stories & Testimonials
-      </h1>
-      <p className="page-hero-lead">
-        Hear from the couples who celebrated their special day at Rum River Barn
-      </p>
-    </>
-  )
-
   const testimonials = [
     {
       quote: "From our first tour to our last dance, the team at Rum River made our dreams come true. The barn was absolutely magical, and our guests are still talking about how perfect everything was.",
@@ -77,7 +67,9 @@ export default function TestimonialsPage() {
 
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="testimonials"
+      heroTitle="Love Stories & Testimonials"
+      heroDescription="Hear from the couples who celebrated their special day at Rum River Barn"
       heroImage="/images/venue/barn-exterior-deck-swing-under-tree.jpg"
     >
 
@@ -247,27 +239,16 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section">
-        <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Ready to Create Your Own Story?</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Let's Start Planning Your Perfect Day
-            </h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              Schedule a tour to see why so many couples choose Rum River Barn for their celebration
-            </p>
-            <a href="/contact" className="romantic-button">
-              Schedule Your Tour
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* CTA Section with Mini Form */}
+      <CTAFormSection
+        variant="light"
+        background="cream"
+        formSize="mini"
+        scriptAccent="Ready to Create Your Own Story?"
+        title="Let's Start Planning Your Perfect Day"
+        description="Schedule a tour to see why so many couples choose Rum River Barn for their celebration"
+        formName="testimonials-cta"
+      />
 
     </PageTemplate>
   )

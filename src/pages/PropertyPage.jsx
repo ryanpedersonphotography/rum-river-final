@@ -116,20 +116,11 @@ export default function PropertyPage() {
     )
   }
 
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        The Property
-      </h1>
-      <p className="page-hero-lead">
-        Discover the beautiful spaces and natural settings that make Rum River Barn the perfect venue for your celebration.
-      </p>
-    </>
-  )
-
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="property"
+      heroTitle="The Property"
+      heroDescription="Discover the beautiful spaces and natural settings that make Rum River Barn the perfect venue for your celebration."
       heroImage="/images/venue/barn-interior-ceiling-beams-lighting.jpg"
     >
       

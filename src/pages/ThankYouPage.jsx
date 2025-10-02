@@ -1,19 +1,11 @@
 import PageTemplate from '../components/PageTemplate'
 
 export default function ThankYouPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Thank You!
-      </h1>
-      <p className="page-hero-lead">
-        We've received your message and can't wait to help make your special day unforgettable
-      </p>
-    </>
-  )
-
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      heroTitle="Thank You!"
+      heroDescription="We've received your message and can't wait to help make your special day unforgettable"
+    >
       <section className="section section-white">
         <div className="content-wrapper">
           <div style={{

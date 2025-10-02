@@ -2,16 +2,6 @@ import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
 
 export default function VendorsPage() {
-  const heroContent = (
-    <>
-      <h1 className="page-hero-title">
-        Preferred Vendor Directory
-      </h1>
-      <p className="page-hero-lead">
-        Our carefully curated list of trusted wedding professionals who understand our venue and share our commitment to making your day perfect.
-      </p>
-    </>
-  )
 
   const vendorCategories = [
     {
@@ -108,7 +98,9 @@ export default function VendorsPage() {
 
   return (
     <PageTemplate 
-      heroContent={heroContent}
+      currentPage="vendors"
+      heroTitle="Preferred Vendor Directory"
+      heroDescription="Our carefully curated list of trusted wedding professionals who understand our venue and share our commitment to making your day perfect."
       heroImage="/images/venue/details-building-porch-architectural.jpg"
     >
       
