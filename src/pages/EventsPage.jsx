@@ -1,4 +1,5 @@
 import PageTemplate from '../components/PageTemplate'
+import ScheduleTourForm from '../components/ScheduleTourForm'
 
 
 // Hero Strip Component
@@ -170,7 +171,7 @@ export default function EventsPage() {
               }}>Plan Your Wedding</a>
             </div>
             <div className="block-image">
-              <img src="/images/venue/barn-exterior-full-view-landscape.jpg" alt="Wedding Events at Rum River Barn" width="800" height="500" />
+              <img src="/images/2014/05/Reins-Wedding_3-193.jpg" alt="Wedding Events at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>
@@ -217,7 +218,7 @@ export default function EventsPage() {
               }}>Plan Your Engagement</a>
             </div>
             <div className="block-image">
-              <img src="/images/venue/barn-interior-exposed-beams-chandeliers.jpg" alt="Engagement Parties at Rum River Barn" width="800" height="500" />
+              <img src="/images/venue/details-swing-rustic-romance.jpg" alt="Engagement Parties at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>
@@ -264,7 +265,7 @@ export default function EventsPage() {
               }}>Book Birthday Party</a>
             </div>
             <div className="block-image">
-              <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Birthday Parties at Rum River Barn" width="800" height="500" />
+              <img src="/images/2015/12/wedding-5.jpg" alt="Birthday Parties at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>
@@ -311,7 +312,7 @@ export default function EventsPage() {
               }}>Celebrate Graduation</a>
             </div>
             <div className="block-image">
-              <img src="/images/venue/property-field-wildflowers-natural.jpg" alt="Graduation Parties at Rum River Barn" width="800" height="500" />
+              <img src="/images/venue/barn-exterior-deck-swing-golden-hour.jpg" alt="Graduation Parties at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>
@@ -358,7 +359,7 @@ export default function EventsPage() {
               }}>Plan Holiday Event</a>
             </div>
             <div className="block-image">
-              <img src="/images/venue/barn-interior-string-lights-ceiling-detail.jpg" alt="Holiday Parties at Rum River Barn" width="800" height="500" />
+              <img src="/images/venue/barn-interior-exposed-beams-chandeliers.jpg" alt="Holiday Parties at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>

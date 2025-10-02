@@ -1,4 +1,5 @@
 import PageTemplate from '../components/PageTemplate'
+import Icon from '../components/Icon'
 
 export default function LocationPage() {
   const heroContent = (
@@ -35,28 +36,28 @@ export default function LocationPage() {
             <h2>Getting Here</h2>
             <div className="location-details">
               <div className="location-item">
-                <div className="location-icon">📍</div>
+                <div className="location-icon"><Icon name="location" size="lg" color="primary" /></div>
                 <div className="location-text">
                   <h4>Address</h4>
                   <p>42618 78th Street<br />Hillman, MN 56338</p>
                 </div>
               </div>
               <div className="location-item">
-                <div className="location-icon">🚗</div>
+                <div className="location-icon"><Icon name="truck" size="lg" color="primary" /></div>
                 <div className="location-text">
                   <h4>Easy Access From</h4>
                   <p>45 min from Minneapolis<br />30 min from St. Cloud<br />1 hour from Brainerd</p>
                 </div>
               </div>
               <div className="location-item">
-                <div className="location-icon">✈️</div>
+                <div className="location-icon"><Icon name="rocket" size="lg" color="primary" /></div>
                 <div className="location-text">
                   <h4>Nearest Airport</h4>
                   <p>Minneapolis-St. Paul International<br />55 miles (1 hour drive)</p>
                 </div>
               </div>
               <div className="location-item">
-                <div className="location-icon">🏨</div>
+                <div className="location-icon"><Icon name="building" size="lg" color="primary" /></div>
                 <div className="location-text">
                   <h4>Accommodations</h4>
                   <p>Partner hotels in Princeton & Milaca<br />Group rates available</p>

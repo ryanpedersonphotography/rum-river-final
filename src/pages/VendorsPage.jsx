@@ -1,4 +1,5 @@
 import PageTemplate from '../components/PageTemplate'
+import Icon from '../components/Icon'
 
 export default function VendorsPage() {
   const heroContent = (
@@ -28,7 +29,7 @@ export default function VendorsPage() {
   const vendorCategories = [
     {
       title: "DJ & Entertainment",
-      icon: "🎵",
+      iconName: "music",
       vendors: [
         {
           name: "Sprunk Entertainment",
@@ -49,7 +50,7 @@ export default function VendorsPage() {
     },
     {
       title: "Catering and Bar Service",
-      icon: "🍽️",
+      iconName: "cake",
       vendors: [
         {
           name: "Northern Lights Ballroom",
@@ -75,7 +76,7 @@ export default function VendorsPage() {
     },
     {
       title: "Florist",
-      icon: "🌸",
+      iconName: "sparkles",
       vendors: [
         {
           name: "Princeton Floral",
@@ -86,7 +87,7 @@ export default function VendorsPage() {
     },
     {
       title: "Shuttle Service",
-      icon: "🚌",
+      iconName: "truck",
       vendors: [
         {
           name: "Trobec's Bus Service",
@@ -97,7 +98,7 @@ export default function VendorsPage() {
     },
     {
       title: "Accommodations",
-      icon: "🏨",
+      iconName: "building",
       vendors: [
         {
           name: "Grand Casino, Mille Lacs",
@@ -128,7 +129,7 @@ export default function VendorsPage() {
             <div key={categoryIndex} style={{ marginBottom: '5rem' }}>
               {/* Category Header */}
               <div className="section-header center" style={{ marginBottom: '3rem' }}>
-                <div className="script-accent">{category.icon}</div>
+                <div style={{ marginBottom: '1rem' }}><Icon name={category.iconName} size="lg" color="primary" /></div>
                 <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '0' }}>
                   {category.title}
                 </h2>

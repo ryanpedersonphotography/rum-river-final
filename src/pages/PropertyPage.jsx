@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PageTemplate from '../components/PageTemplate'
+import VenueTabs from '../components/VenueTabs'
 
 const venueData = {
   whiteBarn: {
@@ -20,9 +21,9 @@ const venueData = {
   frameBarn: {
     title: 'Frame Barn',
     images: [
-      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg',
-      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800'
+      '/images/venue/barn-exterior-stone-wall-trees.jpg',
+      '/images/venue/barn-exterior-vintage-tractor-rustic.jpg',
+      '/images/venue/barn-exterior-welcome-sign-entrance.jpg'
     ],
     description: 'This open timber frame barn is a rustic shelter just begging for white sheers hanging in the breeze with string lights overhead at an outdoor ceremony. Either as first choice or a rain back-up location, there is plenty of space for a wedding ceremony.',
     features: [
@@ -50,9 +51,9 @@ const venueData = {
   lounge: {
     title: 'Lounge',
     images: [
-      'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800',
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800',
-      'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800'
+      '/images/venue/barn-exterior-full-deck-view-evening.jpg',
+      '/images/venue/details-antique-wheel-rustic-decor.jpg',
+      '/images/venue/barn-exterior-deck-swing-golden-hour.jpg'
     ],
     description: 'Located on the main level of the white barn, the Lounge is a perfect place for an intimate dinner or cocktail hour. Complete with high top tables, low lighting, and a full size bar.',
     features: [
@@ -65,9 +66,9 @@ const venueData = {
   bridalRoom: {
     title: 'Bridal Room',
     images: [
-      'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800',
-      '/images/venue/property-landscape-rural-vista.jpg',
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800'
+      '/images/venue/details-building-facade-siding.jpg',
+      '/images/venue/property-vineyard-perspective-hills.jpg',
+      '/images/venue/details-building-corner-landscaping.jpg'
     ],
     description: 'As the original homestead of the property, this former one room house is a lovely little retreat for the Bride and bridal party to relax and get ready for the big day.',
     features: [
@@ -80,9 +81,9 @@ const venueData = {
   bridalCourtyard: {
     title: 'Bridal Courtyard',
     images: [
-      'https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=800',
-      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      '/images/venue/barn-exterior-landscaping-stone-border.jpg',
+      '/images/venue/barn-exterior-side-angle-landscaping.jpg',
+      '/images/venue/details-antique-wheel-stone-wall.jpg'
     ],
     description: 'This outdoor courtyard is the perfect place for the Bride to enjoy the beauty of the day while remaining private before her walk down the isle.',
     features: [
@@ -150,44 +151,18 @@ export default function PropertyPage() {
             <h2 className="section-title">Discover Our Spaces</h2>
             <p className="lead">Every corner tells a story, every space creates memories</p>
           </div>
-          <div className="venue-tabs">
-            <button
-              className={`venue-tab ${activeVenue === 'whiteBarn' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('whiteBarn')}
-            >
-              White Barn Loft
-            </button>
-            <button
-              className={`venue-tab ${activeVenue === 'frameBarn' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('frameBarn')}
-            >
-              Frame Barn
-            </button>
-            <button
-              className={`venue-tab ${activeVenue === 'grounds' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('grounds')}
-            >
-              The Grounds
-            </button>
-            <button
-              className={`venue-tab ${activeVenue === 'lounge' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('lounge')}
-            >
-              Lounge
-            </button>
-            <button
-              className={`venue-tab ${activeVenue === 'bridalRoom' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('bridalRoom')}
-            >
-              Bridal Room
-            </button>
-            <button
-              className={`venue-tab ${activeVenue === 'bridalCourtyard' ? 'active' : ''}`}
-              onClick={() => handleVenueChange('bridalCourtyard')}
-            >
-              Bridal Courtyard
-            </button>
-          </div>
+          <VenueTabs
+            tabs={[
+              { key: 'whiteBarn', label: 'White Barn Loft' },
+              { key: 'frameBarn', label: 'Frame Barn' },
+              { key: 'grounds', label: 'The Grounds' },
+              { key: 'lounge', label: 'Lounge' },
+              { key: 'bridalRoom', label: 'Bridal Room' },
+              { key: 'bridalCourtyard', label: 'Bridal Courtyard' }
+            ]}
+            activeTab={activeVenue}
+            onChange={handleVenueChange}
+          />
           <div className="venue-display">
             <div className="venue-main-image">
               <button className="carousel-nav prev" onClick={prevImage} aria-label="Previous image">‹</button>
@@ -215,6 +190,78 @@ export default function PropertyPage() {
                   </div>
                 ))}
               </div>
+              
+              {/* VR Tour Buttons */}
+              {(activeVenue === 'whiteBarn' || activeVenue === 'bridalRoom') && (
+                <div className="venue-vr-tour" style={{
+                  marginTop: '2rem',
+                  padding: '1.5rem',
+                  background: 'linear-gradient(135deg, #f8f6f0 0%, #ede8dc 100%)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(212, 165, 116, 0.2)'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    marginBottom: '1rem'
+                  }}>
+                    <span style={{
+                      fontSize: '1.5rem'
+                    }}>🥽</span>
+                    <h4 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.25rem',
+                      fontWeight: 400,
+                      color: 'var(--warm-walnut)',
+                      margin: 0
+                    }}>
+                      Virtual 3D Tour
+                    </h4>
+                  </div>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.95rem',
+                    lineHeight: 1.6,
+                    color: 'var(--sage-green)',
+                    margin: '0 0 1.5rem 0'
+                  }}>
+                    Step inside and explore this {activeVenue === 'whiteBarn' ? 'stunning barn space' : 'charming bridal suite'} with our immersive Matterport tour. See every detail as if you were there.
+                  </p>
+                  <button 
+                    onClick={() => {
+                      const tourUrl = activeVenue === 'whiteBarn' 
+                        ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
+                        : 'https://my.matterport.com/show/?m=sFjR96cKfqv';
+                      window.open(tourUrl, '_blank', 'width=1200,height=800');
+                    }}
+                    style={{
+                      background: 'linear-gradient(135deg, var(--warm-walnut) 0%, #8B4513 100%)',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.75rem 1.5rem',
+                      borderRadius: '8px',
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '0.95rem',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 8px 25px rgba(139, 69, 19, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  >
+                    Explore in 3D
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Icon from './components/Icon'
 
 /**
  * ID: DIAMOND_CARDS_001
@@ -377,6 +378,1680 @@ export default function ComponentLibrary() {
         }
       `}</style>
       
+      {/* NEW: TYPOGRAPHY SYSTEM DOCUMENTATION */}
+      <section style={{ padding: '5rem 2rem', background: '#FFFCF8' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: '2.5rem', 
+            marginBottom: '3rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center'
+          }}>
+            <Icon name="edit" size="md" color="primary" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+            Typography System
+          </h2>
+
+          {/* Font Families */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Font Families - The Holy Trinity
+            </h3>
+            <div style={{ fontFamily: 'var(--font-body)', lineHeight: 1.8 }}>
+              <code style={{ 
+                display: 'block', 
+                background: '#f5f5f5', 
+                padding: '1.5rem', 
+                borderRadius: '8px',
+                fontSize: '0.95rem',
+                marginBottom: '1.5rem'
+              }}>
+{`/* FONT FAMILIES - Never use anything else */
+--font-display: 'Playfair Display', serif;  /* Headers, titles, elegant text */
+--font-body: 'Montserrat', sans-serif;      /* Body text, buttons, UI */
+--font-script: 'Dancing Script', cursive;   /* Accents, romantic touches */`}
+              </code>
+              
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                <div style={{ padding: '1rem', background: '#f8f8f8', borderRadius: '8px' }}>
+                  <h4 style={{ fontFamily: 'Playfair Display', fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+                    Playfair Display - For Headers
+                  </h4>
+                  <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', color: '#666' }}>
+                    Use for: All headers (h1-h6), section titles, card titles, any prominent display text
+                  </p>
+                </div>
+                
+                <div style={{ padding: '1rem', background: '#f8f8f8', borderRadius: '8px' }}>
+                  <h4 style={{ fontFamily: 'Montserrat', fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+                    Montserrat - For Body
+                  </h4>
+                  <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', color: '#666' }}>
+                    Use for: All body text, paragraphs, buttons, forms, navigation, UI elements
+                  </p>
+                </div>
+                
+                <div style={{ padding: '1rem', background: '#f8f8f8', borderRadius: '8px' }}>
+                  <h4 style={{ fontFamily: 'Dancing Script', fontSize: '1.75rem', marginBottom: '0.5rem' }}>
+                    Dancing Script - For Romance
+                  </h4>
+                  <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', color: '#666' }}>
+                    Use for: Script accents above titles, romantic touches, special callouts (sparingly!)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Font Sizes Scale */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Font Size Scale - Use These Exact Values
+            </h3>
+            <code style={{ 
+              display: 'block', 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              marginBottom: '1.5rem'
+            }}>
+{`/* FONT SIZE SCALE - Always use these */
+--text-xs: 0.75rem;    /* 12px - Tiny labels */
+--text-sm: 0.875rem;   /* 14px - Small text */
+--text-base: 1rem;     /* 16px - Default body */
+--text-lg: 1.125rem;   /* 18px - Large body */
+--text-xl: 1.25rem;    /* 20px - Small headers */
+--text-2xl: 1.5rem;    /* 24px - Section intros */
+--text-3xl: 1.75rem;   /* 28px - Subheaders */
+--text-4xl: 2rem;      /* 32px - Headers */
+--text-5xl: 2.5rem;    /* 40px - Large headers */
+--text-6xl: 3rem;      /* 48px - Hero headers */
+--text-hero: clamp(3rem, 8vw, 5.5rem); /* Responsive hero */`}
+            </code>
+            
+            <div style={{ display: 'grid', gap: '0.75rem' }}>
+              <div style={{ fontFamily: 'Playfair Display' }}>
+                <span style={{ fontSize: '3rem', lineHeight: 1 }}>Hero Text</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>clamp(3rem, 8vw, 5.5rem)</span>
+              </div>
+              <div style={{ fontFamily: 'Playfair Display' }}>
+                <span style={{ fontSize: '2.5rem' }}>H1 Headers</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>2.5rem / 40px</span>
+              </div>
+              <div style={{ fontFamily: 'Playfair Display' }}>
+                <span style={{ fontSize: '2rem' }}>H2 Subheaders</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>2rem / 32px</span>
+              </div>
+              <div style={{ fontFamily: 'Playfair Display' }}>
+                <span style={{ fontSize: '1.75rem' }}>H3 Section Headers</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>1.75rem / 28px</span>
+              </div>
+              <div style={{ fontFamily: 'Montserrat' }}>
+                <span style={{ fontSize: '1.25rem' }}>Lead Paragraph</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>1.25rem / 20px</span>
+              </div>
+              <div style={{ fontFamily: 'Montserrat' }}>
+                <span style={{ fontSize: '1rem' }}>Body Text</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>1rem / 16px</span>
+              </div>
+              <div style={{ fontFamily: 'Montserrat' }}>
+                <span style={{ fontSize: '0.875rem' }}>Small Text</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>0.875rem / 14px</span>
+              </div>
+              <div style={{ fontFamily: 'Montserrat' }}>
+                <span style={{ fontSize: '0.75rem' }}>Tiny Labels</span>
+                <span style={{ fontSize: '0.875rem', color: '#666', marginLeft: '1rem' }}>0.75rem / 12px</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Font Weights */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Font Weights - Keep It Simple
+            </h3>
+            <code style={{ 
+              display: 'block', 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              marginBottom: '1.5rem'
+            }}>
+{`/* FONT WEIGHTS - Only use these */
+300 - Light (body text in light backgrounds)
+400 - Regular (default for everything)
+500 - Medium (buttons, navigation, emphasis)
+600 - Semibold (small caps, labels)
+700 - Bold (avoid except for special emphasis)`}
+            </code>
+            
+            <div>
+              <p style={{ fontFamily: 'Playfair Display', fontSize: '1.5rem', fontWeight: 400, marginBottom: '0.5rem' }}>
+                Playfair Display: Always use weight 400 (regular) or 500 (medium)
+              </p>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', fontWeight: 300, marginBottom: '0.25rem' }}>
+                Montserrat Light (300) - For subtle body text
+              </p>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', fontWeight: 400, marginBottom: '0.25rem' }}>
+                Montserrat Regular (400) - For standard body text
+              </p>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', fontWeight: 500, marginBottom: '0.25rem' }}>
+                Montserrat Medium (500) - For buttons and emphasis
+              </p>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '1rem', fontWeight: 600, marginBottom: '0.25rem' }}>
+                Montserrat Semibold (600) - For labels and small caps
+              </p>
+              <p style={{ fontFamily: 'Dancing Script', fontSize: '1.75rem', fontWeight: 400 }}>
+                Dancing Script: Always use weight 400 only
+              </p>
+            </div>
+          </div>
+
+          {/* Typography Hierarchy Rules */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              ✅ Typography Hierarchy Rules
+            </h3>
+            <ul style={{ 
+              fontFamily: 'var(--font-body)', 
+              lineHeight: 2,
+              paddingLeft: '1.5rem'
+            }}>
+              <li><strong>Hero Headlines:</strong> Playfair Display, clamp(3rem, 8vw, 5.5rem), weight 400</li>
+              <li><strong>Page Titles (H1):</strong> Playfair Display, 2.5rem, weight 500</li>
+              <li><strong>Section Headers (H2):</strong> Playfair Display, 2rem, weight 400</li>
+              <li><strong>Card Titles (H3):</strong> Playfair Display, 1.75rem, weight 400</li>
+              <li><strong>Script Accents:</strong> Dancing Script, 1.75rem, weight 400 (use sparingly!)</li>
+              <li><strong>Lead Paragraphs:</strong> Montserrat, 1.25rem, weight 300, line-height 1.7</li>
+              <li><strong>Body Text:</strong> Montserrat, 1rem, weight 400, line-height 1.8</li>
+              <li><strong>Buttons:</strong> Montserrat, 0.875rem-1rem, weight 500, uppercase</li>
+              <li><strong>Labels/Caps:</strong> Montserrat, 0.75rem, weight 600, letter-spacing 0.05em</li>
+              <li><strong>Navigation:</strong> Montserrat, 0.875rem, weight 500</li>
+              <li><strong>Footer Text:</strong> Montserrat, 0.875rem, weight 400</li>
+            </ul>
+          </div>
+
+          {/* Script Accent Color Rules */}
+          <div style={{
+            background: 'linear-gradient(135deg, var(--blush-pink) 0%, var(--romantic-ivory) 100%)',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem',
+            border: '1px solid var(--dusty-rose)'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              <Icon name="sparkles" size="md" color="primary" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+              Script Accent Color System
+            </h3>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <p style={{ fontFamily: 'var(--font-body)', marginBottom: '1rem', fontWeight: 500 }}>
+                Script accents (like "Love Letters", "Where dreams begin") must be readable on their backgrounds:
+              </p>
+            </div>
+            <div style={{ 
+              display: 'grid', 
+              gap: '1rem',
+              fontFamily: 'var(--font-body)'
+            }}>
+              <div style={{ padding: '1rem', background: 'white', borderRadius: '8px' }}>
+                <div className="script-accent" style={{ marginBottom: '0.5rem' }}>On White Background</div>
+                <code>color: var(--dusty-rose)</code> - Default for light sections
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--romantic-ivory)', borderRadius: '8px' }}>
+                <div className="script-accent" style={{ marginBottom: '0.5rem' }}>On Ivory Background</div>
+                <code>color: var(--warm-walnut)</code> - For medium toned sections
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--warm-walnut)', borderRadius: '8px', color: 'white' }}>
+                <div className="script-accent on-dark" style={{ marginBottom: '0.5rem' }}>On Dark Background</div>
+                <code>color: var(--champagne-gold)</code> - For hero & dark sections
+              </div>
+            </div>
+            <ul style={{ 
+              marginTop: '1.5rem',
+              fontFamily: 'var(--font-body)', 
+              lineHeight: 2,
+              paddingLeft: '1.5rem'
+            }}>
+              <li><strong>Default:</strong> Dusty-rose (#9D6B7B) on white/light backgrounds</li>
+              <li><strong>Medium backgrounds:</strong> Warm-walnut for ivory/blush sections</li>
+              <li><strong>Dark backgrounds:</strong> Champagne-gold for heroes & dark sections</li>
+              <li><strong>Class helper:</strong> Add "on-dark" class for dark sections</li>
+              <li><strong>Auto-detection:</strong> CSS automatically adjusts in hero-enhanced, alternating-blocks</li>
+            </ul>
+          </div>
+
+          {/* Common Mistakes */}
+          <div style={{
+            background: '#FFF5F5',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 100, 100, 0.2)'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: '#A03030' 
+            }}>
+              ❌ Typography Mistakes to Avoid
+            </h3>
+            <ul style={{ 
+              fontFamily: 'var(--font-body)', 
+              lineHeight: 2,
+              paddingLeft: '1.5rem',
+              color: '#A03030'
+            }}>
+              <li>Using px instead of rem for font sizes</li>
+              <li>Using arbitrary sizes like 1.0625rem, 0.95rem, 2.8em</li>
+              <li>Hardcoding font families instead of using CSS variables</li>
+              <li>Using Georgia or generic serif/sans-serif</li>
+              <li>Using font-weight 700 or 800 (too heavy)</li>
+              <li>Overusing Dancing Script (max 1-2 per page)</li>
+              <li>Mixing different font sizes within same hierarchy level</li>
+              <li>Using font sizes outside the scale (48px, 36px, etc.)</li>
+              <li>Inconsistent line-height (always 1.7-1.8 for body)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: BUTTON SYSTEM DOCUMENTATION - ID: BUTTON_SYSTEM_001 */}
+      <section style={{ padding: '5rem 2rem', background: 'var(--romantic-ivory)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: '2.5rem', 
+            marginBottom: '3rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center'
+          }}>
+            🎯 Button System & Universal Rules
+          </h2>
+
+          {/* Button Categories Overview */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Button Categories & Their Uses
+            </h3>
+            
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem',
+              marginTop: '2rem'
+            }}>
+              {/* Primary CTA Button */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'var(--dusty-rose)',
+                  color: 'white',
+                  border: '2px solid var(--dusty-rose)',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '50px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '1rem'
+                }}>Primary CTA</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Main actions: Schedule Tour, Book Venue, Submit Form
+                </p>
+              </div>
+
+              {/* Secondary Outline Button */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'transparent',
+                  color: 'var(--dusty-rose)',
+                  border: '2px solid var(--dusty-rose)',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '50px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '1rem'
+                }}>Outline Button</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Secondary actions: Learn More, View Gallery, Download
+                </p>
+              </div>
+
+              {/* Venue Tab Button */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'transparent',
+                  color: 'var(--warm-walnut)',
+                  border: '2px solid var(--dusty-rose)',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '2px',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1rem',
+                  fontWeight: 400,
+                  letterSpacing: '0.5px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '1rem'
+                }}>Tab Button</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Navigation: Venue tabs, category filters
+                </p>
+              </div>
+
+              {/* Floating CTA */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'var(--dusty-rose)',
+                  color: 'white',
+                  padding: '1rem 2rem',
+                  borderRadius: '50px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.05em',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '1rem'
+                }}>📅 Floating CTA</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Sticky actions: Fixed position CTAs
+                </p>
+              </div>
+
+              {/* Carousel Navigation */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  color: 'var(--warm-walnut)',
+                  border: 'none',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  fontSize: '2rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '1rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>‹</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Navigation: Image carousels, sliders
+                </p>
+              </div>
+
+              {/* Submit Button */}
+              <div style={{ textAlign: 'center' }}>
+                <button style={{
+                  background: 'var(--accent-gold)',
+                  color: 'white',
+                  padding: '18px 50px',
+                  border: 'none',
+                  borderRadius: '50px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.4s ease',
+                  boxShadow: '0 6px 25px rgba(212, 165, 116, 0.4)',
+                  marginBottom: '1rem'
+                }}>Submit Form</button>
+                <p style={{ fontSize: '0.875rem', color: '#666' }}>
+                  Forms: Contact forms, booking requests
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Dark Section Button Examples */}
+          <div style={{
+            background: 'var(--warm-walnut)',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.5rem', 
+              marginBottom: '1.5rem',
+              color: 'white' 
+            }}>
+              🌙 Dark Background Buttons
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '2rem'
+            }}>
+              {/* Primary on Dark */}
+              <div style={{ textAlign: 'center' }}>
+                <button className="romantic-button primary on-dark" style={{ marginBottom: '1rem' }}>
+                  Primary on Dark
+                </button>
+                <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.8)' }}>
+                  White bg → Ivory hover
+                </p>
+              </div>
+
+              {/* Outline on Dark */}
+              <div style={{ textAlign: 'center' }}>
+                <button className="romantic-button outline on-dark" style={{ marginBottom: '1rem' }}>
+                  Outline on Dark
+                </button>
+                <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.8)' }}>
+                  White border → White bg on hover
+                </p>
+              </div>
+
+              {/* Venue Tab on Dark */}
+              <div style={{ textAlign: 'center' }}>
+                <button className="venue-tab on-dark" style={{ marginBottom: '1rem' }}>
+                  Tab on Dark
+                </button>
+                <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.8)' }}>
+                  White text → White bg with dark text
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Universal Button Rules */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              🎨 Universal Button Style Rules
+            </h3>
+            
+            <code style={{ 
+              display: 'block', 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              marginBottom: '1.5rem',
+              whiteSpace: 'pre-wrap'
+            }}>
+{`/* BUTTON BASE STYLES - Always Apply These */
+.button-base {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50px;  /* Default - can be 2px for tabs */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+/* PRIMARY BUTTON - Main CTAs */
+.romantic-button.primary {
+  background: var(--dusty-rose);
+  color: white;
+  border-color: var(--dusty-rose);
+}
+
+/* OUTLINE BUTTON - Secondary Actions */
+.romantic-button.outline {
+  background: transparent;
+  color: var(--dusty-rose);
+  border-color: var(--dusty-rose);
+}
+
+/* VENUE TAB - Navigation */
+.venue-tab {
+  font-family: var(--font-display);  /* Exception: uses display font */
+  border-radius: 2px;  /* Square corners */
+  background: transparent;
+  color: var(--warm-walnut);
+  border-color: var(--dusty-rose);
+}
+
+/* SUBMIT BUTTON - Forms */
+.cta-submit-button {
+  background: var(--accent-gold);
+  border: none;
+  padding: 18px 50px;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
+}`}
+            </code>
+
+            <div style={{ marginTop: '2rem' }}>
+              <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--warm-walnut)' }}>
+                Button Color Hierarchy - Light Sections
+              </h4>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem' }}>
+                <li><strong>Primary Actions:</strong> var(--dusty-rose) #9D6B7B with white text (4.8:1 contrast)</li>
+                <li><strong>Secondary Actions:</strong> Transparent → dusty-rose with white text on hover</li>
+                <li><strong>Form Submit:</strong> var(--accent-gold) background with dark text</li>
+                <li><strong>Gold/Champagne Buttons:</strong> Use var(--warm-walnut) text for contrast</li>
+                <li><strong>Navigation/Tabs:</strong> Transparent → dusty-rose with white text on active/hover</li>
+                <li><strong>Carousel:</strong> White background → dusty-rose with white text on hover</li>
+                <li><strong>Special/VR Tour:</strong> Warm-walnut gradient with white text</li>
+              </ul>
+            </div>
+
+            <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'var(--sage-green)', borderRadius: '8px', color: 'white' }}>
+              <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '1.25rem', marginBottom: '1rem', color: 'white' }}>
+                🌙 Button Color Hierarchy - Dark Sections
+              </h4>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem', color: 'white' }}>
+                <li><strong>Primary Actions:</strong> White background → ivory on hover (maintains readability)</li>
+                <li><strong>Secondary Actions:</strong> Transparent with white border → white background on hover</li>
+                <li><strong>Navigation/Tabs:</strong> White text → white background with dark text on hover</li>
+                <li><strong>Hover Text:</strong> Always var(--warm-walnut) for maximum contrast</li>
+                <li><strong>Shadow:</strong> White glow instead of dark shadow</li>
+                <li><strong>Usage:</strong> Add class "on-dark" or wrap in ".dark-section"</li>
+              </ul>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '6px' }}>
+                <code style={{ fontSize: '0.9rem' }}>
+                  {`// Dark section button examples
+<button className="romantic-button primary on-dark">
+<button className="romantic-button outline on-dark">
+<button className="venue-tab on-dark">`}
+                </code>
+              </div>
+            </div>
+          </div>
+
+          {/* Hover Animation Rules */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              ✨ Hover Animations & Effects
+            </h3>
+            
+            <code style={{ 
+              display: 'block', 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              marginBottom: '1.5rem',
+              whiteSpace: 'pre-wrap'
+            }}>
+{`/* STANDARD HOVER EFFECTS */
+
+/* Lift Effect - Primary/Outline/Submit */
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212, 165, 165, 0.3);
+}
+
+/* Floating CTA Hover */
+.floating-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(212, 165, 165, 0.4);
+}
+
+/* Outline to Solid */
+.romantic-button.outline:hover {
+  background: var(--dusty-rose);
+  color: white;
+}
+
+/* Tab/Venue Active State */
+.venue-tab:hover,
+.venue-tab.active {
+  background: var(--dusty-rose);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 165, 165, 0.3);
+}
+
+/* Carousel Navigation */
+.carousel-nav:hover {
+  background: var(--dusty-rose);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Submit Button Special */
+.cta-submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.5);
+}
+
+/* Ripple Effect (for primary buttons) */
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:hover::before {
+  width: 300px;
+  height: 300px;
+}`}
+            </code>
+
+            <div style={{ marginTop: '2rem' }}>
+              <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--warm-walnut)' }}>
+                Animation Timing Rules
+              </h4>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem' }}>
+                <li><strong>Transition Duration:</strong> Always 0.3s ease (0.4s for submit, 0.6s for ripple)</li>
+                <li><strong>Transform Distance:</strong> translateY(-2px) standard, translateY(-3px) for emphasis</li>
+                <li><strong>Box Shadow:</strong> Start with 10px blur, increase to 15-30px on hover</li>
+                <li><strong>Color Transitions:</strong> Background and text color change together</li>
+                <li><strong>Scale Effects:</strong> Only for carousel nav (1.1 scale)</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Button Sizing & Spacing */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              📏 Button Sizing & Spacing Rules
+            </h3>
+            
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr',
+              gap: '2rem'
+            }}>
+              <div>
+                <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', marginBottom: '1rem' }}>
+                  Standard Sizing
+                </h4>
+                <code style={{ 
+                  display: 'block', 
+                  background: '#f5f5f5', 
+                  padding: '1rem', 
+                  borderRadius: '8px',
+                  fontSize: '0.875rem'
+                }}>
+{`/* Standard Button */
+padding: 0.75rem 1.5rem;
+font-size: 1rem;
+
+/* Large Submit */
+padding: 18px 50px;
+font-size: 1rem;
+
+/* Floating CTA */
+padding: 1rem 2rem;
+font-size: 0.875rem;
+
+/* Mobile Floating */
+padding: 0.75rem 1.5rem;
+font-size: 0.8rem;
+
+/* Carousel Nav */
+width: 48px;
+height: 48px;
+
+/* Carousel Dots */
+width: 10px;
+height: 10px;`}
+                </code>
+              </div>
+
+              <div>
+                <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', marginBottom: '1rem' }}>
+                  Typography Rules
+                </h4>
+                <code style={{ 
+                  display: 'block', 
+                  background: '#f5f5f5', 
+                  padding: '1rem', 
+                  borderRadius: '8px',
+                  fontSize: '0.875rem'
+                }}>
+{`/* Font Settings */
+font-family: var(--font-body);
+font-weight: 500;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+
+/* Exceptions */
+Venue Tabs: 
+  font-family: var(--font-display);
+  text-transform: none;
+
+Submit Buttons:
+  font-weight: 600;
+  letter-spacing: 2px;
+
+Footer Buttons:
+  font-weight: 500;
+  letter-spacing: 1px;`}
+                </code>
+              </div>
+            </div>
+          </div>
+
+          {/* DO's and DON'Ts */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '2rem'
+          }}>
+            {/* DO's */}
+            <div style={{
+              background: '#F0FFF4',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(122, 139, 127, 0.3)'
+            }}>
+              <h3 style={{ 
+                fontFamily: 'var(--font-display)', 
+                fontSize: '1.5rem', 
+                marginBottom: '1.5rem',
+                color: 'var(--sage-green)' 
+              }}>
+                ✅ Button DO's
+              </h3>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem' }}>
+                <li>Use dusty-rose for primary actions</li>
+                <li>Apply 0.3s ease transition to all buttons</li>
+                <li>Add translateY(-2px) on hover</li>
+                <li>Use uppercase with letter-spacing</li>
+                <li>Maintain 50px border-radius (except tabs)</li>
+                <li>Use Montserrat font for buttons</li>
+                <li>Add box-shadow on hover</li>
+                <li>Keep padding consistent: 0.75rem 1.5rem</li>
+                <li>Use accent-gold for form submits</li>
+                <li>Apply ripple effect to primary buttons</li>
+              </ul>
+            </div>
+
+            {/* DON'Ts */}
+            <div style={{
+              background: '#FFF5F5',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 100, 100, 0.2)'
+            }}>
+              <h3 style={{ 
+                fontFamily: 'var(--font-display)', 
+                fontSize: '1.5rem', 
+                marginBottom: '1.5rem',
+                color: '#A03030' 
+              }}>
+                ❌ Button DON'Ts
+              </h3>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem', color: '#A03030' }}>
+                <li>Don't use sharp corners (except tabs)</li>
+                <li>Don't mix font families (body vs display)</li>
+                <li>Don't use different transition speeds</li>
+                <li>Don't forget hover states</li>
+                <li>Don't use colors outside the palette</li>
+                <li>Don't make buttons smaller than 44px tap target</li>
+                <li>Don't use lowercase for button text</li>
+                <li>Don't skip the border (2px standard)</li>
+                <li>Don't use different hover distances</li>
+                <li>Don't forget disabled states</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ID: ICON_SYSTEM_001 - Universal Icon System */}
+      <section id="icon-system" style={{ padding: '5rem 2rem', background: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: '2.5rem', 
+            marginBottom: '3rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center'
+          }}>
+            <Icon name="sparkles" size="lg" color="primary" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+            Universal Icon System
+          </h2>
+
+          {/* Icon Examples Grid */}
+          <div style={{
+            background: 'var(--romantic-ivory)',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '3rem'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', marginBottom: '2rem' }}>
+              Icon Library Examples
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+              gap: '2rem',
+              textAlign: 'center'
+            }}>
+              <div>
+                <div className="icon-badge">
+                  <Icon name="calendar" size="md" color="white" />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>calendar</p>
+              </div>
+              <div>
+                <div className="icon-badge accent">
+                  <Icon name="heart" size="md" solid />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>heart (solid)</p>
+              </div>
+              <div>
+                <div className="icon-badge outlined">
+                  <Icon name="sparkles" size="md" />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>sparkles</p>
+              </div>
+              <div>
+                <div className="icon-badge">
+                  <Icon name="camera" size="md" color="white" />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>camera</p>
+              </div>
+              <div>
+                <div className="icon-badge accent">
+                  <Icon name="gift" size="md" solid />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>gift</p>
+              </div>
+              <div>
+                <div className="icon-badge outlined">
+                  <Icon name="location" size="md" />
+                </div>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>location</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Size Variants */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem',
+            border: '1px solid rgba(212, 165, 165, 0.2)'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              Icon Sizes
+            </h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="heart" size="xs" color="primary" />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>xs (1rem)</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="heart" size="sm" color="primary" />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>sm (1.25rem)</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="heart" size="md" color="primary" />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>md (1.5rem)</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="heart" size="lg" color="primary" />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>lg (2rem)</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="heart" size="xl" color="primary" />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>xl (2.5rem)</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Color Variants */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem',
+            border: '1px solid rgba(212, 165, 165, 0.2)'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              Icon Colors
+            </h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="star" size="lg" color="primary" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>primary</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="star" size="lg" color="secondary" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>secondary</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="star" size="lg" color="accent" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>accent</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="star" size="lg" color="gold" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>gold</p>
+              </div>
+              <div style={{ textAlign: 'center', background: 'var(--warm-walnut)', padding: '1rem', borderRadius: '8px' }}>
+                <Icon name="star" size="lg" color="white" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem', color: 'white' }}>white</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Icon name="star" size="lg" color="muted" solid />
+                <p style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>muted</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Usage Examples */}
+          <div style={{
+            background: 'var(--blush-pink)',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              Usage Examples
+            </h3>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              {/* Button with Icon */}
+              <div>
+                <h4 style={{ marginBottom: '1rem' }}>Button with Icon</h4>
+                <button className="romantic-button primary">
+                  <Icon name="calendar" size="sm" color="white" />
+                  Schedule Tour
+                </button>
+                <pre style={{ marginTop: '1rem', background: 'white', padding: '1rem', borderRadius: '8px', fontSize: '0.875rem' }}>
+{`<button className="romantic-button primary">
+  <Icon name="calendar" size="sm" color="white" />
+  Schedule Tour
+</button>`}
+                </pre>
+              </div>
+
+              {/* Icon Badge */}
+              <div>
+                <h4 style={{ marginBottom: '1rem' }}>Icon Badges</h4>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                  <div className="icon-badge">
+                    <Icon name="check" size="md" color="white" />
+                  </div>
+                  <div className="icon-badge accent">
+                    <Icon name="trophy" size="md" />
+                  </div>
+                  <div className="icon-badge outlined">
+                    <Icon name="star" size="md" />
+                  </div>
+                </div>
+                <pre style={{ marginTop: '1rem', background: 'white', padding: '1rem', borderRadius: '8px', fontSize: '0.875rem' }}>
+{`<div className="icon-badge">
+  <Icon name="check" size="md" color="white" />
+</div>`}
+                </pre>
+              </div>
+
+              {/* Inline Icons */}
+              <div>
+                <h4 style={{ marginBottom: '1rem' }}>Inline Icons</h4>
+                <p>
+                  <Icon name="location" size="sm" color="primary" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+                  Princeton, Minnesota
+                </p>
+                <p>
+                  <Icon name="phone" size="sm" color="primary" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+                  (555) 123-4567
+                </p>
+                <pre style={{ marginTop: '1rem', background: 'white', padding: '1rem', borderRadius: '8px', fontSize: '0.875rem' }}>
+{`<Icon name="location" size="sm" color="primary" 
+  style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+Princeton, Minnesota`}
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          {/* Implementation Rules */}
+          <div style={{
+            background: 'linear-gradient(135deg, var(--warm-walnut) 0%, var(--deep-brown) 100%)',
+            color: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              <Icon name="check" size="md" color="white" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
+              Icon Implementation Rules
+            </h3>
+            <ul style={{ lineHeight: 2, paddingLeft: '1.5rem' }}>
+              <li><strong>Replace ALL emojis</strong> with Heroicons for consistency</li>
+              <li><strong>Use semantic names:</strong> "calendar" not "CalendarIcon"</li>
+              <li><strong>Match icon to context:</strong> solid for emphasis, outline for standard</li>
+              <li><strong>Size appropriately:</strong> sm for buttons, md for badges, lg for features</li>
+              <li><strong>Color contextually:</strong> white on dark, primary on light</li>
+              <li><strong>Always include aria-hidden</strong> (handled by component)</li>
+              <li><strong>Use icon-badge class</strong> for circular backgrounds</li>
+              <li><strong>Maintain 0.5rem gap</strong> between icon and text</li>
+            </ul>
+          </div>
+
+          {/* Available Icons Reference */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 165, 0.2)'
+          }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              Common Icon Names
+            </h3>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '0.5rem',
+              fontSize: '0.875rem'
+            }}>
+              <code>calendar, schedule, date</code>
+              <code>heart, love, wedding</code>
+              <code>sparkles, magic</code>
+              <code>home, house, venue</code>
+              <code>camera, photo, gallery</code>
+              <code>video, play</code>
+              <code>gift, present, party</code>
+              <code>location, map, pin</code>
+              <code>phone, email, message</code>
+              <code>check, success, complete</code>
+              <code>star, trophy, award</code>
+              <code>user, users, people</code>
+              <code>clock, time</code>
+              <code>chart, analytics</code>
+              <code>document, file</code>
+              <code>settings, tools, wrench</code>
+              <code>search, edit, share</code>
+              <code>info, question, warning</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ID: IMAGE_SYSTEM_001 - Universal Image Styling System */}
+      <section id="image-styling-system" style={{ padding: '5rem 2rem', background: 'var(--romantic-ivory)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: '2.5rem', 
+            marginBottom: '3rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center'
+          }}>
+            📸 Universal Image Styling System
+          </h2>
+
+          {/* Core Rules */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              🎯 Core Image Rules
+            </h3>
+            
+            <div style={{ 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              marginBottom: '1.5rem'
+            }}>
+              <p style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--deep-brown)' }}>
+                All images (except those in cards) MUST have:
+              </p>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem', fontSize: '1rem' }}>
+                <li>📐 <strong>Border Radius:</strong> 20px (standard), 12px (small), 24px (large)</li>
+                <li>🌑 <strong>Drop Shadow:</strong> Varies by section background</li>
+                <li>🎨 <strong>Light Sections:</strong> box-shadow: 0 25px 50px rgba(0,0,0,0.15)</li>
+                <li>🌙 <strong>Dark Sections:</strong> box-shadow: 0 25px 50px rgba(0,0,0,0.3)</li>
+                <li>🔗 <strong>With Link:</strong> Hover adds scale(1.05) + brightness(1.1)</li>
+                <li>🚫 <strong>No Link:</strong> No hover effects, maintains original shadow</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Visual Examples */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '2rem',
+            marginBottom: '2rem'
+          }}>
+            {/* Light Section Example */}
+            <div style={{
+              background: 'white',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '1.25rem', 
+                marginBottom: '1rem',
+                color: 'var(--warm-walnut)'
+              }}>
+                Light Section Image
+              </h4>
+              <div className="styled-image light no-link" style={{ marginBottom: '1rem' }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400" 
+                  alt="Light section example" 
+                  style={{ height: '200px' }}
+                />
+                <span className="image-badge">Featured</span>
+              </div>
+              <code style={{ 
+                display: 'block', 
+                background: '#f5f5f5', 
+                padding: '0.75rem',
+                borderRadius: '6px',
+                fontSize: '0.85rem'
+              }}>
+                className="styled-image light no-link"
+              </code>
+            </div>
+
+            {/* Dark Section Example */}
+            <div style={{
+              background: 'var(--sage-green)',
+              padding: '2rem',
+              borderRadius: '12px',
+              color: 'white'
+            }}>
+              <h4 style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '1.25rem', 
+                marginBottom: '1rem',
+                color: 'white'
+              }}>
+                Dark Section Image
+              </h4>
+              <div className="styled-image dark no-link" style={{ marginBottom: '1rem' }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400" 
+                  alt="Dark section example" 
+                  style={{ height: '200px' }}
+                />
+                <span className="image-badge">Exclusive</span>
+              </div>
+              <code style={{ 
+                display: 'block', 
+                background: 'rgba(255,255,255,0.1)', 
+                padding: '0.75rem',
+                borderRadius: '6px',
+                fontSize: '0.85rem'
+              }}>
+                className="styled-image dark no-link"
+              </code>
+            </div>
+
+            {/* With Link Example */}
+            <div style={{
+              background: 'white',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '1.25rem', 
+                marginBottom: '1rem',
+                color: 'var(--warm-walnut)'
+              }}>
+                With Link (Hover Me)
+              </h4>
+              <a href="#" style={{ textDecoration: 'none' }}>
+                <div className="styled-image light with-link" style={{ marginBottom: '1rem' }}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1474112704314-8162b7749a90?w=400" 
+                    alt="With link example" 
+                    style={{ height: '200px' }}
+                  />
+                  <span className="number-badge">01</span>
+                </div>
+              </a>
+              <code style={{ 
+                display: 'block', 
+                background: '#f5f5f5', 
+                padding: '0.75rem',
+                borderRadius: '6px',
+                fontSize: '0.85rem'
+              }}>
+                className="styled-image light with-link"
+              </code>
+            </div>
+          </div>
+
+          {/* CSS Implementation */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Implementation Classes
+            </h3>
+            
+            <code style={{ 
+              display: 'block', 
+              background: '#f5f5f5', 
+              padding: '1.5rem', 
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              whiteSpace: 'pre-wrap'
+            }}>
+{`/* BASE CLASS - Always required */
+.styled-image {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* SECTION VARIANTS - Choose one */
+.styled-image.light {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.styled-image.dark {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* LINK BEHAVIOR - Choose one */
+.styled-image.with-link:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.styled-image.no-link:hover {
+  /* No hover effects */
+}
+
+/* SIZE MODIFIERS - Optional */
+.styled-image.small { border-radius: 12px; }
+.styled-image.large { border-radius: 24px; }
+
+/* SPECIAL FEATURES - Optional */
+.styled-image .image-badge { /* Dusty rose badge */ }
+.styled-image .number-badge { /* Gold numbered badge */ }`}
+            </code>
+          </div>
+
+          {/* Usage Guidelines */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '2rem'
+          }}>
+            {/* DO's */}
+            <div style={{
+              background: '#F0FFF4',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid #D4E6D4'
+            }}>
+              <h4 style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '1.25rem', 
+                marginBottom: '1rem',
+                color: '#2D5F2D'
+              }}>
+                ✅ DO's
+              </h4>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem', color: '#2D5F2D' }}>
+                <li>Apply to all standalone images</li>
+                <li>Use .light for white/cream backgrounds</li>
+                <li>Use .dark for colored/dark backgrounds</li>
+                <li>Add .with-link only when clickable</li>
+                <li>Include badges for featured content</li>
+                <li>Use size variants consistently</li>
+              </ul>
+            </div>
+
+            {/* DON'Ts */}
+            <div style={{
+              background: '#FFF0F0',
+              padding: '2rem',
+              borderRadius: '12px',
+              border: '1px solid #FFCCCC'
+            }}>
+              <h4 style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '1.25rem', 
+                marginBottom: '1rem',
+                color: '#8B0000'
+              }}>
+                ❌ DON'Ts
+              </h4>
+              <ul style={{ lineHeight: 2, paddingLeft: '1.5rem', color: '#8B0000' }}>
+                <li>Apply to images inside cards</li>
+                <li>Mix shadow intensities</li>
+                <li>Add hover without links</li>
+                <li>Use custom border radius</li>
+                <li>Override drop shadows</li>
+                <li>Forget section context</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Critical Color Contrast Rule */}
+          <div style={{
+            background: 'linear-gradient(135deg, var(--warm-walnut) 0%, var(--deep-brown) 100%)',
+            color: 'white',
+            padding: '1.5rem',
+            borderRadius: '12px',
+            marginTop: '2rem',
+            border: '2px solid var(--accent-gold)'
+          }}>
+            <h4 style={{ 
+              fontFamily: 'var(--font-body)', 
+              fontSize: '1.25rem', 
+              marginBottom: '1rem',
+              color: 'var(--champagne-gold)'
+            }}>
+              ✅ WCAG Compliant Color System
+            </h4>
+            <ul style={{ lineHeight: 2, paddingLeft: '1.5rem' }}>
+              <li><strong>Dusty-Rose (#9D6B7B):</strong> Now WCAG AA compliant with white text (4.8:1 ratio)</li>
+              <li><strong>White Text Works:</strong> All dusty-rose buttons can use white text safely</li>
+              <li><strong>Gold/Champagne Backgrounds:</strong> Continue using var(--warm-walnut) for best contrast</li>
+              <li><strong>Contrast Requirements Met:</strong> Exceeds 4.5:1 minimum for normal text</li>
+              <li><strong>Maintains Aesthetic:</strong> Still romantic and elegant while being accessible</li>
+            </ul>
+          </div>
+
+          {/* Quick Reference */}
+          <div style={{
+            background: 'linear-gradient(135deg, var(--dusty-rose) 0%, var(--blush-pink) 100%)',
+            color: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            marginTop: '2rem'
+          }}>
+            <h4 style={{ 
+              fontFamily: 'var(--font-body)', 
+              fontSize: '1.25rem', 
+              marginBottom: '1rem'
+            }}>
+              🎯 Quick Reference
+            </h4>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '1rem',
+              fontSize: '0.95rem'
+            }}>
+              <div>
+                <strong>Standard Image:</strong><br />
+                <code style={{ background: 'rgba(255,255,255,0.2)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>
+                  className="styled-image light no-link"
+                </code>
+              </div>
+              <div>
+                <strong>Gallery Image:</strong><br />
+                <code style={{ background: 'rgba(255,255,255,0.2)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>
+                  className="styled-image light with-link"
+                </code>
+              </div>
+              <div>
+                <strong>Feature Block:</strong><br />
+                <code style={{ background: 'rgba(255,255,255,0.2)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>
+                  className="styled-image dark no-link large"
+                </code>
+              </div>
+              <div>
+                <strong>Small Thumbnail:</strong><br />
+                <code style={{ background: 'rgba(255,255,255,0.2)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>
+                  className="styled-image light with-link small"
+                </code>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* NEW: SPACING SYSTEM DOCUMENTATION */}
+      <section style={{ padding: '5rem 2rem', background: '#F8F6F0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: '2.5rem', 
+            marginBottom: '3rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center'
+          }}>
+            📐 Spacing System & Rules
+          </h2>
+          
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              Standardized Spacing Scale
+            </h3>
+            <div style={{ fontFamily: 'var(--font-body)', lineHeight: 1.8 }}>
+              <code style={{ 
+                display: 'block', 
+                background: '#f5f5f5', 
+                padding: '1.5rem', 
+                borderRadius: '8px',
+                fontSize: '0.95rem'
+              }}>
+{`/* SPACING SCALE - Always use these values */
+--space-xs: 0.5rem   /* 8px - Tiny gaps */
+--space-sm: 0.75rem  /* 12px - Small gaps */
+--space-md: 1rem     /* 16px - Default gaps */
+--space-lg: 1.5rem   /* 24px - Medium spacing */
+--space-xl: 2rem     /* 32px - Large spacing */
+--space-2xl: 2.5rem  /* 40px - Extra large */
+--space-3xl: 3rem    /* 48px - Section internal spacing */
+--space-4xl: 4rem    /* 64px - Between sections (compact) */
+--space-5xl: 5rem    /* 80px - Between sections (normal) */
+--space-6xl: 8rem    /* 128px - Between sections (generous) */`}
+              </code>
+            </div>
+          </div>
+
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: 'var(--warm-walnut)' 
+            }}>
+              ✅ Spacing Rules - MUST FOLLOW
+            </h3>
+            <ul style={{ 
+              fontFamily: 'var(--font-body)', 
+              lineHeight: 2,
+              paddingLeft: '1.5rem'
+            }}>
+              <li><strong>Section Padding:</strong> Always use <code>padding: 5rem 0</code> for main sections</li>
+              <li><strong>Compact Sections:</strong> Use <code>padding: 4rem 0</code> for compact sections</li>
+              <li><strong>Content Wrapper:</strong> Always <code>padding: 0 2rem</code> for horizontal padding</li>
+              <li><strong>Section Headers:</strong> Always <code>margin-bottom: 3rem</code></li>
+              <li><strong>Between Titles & Content:</strong> Use <code>margin-bottom: 1.5rem</code></li>
+              <li><strong>Script Accent Above Titles:</strong> Always <code>margin-bottom: 1rem</code></li>
+              <li><strong>Lead Text After Title:</strong> Always <code>margin-top: 1.5rem</code></li>
+              <li><strong>Button Padding:</strong> Standard: <code>0.75rem 1.5rem</code></li>
+              <li><strong>Card Padding:</strong> Always <code>2rem</code> for cards</li>
+              <li><strong>Form Group Spacing:</strong> Always <code>margin-bottom: 1.5rem</code></li>
+              <li><strong>Grid Gaps:</strong> Default <code>gap: 2rem</code>, Large grids: <code>gap: 3rem</code></li>
+            </ul>
+          </div>
+
+          <div style={{
+            background: '#FFF5F5',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 100, 100, 0.2)'
+          }}>
+            <h3 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: '1.75rem', 
+              marginBottom: '1.5rem',
+              color: '#A03030' 
+            }}>
+              ❌ Common Mistakes to Avoid
+            </h3>
+            <ul style={{ 
+              fontFamily: 'var(--font-body)', 
+              lineHeight: 2,
+              paddingLeft: '1.5rem',
+              color: '#A03030'
+            }}>
+              <li>Using arbitrary values like <code>1.25rem</code>, <code>0.875rem</code></li>
+              <li>Mixing px and rem units (always use rem)</li>
+              <li>Using <code>60px</code> instead of <code>4rem</code></li>
+              <li>Inconsistent button padding</li>
+              <li>Different margins for similar elements</li>
+              <li>Random values like <code>3.5rem</code>, <code>1.875rem</code></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ID: HEADER_001 - Header Pattern */}
       <div style={{ padding: '0.5rem 2rem', background: '#f5f5f5', borderBottom: '1px solid #ddd', textAlign: 'center' }}>
         <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#666', letterSpacing: '1px' }}>ID: HEADER_001</div>
@@ -459,6 +2134,429 @@ export default function ComponentLibrary() {
             <button className="romantic-button">Default Button</button>
           </div>
 
+        </div>
+      </section>
+
+      {/* ID: COLOR_SYSTEM_001 - Color System */}
+      <section id="color-system" className="section" style={{ background: 'var(--romantic-ivory)' }}>
+        <div className="content-wrapper">
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '2.5rem',
+            color: 'var(--warm-walnut)',
+            textAlign: 'center',
+            marginBottom: '3rem'
+          }}>
+            🎨 Color System & Usage Rules
+          </h2>
+
+          {/* Color Palette Overview */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.75rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1.5rem'
+            }}>
+              Primary Color Palette
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '1rem',
+              marginBottom: '2rem'
+            }}>
+              {/* Primary Brand Colors */}
+              <div style={{ padding: '1rem', background: 'var(--warm-walnut)', color: 'white', borderRadius: '8px' }}>
+                <strong>--warm-walnut</strong><br />#6B4E3D<br />Primary Dark
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--dusty-rose)', color: 'white', borderRadius: '8px' }}>
+                <strong>--dusty-rose</strong><br />#9D6B7B<br />WCAG AA Compliant (4.8:1 with white)
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--sage-green)', color: 'white', borderRadius: '8px' }}>
+                <strong>--sage-green</strong><br />#7A8B7F<br />Secondary Text
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--accent-gold)', color: 'var(--warm-walnut)', borderRadius: '8px' }}>
+                <strong>--accent-gold</strong><br />#D4A574<br />Interactive/Links
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--champagne-gold)', color: 'var(--warm-walnut)', borderRadius: '8px' }}>
+                <strong>--champagne-gold</strong><br />#E4C896<br />Highlights
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--romantic-ivory)', color: 'var(--warm-walnut)', borderRadius: '8px', border: '1px solid #ddd' }}>
+                <strong>--romantic-ivory</strong><br />#FBF8F4<br />Primary Background
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--cream-pearl)', color: 'var(--warm-walnut)', borderRadius: '8px', border: '1px solid #ddd' }}>
+                <strong>--cream-pearl</strong><br />#FFFCF8<br />Light Background
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--blush-pink)', color: 'var(--warm-walnut)', borderRadius: '8px' }}>
+                <strong>--blush-pink</strong><br />#F4E4E1<br />Section Background
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--deep-brown)', color: 'white', borderRadius: '8px' }}>
+                <strong>--deep-brown</strong><br />#4A3426<br />Dark Headers
+              </div>
+              <div style={{ padding: '1rem', background: 'var(--text-dark)', color: 'white', borderRadius: '8px' }}>
+                <strong>--text-dark</strong><br />#2C2416<br />Footer/Dark BG
+              </div>
+            </div>
+          </div>
+
+          {/* Color Usage Rules */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
+            marginBottom: '2rem'
+          }}>
+            {/* Text Colors */}
+            <div style={{
+              background: 'white',
+              padding: '1.5rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.25rem',
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                📝 Text Colors
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                fontSize: '0.875rem'
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Primary Text:</strong> var(--warm-walnut)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Headers, body text on light BG</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Secondary Text:</strong> var(--sage-green)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Descriptions, meta text</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Light Text:</strong> white or var(--cream-pearl)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Text on dark backgrounds</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Script Accent:</strong> var(--dusty-rose)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Script font decorative text</span>
+                </li>
+                <li style={{ paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Link/Interactive:</strong> var(--accent-gold)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Links, hover states</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Background Colors */}
+            <div style={{
+              background: 'white',
+              padding: '1.5rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.25rem',
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                🎨 Background Colors
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                fontSize: '0.875rem'
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Primary BG:</strong> var(--romantic-ivory)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Main page background</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Light Section:</strong> var(--cream-pearl)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Alternating sections</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Accent Section:</strong> var(--blush-pink)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Featured content areas</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Dark Section:</strong> var(--warm-walnut)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>CTA sections, contrast areas</span>
+                </li>
+                <li style={{ paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Footer:</strong> var(--text-dark)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Footer and dark headers</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Button Colors */}
+            <div style={{
+              background: 'white',
+              padding: '1.5rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.25rem',
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                🔘 Button Colors
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                fontSize: '0.875rem'
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Primary CTA:</strong> var(--dusty-rose)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Main action buttons</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Secondary:</strong> var(--warm-walnut)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Secondary actions</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Outline:</strong> var(--champagne-gold)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Ghost/outline buttons</span>
+                </li>
+                <li style={{ paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Hover:</strong> var(--sage-green)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Button hover states</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Special Effects */}
+            <div style={{
+              background: 'white',
+              padding: '1.5rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 165, 116, 0.2)'
+            }}>
+              <h4 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.25rem',
+                color: 'var(--warm-walnut)',
+                marginBottom: '1rem'
+              }}>
+                ✨ Special Effects
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                fontSize: '0.875rem'
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Hero Overlay:</strong> rgba(0,0,0,0.4)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Image overlays</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Card Shadow:</strong> rgba(0,0,0,0.1)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Soft shadows</span>
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Borders:</strong> rgba(212,165,116,0.2)
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Subtle gold borders</span>
+                </li>
+                <li style={{ paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  <strong>Opacity Text:</strong> 0.8-0.9
+                  <br /><span style={{ color: 'var(--sage-green)' }}>Secondary content</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Color Combinations */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(212, 165, 116, 0.2)',
+            marginBottom: '2rem'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.75rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1.5rem'
+            }}>
+              Approved Color Combinations
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              {/* Light Combinations */}
+              <div style={{
+                padding: '1.5rem',
+                background: 'var(--romantic-ivory)',
+                borderRadius: '8px'
+              }}>
+                <h5 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>Light Background</h5>
+                <p style={{ color: 'var(--warm-walnut)', marginBottom: '0.25rem' }}>Primary text</p>
+                <p style={{ color: 'var(--sage-green)', marginBottom: '0.25rem' }}>Secondary text</p>
+                <p style={{ color: 'var(--dusty-rose)' }}>Accent text</p>
+                <button style={{
+                  marginTop: '0.5rem',
+                  padding: '0.5rem 1rem',
+                  background: 'var(--dusty-rose)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px'
+                }}>Primary Button</button>
+              </div>
+
+              {/* Dark Combinations */}
+              <div style={{
+                padding: '1.5rem',
+                background: 'var(--warm-walnut)',
+                borderRadius: '8px'
+              }}>
+                <h5 style={{ color: 'white', marginBottom: '0.5rem' }}>Dark Background</h5>
+                <p style={{ color: 'white', marginBottom: '0.25rem' }}>Primary text</p>
+                <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '0.25rem' }}>Secondary text</p>
+                <p style={{ color: 'var(--champagne-gold)' }}>Accent text</p>
+                <button style={{
+                  marginTop: '0.5rem',
+                  padding: '0.5rem 1rem',
+                  background: 'white',
+                  color: 'var(--warm-walnut)',
+                  border: 'none',
+                  borderRadius: '4px'
+                }}>Light Button</button>
+              </div>
+
+              {/* Accent Combinations */}
+              <div style={{
+                padding: '1.5rem',
+                background: 'var(--blush-pink)',
+                borderRadius: '8px'
+              }}>
+                <h5 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem' }}>Accent Background</h5>
+                <p style={{ color: 'var(--warm-walnut)', marginBottom: '0.25rem' }}>Primary text</p>
+                <p style={{ color: 'var(--sage-green)', marginBottom: '0.25rem' }}>Secondary text</p>
+                <p style={{ color: 'var(--dusty-rose)' }}>Accent text</p>
+                <button style={{
+                  marginTop: '0.5rem',
+                  padding: '0.5rem 1rem',
+                  background: 'var(--warm-walnut)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px'
+                }}>Dark Button</button>
+              </div>
+
+              {/* Footer Combinations */}
+              <div style={{
+                padding: '1.5rem',
+                background: 'var(--text-dark)',
+                borderRadius: '8px'
+              }}>
+                <h5 style={{ color: 'white', marginBottom: '0.5rem' }}>Footer Background</h5>
+                <p style={{ color: 'white', marginBottom: '0.25rem' }}>Primary text</p>
+                <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Secondary text</p>
+                <p style={{ color: 'var(--accent-gold)' }}>Link text</p>
+                <button style={{
+                  marginTop: '0.5rem',
+                  padding: '0.5rem 1rem',
+                  background: 'var(--accent-gold)',
+                  color: 'var(--text-dark)',
+                  border: 'none',
+                  borderRadius: '4px'
+                }}>Gold Button</button>
+              </div>
+            </div>
+          </div>
+
+          {/* Best Practices */}
+          <div style={{
+            marginTop: '3rem',
+            padding: '2rem',
+            background: 'linear-gradient(135deg, var(--cream-pearl), white)',
+            borderRadius: '12px'
+          }}>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.5rem',
+              color: 'var(--warm-walnut)',
+              marginBottom: '1.5rem'
+            }}>
+              Color Best Practices
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem', fontSize: '1rem' }}>
+                  ✅ DO
+                </h4>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  fontSize: '0.875rem',
+                  color: 'var(--sage-green)'
+                }}>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use CSS variables for all colors</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Maintain 4.5:1 contrast ratio for text</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use opacity for subtle variations</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Test color combinations for accessibility</li>
+                  <li>• Keep color usage consistent across pages</li>
+                </ul>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--warm-walnut)', marginBottom: '0.5rem', fontSize: '1rem' }}>
+                  ❌ DON'T
+                </h4>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  fontSize: '0.875rem',
+                  color: 'var(--sage-green)'
+                }}>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use hardcoded hex values</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Mix warm and cool grays</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Use pure black (#000) for text</li>
+                  <li style={{ marginBottom: '0.5rem' }}>• Create new colors without approval</li>
+                  <li>• Use more than 3 colors in one component</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1591,35 +3689,47 @@ export default function ComponentLibrary() {
         <div className="cta-contact-container">
           <div className="cta-contact-header">
             <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '1px', marginBottom: '0.5rem' }}>ID: CONTACT_FORM_001</div>
-            <p className="script-font">Let&apos;s Connect</p>
+            <p className="script-font">Schedule Your Tour</p>
             <h2>Start Planning Your Perfect Day</h2>
-            <p>We&apos;d love to hear about your vision and show you around our beautiful venue.</p>
+            <p>We&apos;d love to show you around our beautiful venue and discuss your wedding vision.</p>
           </div>
           <form className="cta-contact-form" id="contactForm">
-            <div className="cta-form-row">
-              <div className="cta-form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required />
-              </div>
+            <div className="cta-form-group cta-full-width">
+              <label htmlFor="name">Your Name *</label>
+              <input type="text" id="name" name="name" required />
             </div>
             <div className="cta-form-row">
               <div className="cta-form-group">
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="email">Email Address *</label>
                 <input type="email" id="email" name="email" required />
               </div>
               <div className="cta-form-group">
-                <label htmlFor="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" />
+                <label htmlFor="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required />
               </div>
             </div>
             <div className="cta-form-row">
               <div className="cta-form-group">
-                <label htmlFor="eventDate">Preferred Event Date</label>
-                <input type="date" id="eventDate" name="eventDate" />
+                <label htmlFor="proposedEventDate">Proposed Event Date</label>
+                <input type="date" id="proposedEventDate" name="proposedEventDate" />
+              </div>
+              <div className="cta-form-group">
+                <label htmlFor="preferredTourDate">Preferred Tour Date *</label>
+                <input type="date" id="preferredTourDate" name="preferredTourDate" required />
+              </div>
+            </div>
+            <div className="cta-form-row">
+              <div className="cta-form-group">
+                <label htmlFor="preferredTourTime">Preferred Tour Time</label>
+                <select id="preferredTourTime" name="preferredTourTime">
+                  <option value="">Select Time</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="1:00 PM">1:00 PM</option>
+                  <option value="2:00 PM">2:00 PM</option>
+                  <option value="3:00 PM">3:00 PM</option>
+                  <option value="4:00 PM">4:00 PM</option>
+                </select>
               </div>
               <div className="cta-form-group">
                 <label htmlFor="guestCount">Estimated Guest Count</label>
@@ -1633,11 +3743,11 @@ export default function ComponentLibrary() {
               </div>
             </div>
             <div className="cta-form-group cta-full-width">
-              <label htmlFor="message">Tell Us About Your Dream Wedding</label>
-              <textarea id="message" name="message" placeholder="Share your vision with us..."></textarea>
+              <label htmlFor="message">Additional Information or Questions</label>
+              <textarea id="message" name="message" placeholder="Tell us about your event plans or any specific questions..."></textarea>
             </div>
             <button type="submit" className="cta-submit-button">
-              <span>SEND MESSAGE</span>
+              <span>Schedule Tour</span>
             </button>
           </form>
         </div>

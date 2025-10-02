@@ -45,9 +45,9 @@ export const historyTimeline = {
         "text": "<p>Sigvart and Helga Selmer, Norwegian immigrants, settled the land and built a one-room house (now the bridal dressing room). They started a family with 3 children: Walter, Harold and Selma. The family logged and prepared fields for crops, living off wood heat with outdoor outhouses and oil lamps.</p>"
       },
       "media": {
-        "url": "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800",
-        "caption": "Historic farmhouse representing early settler life",
-        "credit": ""
+        "url": "/images/historical/selmer-family-winter-woodpile-1940s.jpg",
+        "caption": "Sigvart and Helga Selmer on their woodpile during a Minnesota winter, 1940s",
+        "credit": "Selmer Family Archives"
       }
     },
     {
@@ -68,9 +68,9 @@ export const historyTimeline = {
         "text": "<p>Sigvart and his sons Walter and Harold found a massive white pine left from logging days. It took seven horses to pull the log to the farm. They dried it for ten years, then hand-sawed it into lumber which sat for another ten years before being used in construction.</p>"
       },
       "media": {
-        "url": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=800",
-        "caption": "Virgin white pine forests like those that once covered the property",
-        "credit": ""
+        "url": "/images/historical/lumber-preparation-white-pine-1930s.jpg",
+        "caption": "Processing the giant white pine logs found on the property, 1930s",
+        "credit": "Selmer Family Archives"
       }
     },
     {
@@ -83,9 +83,9 @@ export const historyTimeline = {
         "text": "<p>Using the lumber from the giant white pine (dried and milled over 20 years), the iconic White Barn was constructed. The west roof was sheeted entirely by one pine tree, the east by another. All original structures were built from oak and pine harvested from the property.</p>"
       },
       "media": {
-        "url": "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800",
-        "caption": "The historic White Barn stands today",
-        "credit": ""
+        "url": "/images/historical/early-barn-construction-1940s.jpg",
+        "caption": "Construction of the White Barn using lumber from the giant white pine, 1942-1952",
+        "credit": "Selmer Family Archives"
       }
     },
     {
@@ -109,16 +109,26 @@ export const historyTimeline = {
     },
     {
       "start_date": {
+        "year": "1970",
+        "display_date": "1959-2003"
+      },
+      "text": {
+        "headline": "Harold Selmer's Farming Legacy",
+        "text": "<p>Harold Selmer transformed the farm into a successful dairy operation, raising cattle and maintaining the family traditions. Known for his fishing skills and community involvement, Harold lived a full life on the land his parents had settled, caring for the property until 2003.</p>"
+      },
+      "media": {
+        "url": "/images/historical/harold-selmer-dairy-cow-farming.jpg",
+        "caption": "Harold Selmer with one of his dairy cows, continuing the family farming tradition",
+        "credit": "Selmer Family Archives"
+      }
+    },
+    {
+      "start_date": {
         "year": "2003"
       },
       "text": {
         "headline": "A New Chapter Begins",
         "text": "<p>Harold Selmer sold the property to the Carvin Buzzell family, who began converting it into a winery and event destination. Three acres of vineyards were planted with 14 grape varietals from the University of Minnesota. Harold lived in the home until he passed away in 2008.</p>"
-      },
-      "media": {
-        "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-        "caption": "The property transforms into an event venue",
-        "credit": ""
       }
     },
     {
@@ -130,9 +140,9 @@ export const historyTimeline = {
         "text": "<p>Rum River Barn and Vineyards hosted its first wedding event, marking the beginning of a new era. Historical farm remnants remain visible throughout the property, including the horse-driven plow from Norway, hand saws, and oil lamps.</p>"
       },
       "media": {
-        "url": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800",
-        "caption": "The first of many beautiful weddings",
-        "credit": ""
+        "url": "/images/venue/barn-interior-exposed-beams-chandeliers.jpg",
+        "caption": "The historic White Barn transformed into an elegant wedding venue",
+        "credit": "Rum River Barn & Vineyard"
       }
     },
     {
@@ -145,9 +155,9 @@ export const historyTimeline = {
         "text": "<p>Today, Rum River Barn & Vineyard is Minnesota's premier country and barn event venue. Operating under the same ownership since 2003, it's the 'Original Barn and Country special events venue in Minnesota' - longer than any other barn venue in the state.</p>"
       },
       "media": {
-        "url": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800",
-        "caption": "Continuing the legacy of celebration and community",
-        "credit": ""
+        "url": "/images/venue/barn-exterior-full-view-landscape.jpg",
+        "caption": "Today's Rum River Barn - Minnesota's premier country and barn event venue",
+        "credit": "Rum River Barn & Vineyard"
       }
     }
   ]
