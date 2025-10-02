@@ -218,7 +218,7 @@ function DiamondCards() {
             aria-label="Weddings"
           >
             <div style={shapeBox("polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 45%)")}>
-              <div className="dc-bg" style={bg("/images/venue/barn-interior-ceiling-beams-lighting.jpg", hovered==="weddings")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600", hovered==="weddings")} />
               <div style={gem("rgba(255, 76, 152, .42)", "rgba(255, 120, 180, .26)")} />
               <EdgeIridescence />
               <EdgeGlass />
@@ -239,7 +239,7 @@ function DiamondCards() {
             aria-label="The Property"
           >
             <div style={shapeBox("polygon(0 0, 55% 0, 100% 45%, 100% 100%, 0 100%)")}>
-              <div className="dc-bg" style={bg("/images/venue/property-vineyard-rows-landscape.jpg", hovered==="property")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600", hovered==="property")} />
               <div style={gem("rgba(0, 200, 140, .42)", "rgba(40, 255, 180, .26)")} />
               <EdgeIridescence />
               <EdgeGlass />
@@ -260,7 +260,7 @@ function DiamondCards() {
             aria-label="Photo Gallery"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 100%, 45% 100%, 0 55%)")}>
-              <div className="dc-bg" style={bg("/images/venue/details-swing-rustic-romance.jpg", hovered==="gallery")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600", hovered==="gallery")} />
               <div style={gem("rgba(70, 150, 255, .40)", "rgba(20, 90, 255, .25)")} />
               <EdgeIridescence />
               <EdgeGlass />
@@ -281,7 +281,7 @@ function DiamondCards() {
             aria-label="Engagement Parties"
           >
             <div style={shapeBox("polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%)")}>
-              <div className="dc-bg" style={bg("/images/venue/barn-exterior-deck-swing-golden-hour.jpg", hovered==="engagement")} />
+              <div className="dc-bg" style={bg("https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600", hovered==="engagement")} />
               <div style={gem("rgba(255, 186, 0, .42)", "rgba(255, 140, 0, .26)")} />
               <EdgeIridescence />
               <EdgeGlass />

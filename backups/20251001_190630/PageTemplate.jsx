@@ -14,7 +14,7 @@ export default function PageTemplate({
       {heroContent && (
         <section style={{
           minHeight: '40vh',
-          background: 'linear-gradient(135deg, rgba(74, 52, 38, 0.9) 0%, rgba(45, 58, 47, 0.8) 100%), url("/images/venue/barn-exterior-full-view-landscape.jpg") center/cover',
+          background: 'linear-gradient(135deg, rgba(74, 52, 38, 0.9) 0%, rgba(45, 58, 47, 0.8) 100%), url("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600") center/cover',
           display: 'flex',
           alignItems: 'center',
           color: 'white',

@@ -6,9 +6,9 @@ const venueData = {
   barn: {
     title: 'The Historic Barn',
     images: [
-      '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
-      '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800'
     ],
     description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
     features: [
@@ -51,9 +51,9 @@ const venueData = {
   pavilion: {
     title: 'Garden Pavilion',
     images: [
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg',
-      '/images/venue/property-field-wildflowers-natural.jpg',
-      '/images/venue/barn-exterior-deck-swing-under-tree.jpg'
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800',
+      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
+      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800'
     ],
     description: 'An enchanting outdoor space surrounded by lush gardens, perfect for ceremonies or cocktail hours under the open sky.',
     features: [
@@ -224,7 +224,7 @@ export default function HomePage() {
             </div>
 
             <div className="gallery-item image-reveal">
-              <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Jessica & Ryan Wedding" width="800" height="800" />
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Jessica & Ryan Wedding" width="800" height="800" />
               <div className="gallery-overlay">
                 <div className="gallery-couple-names">Jessica & Ryan</div>
                 <div className="gallery-season">Summer 2024</div>
@@ -323,7 +323,7 @@ export default function HomePage() {
                 <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
               </div>
               <div className="block-image">
-                <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Special event venue" width="800" height="500" />
               </div>
             </div>
 
@@ -336,7 +336,7 @@ export default function HomePage() {
                 <p>Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years.</p>
               </div>
               <div className="block-image">
-                <img src="/images/venue/property-field-wildflowers-natural.jpg" alt="Rum River Barn and Vineyard" width="800" height="500" />
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Rum River Barn and Vineyard" width="800" height="500" />
               </div>
             </div>
           </div>

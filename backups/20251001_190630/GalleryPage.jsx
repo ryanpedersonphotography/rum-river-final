@@ -33,12 +33,12 @@ const photos = [
   { id: 18, src: 'https://images.unsplash.com/photo-1481653125770-b78c206c59d4?w=600', category: 'details', alt: 'Wedding cake' },
 
   // Property
-  { id: 19, src: '/images/venue/barn-exterior-full-view-landscape.jpg', category: 'property', alt: 'Venue exterior' },
-  { id: 20, src: '/images/venue/property-vineyard-perspective-hills.jpg', category: 'property', alt: 'Barn interior' },
-  { id: 21, src: '/images/venue/property-landscape-rural-vista.jpg', category: 'property', alt: 'Vineyard rows' },
-  { id: 22, src: '/images/venue/barn-exterior-stone-wall-trees.jpg', category: 'property', alt: 'Garden grounds' },
-  { id: 23, src: '/images/venue/details-vintage-tractor-rustic.jpg', category: 'property', alt: 'Courtyard' },
-  { id: 24, src: '/images/venue/barn-exterior-welcome-sign-entrance.jpg', category: 'property', alt: 'Interior details' },
+  { id: 19, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800', category: 'property', alt: 'Venue exterior' },
+  { id: 20, src: 'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800', category: 'property', alt: 'Barn interior' },
+  { id: 21, src: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=800', category: 'property', alt: 'Vineyard rows' },
+  { id: 22, src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800', category: 'property', alt: 'Garden grounds' },
+  { id: 23, src: 'https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=800', category: 'property', alt: 'Courtyard' },
+  { id: 24, src: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800', category: 'property', alt: 'Interior details' },
 
   // Videos (using thumbnail images with video badge)
   { id: 25, src: 'https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=800', category: 'videos', alt: 'Wedding highlight video', isVideo: true },

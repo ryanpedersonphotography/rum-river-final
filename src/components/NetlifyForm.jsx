@@ -141,7 +141,16 @@ export default function NetlifyForm({
         handleSubmit,
         submitting,
         success,
-        error
+        error,
+        honeypotField: (
+          <input 
+            type="text"
+            name="bot-field" 
+            style={{ display: 'none' }}
+            tabIndex="-1"
+            autoComplete="off"
+          />
+        )
       })}
     </>
   )

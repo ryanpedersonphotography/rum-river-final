@@ -1,0 +1,779 @@
+=== WEDDING PHOTO IMAGE ANALYSIS REPORT ===
+Generated on: Wed Oct  1 13:13:54 CDT 2025
+Directory: public/wedding-photos
+
+CRITERIA FOR UPSCALING:
+- Width or height less than 1200px
+- File size less than 100KB
+
+=== DIRECTORY: 2014-2 ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.png                             | 2718x1812      | 6817     | NO              | 
+002.png                             | 2880x1920      | 7797     | NO              | 
+003.png                             | 1879x2819      | 6967     | NO              | 
+004.png                             | 2538x1692      | 5680     | NO              | 
+005.png                             | 2740x1827      | 6600     | NO              | 
+006.png                             | 1827x2740      | 7372     | NO              | 
+007.png                             | 1827x2740      | 7337     | NO              | 
+008.png                             | 1827x2740      | 5722     | NO              | 
+009.png                             | 1648x2473      | 5171     | NO              | 
+010.png                             | 1855x2783      | 5816     | NO              | 
+011.png                             | 1920x2880      | 7276     | NO              | 
+012.png                             | 960x1440      | 2175     | YES             | Low resolution
+013.png                             | 960x1440      | 2140     | YES             | Low resolution
+014.png                             | 1440x960       | 2679     | YES             | Low resolution
+015.png                             | 1440x960       | 2422     | YES             | Low resolution
+016.png                             | 787x1181      | 1076     | YES             | Low resolution
+017.png                             | 838x1257      | 1355     | YES             | Low resolution
+018.png                             | 960x1440      | 1783     | YES             | Low resolution
+019.png                             | 1204x802       | 786      | YES             | Low resolution
+020.png                             | 1120x747       | 711      | YES             | Low resolution
+021.png                             | 847x1271      | 1057     | YES             | Low resolution
+022.png                             | 960x1440      | 1589     | YES             | Low resolution
+023.png                             | 942x1413      | 2030     | YES             | Low resolution
+024.png                             | 786x1179      | 1384     | YES             | Low resolution
+025.png                             | 1440x960       | 2124     | YES             | Low resolution
+026.png                             | 960x1440      | 1824     | YES             | Low resolution
+027.png                             | 960x1440      | 1938     | YES             | Low resolution
+028.png                             | 960x1440      | 1931     | YES             | Low resolution
+029.png                             | 960x1440      | 1927     | YES             | Low resolution
+030.png                             | 960x1440      | 2658     | YES             | Low resolution
+031.png                             | 960x1440      | 2238     | YES             | Low resolution
+032.png                             | 960x1440      | 2455     | YES             | Low resolution
+033.png                             | 1920x2880      | 8910     | NO              | 
+034.png                             | 1920x2880      | 8982     | NO              | 
+035.png                             | 1920x2880      | 8966     | NO              | 
+036.png                             | 1920x2880      | 9283     | NO              | 
+037.png                             | 1920x2880      | 8595     | NO              | 
+038.png                             | 1920x2880      | 7240     | NO              | 
+039.png                             | 1920x2880      | 9037     | NO              | 
+040.png                             | 2880x1920      | 8729     | NO              | 
+041.png                             | 2880x1920      | 9373     | NO              | 
+042.png                             | 2880x1920      | 7707     | NO              | 
+043.png                             | 2880x1920      | 7640     | NO              | 
+044.png                             | 1920x2880      | 6263     | NO              | 
+045.png                             | 2825x1883      | 7789     | NO              | 
+046.png                             | 1920x2880      | 10163    | NO              | 
+047.png                             | 1920x2880      | 6216     | NO              | 
+048.png                             | 1920x2880      | 5816     | NO              | 
+049.png                             | 1920x2880      | 6498     | NO              | 
+050.png                             | 2880x1920      | 6669     | NO              | 
+051.png                             | 1920x2880      | 8410     | NO              | 
+052.png                             | 2880x1920      | 8461     | NO              | 
+053.png                             | 1920x2880      | 9544     | NO              | 
+054.png                             | 1920x2880      | 8469     | NO              | 
+055.png                             | 1920x2880      | 8272     | NO              | 
+056.png                             | 1920x2880      | 7699     | NO              | 
+057.png                             | 1920x2880      | 8256     | NO              | 
+058.png                             | 1920x2880      | 6914     | NO              | 
+059.png                             | 1920x2880      | 9048     | NO              | 
+060.png                             | 1920x2880      | 8233     | NO              | 
+061.png                             | 1920x2880      | 7806     | NO              | 
+062.png                             | 1920x2880      | 7992     | NO              | 
+
+=== DIRECTORY: allison-and-will ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1024x682       | 136      | YES             | Low resolution
+002.jpg                             | 1024x682       | 253      | YES             | Low resolution
+003.jpg                             | 1024x682       | 247      | YES             | Low resolution
+004.jpg                             | 1024x682       | 156      | YES             | Low resolution
+005.jpg                             | 682x1024      | 51       | YES             | Low resolution + Small file size
+006.jpg                             | 682x1024      | 118      | YES             | Low resolution
+007.jpg                             | 682x1024      | 123      | YES             | Low resolution
+008.jpg                             | 682x1024      | 97       | YES             | Low resolution + Small file size
+009.jpg                             | 682x1024      | 88       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: anthony-and-linnea ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 211      | YES             | Low resolution
+002.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+003.jpg                             | 316x237       | 21       | YES             | Low resolution + Small file size
+004.jpg                             | 316x237       | 25       | YES             | Low resolution + Small file size
+005.jpg                             | 316x237       | 24       | YES             | Low resolution + Small file size
+006.jpg                             | 316x237       | 32       | YES             | Low resolution + Small file size
+007.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+008.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+009.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+010.jpg                             | 316x237       | 42       | YES             | Low resolution + Small file size
+011.jpg                             | 316x237       | 38       | YES             | Low resolution + Small file size
+012.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+013.jpg                             | 316x237       | 22       | YES             | Low resolution + Small file size
+014.jpg                             | 316x237       | 41       | YES             | Low resolution + Small file size
+015.jpg                             | 316x237       | 32       | YES             | Low resolution + Small file size
+016.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+017.jpg                             | 316x237       | 44       | YES             | Low resolution + Small file size
+018.jpg                             | 316x237       | 50       | YES             | Low resolution + Small file size
+019.jpg                             | 316x237       | 40       | YES             | Low resolution + Small file size
+020.jpg                             | 316x237       | 45       | YES             | Low resolution + Small file size
+021.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+022.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+023.jpg                             | 316x237       | 18       | YES             | Low resolution + Small file size
+024.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+025.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+026.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+027.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+028.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+029.jpg                             | 316x237       | 42       | YES             | Low resolution + Small file size
+030.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+031.jpg                             | 316x237       | 18       | YES             | Low resolution + Small file size
+032.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+033.jpg                             | 316x237       | 48       | YES             | Low resolution + Small file size
+034.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+035.jpg                             | 316x237       | 47       | YES             | Low resolution + Small file size
+036.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+037.jpg                             | 316x237       | 50       | YES             | Low resolution + Small file size
+038.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+039.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+040.jpg                             | 316x237       | 41       | YES             | Low resolution + Small file size
+041.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+042.jpg                             | 316x237       | 20       | YES             | Low resolution + Small file size
+043.jpg                             | 316x237       | 40       | YES             | Low resolution + Small file size
+044.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+045.jpg                             | 316x237       | 25       | YES             | Low resolution + Small file size
+046.jpg                             | 316x237       | 14       | YES             | Low resolution + Small file size
+047.jpg                             | 316x237       | 39       | YES             | Low resolution + Small file size
+048.jpg                             | 316x237       | 33       | YES             | Low resolution + Small file size
+049.jpg                             | 316x237       | 22       | YES             | Low resolution + Small file size
+050.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+051.jpg                             | 316x237       | 38       | YES             | Low resolution + Small file size
+052.jpg                             | 316x237       | 49       | YES             | Low resolution + Small file size
+053.jpg                             | 316x237       | 52       | YES             | Low resolution + Small file size
+054.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+055.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+056.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+057.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+058.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+059.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+060.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+061.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+062.jpg                             | 316x237       | 25       | YES             | Low resolution + Small file size
+063.jpg                             | 316x237       | 16       | YES             | Low resolution + Small file size
+064.jpg                             | 316x237       | 58       | YES             | Low resolution + Small file size
+065.jpg                             | 316x237       | 46       | YES             | Low resolution + Small file size
+066.jpg                             | 316x237       | 27       | YES             | Low resolution + Small file size
+067.jpg                             | 316x237       | 36       | YES             | Low resolution + Small file size
+068.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+069.jpg                             | 316x237       | 24       | YES             | Low resolution + Small file size
+070.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+071.jpg                             | 316x237       | 30       | YES             | Low resolution + Small file size
+072.jpg                             | 316x237       | 38       | YES             | Low resolution + Small file size
+073.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+074.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+075.jpg                             | 316x237       | 39       | YES             | Low resolution + Small file size
+076.jpg                             | 316x237       | 39       | YES             | Low resolution + Small file size
+077.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+078.jpg                             | 316x237       | 41       | YES             | Low resolution + Small file size
+079.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+080.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+081.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+082.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+083.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+084.jpg                             | 316x237       | 44       | YES             | Low resolution + Small file size
+085.jpg                             | 316x237       | 47       | YES             | Low resolution + Small file size
+086.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+087.jpg                             | 3238x2161      | 2696     | NO              | 
+088.jpg                             | 3238x2161      | 2593     | NO              | 
+089.jpg                             | 3238x2161      | 3604     | NO              | 
+090.jpg                             | 3238x2161      | 2639     | NO              | 
+091.jpg                             | 3238x2161      | 3403     | NO              | 
+092.jpg                             | 3238x2161      | 5307     | NO              | 
+093.jpg                             | 3238x2161      | 3163     | NO              | 
+094.jpg                             | 3243x2158      | 3256     | NO              | 
+095.jpg                             | 3238x2161      | 3534     | NO              | 
+096.jpg                             | 3243x2158      | 2000     | NO              | 
+097.jpg                             | 3243x2158      | 2323     | NO              | 
+098.jpg                             | 3243x2158      | 1962     | NO              | 
+099.jpg                             | 3243x2158      | 3136     | NO              | 
+100.jpg                             | 3243x2158      | 2216     | NO              | 
+101.jpg                             | 3243x2158      | 2223     | NO              | 
+102.jpg                             | 3243x2158      | 2099     | NO              | 
+103.jpg                             | 3243x2158      | 2245     | NO              | 
+104.jpg                             | 3243x2158      | 1967     | NO              | 
+105.jpg                             | 2158x1826      | 2612     | NO              | 
+106.jpg                             | 2158x3243      | 2966     | NO              | 
+107.jpg                             | 2158x3243      | 5805     | NO              | 
+108.jpg                             | 2158x3243      | 3984     | NO              | 
+109.jpg                             | 2158x3243      | 3580     | NO              | 
+
+=== DIRECTORY: casey-garret ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 675x1060      | 101      | YES             | Low resolution
+002.jpg                             | 731x1060      | 107      | YES             | Low resolution
+003.jpg                             | 696x1060      | 149      | YES             | Low resolution
+004.jpg                             | 697x1060      | 99       | YES             | Low resolution + Small file size
+005.jpg                             | 1060x715       | 202      | YES             | Low resolution
+006.jpg                             | 1060x708       | 114      | YES             | Low resolution
+
+=== DIRECTORY: dave-kayla ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1000x662       | 164      | YES             | Low resolution
+002.jpg                             | 1000x662       | 164      | YES             | Low resolution
+003.jpg                             | 1000x655       | 74       | YES             | Low resolution + Small file size
+004.jpg                             | 1000x647       | 92       | YES             | Low resolution + Small file size
+005.jpg                             | 1000x661       | 68       | YES             | Low resolution + Small file size
+006.jpg                             | 1000x575       | 176      | YES             | Low resolution
+007.jpg                             | 1000x662       | 200      | YES             | Low resolution
+008.jpg                             | 1000x666       | 121      | YES             | Low resolution
+009.jpg                             | 1000x657       | 127      | YES             | Low resolution
+010.jpg                             | 1000x655       | 111      | YES             | Low resolution
+011.jpg                             | 1000x667       | 93       | YES             | Low resolution + Small file size
+012.jpg                             | 1000x631       | 163      | YES             | Low resolution
+013.jpg                             | 1000x655       | 94       | YES             | Low resolution + Small file size
+014.jpg                             | 1000x665       | 129      | YES             | Low resolution
+015.jpg                             | 1000x613       | 184      | YES             | Low resolution
+016.jpg                             | 1000x661       | 111      | YES             | Low resolution
+017.jpg                             | 1000x555       | 106      | YES             | Low resolution
+
+=== DIRECTORY: emily-and-barron-nixon ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 388      | YES             | Low resolution
+002.jpg                             | 316x316       | 48       | YES             | Low resolution + Small file size
+003.jpg                             | 316x316       | 41       | YES             | Low resolution + Small file size
+004.jpg                             | 316x316       | 25       | YES             | Low resolution + Small file size
+005.jpg                             | 316x316       | 33       | YES             | Low resolution + Small file size
+006.jpg                             | 316x316       | 44       | YES             | Low resolution + Small file size
+007.jpg                             | 316x316       | 27       | YES             | Low resolution + Small file size
+008.jpg                             | 316x316       | 32       | YES             | Low resolution + Small file size
+009.jpg                             | 316x316       | 48       | YES             | Low resolution + Small file size
+010.jpg                             | 316x316       | 36       | YES             | Low resolution + Small file size
+011.jpg                             | 316x316       | 45       | YES             | Low resolution + Small file size
+012.jpg                             | 316x316       | 45       | YES             | Low resolution + Small file size
+013.jpg                             | 316x316       | 52       | YES             | Low resolution + Small file size
+014.jpg                             | 316x316       | 52       | YES             | Low resolution + Small file size
+015.jpg                             | 316x316       | 54       | YES             | Low resolution + Small file size
+016.jpg                             | 316x316       | 37       | YES             | Low resolution + Small file size
+017.jpg                             | 316x316       | 39       | YES             | Low resolution + Small file size
+018.jpg                             | 316x316       | 37       | YES             | Low resolution + Small file size
+019.jpg                             | 316x316       | 44       | YES             | Low resolution + Small file size
+020.jpg                             | 316x316       | 47       | YES             | Low resolution + Small file size
+021.jpg                             | 316x316       | 60       | YES             | Low resolution + Small file size
+022.jpg                             | 316x316       | 39       | YES             | Low resolution + Small file size
+023.jpg                             | 316x316       | 32       | YES             | Low resolution + Small file size
+024.jpg                             | 316x421       | 34       | YES             | Low resolution + Small file size
+025.jpg                             | 316x421       | 51       | YES             | Low resolution + Small file size
+026.jpg                             | 316x421       | 49       | YES             | Low resolution + Small file size
+027.jpg                             | 316x421       | 36       | YES             | Low resolution + Small file size
+028.jpg                             | 316x421       | 55       | YES             | Low resolution + Small file size
+029.jpg                             | 316x421       | 62       | YES             | Low resolution + Small file size
+030.jpg                             | 316x421       | 61       | YES             | Low resolution + Small file size
+031.jpg                             | 316x421       | 60       | YES             | Low resolution + Small file size
+032.jpg                             | 316x421       | 66       | YES             | Low resolution + Small file size
+033.jpg                             | 316x421       | 54       | YES             | Low resolution + Small file size
+034.jpg                             | 316x421       | 61       | YES             | Low resolution + Small file size
+035.jpg                             | 316x421       | 43       | YES             | Low resolution + Small file size
+036.jpg                             | 316x421       | 42       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: erin-kate ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 770x550       | 38       | YES             | Low resolution + Small file size
+002.jpg                             | 1060x795       | 89       | YES             | Low resolution + Small file size
+003.jpg                             | 1060x795       | 28       | YES             | Low resolution + Small file size
+004.jpg                             | 1060x795       | 80       | YES             | Low resolution + Small file size
+005.jpg                             | 1060x795       | 50       | YES             | Low resolution + Small file size
+006.jpg                             | 1060x795       | 64       | YES             | Low resolution + Small file size
+007.jpg                             | 1060x795       | 78       | YES             | Low resolution + Small file size
+008.jpg                             | 1060x795       | 142      | YES             | Low resolution
+009.jpg                             | 1060x795       | 182      | YES             | Low resolution
+010.jpg                             | 960x480       | 43       | YES             | Low resolution + Small file size
+011.jpg                             | 960x462       | 57       | YES             | Low resolution + Small file size
+012.jpg                             | 800x1200      | 48       | YES             | Low resolution + Small file size
+013.jpg                             | 800x1200      | 82       | YES             | Low resolution + Small file size
+014.jpg                             | 800x1200      | 83       | YES             | Low resolution + Small file size
+015.jpg                             | 800x1200      | 53       | YES             | Low resolution + Small file size
+016.jpg                             | 800x1200      | 96       | YES             | Low resolution + Small file size
+017.jpg                             | 800x1200      | 71       | YES             | Low resolution + Small file size
+018.jpg                             | 800x1200      | 72       | YES             | Low resolution + Small file size
+019.jpg                             | 800x1200      | 67       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: james-and-denise-allen ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 342x512       | 84       | YES             | Low resolution + Small file size
+002.jpg                             | 342x512       | 87       | YES             | Low resolution + Small file size
+003.jpg                             | 342x512       | 92       | YES             | Low resolution + Small file size
+004.jpg                             | 540x360       | 65       | YES             | Low resolution + Small file size
+005.jpg                             | 540x360       | 81       | YES             | Low resolution + Small file size
+006.jpg                             | 810x540       | 163      | YES             | Low resolution
+007.jpg                             | 540x360       | 82       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: jenna-and-steven-tschirgi ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 210      | YES             | Low resolution
+002.jpg                             | 316x210       | 26       | YES             | Low resolution + Small file size
+003.jpg                             | 316x210       | 30       | YES             | Low resolution + Small file size
+004.jpg                             | 316x210       | 30       | YES             | Low resolution + Small file size
+005.jpg                             | 316x210       | 31       | YES             | Low resolution + Small file size
+006.jpg                             | 316x210       | 40       | YES             | Low resolution + Small file size
+007.jpg                             | 316x210       | 41       | YES             | Low resolution + Small file size
+008.jpg                             | 316x210       | 33       | YES             | Low resolution + Small file size
+009.jpg                             | 316x210       | 33       | YES             | Low resolution + Small file size
+010.jpg                             | 316x421       | 33       | YES             | Low resolution + Small file size
+011.jpg                             | 316x421       | 40       | YES             | Low resolution + Small file size
+012.jpg                             | 316x421       | 48       | YES             | Low resolution + Small file size
+013.jpg                             | 316x421       | 48       | YES             | Low resolution + Small file size
+014.jpg                             | 316x421       | 63       | YES             | Low resolution + Small file size
+015.jpg                             | 316x316       | 34       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: joshua-and-teri ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+002.jpg                             | 6000x4000      | 719      | NO              | 
+003.jpg                             | 6000x4000      | 708      | NO              | 
+004.jpg                             | 6000x4000      | 535      | NO              | 
+005.jpg                             | 6000x4000      | 546      | NO              | 
+006.jpg                             | 6000x4000      | 526      | NO              | 
+007.jpg                             | 5057x3658      | 393      | NO              | 
+008.jpg                             | 6000x4000      | 525      | NO              | 
+009.jpg                             | 6000x4000      | 544      | NO              | 
+010.jpg                             | 6000x4000      | 650      | NO              | 
+011.jpg                             | 6000x4000      | 777      | NO              | 
+012.jpg                             | 6000x4000      | 884      | NO              | 
+013.jpg                             | 6000x4000      | 791      | NO              | 
+014.jpg                             | 6000x4000      | 638      | NO              | 
+015.jpg                             | 6000x4000      | 965      | NO              | 
+016.jpg                             | 6000x4000      | 706      | NO              | 
+017.jpg                             | 6000x4000      | 648      | NO              | 
+018.jpg                             | 4000x6000      | 800      | NO              | 
+019.jpg                             | 4000x6000      | 638      | NO              | 
+020.jpg                             | 4000x6000      | 1034     | NO              | 
+021.jpg                             | 4000x6000      | 583      | NO              | 
+022.jpg                             | 4000x6000      | 858      | NO              | 
+023.jpg                             | 3721x5411      | 953      | NO              | 
+024.jpg                             | 4000x6000      | 1160     | NO              | 
+025.jpg                             | 4000x6000      | 881      | NO              | 
+026.jpg                             | 4000x6000      | 1260     | NO              | 
+027.jpg                             | 3697x5607      | 943      | NO              | 
+028.jpg                             | 4000x6000      | 935      | NO              | 
+029.jpg                             | 4000x6000      | 661      | NO              | 
+030.jpg                             | 3771x5480      | 1391     | NO              | 
+031.jpg                             | 3711x5656      | 768      | NO              | 
+032.jpg                             | 4000x6000      | 1435     | NO              | 
+033.jpg                             | 4000x6000      | 1234     | NO              | 
+034.jpg                             | 4000x6000      | 1205     | NO              | 
+035.jpg                             | 4000x6000      | 1420     | NO              | 
+036.jpg                             | 3643x5075      | 746      | NO              | 
+
+=== DIRECTORY: kage ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 230      | YES             | Low resolution
+002.jpg                             | 316x210       | 33       | YES             | Low resolution + Small file size
+003.jpg                             | 316x210       | 38       | YES             | Low resolution + Small file size
+004.jpg                             | 316x210       | 21       | YES             | Low resolution + Small file size
+005.jpg                             | 316x210       | 27       | YES             | Low resolution + Small file size
+006.jpg                             | 316x210       | 13       | YES             | Low resolution + Small file size
+007.jpg                             | 316x210       | 27       | YES             | Low resolution + Small file size
+008.jpg                             | 316x210       | 31       | YES             | Low resolution + Small file size
+009.jpg                             | 316x210       | 42       | YES             | Low resolution + Small file size
+010.jpg                             | 316x210       | 22       | YES             | Low resolution + Small file size
+011.jpg                             | 316x210       | 26       | YES             | Low resolution + Small file size
+012.jpg                             | 316x210       | 23       | YES             | Low resolution + Small file size
+013.jpg                             | 316x210       | 22       | YES             | Low resolution + Small file size
+014.jpg                             | 316x210       | 23       | YES             | Low resolution + Small file size
+015.jpg                             | 316x210       | 29       | YES             | Low resolution + Small file size
+016.jpg                             | 316x210       | 28       | YES             | Low resolution + Small file size
+017.jpg                             | 316x210       | 14       | YES             | Low resolution + Small file size
+018.jpg                             | 316x421       | 60       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: kerry-dominic ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.png                             | 560x369       | 76       | YES             | Low resolution + Small file size
+002.png                             | 563x368       | 608      | YES             | Low resolution
+003.png                             | 555x367       | 522      | YES             | Low resolution
+004.png                             | 560x372       | 446      | YES             | Low resolution
+005.png                             | 537x634       | 1043     | YES             | Low resolution
+006.png                             | 545x640       | 1032     | YES             | Low resolution
+007.png                             | 536x623       | 845      | YES             | Low resolution
+008.png                             | 553x372       | 513      | YES             | Low resolution
+009.png                             | 558x375       | 435      | YES             | Low resolution
+010.png                             | 544x369       | 596      | YES             | Low resolution
+011.png                             | 561x638       | 698      | YES             | Low resolution
+012.png                             | 557x380       | 450      | YES             | Low resolution
+013.png                             | 555x370       | 614      | YES             | Low resolution
+014.png                             | 562x269       | 462      | YES             | Low resolution
+015.png                             | 540x626       | 1051     | YES             | Low resolution
+016.png                             | 556x360       | 618      | YES             | Low resolution
+017.png                             | 552x360       | 541      | YES             | Low resolution
+018.png                             | 558x368       | 588      | YES             | Low resolution
+019.png                             | 559x568       | 855      | YES             | Low resolution
+020.png                             | 559x354       | 577      | YES             | Low resolution
+021.png                             | 556x370       | 585      | YES             | Low resolution
+022.png                             | 562x362       | 471      | YES             | Low resolution
+
+=== DIRECTORY: kristine-leuze-rum-river ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.png                             | 1440x1080      | 2221     | YES             | Low resolution
+002.png                             | 293x442       | 211      | YES             | Low resolution
+003.png                             | 293x442       | 263      | YES             | Low resolution
+004.png                             | 619x442       | 453      | YES             | Low resolution
+005.png                             | 667x442       | 729      | YES             | Low resolution
+006.png                             | 667x442       | 764      | YES             | Low resolution
+
+=== DIRECTORY: kyle-carrie ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1024x683       | 63       | YES             | Low resolution + Small file size
+002.jpg                             | 1024x683       | 51       | YES             | Low resolution + Small file size
+003.jpg                             | 1024x683       | 59       | YES             | Low resolution + Small file size
+004.jpg                             | 1024x683       | 76       | YES             | Low resolution + Small file size
+005.jpg                             | 1024x683       | 60       | YES             | Low resolution + Small file size
+006.jpg                             | 1024x683       | 86       | YES             | Low resolution + Small file size
+007.jpg                             | 1024x683       | 124      | YES             | Low resolution
+008.jpg                             | 1024x683       | 108      | YES             | Low resolution
+009.jpg                             | 1024x683       | 109      | YES             | Low resolution
+010.jpg                             | 1024x683       | 112      | YES             | Low resolution
+011.jpg                             | 1024x683       | 139      | YES             | Low resolution
+012.jpg                             | 1024x683       | 113      | YES             | Low resolution
+013.jpg                             | 1024x683       | 87       | YES             | Low resolution + Small file size
+014.jpg                             | 1024x683       | 67       | YES             | Low resolution + Small file size
+015.jpg                             | 1024x683       | 99       | YES             | Low resolution + Small file size
+016.jpg                             | 1024x683       | 70       | YES             | Low resolution + Small file size
+017.jpg                             | 1024x683       | 62       | YES             | Low resolution + Small file size
+018.jpg                             | 1024x683       | 78       | YES             | Low resolution + Small file size
+019.jpg                             | 1024x683       | 118      | YES             | Low resolution
+020.jpg                             | 1024x683       | 118      | YES             | Low resolution
+021.jpg                             | 1024x683       | 62       | YES             | Low resolution + Small file size
+022.jpg                             | 1024x683       | 187      | YES             | Low resolution
+023.jpg                             | 1024x683       | 191      | YES             | Low resolution
+024.jpg                             | 1024x683       | 175      | YES             | Low resolution
+025.jpg                             | 1024x683       | 93       | YES             | Low resolution + Small file size
+026.jpg                             | 1024x683       | 98       | YES             | Low resolution + Small file size
+027.jpg                             | 1024x683       | 151      | YES             | Low resolution
+028.jpg                             | 1024x683       | 154      | YES             | Low resolution
+029.jpg                             | 1024x683       | 114      | YES             | Low resolution
+030.jpg                             | 1024x683       | 93       | YES             | Low resolution + Small file size
+031.jpg                             | 1024x683       | 139      | YES             | Low resolution
+032.jpg                             | 1024x683       | 143      | YES             | Low resolution
+033.jpg                             | 1024x683       | 135      | YES             | Low resolution
+034.jpg                             | 1024x683       | 104      | YES             | Low resolution
+035.jpg                             | 1024x683       | 87       | YES             | Low resolution + Small file size
+036.jpg                             | 1024x683       | 92       | YES             | Low resolution + Small file size
+037.jpg                             | 1024x683       | 111      | YES             | Low resolution
+038.jpg                             | 1024x683       | 77       | YES             | Low resolution + Small file size
+039.jpg                             | 1024x683       | 130      | YES             | Low resolution
+040.jpg                             | 1024x683       | 65       | YES             | Low resolution + Small file size
+041.jpg                             | 1024x683       | 90       | YES             | Low resolution + Small file size
+042.jpg                             | 1024x683       | 97       | YES             | Low resolution + Small file size
+043.jpg                             | 1024x683       | 97       | YES             | Low resolution + Small file size
+044.jpg                             | 1024x683       | 100      | YES             | Low resolution
+045.jpg                             | 1024x683       | 119      | YES             | Low resolution
+046.jpg                             | 1024x683       | 119      | YES             | Low resolution
+047.jpg                             | 1024x683       | 91       | YES             | Low resolution + Small file size
+048.jpg                             | 1024x683       | 124      | YES             | Low resolution
+049.jpg                             | 512x768       | 73       | YES             | Low resolution + Small file size
+050.jpg                             | 512x768       | 37       | YES             | Low resolution + Small file size
+051.jpg                             | 512x768       | 58       | YES             | Low resolution + Small file size
+052.jpg                             | 512x768       | 46       | YES             | Low resolution + Small file size
+053.jpg                             | 512x768       | 96       | YES             | Low resolution + Small file size
+054.jpg                             | 512x768       | 76       | YES             | Low resolution + Small file size
+055.jpg                             | 512x768       | 48       | YES             | Low resolution + Small file size
+056.jpg                             | 512x768       | 49       | YES             | Low resolution + Small file size
+057.jpg                             | 512x768       | 39       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: loria-and-jason-rolstad-agape ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 366      | YES             | Low resolution
+002.jpg                             | 316x474       | 30       | YES             | Low resolution + Small file size
+003.jpg                             | 316x474       | 38       | YES             | Low resolution + Small file size
+004.jpg                             | 316x474       | 62       | YES             | Low resolution + Small file size
+005.jpg                             | 316x474       | 41       | YES             | Low resolution + Small file size
+006.jpg                             | 316x474       | 32       | YES             | Low resolution + Small file size
+007.jpg                             | 316x474       | 37       | YES             | Low resolution + Small file size
+008.jpg                             | 316x474       | 30       | YES             | Low resolution + Small file size
+009.jpg                             | 316x474       | 40       | YES             | Low resolution + Small file size
+010.jpg                             | 316x474       | 63       | YES             | Low resolution + Small file size
+011.jpg                             | 316x474       | 66       | YES             | Low resolution + Small file size
+012.jpg                             | 316x474       | 75       | YES             | Low resolution + Small file size
+013.jpg                             | 316x474       | 41       | YES             | Low resolution + Small file size
+014.jpg                             | 316x474       | 62       | YES             | Low resolution + Small file size
+015.jpg                             | 316x474       | 92       | YES             | Low resolution + Small file size
+016.jpg                             | 316x474       | 94       | YES             | Low resolution + Small file size
+017.jpg                             | 316x474       | 73       | YES             | Low resolution + Small file size
+018.jpg                             | 316x474       | 41       | YES             | Low resolution + Small file size
+019.jpg                             | 316x474       | 92       | YES             | Low resolution + Small file size
+020.jpg                             | 316x474       | 108      | YES             | Low resolution
+021.jpg                             | 316x474       | 52       | YES             | Low resolution + Small file size
+022.jpg                             | 316x474       | 57       | YES             | Low resolution + Small file size
+023.jpg                             | 316x474       | 57       | YES             | Low resolution + Small file size
+024.jpg                             | 316x474       | 55       | YES             | Low resolution + Small file size
+025.jpg                             | 316x474       | 73       | YES             | Low resolution + Small file size
+026.jpg                             | 316x474       | 57       | YES             | Low resolution + Small file size
+027.jpg                             | 316x474       | 54       | YES             | Low resolution + Small file size
+028.jpg                             | 316x474       | 47       | YES             | Low resolution + Small file size
+029.jpg                             | 316x474       | 68       | YES             | Low resolution + Small file size
+030.jpg                             | 316x474       | 56       | YES             | Low resolution + Small file size
+031.jpg                             | 316x474       | 65       | YES             | Low resolution + Small file size
+032.jpg                             | 316x474       | 56       | YES             | Low resolution + Small file size
+033.jpg                             | 316x474       | 57       | YES             | Low resolution + Small file size
+034.jpg                             | 316x474       | 40       | YES             | Low resolution + Small file size
+035.jpg                             | 316x474       | 45       | YES             | Low resolution + Small file size
+036.jpg                             | 316x474       | 37       | YES             | Low resolution + Small file size
+037.jpg                             | 316x474       | 36       | YES             | Low resolution + Small file size
+038.jpg                             | 316x474       | 33       | YES             | Low resolution + Small file size
+039.jpg                             | 316x474       | 61       | YES             | Low resolution + Small file size
+040.jpg                             | 316x474       | 34       | YES             | Low resolution + Small file size
+041.jpg                             | 316x474       | 25       | YES             | Low resolution + Small file size
+042.jpg                             | 316x474       | 37       | YES             | Low resolution + Small file size
+043.jpg                             | 316x474       | 26       | YES             | Low resolution + Small file size
+044.jpg                             | 316x474       | 43       | YES             | Low resolution + Small file size
+045.jpg                             | 316x474       | 30       | YES             | Low resolution + Small file size
+046.jpg                             | 316x474       | 36       | YES             | Low resolution + Small file size
+047.jpg                             | 316x474       | 61       | YES             | Low resolution + Small file size
+048.jpg                             | 316x474       | 35       | YES             | Low resolution + Small file size
+049.jpg                             | 316x474       | 48       | YES             | Low resolution + Small file size
+050.jpg                             | 316x474       | 52       | YES             | Low resolution + Small file size
+051.jpg                             | 316x474       | 49       | YES             | Low resolution + Small file size
+052.jpg                             | 316x474       | 24       | YES             | Low resolution + Small file size
+053.jpg                             | 316x474       | 27       | YES             | Low resolution + Small file size
+054.jpg                             | 316x474       | 42       | YES             | Low resolution + Small file size
+055.jpg                             | 316x474       | 32       | YES             | Low resolution + Small file size
+056.jpg                             | 316x474       | 30       | YES             | Low resolution + Small file size
+057.jpg                             | 316x474       | 49       | YES             | Low resolution + Small file size
+058.jpg                             | 316x474       | 44       | YES             | Low resolution + Small file size
+059.jpg                             | 316x474       | 37       | YES             | Low resolution + Small file size
+060.jpg                             | 316x474       | 27       | YES             | Low resolution + Small file size
+061.jpg                             | 316x474       | 30       | YES             | Low resolution + Small file size
+062.jpg                             | 316x474       | 41       | YES             | Low resolution + Small file size
+063.jpg                             | 316x474       | 39       | YES             | Low resolution + Small file size
+064.jpg                             | 316x474       | 29       | YES             | Low resolution + Small file size
+065.jpg                             | 316x474       | 63       | YES             | Low resolution + Small file size
+066.jpg                             | 316x474       | 42       | YES             | Low resolution + Small file size
+067.jpg                             | 316x474       | 57       | YES             | Low resolution + Small file size
+068.jpg                             | 316x474       | 40       | YES             | Low resolution + Small file size
+069.jpg                             | 316x474       | 91       | YES             | Low resolution + Small file size
+070.jpg                             | 316x237       | 33       | YES             | Low resolution + Small file size
+071.jpg                             | 316x237       | 38       | YES             | Low resolution + Small file size
+072.jpg                             | 316x237       | 45       | YES             | Low resolution + Small file size
+073.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+074.jpg                             | 316x237       | 29       | YES             | Low resolution + Small file size
+075.jpg                             | 316x237       | 36       | YES             | Low resolution + Small file size
+076.jpg                             | 316x237       | 33       | YES             | Low resolution + Small file size
+077.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+078.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+079.jpg                             | 316x237       | 28       | YES             | Low resolution + Small file size
+080.jpg                             | 316x237       | 41       | YES             | Low resolution + Small file size
+081.jpg                             | 316x237       | 14       | YES             | Low resolution + Small file size
+082.jpg                             | 316x237       | 26       | YES             | Low resolution + Small file size
+083.jpg                             | 316x237       | 21       | YES             | Low resolution + Small file size
+084.jpg                             | 316x237       | 25       | YES             | Low resolution + Small file size
+085.jpg                             | 316x237       | 16       | YES             | Low resolution + Small file size
+086.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+087.jpg                             | 316x237       | 21       | YES             | Low resolution + Small file size
+088.jpg                             | 316x237       | 23       | YES             | Low resolution + Small file size
+089.jpg                             | 316x237       | 33       | YES             | Low resolution + Small file size
+090.jpg                             | 316x237       | 16       | YES             | Low resolution + Small file size
+091.jpg                             | 316x237       | 22       | YES             | Low resolution + Small file size
+092.jpg                             | 316x237       | 33       | YES             | Low resolution + Small file size
+093.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+094.jpg                             | 316x237       | 26       | YES             | Low resolution + Small file size
+095.jpg                             | 316x237       | 44       | YES             | Low resolution + Small file size
+096.jpg                             | 316x237       | 41       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: mattea-courtney-photo-gallery ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1024x683       | 239      | YES             | Low resolution
+002.jpg                             | 1024x683       | 235      | YES             | Low resolution
+003.jpg                             | 1024x1536      | 656      | YES             | Low resolution
+004.jpg                             | 1024x1536      | 740      | YES             | Low resolution
+005.jpg                             | 1024x683       | 164      | YES             | Low resolution
+006.jpg                             | 1024x1536      | 394      | YES             | Low resolution
+007.jpg                             | 1024x683       | 409      | YES             | Low resolution
+008.jpg                             | 1024x1536      | 248      | YES             | Low resolution
+009.jpg                             | 1024x683       | 257      | YES             | Low resolution
+010.jpg                             | 1024x683       | 116      | YES             | Low resolution
+011.jpg                             | 1024x1536      | 247      | YES             | Low resolution
+012.jpg                             | 1024x683       | 380      | YES             | Low resolution
+013.jpg                             | 1024x683       | 362      | YES             | Low resolution
+014.jpg                             | 1024x1536      | 263      | YES             | Low resolution
+015.jpg                             | 1024x1536      | 236      | YES             | Low resolution
+016.jpg                             | 1024x1534      | 483      | YES             | Low resolution
+017.jpg                             | 1024x683       | 102      | YES             | Low resolution
+018.jpg                             | 1024x1534      | 364      | YES             | Low resolution
+019.jpg                             | 1024x1534      | 348      | YES             | Low resolution
+020.jpg                             | 1024x1536      | 212      | YES             | Low resolution
+021.jpg                             | 1024x1536      | 236      | YES             | Low resolution
+022.jpg                             | 1024x683       | 313      | YES             | Low resolution
+023.jpg                             | 1024x1534      | 672      | YES             | Low resolution
+024.jpg                             | 1024x1536      | 233      | YES             | Low resolution
+025.jpg                             | 1024x1536      | 282      | YES             | Low resolution
+026.jpg                             | 1024x1536      | 189      | YES             | Low resolution
+027.jpg                             | 1024x683       | 179      | YES             | Low resolution
+028.jpg                             | 1024x1536      | 288      | YES             | Low resolution
+029.jpg                             | 1024x683       | 127      | YES             | Low resolution
+030.jpg                             | 1024x1536      | 299      | YES             | Low resolution
+031.jpg                             | 1024x683       | 137      | YES             | Low resolution
+032.jpg                             | 1024x683       | 157      | YES             | Low resolution
+033.jpg                             | 1024x683       | 183      | YES             | Low resolution
+034.jpg                             | 1024x683       | 150      | YES             | Low resolution
+035.jpg                             | 1024x683       | 101      | YES             | Low resolution
+036.jpg                             | 1024x1536      | 269      | YES             | Low resolution
+037.jpg                             | 1024x1536      | 268      | YES             | Low resolution
+038.jpg                             | 1024x683       | 152      | YES             | Low resolution
+039.jpg                             | 1024x1536      | 172      | YES             | Low resolution
+040.jpg                             | 1024x683       | 212      | YES             | Low resolution
+041.jpg                             | 1024x683       | 187      | YES             | Low resolution
+042.jpg                             | 1024x1536      | 356      | YES             | Low resolution
+043.jpg                             | 1024x1536      | 235      | YES             | Low resolution
+044.jpg                             | 1024x683       | 197      | YES             | Low resolution
+045.jpg                             | 1024x1536      | 285      | YES             | Low resolution
+046.jpg                             | 1024x683       | 202      | YES             | Low resolution
+047.jpg                             | 1024x683       | 363      | YES             | Low resolution
+048.jpg                             | 1024x1534      | 487      | YES             | Low resolution
+049.jpg                             | 1024x1536      | 355      | YES             | Low resolution
+050.jpg                             | 1024x1536      | 244      | YES             | Low resolution
+051.jpg                             | 1024x1536      | 219      | YES             | Low resolution
+052.jpg                             | 1024x1536      | 236      | YES             | Low resolution
+053.jpg                             | 1024x1536      | 320      | YES             | Low resolution
+054.jpg                             | 1024x683       | 158      | YES             | Low resolution
+055.jpg                             | 1024x1536      | 560      | YES             | Low resolution
+056.jpg                             | 1024x1534      | 265      | YES             | Low resolution
+057.jpg                             | 1024x1536      | 233      | YES             | Low resolution
+058.jpg                             | 1024x1534      | 244      | YES             | Low resolution
+059.jpg                             | 1024x1534      | 265      | YES             | Low resolution
+060.jpg                             | 1024x1534      | 320      | YES             | Low resolution
+061.jpg                             | 1024x1534      | 270      | YES             | Low resolution
+062.jpg                             | 1024x1534      | 359      | YES             | Low resolution
+063.jpg                             | 1024x1534      | 313      | YES             | Low resolution
+064.jpg                             | 1024x683       | 177      | YES             | Low resolution
+065.jpg                             | 1024x683       | 203      | YES             | Low resolution
+066.jpg                             | 1024x683       | 234      | YES             | Low resolution
+067.jpg                             | 1024x683       | 230      | YES             | Low resolution
+068.jpg                             | 1024x1536      | 360      | YES             | Low resolution
+069.jpg                             | 1024x683       | 190      | YES             | Low resolution
+070.jpg                             | 1024x683       | 232      | YES             | Low resolution
+071.jpg                             | 1024x683       | 267      | YES             | Low resolution
+072.jpg                             | 1024x683       | 199      | YES             | Low resolution
+073.jpg                             | 1024x683       | 214      | YES             | Low resolution
+074.jpg                             | 1024x683       | 197      | YES             | Low resolution
+075.jpg                             | 1024x683       | 190      | YES             | Low resolution
+076.jpg                             | 1024x683       | 236      | YES             | Low resolution
+077.jpg                             | 1024x1536      | 392      | YES             | Low resolution
+078.jpg                             | 1024x683       | 262      | YES             | Low resolution
+079.jpg                             | 1024x683       | 280      | YES             | Low resolution
+080.jpg                             | 1024x1536      | 367      | YES             | Low resolution
+081.jpg                             | 1024x683       | 270      | YES             | Low resolution
+082.jpg                             | 1024x683       | 357      | YES             | Low resolution
+083.jpg                             | 1024x683       | 254      | YES             | Low resolution
+084.jpg                             | 1024x683       | 355      | YES             | Low resolution
+085.jpg                             | 1024x683       | 237      | YES             | Low resolution
+086.jpg                             | 1024x683       | 134      | YES             | Low resolution
+087.jpg                             | 1024x683       | 113      | YES             | Low resolution
+088.jpg                             | 1024x683       | 178      | YES             | Low resolution
+089.jpg                             | 1024x683       | 191      | YES             | Low resolution
+
+=== DIRECTORY: nick-and-kayla ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 416      | YES             | Low resolution
+002.jpg                             | 316x237       | 31       | YES             | Low resolution + Small file size
+003.jpg                             | 316x237       | 43       | YES             | Low resolution + Small file size
+004.jpg                             | 316x237       | 39       | YES             | Low resolution + Small file size
+005.jpg                             | 316x237       | 49       | YES             | Low resolution + Small file size
+006.jpg                             | 316x237       | 50       | YES             | Low resolution + Small file size
+007.jpg                             | 316x237       | 34       | YES             | Low resolution + Small file size
+008.jpg                             | 316x237       | 40       | YES             | Low resolution + Small file size
+009.jpg                             | 316x237       | 38       | YES             | Low resolution + Small file size
+010.jpg                             | 316x421       | 74       | YES             | Low resolution + Small file size
+011.jpg                             | 316x421       | 71       | YES             | Low resolution + Small file size
+012.jpg                             | 316x421       | 57       | YES             | Low resolution + Small file size
+013.jpg                             | 316x421       | 45       | YES             | Low resolution + Small file size
+014.jpg                             | 316x421       | 42       | YES             | Low resolution + Small file size
+015.jpg                             | 316x421       | 52       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: rachel-and-vince ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+002.jpg                             | 640x960       | 74       | YES             | Low resolution + Small file size
+003.jpg                             | 1229x820       | 129      | YES             | Low resolution
+004.jpg                             | 1380x920       | 96       | YES             | Low resolution + Small file size
+005.jpg                             | 1380x920       | 94       | YES             | Low resolution + Small file size
+006.jpg                             | 1380x920       | 231      | YES             | Low resolution
+007.jpg                             | 1366x911       | 245      | YES             | Low resolution
+008.jpg                             | 1380x920       | 138      | YES             | Low resolution
+009.jpg                             | 1380x920       | 185      | YES             | Low resolution
+010.jpg                             | 1380x920       | 99       | YES             | Low resolution + Small file size
+011.jpg                             | 1380x920       | 113      | YES             | Low resolution
+012.jpg                             | 1380x920       | 218      | YES             | Low resolution
+013.jpg                             | 1380x920       | 177      | YES             | Low resolution
+014.jpg                             | 1380x920       | 138      | YES             | Low resolution
+015.jpg                             | 1380x920       | 201      | YES             | Low resolution
+016.jpg                             | 640x960       | 59       | YES             | Low resolution + Small file size
+017.jpg                             | 640x960       | 60       | YES             | Low resolution + Small file size
+018.jpg                             | 1170x780       | 109      | YES             | Low resolution
+019.jpg                             | 1343x857       | 212      | YES             | Low resolution
+020.jpg                             | 1380x920       | 81       | YES             | Low resolution + Small file size
+
+=== DIRECTORY: reins-wedding ===
+
+File Name                           | Dimensions   | Size KB  | Needs Upscaling | Reason
+----------------------------------- | ------------ | -------- | --------------- | --------------------
+001.jpg                             | 1440x810       | 337      | YES             | Low resolution
+002.jpg                             | 316x210       | 19       | YES             | Low resolution + Small file size
+003.jpg                             | 316x210       | 36       | YES             | Low resolution + Small file size
+004.jpg                             | 316x210       | 35       | YES             | Low resolution + Small file size
+005.jpg                             | 316x210       | 37       | YES             | Low resolution + Small file size
+006.jpg                             | 316x210       | 38       | YES             | Low resolution + Small file size
+007.jpg                             | 316x210       | 31       | YES             | Low resolution + Small file size
+008.jpg                             | 316x210       | 28       | YES             | Low resolution + Small file size
+009.jpg                             | 316x210       | 24       | YES             | Low resolution + Small file size
+010.jpg                             | 316x210       | 15       | YES             | Low resolution + Small file size
+011.jpg                             | 316x210       | 33       | YES             | Low resolution + Small file size
+012.jpg                             | 316x210       | 27       | YES             | Low resolution + Small file size
+013.jpg                             | 316x210       | 36       | YES             | Low resolution + Small file size
+014.jpg                             | 316x210       | 27       | YES             | Low resolution + Small file size
+015.jpg                             | 316x210       | 36       | YES             | Low resolution + Small file size
+016.jpg                             | 316x210       | 45       | YES             | Low resolution + Small file size
+017.jpg                             | 316x210       | 36       | YES             | Low resolution + Small file size
+018.jpg                             | 316x210       | 23       | YES             | Low resolution + Small file size
+019.jpg                             | 316x210       | 30       | YES             | Low resolution + Small file size
+020.jpg                             | 316x210       | 33       | YES             | Low resolution + Small file size
+021.jpg                             | 316x210       | 29       | YES             | Low resolution + Small file size
+022.jpg                             | 316x210       | 24       | YES             | Low resolution + Small file size
+023.jpg                             | 316x210       | 28       | YES             | Low resolution + Small file size
+024.jpg                             | 316x421       | 38       | YES             | Low resolution + Small file size
+025.jpg                             | 316x421       | 47       | YES             | Low resolution + Small file size
+026.jpg                             | 316x421       | 86       | YES             | Low resolution + Small file size
+027.jpg                             | 316x421       | 47       | YES             | Low resolution + Small file size
+028.jpg                             | 316x421       | 73       | YES             | Low resolution + Small file size
+029.jpg                             | 316x421       | 40       | YES             | Low resolution + Small file size
+030.jpg                             | 316x421       | 54       | YES             | Low resolution + Small file size
+031.jpg                             | 316x421       | 51       | YES             | Low resolution + Small file size
+032.jpg                             | 316x421       | 45       | YES             | Low resolution + Small file size
+
+=== SUMMARY ===
+
+Total images analyzed: 669
+Images needing upscaling: 570
+Low resolution images: 570
+Small file size images: 363
+Percentage needing upscaling: 85.2%

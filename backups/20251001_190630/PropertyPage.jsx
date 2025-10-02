@@ -5,9 +5,9 @@ const venueData = {
   whiteBarn: {
     title: 'White Barn Loft',
     images: [
-      '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
-      '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
+      'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800',
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800'
     ],
     description: 'The white barn is the main event barn consisting of the large loft area and the lower level lounge. The original hay loft is spacious and open with tall ceilings and hardwood floors. The loft can accommodate guests for a ceremony, reception dinner, and/or a dance.',
     features: [
@@ -21,7 +21,7 @@ const venueData = {
     title: 'Frame Barn',
     images: [
       'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg',
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800',
       'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800'
     ],
     description: 'This open timber frame barn is a rustic shelter just begging for white sheers hanging in the breeze with string lights overhead at an outdoor ceremony. Either as first choice or a rain back-up location, there is plenty of space for a wedding ceremony.',
@@ -35,9 +35,9 @@ const venueData = {
   grounds: {
     title: 'The Grounds',
     images: [
-      '/images/venue/property-vineyard-rows-landscape.jpg',
-      '/images/venue/property-field-wildflowers-natural.jpg',
-      '/images/venue/property-landscape-rural-vista.jpg'
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+      'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=800',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800'
     ],
     description: 'With plenty of open space and grassy fields, the grounds offer many places for outdoor celebrations. The Vineyards boast 14 of the 22 Minnesota hardy grapes produced by the University of Minnesota for making wine.',
     features: [
@@ -66,7 +66,7 @@ const venueData = {
     title: 'Bridal Room',
     images: [
       'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800',
-      '/images/venue/property-landscape-rural-vista.jpg',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800',
       'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800'
     ],
     description: 'As the original homestead of the property, this former one room house is a lovely little retreat for the Bride and bridal party to relax and get ready for the big day.',
@@ -82,7 +82,7 @@ const venueData = {
     images: [
       'https://images.unsplash.com/photo-1544427920-c49ccfb85579?w=800',
       'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800'
     ],
     description: 'This outdoor courtyard is the perfect place for the Bride to enjoy the beauty of the day while remaining private before her walk down the isle.',
     features: [

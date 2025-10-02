@@ -394,7 +394,7 @@ body {
 /* Hero Section Enhanced */
 .hero-enhanced {
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(107, 78, 61, 0.9) 0%, rgba(58, 74, 60, 0.8) 100%), url('/images/venue/barn-exterior-full-deck-view-evening.jpg') center/cover;
+  background: linear-gradient(135deg, rgba(107, 78, 61, 0.9) 0%, rgba(58, 74, 60, 0.8) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600') center/cover;
   display: flex;
   align-items: center;
   position: relative;
@@ -1877,19 +1877,19 @@ body {
 
 /* Background images for each card */
 .card-weddings .card-background {
-  background-image: url('/images/venue/barn-interior-ceiling-beams-lighting.jpg');
+  background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800');
 }
 
 .card-property .card-background {
-  background-image: url('/images/venue/property-vineyard-rows-landscape.jpg');
+  background-image: url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800');
 }
 
 .card-gallery .card-background {
-  background-image: url('/images/venue/details-swing-rustic-romance.jpg');
+  background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800');
 }
 
 .card-engagement .card-background {
-  background-image: url('/images/venue/barn-exterior-deck-swing-golden-hour.jpg');
+  background-image: url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800');
 }
 
 /* Loading animation */
