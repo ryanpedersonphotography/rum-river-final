@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Footer Contrast Test</title>
+</head>
+<body style="margin: 0; padding: 20px;">
+    <h2>Current Footer Colors:</h2>
+    
+    <div style="background: #2C2416; padding: 20px; margin-bottom: 20px;">
+        <p style="color: rgba(255,255,255,0.9); margin: 0;">Text at 90% opacity - Main footer text</p>
+        <p style="color: rgba(255,255,255,0.85); margin: 0;">Text at 85% opacity - Paragraph text</p>
+        <p style="color: rgba(255,255,255,0.7); margin: 0;">Text at 70% opacity - Original</p>
+        <p style="color: rgba(255,255,255,0.6); margin: 0;">Text at 60% opacity - Copyright</p>
+    </div>
+    
+    <h2>Testing Pure White:</h2>
+    <div style="background: #2C2416; padding: 20px; margin-bottom: 20px;">
+        <p style="color: white; margin: 0;">Pure white text (100% opacity)</p>
+        <p style="color: #E4C896; margin: 0;">Champagne gold (#E4C896)</p>
+        <p style="color: #D4A574; margin: 0;">Accent gold (#D4A574)</p>
+    </div>
+    
+    <h2>Alternative Backgrounds:</h2>
+    <div style="background: #1a1a1a; padding: 20px; margin-bottom: 20px;">
+        <p style="color: rgba(255,255,255,0.9); margin: 0;">90% white on darker black (#1a1a1a)</p>
+    </div>
+    
+    <div style="background: #000000; padding: 20px; margin-bottom: 20px;">
+        <p style="color: rgba(255,255,255,0.9); margin: 0;">90% white on pure black (#000000)</p>
+    </div>
+
+    <p>Background color #2C2416 is a very dark brown, almost black.</p>
+    <p>For WCAG AA compliance, we need 4.5:1 contrast ratio minimum.</p>
+    <p>White (#FFFFFF) on #2C2416 should give approximately 16:1 ratio.</p>
+    <p>At 90% opacity, it's effectively #E6E6E6 which would be around 14:1.</p>
+</body>
+</html>
