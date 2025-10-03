@@ -5,6 +5,7 @@ import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { getWeddingBySlug } from '../data/realWeddings'
 import SmartImageSimple from '../components/SmartImageSimple'
+import Footer from '../components/Footer'
 
 // Sample wedding data (fallback for old URLs)
 const sampleWeddingData = {
@@ -324,6 +325,8 @@ export default function RealWeddingPost() {
         </div>
       </section>
 
+      <Footer />
+
       {/* Lightbox */}
       <Lightbox
         open={lightboxOpen}
@@ -333,12 +336,12 @@ export default function RealWeddingPost() {
         render={{
           slide: ({ slide }) =>
             slide.type === "enhanced-image" ? (
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center' 
+              <div style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}>
                 <SmartImageSimple
                   src={slide.src}

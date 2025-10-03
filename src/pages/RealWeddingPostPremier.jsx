@@ -3,6 +3,7 @@ import { Masonry } from 'masonic'
 import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
+import Footer from '../components/Footer'
 
 // Sample premier wedding data with magazine-style story blocks
 const premierWeddingData = {
@@ -396,6 +397,8 @@ export default function RealWeddingPostPremier() {
           </a>
         </div>
       </section>
+
+      <Footer />
 
       <Lightbox
         open={lightboxOpen}
