@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import PageTemplate from '../components/PageTemplate'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import Card from '../components/Card'
+import CTAButton from '../components/CTAButton'
 import { realWeddings } from '../data/realWeddings'
 
 export default function RealWeddingsPage() {

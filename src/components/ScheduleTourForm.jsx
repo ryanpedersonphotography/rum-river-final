@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import NetlifyForm from './NetlifyForm';
 import FormSubmitButton from './FormSubmitButton';
 import SectionHeader from './SectionHeader';
@@ -20,13 +21,18 @@ export const ScheduleTourForm = ({
   submitText = 'Schedule Tour',
   loadingText = 'SCHEDULING...',
   className = '',
-  showHeader = true
+  showHeader = true,
+  fieldVariant = 'light',
+  withSection = true,
 }) => {
   const theme = useTheme();
+  const isDarkVariant = fieldVariant === 'dark';
   const errorStyles = {
-    background: 'rgba(212, 165, 165, 0.1)',
-    border: '1px solid rgba(212, 165, 165, 0.3)',
-    color: theme.colors.semantic.text,
+    background: isDarkVariant ? 'rgba(255,255,255,0.1)' : 'rgba(212, 165, 165, 0.1)',
+    border: isDarkVariant
+      ? '1px solid rgba(255,255,255,0.3)'
+      : '1px solid rgba(212, 165, 165, 0.3)',
+    color: isDarkVariant ? theme.colors.semantic.textOnDark : theme.colors.semantic.text,
   };
 
   const tourTimeOptions = [
@@ -48,21 +54,25 @@ export const ScheduleTourForm = ({
     { value: '200+', label: '200+ Guests' },
   ];
 
-  return (
-    <section className={`cta-contact-section ${className}`.trim()}>
-      <div className="cta-contact-container">
-        {showHeader && (
-          <SectionHeader
-            eyebrow={subtitle}
-            title={title}
-            description={description}
-            align="center"
-          />
-        )}
+  const containerClassName = clsx(
+    'cta-contact-container',
+    !withSection && className,
+  );
 
-        <NetlifyForm name={formName} action={redirectPath}>
-          {({ handleSubmit, submitting, error, honeypotField }) => (
-            <form className="form-stack" onSubmit={handleSubmit}>
+  const content = (
+    <div className={containerClassName}>
+      {showHeader && (
+        <SectionHeader
+          eyebrow={subtitle}
+          title={title}
+          description={description}
+          align="center"
+        />
+      )}
+
+      <NetlifyForm name={formName} action={redirectPath}>
+        {({ handleSubmit, submitting, error, honeypotField }) => (
+          <form className="form-stack" onSubmit={handleSubmit}>
               {honeypotField}
               {error && (
                 <div className="form-feedback" style={errorStyles}>
@@ -74,6 +84,7 @@ export const ScheduleTourForm = ({
                 name="name"
                 label="Your Name"
                 required
+                variant={fieldVariant}
                 disabled={submitting}
               />
 
@@ -83,6 +94,7 @@ export const ScheduleTourForm = ({
                   label="Email Address"
                   type="email"
                   required
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
                 <FormField
@@ -90,6 +102,7 @@ export const ScheduleTourForm = ({
                   label="Phone Number"
                   type="tel"
                   required
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
               </FormRow>
@@ -99,6 +112,7 @@ export const ScheduleTourForm = ({
                   name="proposedEventDate"
                   label="Proposed Event Date"
                   type="date"
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
                 <FormField
@@ -106,6 +120,7 @@ export const ScheduleTourForm = ({
                   label="Preferred Tour Date"
                   type="date"
                   required
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
               </FormRow>
@@ -116,6 +131,7 @@ export const ScheduleTourForm = ({
                   label="Preferred Tour Time"
                   component="select"
                   options={tourTimeOptions}
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
                 <FormField
@@ -123,6 +139,7 @@ export const ScheduleTourForm = ({
                   label="Estimated Guest Count"
                   component="select"
                   options={guestCountOptions}
+                  variant={fieldVariant}
                   disabled={submitting}
                 />
               </FormRow>
@@ -133,6 +150,7 @@ export const ScheduleTourForm = ({
                 component="textarea"
                 rows={4}
                 placeholder="Tell us about your event plans or any specific questions..."
+                variant={fieldVariant}
                 disabled={submitting}
               />
 
@@ -143,10 +161,21 @@ export const ScheduleTourForm = ({
                   loadingText={loadingText}
                 />
               </div>
-            </form>
-          )}
-        </NetlifyForm>
-      </div>
+          </form>
+        )}
+      </NetlifyForm>
+    </div>
+  );
+
+  if (!withSection) {
+    return content;
+  }
+
+  const sectionClassName = clsx('cta-contact-section', className);
+
+  return (
+    <section className={sectionClassName}>
+      {content}
     </section>
   );
 };

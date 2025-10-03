@@ -3,7 +3,6 @@ import PageTemplate from '../components/PageTemplate'
 import CTAButton from '../components/CTAButton'
 import Section from '../components/Section'
 import SectionHeader from '../components/SectionHeader'
-import Card from '../components/Card'
 import FeatureList from '../components/FeatureList'
 
 const eventSections = [
@@ -147,7 +146,7 @@ export default function EventsPage() {
         <Section key={section.key} tone={section.tone}>
           <div className="content-wrapper">
             <div className={clsx('block-item', section.reverse && 'reverse')}>
-              <Card variant={section.variant} className="block-content">
+              <div className="block-content">
                 <SectionHeader
                   title={section.title}
                   description={section.description}
@@ -155,12 +154,12 @@ export default function EventsPage() {
                 />
                 <FeatureList
                   items={section.features.map((value) => ({ value }))}
-                  unstyled
+                  inheritColor
                 />
-                <CTAButton href="/contact" variant="primary">
+                <CTAButton href="/contact" variant="outline" className="btn-outline">
                   {section.ctaLabel}
                 </CTAButton>
-              </Card>
+              </div>
               <div className="block-image styled-image light no-link">
                 <img src={section.image.src} alt={section.image.alt} width="800" height="500" />
               </div>
@@ -169,9 +168,9 @@ export default function EventsPage() {
         </Section>
       ))}
 
-      <Section tone="walnutGradient">
+      <Section tone="walnut" className="contact-info-section">
         <div className="content-wrapper">
-          <Card variant="glass" className="contact-info-card">
+          <div className="contact-info-card">
             <SectionHeader
               eyebrow="Ready to Plan Your Event?"
               title="Let's Start Planning Together"
@@ -196,7 +195,7 @@ export default function EventsPage() {
             <CTAButton href="/contact" variant="primary">
               Schedule Your Tour
             </CTAButton>
-          </Card>
+          </div>
         </div>
       </Section>
     </PageTemplate>

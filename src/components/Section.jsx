@@ -58,6 +58,8 @@ const buildToneStyle = (theme, tone) => {
   return palette[tone] || palette.default;
 };
 
+const DARK_TONES = new Set(['walnut', 'forest', 'brown', 'walnutGradient', 'forestGradient']);
+
 const Section = forwardRef(function Section(
   {
     as: Tag = 'section',
@@ -100,14 +102,24 @@ const Section = forwardRef(function Section(
     ...style,
   };
 
-  const toneClass = tone && tone !== 'default'
-    ? `section-${tone.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`
+  const toneSlug = tone && tone !== 'default'
+    ? tone.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
     : null;
+
+  const toneClass = toneSlug ? `section-${toneSlug}` : null;
+  const isDarkTone = tone && DARK_TONES.has(tone);
+  const isDarkGradient = isDarkTone && /gradient$/i.test(tone);
 
   return (
     <Tag
       ref={ref}
-      className={clsx('section', toneClass, className)}
+      className={clsx(
+        'section',
+        toneClass,
+        isDarkTone && 'dark-section',
+        isDarkGradient && 'dark-gradient-section',
+        className,
+      )}
       style={finalStyle}
       {...rest}
     >

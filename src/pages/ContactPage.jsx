@@ -1,6 +1,6 @@
 import PageTemplate from '../components/PageTemplate'
 import NetlifyForm from '../components/NetlifyForm'
-import ScheduleTourForm from '../components/ScheduleTourForm'
+import ScheduleTourSection from '../components/ScheduleTourSection'
 import Icon from '../components/Icon'
 import Section from '../components/Section'
 import SectionHeader from '../components/SectionHeader'
@@ -99,11 +99,8 @@ export default function ContactPage() {
       </Section>
 
       {/* ID: CONTACT_FORM_001 - Schedule a Tour Form Section */}
-      <ScheduleTourForm
+      <ScheduleTourSection
         formName="schedule-tour"
-        title="Let's Start Planning Together"
-        subtitle="Schedule Your Tour"
-        description="Ready to see our beautiful venue in person? Let's find the perfect time for your visit."
       />
 
       {/* ID: MAP_DIRECTIONS_001 - Map & Directions Section */}

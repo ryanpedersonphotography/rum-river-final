@@ -15,6 +15,7 @@ const FeatureList = ({
   style,
   children,
   unstyled = false,
+  inheritColor = false,
 }) => {
   const theme = useTheme();
 
@@ -64,8 +65,8 @@ const FeatureList = ({
                     fontSize: theme.typography.sizes.base,
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
-                    color: theme.colors.accent.gold,
                     marginBottom: theme.spacing.xs,
+                    ...(inheritColor ? {} : { color: theme.colors.accent.gold }),
                   }}
                 >
                   {label}
@@ -77,8 +78,8 @@ const FeatureList = ({
                     fontFamily: theme.typography.fonts.body,
                     fontSize: theme.typography.sizes.base,
                     lineHeight: theme.typography.lineHeights.relaxed,
-                    color: theme.colors.semantic.text,
                     margin: 0,
+                    ...(inheritColor ? {} : { color: theme.colors.semantic.text }),
                   }}
                 >
                   {value}
@@ -90,8 +91,8 @@ const FeatureList = ({
                     fontFamily: theme.typography.fonts.body,
                     fontSize: theme.typography.sizes.sm,
                     lineHeight: theme.typography.lineHeights.normal,
-                    color: theme.colors.semantic.textLight,
                     margin: `${theme.spacing.xs} 0 0`,
+                    ...(inheritColor ? {} : { color: theme.colors.semantic.textLight }),
                   }}
                 >
                   {description}

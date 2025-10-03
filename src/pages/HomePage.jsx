@@ -1,28 +1,14 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../components/Header'
-import NetlifyForm from '../components/NetlifyForm'
-import { realWeddings } from '../data/realWeddings'
-import VenueTabs from '../components/VenueTabs'
-import CarouselControls from '../components/CarouselControls'
-import CTAButton from '../components/CTAButton'
-import ScheduleTourForm from '../components/ScheduleTourForm'
-import Icon from '../components/Icon'
-import SiteFooter from '../components/SiteFooter'
-import Section from '../components/Section'
-import SectionHeader from '../components/SectionHeader'
-import Card from '../components/Card'
-import FeatureList from '../components/FeatureList'
-import VRTourCard from '../components/VRTourCard'
-import { useTheme } from '../theme/useTheme'
+import ScheduleTourSection from '../components/ScheduleTourSection'
 
 const venueData = {
   barn: {
     title: 'The Historic Barn',
     images: [
-      '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
-      '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=800',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800'
     ],
     description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
     features: [
@@ -35,9 +21,9 @@ const venueData = {
   bridal: {
     title: 'Bridal Suite',
     images: [
-      '/images/venue/details-building-entrance-windows.jpg',
-      '/images/venue/details-architectural-trim-windows.jpg',
-      '/images/venue/details-building-porch-architectural.jpg'
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800',
+      'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800'
     ],
     description: 'A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.',
     features: [
@@ -50,9 +36,9 @@ const venueData = {
   groom: {
     title: "Groom's Quarters",
     images: [
-      '/images/venue/barn-exterior-entrance-lighting-view.jpg',
-      '/images/venue/details-building-entrance-door.jpg',
-      '/images/venue/barn-exterior-deck-stairs-trees.jpg'
+      'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=800',
+      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800',
+      'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800'
     ],
     description: 'A sophisticated space designed for the groom and groomsmen to prepare, relax, and enjoy the moments before the ceremony.',
     features: [
@@ -65,9 +51,9 @@ const venueData = {
   pavilion: {
     title: 'Garden Pavilion',
     images: [
-      '/images/venue/barn-exterior-welcome-sign-rustic-charm.jpg',
-      '/images/venue/property-field-wildflowers-natural.jpg',
-      '/images/venue/barn-exterior-deck-swing-under-tree.jpg'
+      'https://images.unsplash.com/photo-1519167758481-83f29da8c5e5?w=800',
+      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
+      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800'
     ],
     description: 'An enchanting outdoor space surrounded by lush gardens, perfect for ceremonies or cocktail hours under the open sky.',
     features: [
@@ -80,7 +66,6 @@ const venueData = {
 }
 
 export default function HomePage() {
-  const theme = useTheme()
   const [activeVenue, setActiveVenue] = useState('barn')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
@@ -102,11 +87,11 @@ export default function HomePage() {
   }
   return (
     <>
-      <Header currentPage="home" />
+      <Header />
 
       {/* Floating CTA Button */}
       <a href="#lets-connect-form" className="floating-cta">
-        <Icon name="calendar" size="sm" color="white" />
+        <span>📅</span>
         Schedule Your Tour
       </a>
 
@@ -125,7 +110,7 @@ export default function HomePage() {
               the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.
             </p>
             <div className="hero-buttons">
-              <CTAButton href="/contact" variant="primary">Schedule Your Visit</CTAButton>
+              <a href="/contact" className="romantic-button primary">Schedule Your Visit</a>
             </div>
           </div>
         </div>
@@ -136,64 +121,70 @@ export default function HomePage() {
       </section>
 
       {/* Discover Our Spaces - Tabbed Venue Display */}
-      <Section tone="cream">
+      <section className="section-warm">
         <div className="content-wrapper venue-content">
-          <SectionHeader
-            eyebrow="Your Perfect Setting"
-            title="Discover Our Spaces"
-            description="Every corner tells a story, every space creates memories"
-            align="center"
-            className="venue-header"
-          />
-          <VenueTabs
-            tabs={[
-              { key: 'barn', label: 'The Barn' },
-              { key: 'bridal', label: 'Bridal Suite' },
-              { key: 'groom', label: "Groom's Quarters" },
-              { key: 'pavilion', label: 'Garden Pavilion' }
-            ]}
-            activeTab={activeVenue}
-            onChange={handleVenueChange}
-          />
+          <div className="venue-header center">
+            <div className="script-accent">Your Perfect Setting</div>
+            <h2 className="section-title">Discover Our Spaces</h2>
+            <p className="lead">Every corner tells a story, every space creates memories</p>
+          </div>
+          <div className="venue-tabs">
+            <button
+              className={`venue-tab ${activeVenue === 'barn' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('barn')}
+            >
+              The Barn
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'bridal' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('bridal')}
+            >
+              Bridal Suite
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'groom' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('groom')}
+            >
+              Groom's Quarters
+            </button>
+            <button
+              className={`venue-tab ${activeVenue === 'pavilion' ? 'active' : ''}`}
+              onClick={() => handleVenueChange('pavilion')}
+            >
+              Garden Pavilion
+            </button>
+          </div>
           <div className="venue-display">
             <div className="venue-main-image">
+              <button className="carousel-nav prev" onClick={prevImage} aria-label="Previous image">‹</button>
               <img src={venueData[activeVenue].images[currentImageIndex]} alt={venueData[activeVenue].title} width="800" height="500" />
-              <CarouselControls
-                totalItems={venueData[activeVenue].images.length}
-                currentIndex={currentImageIndex}
-                onNext={nextImage}
-                onPrev={prevImage}
-                onDotClick={setCurrentImageIndex}
-              />
+              <button className="carousel-nav next" onClick={nextImage} aria-label="Next image">›</button>
+              <div className="carousel-dots">
+                {venueData[activeVenue].images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-dot ${index === currentImageIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
             <div className="venue-details">
               <h3>{venueData[activeVenue].title}</h3>
               <p>{venueData[activeVenue].description}</p>
-              <FeatureList
-                items={venueData[activeVenue].features.map((feature) => ({
-                  label: feature.label,
-                  value: feature.value,
-                }))}
-                className="venue-features"
-                itemClassName="venue-feature"
-                unstyled
-              />
-              
-              {(activeVenue === 'barn' || activeVenue === 'bridal') && (
-                <VRTourCard
-                  title="Take a Virtual Tour"
-                  description="Experience this space in immersive 3D. Walk through and explore every detail from the comfort of your home."
-                  tourUrl={activeVenue === 'barn'
-                    ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
-                    : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
-                  tone="blushGradient"
-                  className="venue-vr-tour"
-                />
-              )}
+              <div className="venue-features">
+                {venueData[activeVenue].features.map((feature, index) => (
+                  <div key={index} className="venue-feature">
+                    <h5>{feature.label}</h5>
+                    <p>{feature.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Love Stories Gallery */}
       <section className="love-stories-section section">
@@ -205,31 +196,63 @@ export default function HomePage() {
           </div>
 
           <div className="wedding-gallery">
-            {realWeddings.slice(0, 6).map((wedding, index) => (
-              <Link
-                key={wedding.slug}
-                to={`/real-weddings/${wedding.slug}`}
-                className="gallery-item image-reveal"
-              >
-                <img
-                  src={wedding.coverImage}
-                  alt={`${wedding.coupleName} Wedding`}
-                  width="800"
-                  height="800"
-                />
-                <div className="gallery-overlay">
-                  <div className="gallery-couple-names">{wedding.coupleName}</div>
-                  <div className="gallery-season">{wedding.date}</div>
-                  <div className="gallery-details">
-                    {wedding.photoCount} Photos • {wedding.location.split('•')[0].trim()}
-                  </div>
-                </div>
-              </Link>
-            ))}
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200" alt="Emma & James Wedding" width="1200" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Emma & James</div>
+                <div className="gallery-season">Summer 2024</div>
+                <div className="gallery-details">200 Guests • Garden Ceremony</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800" alt="Sarah & Michael Wedding" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Sarah & Michael</div>
+                <div className="gallery-season">Fall 2024</div>
+                <div className="gallery-details">150 Guests • Barn Reception</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Rachel & David Wedding" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Rachel & David</div>
+                <div className="gallery-season">Spring 2024</div>
+                <div className="gallery-details">175 Guests • Vineyard Ceremony</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Jessica & Ryan Wedding" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Jessica & Ryan</div>
+                <div className="gallery-season">Summer 2024</div>
+                <div className="gallery-details">125 Guests • Forest Ceremony</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Amanda & Chris Wedding" width="800" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Amanda & Chris</div>
+                <div className="gallery-season">Winter 2023</div>
+                <div className="gallery-details">75 Guests • Intimate Celebration</div>
+              </div>
+            </div>
+
+            <div className="gallery-item image-reveal">
+              <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=1200" alt="Lauren & Mark Wedding" width="1200" height="800" />
+              <div className="gallery-overlay">
+                <div className="gallery-couple-names">Lauren & Mark</div>
+                <div className="gallery-season">Fall 2023</div>
+                <div className="gallery-details">250 Guests • Full Weekend</div>
+              </div>
+            </div>
           </div>
 
           <div className="gallery-footer">
-            <CTAButton to="/real-weddings" variant="primary">View All Real Weddings</CTAButton>
+            <a href="/gallery" className="romantic-button outline">View Full Gallery</a>
           </div>
         </div>
       </section>
@@ -248,9 +271,7 @@ export default function HomePage() {
 
               <div className="experience-features">
                 <div className="feature-item">
-                  <div className="feature-icon">
-                    <Icon name="check" size="lg" color="primary" />
-                  </div>
+                  <div className="feature-icon">🌿</div>
                   <div className="feature-content">
                     <h4>All-Inclusive Planning</h4>
                     <p>Our experienced coordinators handle every detail, so you can focus on what matters most—each other.</p>
@@ -258,9 +279,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="feature-item">
-                  <div className="feature-icon">
-                    <Icon name="sparkles" size="lg" color="primary" />
-                  </div>
+                  <div className="feature-icon">✨</div>
                   <div className="feature-content">
                     <h4>Customizable Packages</h4>
                     <p>From intimate gatherings to grand celebrations, we tailor every element to your vision and budget.</p>
@@ -268,9 +287,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="feature-item">
-                  <div className="feature-icon">
-                    <Icon name="home" size="lg" color="primary" />
-                  </div>
+                  <div className="feature-icon">🏡</div>
                   <div className="feature-content">
                     <h4>Historic Charm</h4>
                     <p>Our lovingly restored 1920s barn combines century-old character with modern convenience.</p>
@@ -279,8 +296,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="experience-image image-reveal styled-image light no-link">
-              <img src="/images/2014/04/Loria-Jason-wedding-2-0026.jpg" alt="Wedding Celebration" width="800" height="600" />
+            <div className="experience-image image-reveal">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Wedding Celebration" width="800" height="600" />
             </div>
           </div>
         </div>
@@ -305,8 +322,8 @@ export default function HomePage() {
                 <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
                 <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
               </div>
-              <div className="block-image styled-image light no-link">
-                <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Special event venue" width="800" height="500" />
               </div>
             </div>
 
@@ -318,8 +335,8 @@ export default function HomePage() {
                 <p>Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured old oak forests, and white pines next to a whispering brook, we offer Minnesota's premier barn wedding venue and country special events venue for your custom special event.</p>
                 <p>Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years.</p>
               </div>
-              <div className="block-image styled-image light no-link">
-                <img src="/images/venue/property-field-wildflowers-natural.jpg" alt="Rum River Barn and Vineyard" width="800" height="500" />
+              <div className="block-image">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Rum River Barn and Vineyard" width="800" height="500" />
               </div>
             </div>
           </div>
@@ -375,13 +392,126 @@ export default function HomePage() {
       </section>
 
       {/* ID: CONTACT_FORM_001 - Let's Connect Form Section */}
-      <ScheduleTourForm
+      <ScheduleTourSection
+        id="lets-connect-form"
         formName="home-schedule-tour"
-        className="" 
       />
 
+      {/* ID: MAP_DIRECTIONS_001 - Map & Directions Section */}
+      <section id="map-directions" className="map-section">
+        <div className="map-container">
+          <div className="map-info">
+            <h2>Find Your Way to Forever</h2>
+            <div className="location-details">
+              <div className="location-item">
+                <div className="location-icon">📍</div>
+                <div className="location-text">
+                  <h4>Address</h4>
+                  <p>42618 78th Street<br />Hillman, MN 56338</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">🚗</div>
+                <div className="location-text">
+                  <h4>Easy Access From</h4>
+                  <p>45 min from Minneapolis<br />30 min from St. Cloud<br />1 hour from Brainerd</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">✈️</div>
+                <div className="location-text">
+                  <h4>Nearest Airport</h4>
+                  <p>Minneapolis-St. Paul International<br />55 miles (1 hour drive)</p>
+                </div>
+              </div>
+              <div className="location-item">
+                <div className="location-icon">🏨</div>
+                <div className="location-text">
+                  <h4>Accommodations</h4>
+                  <p>Partner hotels in Princeton & Milaca<br />Group rates available</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="map-embed">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2817.8985775673544!2d-93.7851842!3d45.8936111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b39b1c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s42618%2078th%20St%2C%20Hillman%2C%20MN%2056338!5e0!3m2!1sen!2sus!4v1704067200000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '600px' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Rum River Barn Location - 42618 78th Street, Hillman, MN 56338"
+            ></iframe>
+          </div>
+        </div>
+      </section>
 
-      <SiteFooter />
+      {/* ID: FOOTER_ENHANCED_001 - Enhanced 3-Column Footer */}
+      <footer style={{
+        padding: '60px 20px 40px',
+        background: '#2C2416',
+        color: 'rgba(255,255,255,0.7)',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '40px',
+            marginBottom: '40px',
+            textAlign: 'left'
+          }}>
+            <div>
+              <h4 style={{
+                color: 'white',
+                marginBottom: '1rem',
+                fontSize: '1.125rem',
+                fontFamily: 'Playfair Display, serif'
+              }}>Rum River Barn</h4>
+              <p style={{ lineHeight: 1.8, fontFamily: 'Montserrat, sans-serif' }}>
+                Minnesota's premier wedding venue<br />
+                where dreams come to life
+              </p>
+            </div>
+            <div>
+              <h4 style={{
+                color: 'white',
+                marginBottom: '1rem',
+                fontSize: '1.125rem',
+                fontFamily: 'Playfair Display, serif'
+              }}>Visit Us</h4>
+              <p style={{ lineHeight: 1.8, fontFamily: 'Montserrat, sans-serif' }}>
+                42618 78th Street<br />
+                Hillman, MN 56338<br />
+                (320) 492-8584
+              </p>
+            </div>
+            <div>
+              <h4 style={{
+                color: 'white',
+                marginBottom: '1rem',
+                fontSize: '1.125rem',
+                fontFamily: 'Playfair Display, serif'
+              }}>Follow Along</h4>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Facebook</a>
+                <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Instagram</a>
+                <a href="#" style={{ color: '#D4A574', textDecoration: 'none', fontFamily: 'Montserrat, sans-serif' }}>Pinterest</a>
+              </div>
+            </div>
+          </div>
+          <div style={{
+            borderTop: '1px solid rgba(255,255,255,0.1)',
+            paddingTop: '2rem',
+            fontSize: '0.875rem',
+            textAlign: 'center'
+          }}>
+            <p>&copy; 2025 Rum River Barn. All rights reserved. | Designed with love in Minnesota</p>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

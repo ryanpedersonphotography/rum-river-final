@@ -419,15 +419,33 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 /* Outline variant - for light backgrounds */
 .romantic-button.outline {
+  --outline-color: var(--dusty-rose);
+  --outline-hover-text: var(--soft-white);
   background: transparent;
-  color: var(--dusty-rose);
-  border-color: var(--dusty-rose);
+  color: var(--outline-color);
+  border-color: var(--outline-color);
 }
 
 .romantic-button.outline:hover {
-  background: var(--dusty-rose);
-  color: white;
-  border-color: var(--dusty-rose);
+  background: var(--outline-color);
+  color: var(--outline-hover-text);
+  border-color: var(--outline-color);
+}
+
+.section-cream .romantic-button.outline,
+.section-ivory .romantic-button.outline,
+.section-blush .romantic-button.outline,
+.section-white .romantic-button.outline {
+  --outline-color: var(--warm-walnut);
+  --outline-hover-text: var(--soft-white);
+}
+
+.section-walnut .romantic-button.outline,
+.section-walnut-gradient .romantic-button.outline,
+.section-forest .romantic-button.outline,
+.section-brown .romantic-button.outline {
+  --outline-color: var(--champagne-gold);
+  --outline-hover-text: var(--warm-walnut);
 }
 
 /* ============================================
@@ -436,48 +454,27 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
    ============================================ */
 
 /* Dark section detection - ANY of these parent classes trigger dark mode */
-.dark-section .romantic-button,
-.dark-gradient-section .romantic-button,
-.alternating-blocks .romantic-button,
-.contact-info-section .romantic-button,
-.hero-enhanced .romantic-button,
-.footer-contact .romantic-button {
+.dark-section .romantic-button:not(.outline),
+.dark-gradient-section .romantic-button:not(.outline),
+.alternating-blocks .romantic-button:not(.outline),
+.contact-info-section .romantic-button:not(.outline),
+.hero-enhanced .romantic-button:not(.outline),
+.footer-contact .romantic-button:not(.outline) {
   /* Auto-switch to light colors on dark backgrounds */
   background: white;
   color: var(--warm-walnut);
   border-color: white;
 }
 
-.dark-section .romantic-button:hover,
-.dark-gradient-section .romantic-button:hover,
-.alternating-blocks .romantic-button:hover,
-.contact-info-section .romantic-button:hover,
-.hero-enhanced .romantic-button:hover,
-.footer-contact .romantic-button:hover {
+.dark-section .romantic-button:not(.outline):hover,
+.dark-gradient-section .romantic-button:not(.outline):hover,
+.alternating-blocks .romantic-button:not(.outline):hover,
+.contact-info-section .romantic-button:not(.outline):hover,
+.hero-enhanced .romantic-button:not(.outline):hover,
+.footer-contact .romantic-button:not(.outline):hover {
   background: var(--champagne-gold);
   color: var(--warm-walnut);
   border-color: var(--champagne-gold);
-}
-
-/* Outline variant on dark backgrounds */
-.dark-section .romantic-button.outline,
-.dark-gradient-section .romantic-button.outline,
-.alternating-blocks .romantic-button.outline,
-.contact-info-section .romantic-button.outline,
-.footer-contact .romantic-button.outline {
-  background: transparent;
-  color: white;
-  border-color: white;
-}
-
-.dark-section .romantic-button.outline:hover,
-.dark-gradient-section .romantic-button.outline:hover,
-.alternating-blocks .romantic-button.outline:hover,
-.contact-info-section .romantic-button.outline:hover,
-.footer-contact .romantic-button.outline:hover {
-  background: white;
-  color: var(--warm-walnut);
-  border-color: white;
 }
 
 /* Special header button behavior */
@@ -2226,6 +2223,15 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.alternating-blocks .block-content h3 {
+  color: white;
+}
+
+.alternating-blocks .block-content .lead,
+.alternating-blocks .block-content p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .alternating-blocks .feature-list li {
   color: rgba(255, 255, 255, 0.8);
 }
@@ -2288,14 +2294,14 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   font-size: 2.5rem; /* Use --text-5xl */
   margin-bottom: 25px;
   font-family: var(--font-display);
-  color: white;
+  color: var(--warm-walnut);
 }
 
 .block-content p {
   font-size: 1.125rem; /* Use --text-lg */
   line-height: 1.8;
   margin-bottom: 30px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--sage-green);
 }
 
 .feature-list {
@@ -2889,6 +2895,15 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  background: var(--soft-white);
+  padding: var(--space-3xl);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
 }
 
 .cta-contact-header {
@@ -3384,6 +3399,11 @@ ul li {
 .cta-contact-section h2 {
   color: white;
   opacity: 1;
+}
+
+.dark-section .block-content h3,
+.dark-gradient-section .block-content h3 {
+  color: white;
 }
 
 /* Dark sections - auto white text for body */

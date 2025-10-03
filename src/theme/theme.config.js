@@ -313,7 +313,7 @@ const createPresets = (baseTheme) => ({
     },
     walnutGradient: {
       padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
-      background: `linear-gradient(135deg, ${baseTheme.colors.primary.walnut} 0%, ${baseTheme.colors.neutral.brown} 100%)`,
+      background: `linear-gradient(135deg, ${baseTheme.colors.primary.walnut} 0%, ${baseTheme.colors.accent.forest} 100%)`,
       color: baseTheme.colors.neutral.white,
     }
   }
