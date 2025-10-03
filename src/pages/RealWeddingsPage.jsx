@@ -22,16 +22,17 @@ export default function RealWeddingsPage() {
     >
 
       {/* Weddings Gallery Grid */}
-      <section className="section">
+      <Section>
         <div className="content-wrapper">
-          <div className="section-header center">
-            <div className="script-accent">Real Love Stories</div>
-            <h2 className="section-title">Weddings at the Barn</h2>
-            <p className="lead">Browse through our favorite celebrations and get inspired for your own special day</p>
-          </div>
+          <SectionHeader
+            eyebrow="Real Love Stories"
+            title="Weddings at the Barn"
+            description="Browse through our favorite celebrations and get inspired for your own special day"
+            align="center"
+          />
 
           <div className="wedding-gallery">
-            {realWeddings.map((wedding, index) => (
+            {realWeddings.map((wedding) => (
               <Link
                 key={wedding.slug}
                 to={`/real-weddings/${wedding.slug}`}
@@ -54,29 +55,27 @@ export default function RealWeddingsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="section section-cream">
+      <Section tone="cream">
         <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Ready to Create Your Story?</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Let Your Love Story Unfold Here
-            </h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              Schedule a tour to see how we can help bring your wedding vision to life
-            </p>
-            <a href="/contact" className="romantic-button">
+          <Card
+            variant="soft"
+            style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}
+          >
+            <SectionHeader
+              eyebrow="Ready to Create Your Story?"
+              title="Let Your Love Story Unfold Here"
+              description="Schedule a tour to see how we can help bring your wedding vision to life"
+              align="center"
+            />
+            <CTAButton href="/contact" variant="primary">
               Schedule Your Tour
-            </a>
-          </div>
+            </CTAButton>
+          </Card>
         </div>
-      </section>
+      </Section>
 
     </PageTemplate>
   )

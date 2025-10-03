@@ -1,5 +1,10 @@
 import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import Card from '../components/Card'
+import FeatureList from '../components/FeatureList'
+import CTAButton from '../components/CTAButton'
 
 export default function LocationPage() {
   const heroContent = (

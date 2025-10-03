@@ -1,6 +1,10 @@
 import React from 'react';
 import NetlifyForm from './NetlifyForm';
 import FormSubmitButton from './FormSubmitButton';
+import SectionHeader from './SectionHeader';
+import FormRow from './forms/FormRow';
+import FormField from './forms/FormField';
+import useTheme from '../theme/useTheme';
 
 /**
  * ScheduleTourForm Component
@@ -18,144 +22,127 @@ export const ScheduleTourForm = ({
   className = '',
   showHeader = true
 }) => {
+  const theme = useTheme();
+  const errorStyles = {
+    background: 'rgba(212, 165, 165, 0.1)',
+    border: '1px solid rgba(212, 165, 165, 0.3)',
+    color: theme.colors.semantic.text,
+  };
+
+  const tourTimeOptions = [
+    { value: '', label: 'Select Time' },
+    { value: '10:00 AM', label: '10:00 AM' },
+    { value: '11:00 AM', label: '11:00 AM' },
+    { value: '1:00 PM', label: '1:00 PM' },
+    { value: '2:00 PM', label: '2:00 PM' },
+    { value: '3:00 PM', label: '3:00 PM' },
+    { value: '4:00 PM', label: '4:00 PM' },
+  ];
+
+  const guestCountOptions = [
+    { value: '', label: 'Select Range' },
+    { value: '0-50', label: '0-50 Guests' },
+    { value: '50-100', label: '50-100 Guests' },
+    { value: '100-150', label: '100-150 Guests' },
+    { value: '150-200', label: '150-200 Guests' },
+    { value: '200+', label: '200+ Guests' },
+  ];
+
   return (
     <section className={`cta-contact-section ${className}`.trim()}>
       <div className="cta-contact-container">
         {showHeader && (
-          <div className="cta-contact-header">
-            {subtitle && <p className="script-font">{subtitle}</p>}
-            <h2>{title}</h2>
-            <p>{description}</p>
-          </div>
+          <SectionHeader
+            eyebrow={subtitle}
+            title={title}
+            description={description}
+            align="center"
+          />
         )}
-        
+
         <NetlifyForm name={formName} action={redirectPath}>
           {({ handleSubmit, submitting, error, honeypotField }) => (
-            <form className="cta-contact-form" onSubmit={handleSubmit}>
+            <form className="form-stack" onSubmit={handleSubmit}>
               {honeypotField}
               {error && (
-                <div style={{
-                  background: 'rgba(212, 165, 165, 0.1)',
-                  border: '1px solid rgba(212, 165, 165, 0.3)',
-                  color: 'var(--warm-walnut)',
-                  padding: '1rem',
-                  borderRadius: '8px',
-                  marginBottom: '1.5rem'
-                }}>
+                <div className="form-feedback" style={errorStyles}>
                   {error}
                 </div>
               )}
-              
-              {/* Full Name */}
-              <div className="cta-form-group cta-full-width">
-                <label htmlFor="name">Your Name *</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  required 
-                  disabled={submitting} 
+
+              <FormField
+                name="name"
+                label="Your Name"
+                required
+                disabled={submitting}
+              />
+
+              <FormRow columns={2}>
+                <FormField
+                  name="email"
+                  label="Email Address"
+                  type="email"
+                  required
+                  disabled={submitting}
+                />
+                <FormField
+                  name="phone"
+                  label="Phone Number"
+                  type="tel"
+                  required
+                  disabled={submitting}
+                />
+              </FormRow>
+
+              <FormRow columns={2}>
+                <FormField
+                  name="proposedEventDate"
+                  label="Proposed Event Date"
+                  type="date"
+                  disabled={submitting}
+                />
+                <FormField
+                  name="preferredTourDate"
+                  label="Preferred Tour Date"
+                  type="date"
+                  required
+                  disabled={submitting}
+                />
+              </FormRow>
+
+              <FormRow columns={2}>
+                <FormField
+                  name="preferredTourTime"
+                  label="Preferred Tour Time"
+                  component="select"
+                  options={tourTimeOptions}
+                  disabled={submitting}
+                />
+                <FormField
+                  name="guestCount"
+                  label="Estimated Guest Count"
+                  component="select"
+                  options={guestCountOptions}
+                  disabled={submitting}
+                />
+              </FormRow>
+
+              <FormField
+                name="message"
+                label="Additional Information or Questions"
+                component="textarea"
+                rows={4}
+                placeholder="Tell us about your event plans or any specific questions..."
+                disabled={submitting}
+              />
+
+              <div className="form-actions">
+                <FormSubmitButton
+                  submitting={submitting}
+                  submitText={submitText}
+                  loadingText={loadingText}
                 />
               </div>
-              
-              {/* Email & Phone Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="phone">Phone Number *</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-              </div>
-              
-              {/* Event Date & Tour Date Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="proposedEventDate">Proposed Event Date</label>
-                  <input 
-                    type="date" 
-                    id="proposedEventDate" 
-                    name="proposedEventDate" 
-                    disabled={submitting} 
-                  />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="preferredTourDate">Preferred Tour Date *</label>
-                  <input 
-                    type="date" 
-                    id="preferredTourDate" 
-                    name="preferredTourDate" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-              </div>
-              
-              {/* Tour Time & Guest Count Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="preferredTourTime">Preferred Tour Time</label>
-                  <select 
-                    id="preferredTourTime" 
-                    name="preferredTourTime" 
-                    disabled={submitting}
-                  >
-                    <option value="">Select Time</option>
-                    <option value="10:00 AM">10:00 AM</option>
-                    <option value="11:00 AM">11:00 AM</option>
-                    <option value="1:00 PM">1:00 PM</option>
-                    <option value="2:00 PM">2:00 PM</option>
-                    <option value="3:00 PM">3:00 PM</option>
-                    <option value="4:00 PM">4:00 PM</option>
-                  </select>
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="guestCount">Estimated Guest Count</label>
-                  <select 
-                    id="guestCount" 
-                    name="guestCount" 
-                    disabled={submitting}
-                  >
-                    <option value="">Select Range</option>
-                    <option value="50-100">50-100 Guests</option>
-                    <option value="100-150">100-150 Guests</option>
-                    <option value="150-200">150-200 Guests</option>
-                    <option value="200+">200+ Guests</option>
-                  </select>
-                </div>
-              </div>
-              
-              {/* Message */}
-              <div className="cta-form-group cta-full-width">
-                <label htmlFor="message">Additional Information or Questions</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  placeholder="Tell us about your event plans or any specific questions..." 
-                  disabled={submitting}
-                ></textarea>
-              </div>
-              
-              {/* Submit Button */}
-              <FormSubmitButton
-                submitting={submitting}
-                submitText={submitText}
-                loadingText={loadingText}
-              />
             </form>
           )}
         </NetlifyForm>

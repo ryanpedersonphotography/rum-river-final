@@ -1,4 +1,9 @@
 import PageTemplate from '../components/PageTemplate'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import CTAButton from '../components/CTAButton'
+import TestimonialCard from '../components/TestimonialCard'
+import Card from '../components/Card'
 
 export default function TestimonialsPage() {
   const heroContent = (
@@ -83,192 +88,105 @@ export default function TestimonialsPage() {
     >
 
       {/* Featured Testimonial */}
-      <section className="section section-cream">
-        <div className="content-wrapper">
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'center'
-          }}>
-            <div className="five-star-rating" style={{
-              fontSize: '2rem',
-              marginBottom: '2rem',
-              color: 'var(--gold-accent, #D4A574)'
-            }}>
-              ★★★★★
-            </div>
-            <blockquote style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-              lineHeight: 1.6,
-              color: 'var(--warm-walnut)',
-              marginBottom: '2rem',
-              fontStyle: 'italic'
-            }}>
-              "From our first tour to our last dance, the team at Rum River made our dreams come true.
-              The barn was absolutely magical, and our guests are still talking about how perfect everything was."
-            </blockquote>
-            <div style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '1.125rem',
-              color: 'var(--sage-green)'
-            }}>
-              <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Sarah & Michael Johnson</div>
-              <div>Married October 2024</div>
-            </div>
+      <Section tone="cream">
+        <div className="content-wrapper" style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ maxWidth: '700px', width: '100%' }}>
+            <TestimonialCard
+              quote="From our first tour to our last dance, the team at Rum River made our dreams come true. The barn was absolutely magical, and our guests are still talking about how perfect everything was."
+              author="Sarah & Michael Johnson"
+              detail="Married October 2024"
+              highlight
+            />
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* All Testimonials Grid */}
-      <section className="section">
+      <Section>
         <div className="content-wrapper">
-          <div className="section-header center">
-            <div className="script-accent">Love Letters</div>
-            <h2 className="section-title">What Couples Say</h2>
-            <p className="lead">Real stories from real couples who celebrated at Rum River Barn</p>
-          </div>
+          <SectionHeader
+            eyebrow="Love Letters"
+            title="What Couples Say"
+            description="Real stories from real couples who celebrated at Rum River Barn"
+            align="center"
+          />
 
-          <div className="testimonials-grid">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-card">
-                <div className="five-star-rating">★★★★★</div>
-                <blockquote className="testimonial-quote">
-                  {testimonial.quote}
-                </blockquote>
-                <div className="testimonial-author">
-                  <div className="author-name">{testimonial.author}</div>
-                  <div className="author-detail">{testimonial.detail}</div>
-                </div>
+          <div className="testimonial-grid">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.author}
+                quote={testimonial.quote}
+                author={testimonial.author}
+                detail={testimonial.detail}
+              />
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Stats Section */}
+      <Section tone="cream">
+        <div className="content-wrapper">
+          <SectionHeader
+            eyebrow="By the Numbers"
+            title="Our Happy Couples"
+            align="center"
+          />
+
+          <div className="testimonial-stats">
+            {[
+              { value: '200+', label: 'Weddings Hosted' },
+              { value: '5.0', label: 'Average Rating' },
+              { value: '100%', label: 'Would Recommend' },
+              { value: '10+', label: 'Years Experience' }
+            ].map((stat) => (
+              <div key={stat.label} className="testimonial-stats__item">
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(3rem, 5vw, 4rem)',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                  }}
+                >
+                  {stat.value}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1.125rem',
+                    color: 'var(--sage-green)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                  }}
+                >
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="section section-cream">
-        <div className="content-wrapper">
-          <div className="section-header center">
-            <div className="script-accent">By the Numbers</div>
-            <h2 className="section-title">Our Happy Couples</h2>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '3rem',
-            marginTop: '3rem',
-            textAlign: 'center'
-          }}>
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 5vw, 4rem)',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '0.5rem'
-              }}>
-                200+
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.125rem',
-                color: 'var(--sage-green)',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                Weddings Hosted
-              </div>
-            </div>
-
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 5vw, 4rem)',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '0.5rem'
-              }}>
-                5.0
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.125rem',
-                color: 'var(--sage-green)',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                Average Rating
-              </div>
-            </div>
-
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 5vw, 4rem)',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '0.5rem'
-              }}>
-                100%
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.125rem',
-                color: 'var(--sage-green)',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                Would Recommend
-              </div>
-            </div>
-
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 5vw, 4rem)',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '0.5rem'
-              }}>
-                10+
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.125rem',
-                color: 'var(--sage-green)',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                Years Experience
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="section">
+      <Section>
         <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Ready to Create Your Own Story?</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Let's Start Planning Your Perfect Day
-            </h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              Schedule a tour to see why so many couples choose Rum River Barn for their celebration
-            </p>
-            <a href="/contact" className="romantic-button">
+          <Card
+            variant="soft"
+            style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}
+          >
+            <SectionHeader
+              eyebrow="Ready to Create Your Own Story?"
+              title="Let's Start Planning Your Perfect Day"
+              description="Schedule a tour to see why so many couples choose Rum River Barn for their celebration."
+              align="center"
+            />
+            <CTAButton to="/contact" variant="primary">
               Schedule Your Tour
-            </a>
-          </div>
+            </CTAButton>
+          </Card>
         </div>
-      </section>
+      </Section>
 
     </PageTemplate>
   )

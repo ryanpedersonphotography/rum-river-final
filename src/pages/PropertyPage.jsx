@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import PageTemplate from '../components/PageTemplate'
 import VenueTabs from '../components/VenueTabs'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import FeatureList from '../components/FeatureList'
+import Card from '../components/Card'
+import CTAButton from '../components/CTAButton'
+import VRTourCard from '../components/VRTourCard'
 
 const venueData = {
   whiteBarn: {
@@ -135,13 +141,15 @@ export default function PropertyPage() {
     >
       
       {/* Discover Our Spaces - Tabbed Venue Display */}
-      <section className="section-warm">
+      <Section tone="cream">
         <div className="content-wrapper venue-content">
-          <div className="venue-header center">
-            <div className="script-accent">Your Perfect Setting</div>
-            <h2 className="section-title">Discover Our Spaces</h2>
-            <p className="lead">Every corner tells a story, every space creates memories</p>
-          </div>
+          <SectionHeader
+            eyebrow="Your Perfect Setting"
+            title="Discover Our Spaces"
+            description="Every corner tells a story, every space creates memories"
+            align="center"
+            className="venue-header"
+          />
           <VenueTabs
             tabs={[
               { key: 'whiteBarn', label: 'White Barn Loft' },
@@ -173,113 +181,53 @@ export default function PropertyPage() {
             <div className="venue-details">
               <h3>{venueData[activeVenue].title}</h3>
               <p>{venueData[activeVenue].description}</p>
-              <div className="venue-features">
-                {venueData[activeVenue].features.map((feature, index) => (
-                  <div key={index} className="venue-feature">
-                    <h5>{feature.label}</h5>
-                    <p>{feature.value}</p>
-                  </div>
-                ))}
-              </div>
+              <FeatureList
+                items={venueData[activeVenue].features.map((feature) => ({
+                  label: feature.label,
+                  value: feature.value,
+                }))}
+                className="venue-features"
+                itemClassName="venue-feature"
+                unstyled
+              />
               
               {/* VR Tour Buttons */}
               {(activeVenue === 'whiteBarn' || activeVenue === 'bridalRoom') && (
-                <div className="venue-vr-tour" style={{
-                  marginTop: '2rem',
-                  padding: '1.5rem',
-                  background: 'linear-gradient(135deg, #f8f6f0 0%, #ede8dc 100%)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(212, 165, 116, 0.2)'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1rem'
-                  }}>
-                    <span style={{
-                      fontSize: '1.5rem'
-                    }}>🥽</span>
-                    <h4 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.25rem',
-                      fontWeight: 400,
-                      color: 'var(--warm-walnut)',
-                      margin: 0
-                    }}>
-                      Virtual 3D Tour
-                    </h4>
-                  </div>
-                  <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.95rem',
-                    lineHeight: 1.6,
-                    color: 'var(--sage-green)',
-                    margin: '0 0 1.5rem 0'
-                  }}>
-                    Step inside and explore this {activeVenue === 'whiteBarn' ? 'stunning barn space' : 'charming bridal suite'} with our immersive Matterport tour. See every detail as if you were there.
-                  </p>
-                  <button 
-                    onClick={() => {
-                      const tourUrl = activeVenue === 'whiteBarn' 
-                        ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
-                        : 'https://my.matterport.com/show/?m=sFjR96cKfqv';
-                      window.open(tourUrl, '_blank', 'width=1200,height=800');
-                    }}
-                    style={{
-                      background: 'linear-gradient(135deg, var(--warm-walnut) 0%, #8B4513 100%)',
-                      color: 'white',
-                      border: 'none',
-                      padding: '0.75rem 1.5rem',
-                      borderRadius: '8px',
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '0.95rem',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
-                    }}
-                    onMouseOver={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 8px 25px rgba(139, 69, 19, 0.3)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  >
-                    Explore in 3D
-                  </button>
-                </div>
+                <VRTourCard
+                  title="Virtual 3D Tour"
+                  description={`Step inside and explore this ${activeVenue === 'whiteBarn' ? 'stunning barn space' : 'charming bridal suite'} with our immersive Matterport tour. See every detail as if you were there.`}
+                  tourUrl={activeVenue === 'whiteBarn'
+                    ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
+                    : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
+                  tone="goldGradient"
+                  ctaLabel="Explore in 3D"
+                  className="venue-vr-tour"
+                />
               )}
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Call to Action */}
-      <section style={{
-        background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
-        padding: '4rem 0'
-      }}>
+      <Section tone="blushGradient" paddingY="3xl">
         <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent">Ready to Visit?</div>
-            <h2 className="section-title">Schedule Your Property Tour</h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              Experience the beauty of Rum River Barn in person. Contact us to schedule a private tour of our property.
-            </p>
-            <a href="/contact" className="romantic-button primary">
+          <Card
+            variant="soft"
+            style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}
+          >
+            <SectionHeader
+              eyebrow="Ready to Visit?"
+              title="Schedule Your Property Tour"
+              description="Experience the beauty of Rum River Barn in person. Contact us to schedule a private tour of our property."
+              align="center"
+            />
+            <CTAButton to="/contact" variant="primary">
               Book Your Tour
-            </a>
-          </div>
+            </CTAButton>
+          </Card>
         </div>
-      </section>
+      </Section>
 
     </PageTemplate>
   )

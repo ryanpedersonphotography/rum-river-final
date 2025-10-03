@@ -1,21 +1,50 @@
-import NetlifyForm from './NetlifyForm'
-import FormSubmitButton from './FormSubmitButton'
+import clsx from 'clsx';
+import NetlifyForm from './NetlifyForm';
+import FormSubmitButton from './FormSubmitButton';
+import Section from './Section';
+import Card from './Card';
+import SectionHeader from './SectionHeader';
+import FormRow from './forms/FormRow';
+import FormField from './forms/FormField';
+import useTheme from '../theme/useTheme';
 
-/**
- * CTAFormSection - Reusable CTA section with form
- * 
- * Props:
- * - variant: 'light' | 'dark' (default: 'light')
- * - background: 'cream' | 'ivory' | 'blush' | 'walnut' | 'forest' | 'gradient' (default: based on variant)
- * - containerStyle: 'white' | 'transparent' | 'glass' (default: 'white')
- * - formSize: 'mini' | 'full' (default: 'full')
- * - scriptAccent: string (optional - shows cursive text above title)
- * - title: string (default: "Start Planning Your Perfect Day")
- * - description: string (default: "We'd love to show you around...")
- * - submitText: string (default: "Schedule Tour")
- * - formName: string (required for Netlify)
- * - redirectPath: string (default: '/thank-you')
- */
+const backgroundToneMap = {
+  cream: { tone: 'cream' },
+  ivory: { tone: 'default', background: undefined },
+  blush: { tone: 'blush' },
+  walnut: { tone: 'walnut' },
+  forest: { tone: 'forest' },
+  gradient: { tone: 'walnutGradient' },
+};
+
+const tourTimeOptions = [
+  { value: '', label: 'Select Time' },
+  { value: '10:00 AM', label: '10:00 AM' },
+  { value: '11:00 AM', label: '11:00 AM' },
+  { value: '1:00 PM', label: '1:00 PM' },
+  { value: '2:00 PM', label: '2:00 PM' },
+  { value: '3:00 PM', label: '3:00 PM' },
+  { value: '4:00 PM', label: '4:00 PM' },
+];
+
+const eventTypeOptions = [
+  { value: '', label: 'Select Type' },
+  { value: 'wedding', label: 'Wedding' },
+  { value: 'engagement', label: 'Engagement Party' },
+  { value: 'anniversary', label: 'Anniversary' },
+  { value: 'corporate', label: 'Corporate Event' },
+  { value: 'other', label: 'Other Celebration' },
+];
+
+const guestCountOptions = [
+  { value: '', label: 'Select Range' },
+  { value: '0-50', label: '0-50 Guests' },
+  { value: '50-100', label: '50-100 Guests' },
+  { value: '100-150', label: '100-150 Guests' },
+  { value: '150-200', label: '150-200 Guests' },
+  { value: '200+', label: '200+ Guests' },
+];
+
 export default function CTAFormSection({
   variant = 'light',
   background = null,
@@ -29,339 +58,180 @@ export default function CTAFormSection({
   redirectPath = '/thank-you',
   className = ''
 }) {
-  // Determine background class based on variant if not explicitly set
-  const getBackgroundClass = () => {
-    if (background === 'gradient') return 'dark-gradient-section'
-    if (background === 'walnut') return 'section-walnut'
-    if (background === 'forest') return 'section-forest'
-    if (background === 'cream') return 'section-cream'
-    if (background === 'ivory') return 'section-ivory'
-    if (background === 'blush') return 'section-blush'
-    
-    // Default based on variant
-    return variant === 'dark' ? 'dark-section' : 'section'
-  }
+  const theme = useTheme();
+  const isDark = variant === 'dark';
 
-  const sectionClass = `${getBackgroundClass()} ${className}`.trim()
-  
-  // Determine container styles based on containerStyle prop
-  const getContainerStyle = () => {
-    if (containerStyle === 'transparent') {
-      return {
-        background: 'transparent',
-        boxShadow: 'none',
-        padding: 0
-      }
-    }
-    if (containerStyle === 'glass') {
-      return {
-        background: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255, 255, 255, 0.2)'
-      }
-    }
-    // Default 'white' style - use the CSS class styles
-    return {}
-  }
+  const sectionConfig = background
+    ? backgroundToneMap[background] || {}
+    : { tone: isDark ? 'walnutGradient' : 'cream' };
 
-  const containerClass = containerStyle === 'white' ? 'cta-contact-container' : ''
-  const containerInlineStyle = containerStyle !== 'white' ? getContainerStyle() : {}
-  
+  const ContainerComponent = containerStyle === 'transparent' ? 'div' : Card;
+  const containerVariant = containerStyle === 'glass' ? 'glass' : 'soft';
+
+  const containerProps =
+    containerStyle === 'transparent'
+      ? { className: 'cta-contact-container' }
+      : {
+          className: 'cta-contact-container',
+          variant: containerVariant,
+        };
+
+  const errorStyles = {
+    background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(212,165,165,0.1)',
+    border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(212, 165, 165, 0.3)'}`,
+    color: isDark ? theme.colors.semantic.textOnDark : theme.colors.semantic.text,
+  };
+
+  const renderMiniForm = (submitting) => (
+    <>
+      <FormRow columns="auto" minColumnWidth="220px">
+        <FormField
+          name="name"
+          label="Name"
+          required
+          variant={variant}
+          disabled={submitting}
+        />
+        <FormField
+          name="email"
+          label="Email"
+          type="email"
+          required
+          variant={variant}
+          disabled={submitting}
+        />
+        <FormField
+          name="phone"
+          label="Phone"
+          type="tel"
+          placeholder="Optional"
+          variant={variant}
+          disabled={submitting}
+        />
+      </FormRow>
+      <div className="form-actions">
+        <FormSubmitButton
+          submitting={submitting}
+          submitText={submitText}
+          loadingText="SCHEDULING..."
+        />
+      </div>
+    </>
+  );
+
+  const renderFullForm = (submitting) => (
+    <>
+      <FormField
+        name="name"
+        label="Your Name"
+        required
+        variant={variant}
+        disabled={submitting}
+      />
+      <FormRow columns={2}>
+        <FormField
+          name="email"
+          label="Email Address"
+          type="email"
+          required
+          variant={variant}
+          disabled={submitting}
+        />
+        <FormField
+          name="phone"
+          label="Phone Number"
+          type="tel"
+          placeholder="Optional"
+          variant={variant}
+          disabled={submitting}
+        />
+      </FormRow>
+      <FormRow columns={2}>
+        <FormField
+          name="preferred_date"
+          label="Preferred Event Date"
+          type="date"
+          variant={variant}
+          disabled={submitting}
+        />
+        <FormField
+          name="preferred_time"
+          label="Preferred Tour Time"
+          component="select"
+          options={tourTimeOptions}
+          variant={variant}
+          disabled={submitting}
+        />
+      </FormRow>
+      <FormRow columns={2}>
+        <FormField
+          name="event_type"
+          label="Event Type"
+          component="select"
+          options={eventTypeOptions}
+          variant={variant}
+          disabled={submitting}
+        />
+        <FormField
+          name="guest_count"
+          label="Estimated Guest Count"
+          component="select"
+          options={guestCountOptions}
+          variant={variant}
+          disabled={submitting}
+        />
+      </FormRow>
+      <FormField
+        name="message"
+        label="Tell Us About Your Vision"
+        component="textarea"
+        rows={4}
+        placeholder="Share any special requests or questions..."
+        variant={variant}
+        disabled={submitting}
+      />
+      <div className="form-actions">
+        <FormSubmitButton
+          submitting={submitting}
+          submitText={submitText}
+          loadingText="SCHEDULING..."
+        />
+      </div>
+    </>
+  );
+
   return (
-    <section className="cta-contact-section" id="lets-connect-form">
-      <div className={containerClass} style={containerInlineStyle}>
-        <div className="cta-contact-header">
-          {scriptAccent && (
-            <p className="script-font">{scriptAccent}</p>
-          )}
-          <h2>{title}</h2>
-          <p>{description}</p>
-        </div>
-
-        {/* Form */}
-        <NetlifyForm name={formName} action={redirectPath}>
+    <Section
+      tone={sectionConfig.tone}
+      background={sectionConfig.background}
+      className={clsx('cta-contact-section', className)}
+      id="lets-connect-form"
+    >
+      <div className="content-wrapper">
+        <ContainerComponent {...containerProps}>
+          <SectionHeader
+            eyebrow={scriptAccent}
+            title={title}
+            description={description}
+            align="center"
+          />
+          <NetlifyForm name={formName} action={redirectPath}>
             {({ handleSubmit, submitting, error, honeypotField }) => (
-              <form 
-                className="cta-contact-form"
-                onSubmit={handleSubmit}
-              >
+              <form className="form-stack" onSubmit={handleSubmit}>
                 {honeypotField}
-                
                 {error && (
-                  <div style={{
-                    background: formVariant === 'dark' 
-                      ? 'rgba(255, 255, 255, 0.1)' 
-                      : 'rgba(212, 165, 165, 0.1)',
-                    border: '1px solid rgba(212, 165, 165, 0.3)',
-                    color: formVariant === 'dark' ? 'white' : 'var(--warm-walnut)',
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    marginBottom: '1.5rem',
-                    textAlign: 'center'
-                  }}>
+                  <div className="form-feedback" style={errorStyles}>
                     {error}
                   </div>
                 )}
-
-                <div style={{
-                  display: 'grid',
-                  gap: '1.5rem',
-                  marginBottom: '2rem'
-                }}>
-                  {/* Name Field - Always shown */}
-                  <div>
-                    <label htmlFor="name" style={{
-                      display: 'block',
-                      marginBottom: '0.5rem',
-                      fontSize: '0.95rem',
-                      fontWeight: 500,
-                      color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                    }}>
-                      Your Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      disabled={submitting}
-                      style={{
-                        width: '100%',
-                        padding: '0.875rem 1rem',
-                        border: formVariant === 'dark' 
-                          ? '1px solid rgba(255,255,255,0.2)'
-                          : '1px solid rgba(212, 165, 116, 0.3)',
-                        borderRadius: '8px',
-                        fontSize: '1rem',
-                        background: formVariant === 'dark' 
-                          ? 'rgba(255,255,255,0.05)'
-                          : 'white',
-                        color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                      }}
-                    />
-                  </div>
-
-                  {/* Email Field - Always shown */}
-                  <div>
-                    <label htmlFor="email" style={{
-                      display: 'block',
-                      marginBottom: '0.5rem',
-                      fontSize: '0.95rem',
-                      fontWeight: 500,
-                      color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                    }}>
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      disabled={submitting}
-                      style={{
-                        width: '100%',
-                        padding: '0.875rem 1rem',
-                        border: formVariant === 'dark' 
-                          ? '1px solid rgba(255,255,255,0.2)'
-                          : '1px solid rgba(212, 165, 116, 0.3)',
-                        borderRadius: '8px',
-                        fontSize: '1rem',
-                        background: formVariant === 'dark' 
-                          ? 'rgba(255,255,255,0.05)'
-                          : 'white',
-                        color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                      }}
-                    />
-                  </div>
-
-                  {/* Phone Field - Always shown for mini, shown for full */}
-                  <div>
-                    <label htmlFor="phone" style={{
-                      display: 'block',
-                      marginBottom: '0.5rem',
-                      fontSize: '0.95rem',
-                      fontWeight: 500,
-                      color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                    }}>
-                      Phone Number {formSize === 'mini' && '(Optional)'}
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      disabled={submitting}
-                      style={{
-                        width: '100%',
-                        padding: '0.875rem 1rem',
-                        border: formVariant === 'dark' 
-                          ? '1px solid rgba(255,255,255,0.2)'
-                          : '1px solid rgba(212, 165, 116, 0.3)',
-                        borderRadius: '8px',
-                        fontSize: '1rem',
-                        background: formVariant === 'dark' 
-                          ? 'rgba(255,255,255,0.05)'
-                          : 'white',
-                        color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                      }}
-                    />
-                  </div>
-
-                  {/* Preferred Date - Always shown */}
-                  <div>
-                    <label htmlFor="preferred_date" style={{
-                      display: 'block',
-                      marginBottom: '0.5rem',
-                      fontSize: '0.95rem',
-                      fontWeight: 500,
-                      color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                    }}>
-                      Preferred {formSize === 'mini' ? 'Date & Time' : 'Event Date'}
-                    </label>
-                    <input
-                      type={formSize === 'mini' ? 'text' : 'date'}
-                      id="preferred_date"
-                      name="preferred_date"
-                      placeholder={formSize === 'mini' ? 'e.g., Next Saturday afternoon' : ''}
-                      disabled={submitting}
-                      style={{
-                        width: '100%',
-                        padding: '0.875rem 1rem',
-                        border: formVariant === 'dark' 
-                          ? '1px solid rgba(255,255,255,0.2)'
-                          : '1px solid rgba(212, 165, 116, 0.3)',
-                        borderRadius: '8px',
-                        fontSize: '1rem',
-                        background: formVariant === 'dark' 
-                          ? 'rgba(255,255,255,0.05)'
-                          : 'white',
-                        color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                      }}
-                    />
-                  </div>
-
-                  {/* Full Form Additional Fields */}
-                  {formSize === 'full' && (
-                    <>
-                      {/* Event Type */}
-                      <div>
-                        <label htmlFor="event_type" style={{
-                          display: 'block',
-                          marginBottom: '0.5rem',
-                          fontSize: '0.95rem',
-                          fontWeight: 500,
-                          color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                        }}>
-                          Event Type
-                        </label>
-                        <select
-                          id="event_type"
-                          name="event_type"
-                          disabled={submitting}
-                          style={{
-                            width: '100%',
-                            padding: '0.875rem 1rem',
-                            border: variant === 'dark' 
-                              ? '1px solid rgba(255,255,255,0.2)'
-                              : '1px solid rgba(212, 165, 116, 0.3)',
-                            borderRadius: '8px',
-                            fontSize: '1rem',
-                            background: variant === 'dark' 
-                              ? 'rgba(255,255,255,0.05)'
-                              : 'white',
-                            color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                          }}
-                        >
-                          <option value="">Select Type</option>
-                          <option value="wedding">Wedding</option>
-                          <option value="engagement">Engagement Party</option>
-                          <option value="anniversary">Anniversary</option>
-                          <option value="corporate">Corporate Event</option>
-                          <option value="other">Other Celebration</option>
-                        </select>
-                      </div>
-
-                      {/* Guest Count */}
-                      <div>
-                        <label htmlFor="guest_count" style={{
-                          display: 'block',
-                          marginBottom: '0.5rem',
-                          fontSize: '0.95rem',
-                          fontWeight: 500,
-                          color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                        }}>
-                          Estimated Guest Count
-                        </label>
-                        <input
-                          type="text"
-                          id="guest_count"
-                          name="guest_count"
-                          placeholder="e.g., 150-200"
-                          disabled={submitting}
-                          style={{
-                            width: '100%',
-                            padding: '0.875rem 1rem',
-                            border: variant === 'dark' 
-                              ? '1px solid rgba(255,255,255,0.2)'
-                              : '1px solid rgba(212, 165, 116, 0.3)',
-                            borderRadius: '8px',
-                            fontSize: '1rem',
-                            background: variant === 'dark' 
-                              ? 'rgba(255,255,255,0.05)'
-                              : 'white',
-                            color: variant === 'dark' ? 'white' : 'var(--text-dark)'
-                          }}
-                        />
-                      </div>
-
-                      {/* Message */}
-                      <div style={{ gridColumn: 'span 1' }}>
-                        <label htmlFor="message" style={{
-                          display: 'block',
-                          marginBottom: '0.5rem',
-                          fontSize: '0.95rem',
-                          fontWeight: 500,
-                          color: formVariant === 'dark' ? 'rgba(255,255,255,0.9)' : 'var(--warm-walnut)'
-                        }}>
-                          Tell Us About Your Vision
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          rows="4"
-                          placeholder="Share any special requests or questions..."
-                          disabled={submitting}
-                          style={{
-                            width: '100%',
-                            padding: '0.875rem 1rem',
-                            border: variant === 'dark' 
-                              ? '1px solid rgba(255,255,255,0.2)'
-                              : '1px solid rgba(212, 165, 116, 0.3)',
-                            borderRadius: '8px',
-                            fontSize: '1rem',
-                            background: variant === 'dark' 
-                              ? 'rgba(255,255,255,0.05)'
-                              : 'white',
-                            color: variant === 'dark' ? 'white' : 'var(--text-dark)',
-                            resize: 'vertical'
-                          }}
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <div style={{ textAlign: 'center' }}>
-                  <FormSubmitButton
-                    submitting={submitting}
-                    submitText={submitText}
-                    loadingText="SCHEDULING..."
-                  />
-                </div>
+                {formSize === 'mini'
+                  ? renderMiniForm(submitting)
+                  : renderFullForm(submitting)}
               </form>
             )}
           </NetlifyForm>
+        </ContainerComponent>
       </div>
-    </section>
-  )
+    </Section>
+  );
 }

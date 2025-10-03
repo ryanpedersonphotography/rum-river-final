@@ -209,107 +209,206 @@ const theme = {
 };
 
 // ========================================
-// UTILITY FUNCTIONS
+// THEME HELPERS
 // ========================================
-
-/**
- * Get a CSS variable value from the theme
- * @param {string} path - Dot notation path (e.g., 'colors.primary.ivory')
- * @returns {string} The value at that path
- */
-export const getThemeValue = (path) => {
-  return path.split('.').reduce((obj, key) => obj?.[key], theme);
-};
 
 /**
  * Create a media query string
  * @param {string} breakpoint - The breakpoint name
+ * @param {object} baseTheme - Theme reference
  * @returns {string} Media query string
  */
-export const mediaQuery = (breakpoint) => {
-  return `@media (min-width: ${theme.breakpoints[breakpoint]})`;
+export const mediaQuery = (breakpoint, baseTheme = theme) => {
+  return `@media (min-width: ${baseTheme.breakpoints[breakpoint]})`;
 };
 
-/**
- * Get a consistent box shadow
- * @param {string} size - Shadow size (sm, md, lg, xl)
- * @returns {string} Box shadow value
- */
-export const getShadow = (size = 'md') => {
-  return theme.shadows[size] || theme.shadows.md;
-};
-
-/**
- * Get consistent spacing
- * @param {string|number} value - Spacing key or multiplier
- * @returns {string} Spacing value
- */
-export const getSpacing = (value) => {
-  if (typeof value === 'number') {
-    return `${value}rem`;
-  }
-  return theme.spacing[value] || value;
-};
-
-// ========================================
-// COMPONENT STYLE PRESETS
-// ========================================
-
-export const presets = {
-  // Card styles
+const createPresets = (baseTheme) => ({
   card: {
     default: {
-      background: theme.colors.neutral.white,
-      borderRadius: theme.borders.radius.lg,
-      padding: theme.spacing.lg,
-      boxShadow: theme.shadows.md,
-      border: `${theme.borders.width.thin} solid ${theme.colors.semantic.borderLight}`,
+      background: baseTheme.colors.neutral.white,
+      borderRadius: baseTheme.borders.radius.lg,
+      padding: baseTheme.spacing.lg,
+      boxShadow: baseTheme.shadows.md,
+      border: `${baseTheme.borders.width.thin} solid ${baseTheme.colors.semantic.borderLight}`,
     },
     elevated: {
-      background: theme.colors.neutral.white,
-      borderRadius: theme.borders.radius.xl,
-      padding: theme.spacing.xl,
-      boxShadow: theme.shadows.lg,
+      background: baseTheme.colors.neutral.white,
+      borderRadius: baseTheme.borders.radius.xl,
+      padding: baseTheme.spacing.xl,
+      boxShadow: baseTheme.shadows.lg,
+      border: 'none',
+    },
+    soft: {
+      background: baseTheme.colors.neutral.cream,
+      borderRadius: baseTheme.borders.radius.xl,
+      padding: baseTheme.spacing.xl,
+      boxShadow: baseTheme.shadows.sm,
+      border: `${baseTheme.borders.width.thin} solid ${baseTheme.colors.semantic.borderLight}`,
+    },
+    glass: {
+      background: 'rgba(255, 255, 255, 0.1)',
+      borderRadius: baseTheme.borders.radius.xl,
+      padding: baseTheme.spacing.xl,
+      backdropFilter: 'blur(12px)',
+      border: `${baseTheme.borders.width.thin} solid rgba(255,255,255,0.25)`,
+      boxShadow: baseTheme.shadows.glow,
     }
   },
-  
-  // Button styles
+
   button: {
     primary: {
-      background: theme.colors.primary.dustyRose,
-      color: theme.colors.neutral.white,
-      padding: `${theme.spacing.md} ${theme.spacing.xl}`,
-      borderRadius: theme.borders.radius.full,
-      fontWeight: theme.typography.weights.semibold,
-      transition: theme.transitions.base,
+      background: baseTheme.colors.primary.dustyRose,
+      color: baseTheme.colors.neutral.white,
+      padding: `${baseTheme.spacing.md} ${baseTheme.spacing.xl}`,
+      borderRadius: baseTheme.borders.radius.full,
+      fontWeight: baseTheme.typography.weights.semibold,
+      transition: baseTheme.transitions.base,
     },
     secondary: {
       background: 'transparent',
-      color: theme.colors.primary.walnut,
-      border: `${theme.borders.width.medium} solid ${theme.colors.primary.walnut}`,
-      padding: `${theme.spacing.md} ${theme.spacing.xl}`,
-      borderRadius: theme.borders.radius.full,
-      fontWeight: theme.typography.weights.semibold,
-      transition: theme.transitions.base,
+      color: baseTheme.colors.primary.walnut,
+      border: `${baseTheme.borders.width.medium} solid ${baseTheme.colors.primary.walnut}`,
+      padding: `${baseTheme.spacing.md} ${baseTheme.spacing.xl}`,
+      borderRadius: baseTheme.borders.radius.full,
+      fontWeight: baseTheme.typography.weights.semibold,
+      transition: baseTheme.transitions.base,
     }
   },
-  
-  // Section styles
+
   section: {
     default: {
-      padding: theme.spacing['5xl'] + ' ' + theme.spacing.xl,
-      background: theme.colors.semantic.background,
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: baseTheme.colors.semantic.background,
+      color: baseTheme.colors.semantic.text,
     },
     cream: {
-      padding: theme.spacing['5xl'] + ' ' + theme.spacing.xl,
-      background: theme.colors.neutral.cream,
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: baseTheme.colors.neutral.cream,
+      color: baseTheme.colors.semantic.text,
     },
-    dark: {
-      padding: theme.spacing['5xl'] + ' ' + theme.spacing.xl,
-      background: theme.colors.primary.walnut,
-      color: theme.colors.neutral.white,
+    blush: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: baseTheme.colors.accent.blush,
+      color: baseTheme.colors.semantic.text,
+    },
+    walnut: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: baseTheme.colors.primary.walnut,
+      color: baseTheme.colors.neutral.white,
+    },
+    forest: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: baseTheme.colors.accent.forest,
+      color: baseTheme.colors.neutral.white,
+    },
+    blushGradient: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: `linear-gradient(135deg, ${baseTheme.colors.neutral.cream} 0%, ${baseTheme.colors.accent.blush} 100%)`,
+      color: baseTheme.colors.semantic.text,
+    },
+    goldGradient: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, ${baseTheme.colors.primary.champagne} 100%)`,
+      color: baseTheme.colors.semantic.text,
+    },
+    walnutGradient: {
+      padding: `${baseTheme.spacing['5xl']} ${baseTheme.spacing.xl}`,
+      background: `linear-gradient(135deg, ${baseTheme.colors.primary.walnut} 0%, ${baseTheme.colors.neutral.brown} 100%)`,
+      color: baseTheme.colors.neutral.white,
     }
   }
+});
+
+const createStyles = (baseTheme, presetCollection) => ({
+  h1: {
+    fontFamily: baseTheme.typography.fonts.display,
+    fontSize: baseTheme.typography.sizes.hero,
+    fontWeight: baseTheme.typography.weights.bold,
+    lineHeight: baseTheme.typography.lineHeights.tight,
+    color: baseTheme.colors.primary.walnut,
+  },
+  h2: {
+    fontFamily: baseTheme.typography.fonts.display,
+    fontSize: baseTheme.typography.sizes['5xl'],
+    fontWeight: baseTheme.typography.weights.bold,
+    lineHeight: baseTheme.typography.lineHeights.tight,
+    color: baseTheme.colors.primary.walnut,
+  },
+  h3: {
+    fontFamily: baseTheme.typography.fonts.display,
+    fontSize: baseTheme.typography.sizes['3xl'],
+    fontWeight: baseTheme.typography.weights.semibold,
+    lineHeight: baseTheme.typography.lineHeights.snug,
+    color: baseTheme.colors.primary.walnut,
+  },
+  lead: {
+    fontFamily: baseTheme.typography.fonts.body,
+    fontSize: baseTheme.typography.sizes.lg,
+    lineHeight: baseTheme.typography.lineHeights.relaxed,
+    color: baseTheme.colors.semantic.textLight,
+  },
+  body: {
+    fontFamily: baseTheme.typography.fonts.body,
+    fontSize: baseTheme.typography.sizes.base,
+    lineHeight: baseTheme.typography.lineHeights.relaxed,
+    color: baseTheme.colors.semantic.text,
+  },
+  script: {
+    fontFamily: baseTheme.typography.fonts.script,
+    fontSize: baseTheme.typography.sizes['2xl'],
+    fontWeight: baseTheme.typography.weights.normal,
+    color: baseTheme.colors.accent.gold,
+  },
+  container: {
+    maxWidth: baseTheme.layout.maxWidth,
+    margin: '0 auto',
+    padding: `0 ${baseTheme.layout.containerPadding}`,
+  },
+  contentWrapper: {
+    maxWidth: baseTheme.layout.contentWidth,
+    margin: '0 auto',
+    padding: `0 ${baseTheme.spacing.xl}`,
+  },
+  card: presetCollection.card.default,
+  cardElevated: presetCollection.card.elevated,
+  buttonPrimary: presetCollection.button.primary,
+  buttonSecondary: presetCollection.button.secondary,
+  section: presetCollection.section.default,
+  sectionCream: presetCollection.section.cream,
+  sectionDark: presetCollection.section.dark,
+});
+
+/**
+ * Build a theme API with helpers, presets, and styles
+ * @param {object} baseTheme - Theme reference that can be overridden per provider
+ * @returns {object} Theme API consistent with legacy useTheme output
+ */
+export const createThemeApi = (baseTheme = theme) => {
+  const getValue = (path) => path.split('.').reduce((obj, key) => obj?.[key], baseTheme);
+
+  const getSpacing = (value) => {
+    if (typeof value === 'number') {
+      return `${value}rem`;
+    }
+    return baseTheme.spacing[value] || value;
+  };
+
+  const getShadow = (size = 'md') => {
+    return baseTheme.shadows[size] || baseTheme.shadows.md;
+  };
+
+  const presetCollection = createPresets(baseTheme);
+  const styles = createStyles(baseTheme, presetCollection);
+
+  return {
+    ...baseTheme,
+    getValue,
+    getSpacing,
+    getShadow,
+    presets: presetCollection,
+    mediaQuery: (breakpoint) => mediaQuery(breakpoint, baseTheme),
+    styles,
+  };
 };
 
 export default theme;

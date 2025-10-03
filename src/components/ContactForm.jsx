@@ -1,5 +1,10 @@
+import clsx from 'clsx'
 import NetlifyForm from './NetlifyForm'
 import FormSubmitButton from './FormSubmitButton'
+import SectionHeader from './SectionHeader'
+import FormRow from './forms/FormRow'
+import FormField from './forms/FormField'
+import useTheme from '../theme/useTheme'
 
 /**
  * ContactForm - Standalone contact form with layout variations
@@ -23,158 +28,179 @@ export default function ContactForm({
   formName = 'contact-form',
   redirectPath = '/thank-you'
 }) {
-  
-  const renderHeader = () => {
-    if (layout === 'minimal') return null
-    
-    return (
-      <div className="cta-contact-header">
-        {scriptAccent && <p className="script-font">{scriptAccent}</p>}
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-    )
-  }
+  const theme = useTheme();
+  const errorStyles = {
+    background: 'rgba(212, 165, 165, 0.1)',
+    border: '1px solid rgba(212, 165, 165, 0.3)',
+    color: theme.colors.semantic.text,
+  };
 
-  const renderForm = () => (
+  const eventTypeOptions = [
+    { value: '', label: 'Select Type' },
+    { value: 'wedding', label: 'Wedding' },
+    { value: 'engagement', label: 'Engagement Party' },
+    { value: 'anniversary', label: 'Anniversary' },
+    { value: 'corporate', label: 'Corporate Event' },
+    { value: 'other', label: 'Other Celebration' },
+  ];
+
+  const renderStandardForm = () => (
     <NetlifyForm name={formName} action={redirectPath}>
       {({ handleSubmit, submitting, error, honeypotField }) => (
-        <form className="cta-contact-form" onSubmit={handleSubmit}>
+        <form className="form-stack" onSubmit={handleSubmit}>
           {honeypotField}
-          
           {error && (
-            <div style={{
-              background: 'rgba(212, 165, 165, 0.1)',
-              border: '1px solid rgba(212, 165, 165, 0.3)',
-              color: 'var(--warm-walnut)',
-              padding: '1rem',
-              borderRadius: '8px',
-              marginBottom: '1.5rem',
-              textAlign: 'center'
-            }}>
+            <div className="form-feedback" style={errorStyles}>
               {error}
             </div>
           )}
 
-          {layout === 'minimal' ? (
-            // Minimal layout - single row
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1rem',
-              alignItems: 'end'
-            }}>
-              <div className="cta-form-group">
-                <label htmlFor="name">Name *</label>
-                <input type="text" id="name" name="name" required disabled={submitting} />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="email">Email *</label>
-                <input type="email" id="email" name="email" required disabled={submitting} />
-              </div>
-              <div className="cta-form-group">
-                <label htmlFor="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" disabled={submitting} />
-              </div>
-              <div>
-                <FormSubmitButton
-                  submitting={submitting}
-                  submitText="Schedule Tour"
-                  loadingText="SENDING..."
-                />
-              </div>
-            </div>
-          ) : (
-            // Container and Inline layouts - full form
-            <>
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="firstName">First Name *</label>
-                  <input type="text" id="firstName" name="firstName" required disabled={submitting} />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="lastName">Last Name *</label>
-                  <input type="text" id="lastName" name="lastName" required disabled={submitting} />
-                </div>
-              </div>
+          <FormRow columns={2}>
+            <FormField
+              name="firstName"
+              label="First Name"
+              required
+              disabled={submitting}
+            />
+            <FormField
+              name="lastName"
+              label="Last Name"
+              required
+              disabled={submitting}
+            />
+          </FormRow>
 
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input type="email" id="email" name="email" required disabled={submitting} />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" disabled={submitting} />
-                </div>
-              </div>
+          <FormRow columns={2}>
+            <FormField
+              name="email"
+              label="Email Address"
+              type="email"
+              required
+              disabled={submitting}
+            />
+            <FormField
+              name="phone"
+              label="Phone Number"
+              type="tel"
+              placeholder="Optional"
+              disabled={submitting}
+            />
+          </FormRow>
 
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="eventDate">Preferred Event Date</label>
-                  <input type="date" id="eventDate" name="eventDate" disabled={submitting} />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="eventType">Event Type</label>
-                  <select id="eventType" name="eventType" disabled={submitting}>
-                    <option value="">Select Type</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="engagement">Engagement Party</option>
-                    <option value="anniversary">Anniversary</option>
-                    <option value="corporate">Corporate Event</option>
-                    <option value="other">Other Celebration</option>
-                  </select>
-                </div>
-              </div>
+          <FormRow columns={2}>
+            <FormField
+              name="eventDate"
+              label="Preferred Event Date"
+              type="date"
+              disabled={submitting}
+            />
+            <FormField
+              name="eventType"
+              label="Event Type"
+              component="select"
+              options={eventTypeOptions}
+              disabled={submitting}
+            />
+          </FormRow>
 
-              <div className="cta-form-group cta-full-width">
-                <label htmlFor="message">Tell Us About Your Vision</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows="4" 
-                  placeholder="Share any special requests or questions..."
-                  disabled={submitting}
-                />
-              </div>
+          <FormField
+            name="message"
+            label="Tell Us About Your Vision"
+            component="textarea"
+            rows={4}
+            placeholder="Share any special requests or questions..."
+            disabled={submitting}
+          />
 
-              <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-                <FormSubmitButton
-                  submitting={submitting}
-                  submitText="Schedule Your Tour"
-                  loadingText="SCHEDULING..."
-                />
-              </div>
-            </>
-          )}
+          <div className="form-actions">
+            <FormSubmitButton
+              submitting={submitting}
+              submitText="Schedule Your Tour"
+              loadingText="SCHEDULING..."
+            />
+          </div>
         </form>
       )}
     </NetlifyForm>
-  )
+  );
 
-  // Render based on layout
+  const renderMinimalForm = () => (
+    <NetlifyForm name={formName} action={redirectPath}>
+      {({ handleSubmit, submitting, error, honeypotField }) => (
+        <form className="form-stack" onSubmit={handleSubmit}>
+          {honeypotField}
+          {error && (
+            <div className="form-feedback" style={errorStyles}>
+              {error}
+            </div>
+          )}
+
+          <FormRow columns="auto" minColumnWidth="200px">
+            <FormField
+              name="name"
+              label="Name"
+              required
+              disabled={submitting}
+            />
+            <FormField
+              name="email"
+              label="Email"
+              type="email"
+              required
+              disabled={submitting}
+            />
+            <FormField
+              name="phone"
+              label="Phone"
+              type="tel"
+              placeholder="Optional"
+              disabled={submitting}
+            />
+          </FormRow>
+
+          <div className="form-actions">
+            <FormSubmitButton
+              submitting={submitting}
+              submitText="Schedule Tour"
+              loadingText="SENDING..."
+            />
+          </div>
+        </form>
+      )}
+    </NetlifyForm>
+  );
+
+  const header =
+    layout === 'minimal' ? null : (
+      <SectionHeader
+        eyebrow={scriptAccent}
+        title={title}
+        description={description}
+        align="center"
+      />
+    );
+
   if (layout === 'container') {
     return (
       <div className="cta-contact-container">
-        {renderHeader()}
-        {renderForm()}
+        {header}
+        {renderStandardForm()}
       </div>
-    )
+    );
   }
 
   if (layout === 'inline') {
     return (
       <div className="content-wrapper">
-        {renderHeader()}
-        {renderForm()}
+        {header}
+        {renderStandardForm()}
       </div>
-    )
+    );
   }
 
-  // Minimal layout
   return (
-    <div className="content-wrapper">
-      {renderForm()}
+    <div className={clsx('content-wrapper', 'contact-form--minimal')}>
+      {renderMinimalForm()}
     </div>
-  )
+  );
 }

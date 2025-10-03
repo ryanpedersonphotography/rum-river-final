@@ -5,11 +5,15 @@ import NetlifyForm from '../components/NetlifyForm'
 import { realWeddings } from '../data/realWeddings'
 import VenueTabs from '../components/VenueTabs'
 import CarouselControls from '../components/CarouselControls'
-import VRTourButton from '../components/VRTourButton'
 import CTAButton from '../components/CTAButton'
 import ScheduleTourForm from '../components/ScheduleTourForm'
 import Icon from '../components/Icon'
 import SiteFooter from '../components/SiteFooter'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import Card from '../components/Card'
+import FeatureList from '../components/FeatureList'
+import VRTourCard from '../components/VRTourCard'
 import { useTheme } from '../theme/useTheme'
 
 const venueData = {
@@ -132,13 +136,15 @@ export default function HomePage() {
       </section>
 
       {/* Discover Our Spaces - Tabbed Venue Display */}
-      <section className="section-warm">
+      <Section tone="cream">
         <div className="content-wrapper venue-content">
-          <div className="venue-header center">
-            <div className="script-accent">Your Perfect Setting</div>
-            <h2 className="section-title">Discover Our Spaces</h2>
-            <p className="lead">Every corner tells a story, every space creates memories</p>
-          </div>
+          <SectionHeader
+            eyebrow="Your Perfect Setting"
+            title="Discover Our Spaces"
+            description="Every corner tells a story, every space creates memories"
+            align="center"
+            className="venue-header"
+          />
           <VenueTabs
             tabs={[
               { key: 'barn', label: 'The Barn' },
@@ -163,67 +169,31 @@ export default function HomePage() {
             <div className="venue-details">
               <h3>{venueData[activeVenue].title}</h3>
               <p>{venueData[activeVenue].description}</p>
-              <div className="venue-features">
-                {venueData[activeVenue].features.map((feature, index) => (
-                  <div key={index} className="venue-feature">
-                    <h5>{feature.label}</h5>
-                    <p>{feature.value}</p>
-                  </div>
-                ))}
-              </div>
+              <FeatureList
+                items={venueData[activeVenue].features.map((feature) => ({
+                  label: feature.label,
+                  value: feature.value,
+                }))}
+                className="venue-features"
+                itemClassName="venue-feature"
+                unstyled
+              />
               
-              {/* VR Tour Buttons */}
               {(activeVenue === 'barn' || activeVenue === 'bridal') && (
-                <div className="venue-vr-tour" style={{
-                  marginTop: theme.spacing.xl,
-                  padding: theme.spacing.lg,
-                  background: `linear-gradient(135deg, ${theme.colors.accent.cream} 0%, ${theme.colors.accent.blush} 100%)`,
-                  borderRadius: theme.borders.radius.lg,
-                  border: `${theme.borders.width.thin} solid ${theme.colors.semantic.borderLight}`
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: theme.spacing.sm,
-                    marginBottom: theme.spacing.md
-                  }}>
-                    <span style={{
-                      fontSize: theme.typography.sizes['2xl']
-                    }}>🥽</span>
-                    <h4 style={{
-                      fontFamily: theme.typography.fonts.display,
-                      fontSize: theme.typography.sizes['2xl'],
-                      fontWeight: theme.typography.weights.normal,
-                      color: theme.colors.primary.walnut,
-                      margin: 0
-                    }}>
-                      Take a Virtual Tour
-                    </h4>
-                  </div>
-                  <p style={{
-                    fontFamily: theme.typography.fonts.body,
-                    fontSize: theme.typography.sizes.base,
-                    lineHeight: theme.typography.lineHeights.normal,
-                    color: theme.colors.primary.sage,
-                    margin: `0 0 ${theme.spacing.lg} 0`
-                  }}>
-                    Experience this space in immersive 3D. Walk through and explore every detail from the comfort of your home.
-                  </p>
-                  <VRTourButton
-                    tourUrl={activeVenue === 'barn' 
-                      ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
-                      : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
-                    variant="primary"
-                    showIcon={false}
-                  >
-                    Launch Virtual Tour
-                  </VRTourButton>
-                </div>
+                <VRTourCard
+                  title="Take a Virtual Tour"
+                  description="Experience this space in immersive 3D. Walk through and explore every detail from the comfort of your home."
+                  tourUrl={activeVenue === 'barn'
+                    ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
+                    : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
+                  tone="blushGradient"
+                  className="venue-vr-tour"
+                />
               )}
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Love Stories Gallery */}
       <section className="love-stories-section section">

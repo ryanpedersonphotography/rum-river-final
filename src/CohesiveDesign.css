@@ -5,69 +5,7 @@
 
 /* COHESIVE DESIGN SYSTEM - ROMANTIC RUSTIC ELEGANCE */
 
-:root {
-  /* Romantic Earth Palette */
-  --romantic-ivory: #FBF8F4;
-  --dusty-rose: #9D6B7B;  /* WCAG AA Compliant: 4.8:1 contrast with white text */
-  --sage-whisper: #9CAA9E;
-  --warm-walnut: #6B4E3D;
-  --champagne-gold: #E4C896;
-  --blush-pink: #F4E4E1;
-  --deep-forest: #3A4A3C;
-  --cream-pearl: #FFFCF8;
-  --muted-mauve: #A08A85;
-  --copper-glow: #C97D60;
-
-  /* Additional colors from globals */
-  --warm-cream: #FAF6F2;
-  --accent-gold: #D4A574;
-  --deep-brown: #4A3426;
-  --text-dark: #2C2416;
-  --sage-green: #7A8B7F;
-  --soft-white: #FEFDFB;
-
-  /* Typography - TWO FONT SYSTEM */
-  --font-display: 'Playfair Display', serif;  /* PRIMARY: Headings & Brand */
-  --font-body: 'Montserrat', sans-serif;      /* SECONDARY: Body Text */
-  --font-script: 'Dancing Script', cursive;   /* ACCENT: Special elements */
-
-  /* Typography Scale */
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.75rem;   /* 28px */
-  --text-4xl: 2rem;      /* 32px */
-  --text-5xl: 2.5rem;    /* 40px */
-  --text-6xl: 3rem;      /* 48px */
-  --text-hero: clamp(3rem, 8vw, 5.5rem);
-
-  /* NEW STANDARDIZED SPACING SCALE */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 2.5rem;
-  --space-3xl: 3rem;
-  --space-4xl: 4rem;
-  --space-5xl: 5rem;
-  --space-6xl: 8rem;
-
-  /* Spacing Rhythm - DEPRECATED */
-  --rhythm-xs: 0.5rem;
-  --rhythm-sm: 1.5rem;
-  --rhythm-md: 3rem;
-  --rhythm-lg: 5rem;
-  --rhythm-xl: 8rem;
-
-  /* Transitions */
-  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --transition-elegant: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+/* Design tokens are injected at runtime by ThemeProvider via CSS variables */
 
 /* Global Reset & Base */
 * {
@@ -99,6 +37,11 @@ body {
   position: relative;
   padding: 5rem 0;
   color: white;
+  background-image: linear-gradient(
+      var(--hero-overlay-start, rgba(0, 0, 0, 0.4)),
+      var(--hero-overlay-end, rgba(0, 0, 0, 0.4))
+    ),
+    var(--hero-image, none);
   background-size: cover;
   background-position: center;
 }
@@ -1480,6 +1423,81 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   color: var(--muted-mauve);
 }
 
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-xl);
+}
+
+.testimonial-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-2xl);
+  margin-top: var(--space-3xl);
+  text-align: center;
+}
+
+.testimonial-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.thank-you-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.thank-you-step {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--sage-green);
+}
+
+.thank-you-step .feature-list__icon {
+  font-size: var(--text-lg);
+}
+
+.thank-you-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.thank-you-contact {
+  border-top: 1px solid rgba(212, 165, 165, 0.3);
+  padding-top: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.thank-you-contact__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--sage-green);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.thank-you-contact__body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--warm-walnut);
+  margin: 0;
+}
+
+.thank-you-contact__body a {
+  color: var(--warm-walnut);
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* Contact Section */
 .contact-section {
   background: var(--romantic-ivory);
@@ -1490,6 +1508,153 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+}
+
+.location-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--warm-walnut);
+  margin-bottom: var(--space-sm);
+}
+
+.location-card h3 span {
+  margin-right: var(--space-sm);
+}
+
+.location-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.location-card li {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--sage-green);
+  line-height: 1.7;
+}
+
+.location-card li strong {
+  color: var(--warm-walnut);
+  display: block;
+}
+
+.real-wedding-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+.real-wedding-hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: var(--space-4xl) var(--space-2xl);
+}
+
+.real-wedding-hero__back {
+  position: absolute;
+  top: var(--space-2xl);
+  left: var(--space-2xl);
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--space-sm) var(--space-lg);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  border-radius: var(--rr-borders-radius-md, 10px);
+  transition: var(--transition);
+}
+
+.real-wedding-hero__back:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.real-wedding-hero__content {
+  text-align: center;
+  padding: var(--space-4xl) var(--space-xl);
+}
+
+.real-wedding-hero__content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 400;
+  margin-bottom: var(--space-md);
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.real-wedding-hero__content div {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.real-wedding-intro {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--sage-green);
+  font-style: italic;
+  margin: 0;
+}
+
+.real-wedding-photographer {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--warm-walnut);
+  margin-top: var(--space-lg);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.real-wedding-gallery__titles {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  color: var(--sage-green);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.real-wedding-gallery__titles span {
+  opacity: 0.75;
+}
+
+.real-wedding-vendors {
+  display: grid;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--sage-green);
+}
+
+.real-wedding-vendors strong {
+  color: var(--warm-walnut);
 }
 
 .contact-info {
@@ -1883,6 +2048,12 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   color: var(--text-dark);
 }
 
+.vendor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-xl);
+}
+
 @media (max-width: 768px) {
   .faq-question {
     padding: 20px;
@@ -2095,6 +2266,12 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 .block-content {
   padding: 40px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
 }
 
 .block-content .number {
@@ -2741,81 +2918,149 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   line-height: 1.8;
 }
 
-.cta-contact-form {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 50px;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
 }
 
-.cta-form-row {
+.form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-bottom: 30px;
+  gap: var(--form-row-gap, var(--space-lg));
+  width: 100%;
 }
 
-.cta-form-group {
-  position: relative;
+.form-row--single {
+  grid-template-columns: 1fr;
 }
 
-.cta-form-group.cta-full-width {
+.form-row--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-row--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.form-row--auto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--form-row-min-width, 220px), 1fr));
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-field--full {
   grid-column: 1 / -1;
 }
 
-.cta-form-group label {
-  display: block;
-  margin-bottom: 10px;
-  color: #2C2416;
-  font-size: 0.875rem; /* Use --text-sm */
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.cta-form-group input,
-.cta-form-group select,
-.cta-form-group textarea {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid rgba(139, 99, 55, 0.1);
-  border-radius: 10px;
-  font-size: 1rem; /* Use --text-base */
+.form-field__label {
   font-family: var(--font-body);
-  transition: all 0.3s ease;
-  background: white;
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--warm-walnut);
 }
 
-.cta-form-group input:focus,
-.cta-form-group select:focus,
-.cta-form-group textarea:focus {
+.form-field--dark .form-field__label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-field__control {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rr-borders-radius-md, 10px);
+  font-size: var(--text-base);
+  transition: var(--transition);
+  box-shadow: none;
+}
+
+.form-field__control:focus {
   outline: none;
-  border-color: #D4A574;
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+  border-color: var(--champagne-gold);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.18);
 }
 
-.cta-form-group textarea {
-  resize: vertical;
-  min-height: 120px;
+.form-field__control:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.form-field--dark .form-field__control::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.form-field__helper {
+  font-size: var(--text-sm);
+  margin: 0;
+  color: var(--sage-green);
+}
+
+.form-feedback {
+  padding: var(--space-md);
+  border-radius: var(--rr-borders-radius-md, 10px);
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
 }
 
 .cta-submit-button {
   background: var(--accent-gold);
-  color: white;
-  padding: 18px 50px;
+  color: var(--soft-white);
+  padding: var(--space-md) var(--space-2xl);
   border: none;
-  border-radius: 50px;
-  font-size: 1rem; /* Use --text-base */
+  border-radius: var(--rr-borders-radius-full, 999px);
+  font-size: var(--text-base);
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: var(--transition-smooth);
   box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
-  display: block;
-  margin: 40px auto 0;
-  position: relative;
-  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.vr-tour-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vr-tour-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.vr-tour-card__icon {
+  font-size: var(--text-2xl);
+}
+
+.vr-tour-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  color: var(--warm-walnut);
+}
+
+.vr-tour-card__description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--sage-green);
 }
 
 .cta-submit-button::before {
@@ -2849,20 +3094,11 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 /* Mobile responsive styles for contact form */
 @media (max-width: 768px) {
   .cta-contact-section {
-    padding: 80px 20px;
+    padding: var(--space-4xl) var(--space-lg);
   }
 
-  .cta-contact-header h2 {
-    font-size: 2.5rem; /* Use --text-5xl */
-  }
-
-  .cta-form-row {
+  .form-row.form-row--stack {
     grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .cta-contact-form {
-    padding: 30px;
   }
 }
 
@@ -3323,6 +3559,24 @@ ul li {
   margin: 2rem 0 3rem;
 }
 
+.contact-info-card {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.contact-info-card .contact-info-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.contact-info-card .contact-info-main,
+.contact-info-card .contact-info-secondary {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .contact-info-item {
   text-align: center;
 }
@@ -3397,5 +3651,29 @@ ul li {
   filter: none;
   transform: none;
 }
+.real-wedding-gallery .content-wrapper {
+  padding: 0 var(--space-2xl) var(--space-4xl);
+}
 
+.real-wedding-gallery .gallery-item {
+  border-radius: var(--rr-borders-radius-lg, 20px);
+  overflow: hidden;
+}
+.wedding-photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--rr-borders-radius-md, 12px);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.wedding-photo-card img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.wedding-photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}

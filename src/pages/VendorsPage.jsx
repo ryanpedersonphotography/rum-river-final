@@ -1,5 +1,9 @@
 import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
+import Section from '../components/Section'
+import SectionHeader from '../components/SectionHeader'
+import Card from '../components/Card'
+import VendorCard from '../components/VendorCard'
 
 export default function VendorsPage() {
   const heroContent = (
@@ -114,80 +118,50 @@ export default function VendorsPage() {
     >
       
       {/* Vendor Categories Section */}
-      <section id="vendors" className="section">
+      <Section id="vendors">
         <div className="content-wrapper">
           {vendorCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} style={{ marginBottom: '5rem' }}>
-              {/* Category Header */}
-              <div className="section-header center" style={{ marginBottom: '3rem' }}>
-                <div style={{ marginBottom: '1rem' }}><Icon name={category.iconName} size="lg" color="primary" /></div>
-                <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '0' }}>
-                  {category.title}
-                </h2>
-              </div>
-
-              {/* Vendor Cards Grid */}
-              <div className="testimonials-grid">
-                {category.vendors.map((vendor, vendorIndex) => (
-                  <div key={vendorIndex} className="testimonial-card">
-                    <h3 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.75rem',
-                      fontWeight: 400,
-                      color: 'var(--warm-walnut)',
-                      marginBottom: '1rem'
-                    }}>
-                      {vendor.name}
-                    </h3>
-                    <p style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '1rem',
-                      lineHeight: 1.7,
-                      color: 'var(--sage-green)',
-                      marginBottom: '1.5rem'
-                    }}>
-                      {vendor.description}
-                    </p>
-                    <div style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      color: 'var(--warm-walnut)',
-                      letterSpacing: '0.02em'
-                    }}>
-                      📞 {vendor.phone}
-                    </div>
-                  </div>
+            <div key={categoryIndex} className="vendors-category">
+              <SectionHeader
+                eyebrow={<Icon name={category.iconName} size="lg" color="primary" />}
+                title={category.title}
+                align="center"
+                className="vendors-category__header"
+              />
+              <div className="vendor-grid">
+                {category.vendors.map((vendor) => (
+                  <VendorCard
+                    key={vendor.name}
+                    name={vendor.name}
+                    description={vendor.description}
+                    phone={vendor.phone}
+                  />
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* Vendor Application CTA */}
-      <section style={{
-        background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
-        padding: '3.5rem 0'
-      }}>
+      <Section
+        paddingY="3xl"
+        background="linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)"
+      >
         <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent">Join Our Network</div>
-            <h2 className="section-title">Are You a Wedding Professional?</h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              We're always looking for talented professionals to join our preferred vendor network. 
-              If you're interested in working with couples at Rum River Barn, we'd love to hear from you.
-            </p>
+          <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+            <SectionHeader
+              eyebrow="Join Our Network"
+              title="Are You a Wedding Professional?"
+              description="We're always looking for talented professionals to join our preferred vendor network. If you're interested in working with couples at Rum River Barn, we'd love to hear from you."
+              align="center"
+            />
             <a href="/contact" className="romantic-button primary">
               Apply to Join
             </a>
           </div>
         </div>
-      </section>
+      </Section>
 
     </PageTemplate>
   )

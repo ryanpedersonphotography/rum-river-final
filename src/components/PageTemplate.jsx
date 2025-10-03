@@ -1,5 +1,6 @@
 import Header from './Header'
 import SiteFooter from './SiteFooter'
+import HeroSection from './HeroSection'
 
 export default function PageTemplate({ 
   children, 
@@ -15,18 +16,9 @@ export default function PageTemplate({
       
       {/* Hero Section - Optional */}
       {heroContent && (
-        <section 
-          className="page-hero dark-section"
-          style={{
-            background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("${heroImage}") center/cover`
-          }}
-        >
-          <div className="content-wrapper">
-            <div className="page-hero-content">
-              {heroContent}
-            </div>
-          </div>
-        </section>
+        <HeroSection image={heroImage} tone="dark">
+          {heroContent}
+        </HeroSection>
       )}
 
       {/* Main Content Area */}
