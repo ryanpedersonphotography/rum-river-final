@@ -3369,4 +3369,33 @@ ul li {
   }
 }
 
+/* === Unified Button States (append at end) === */
+.romantic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 0;                 /* neutralize old borders */
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+}
+
+.romantic-button:hover:not([disabled]) { filter: brightness(0.98); }
+.romantic-button:active:not([disabled]) { transform: translateY(1px); }
+
+/* Accessible keyboard focus */
+.romantic-button:focus-visible {
+  outline: 3px solid rgba(212,165,116,.45); /* champagne ring */
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.romantic-button[disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
 

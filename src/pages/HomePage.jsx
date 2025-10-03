@@ -10,6 +10,7 @@ import CTAButton from '../components/CTAButton'
 import ScheduleTourForm from '../components/ScheduleTourForm'
 import Icon from '../components/Icon'
 import SiteFooter from '../components/SiteFooter'
+import { useTheme } from '../theme/useTheme'
 
 const venueData = {
   barn: {
@@ -75,6 +76,7 @@ const venueData = {
 }
 
 export default function HomePage() {
+  const theme = useTheme()
   const [activeVenue, setActiveVenue] = useState('barn')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
@@ -173,37 +175,37 @@ export default function HomePage() {
               {/* VR Tour Buttons */}
               {(activeVenue === 'barn' || activeVenue === 'bridal') && (
                 <div className="venue-vr-tour" style={{
-                  marginTop: '2rem',
-                  padding: '1.5rem',
-                  background: 'linear-gradient(135deg, var(--cream-pearl) 0%, var(--blush-pink) 100%)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(212, 165, 116, 0.2)'
+                  marginTop: theme.spacing.xl,
+                  padding: theme.spacing.lg,
+                  background: `linear-gradient(135deg, ${theme.colors.accent.cream} 0%, ${theme.colors.accent.blush} 100%)`,
+                  borderRadius: theme.borders.radius.lg,
+                  border: `${theme.borders.width.thin} solid ${theme.colors.semantic.borderLight}`
                 }}>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1rem'
+                    gap: theme.spacing.sm,
+                    marginBottom: theme.spacing.md
                   }}>
                     <span style={{
-                      fontSize: '1.5rem'
+                      fontSize: theme.typography.sizes['2xl']
                     }}>🥽</span>
                     <h4 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.5rem',
-                      fontWeight: 400,
-                      color: 'var(--warm-walnut)',
+                      fontFamily: theme.typography.fonts.display,
+                      fontSize: theme.typography.sizes['2xl'],
+                      fontWeight: theme.typography.weights.normal,
+                      color: theme.colors.primary.walnut,
                       margin: 0
                     }}>
                       Take a Virtual Tour
                     </h4>
                   </div>
                   <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '1rem',
-                    lineHeight: 1.6,
-                    color: 'var(--sage-green)',
-                    margin: '0 0 1.5rem 0'
+                    fontFamily: theme.typography.fonts.body,
+                    fontSize: theme.typography.sizes.base,
+                    lineHeight: theme.typography.lineHeights.normal,
+                    color: theme.colors.primary.sage,
+                    margin: `0 0 ${theme.spacing.lg} 0`
                   }}>
                     Experience this space in immersive 3D. Walk through and explore every detail from the comfort of your home.
                   </p>

@@ -47,3 +47,6 @@ rum-river-wedding-barn/
 *.svg
 *.webp
 *.ico
+
+*storybook.log
+storybook-static
