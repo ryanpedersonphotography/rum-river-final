@@ -37,7 +37,8 @@ export default function EventsPage() {
   return (
     <>
       <PageTemplate 
-        heroContent={heroContent}
+      currentPage="events"
+      heroContent={heroContent}
         heroImage="/images/2014/05/Reins-Wedding_3-193.jpg"
       >
 

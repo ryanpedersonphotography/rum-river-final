@@ -108,6 +108,7 @@ export default function VendorsPage() {
 
   return (
     <PageTemplate 
+      currentPage="vendors"
       heroContent={heroContent}
       heroImage="/images/venue/details-building-porch-architectural.jpg"
     >

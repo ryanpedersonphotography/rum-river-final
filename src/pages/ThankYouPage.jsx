@@ -13,7 +13,10 @@ export default function ThankYouPage() {
   )
 
   return (
-    <PageTemplate heroContent={heroContent}>
+    <PageTemplate 
+      currentPage="thank-you"
+      heroContent={heroContent}
+    >
       <section className="section section-white">
         <div className="content-wrapper">
           <div style={{

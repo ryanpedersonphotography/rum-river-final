@@ -77,6 +77,7 @@ export default function TestimonialsPage() {
 
   return (
     <PageTemplate 
+      currentPage="testimonials"
       heroContent={heroContent}
       heroImage="/images/venue/barn-exterior-deck-swing-under-tree.jpg"
     >

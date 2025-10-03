@@ -18,6 +18,7 @@ export default function ContactPage() {
 
   return (
     <PageTemplate 
+      currentPage="contact"
       heroContent={heroContent}
       heroImage="/images/venue/barn-exterior-entrance-lighting-view.jpg"
     >

@@ -129,6 +129,7 @@ export default function PropertyPage() {
 
   return (
     <PageTemplate 
+      currentPage="property"
       heroContent={heroContent}
       heroImage="/images/venue/barn-interior-ceiling-beams-lighting.jpg"
     >

@@ -15,6 +15,7 @@ export default function LocationPage() {
 
   return (
     <PageTemplate 
+      currentPage="location"
       heroContent={heroContent}
       heroImage="/images/venue/property-field-wildflowers-natural.jpg"
     >

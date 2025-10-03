@@ -147,6 +147,7 @@ export default function GalleryPage() {
 
   return (
     <PageTemplate 
+      currentPage="gallery"
       heroContent={heroContent}
       heroImage="/images/venue/barn-interior-exposed-beams-chandeliers.jpg"
     >

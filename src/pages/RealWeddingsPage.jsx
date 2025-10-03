@@ -16,6 +16,7 @@ export default function RealWeddingsPage() {
 
   return (
     <PageTemplate 
+      currentPage="real-weddings"
       heroContent={heroContent}
       heroImage="/images/2014/04/Loria-Jason-wedding-2-0026.jpg"
     >

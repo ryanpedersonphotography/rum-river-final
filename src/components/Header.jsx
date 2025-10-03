@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default function Header() {
+export default function Header({ currentPage = '' }) {
   useEffect(() => {
     const handleScroll = () => {
       const header = document.getElementById('header')
@@ -30,30 +30,30 @@ export default function Header() {
           </div>
           <nav>
             <ul className="nav-menu">
-              <li><a href="/">Home</a></li>
+              <li><a href="/" className={currentPage === 'home' ? 'active' : ''}>Home</a></li>
               <li>
-                <a href="/events">Events</a>
+                <a href="/events" className={currentPage === 'events' ? 'active' : ''}>Events</a>
               </li>
-              <li><a href="/vendor-list">Vendor List</a></li>
+              <li><a href="/vendor-list" className={currentPage === 'vendors' ? 'active' : ''}>Vendor List</a></li>
               <li className="dropdown">
-                <a href="/property">The Property ▾</a>
+                <a href="/property" className={currentPage === 'property' ? 'active' : ''}>The Property ▾</a>
                 <ul className="dropdown-menu">
-                  <li><a href="/location">Location</a></li>
-                  <li><a href="/history">History</a></li>
+                  <li><a href="/location" className={currentPage === 'location' ? 'active' : ''}>Location</a></li>
+                  <li><a href="/history" className={currentPage === 'history' ? 'active' : ''}>History</a></li>
                 </ul>
               </li>
               <li>
-                <a href="/gallery">Gallery</a>
+                <a href="/gallery" className={currentPage === 'gallery' ? 'active' : ''}>Gallery</a>
               </li>
               <li className="dropdown">
-                <a href="/testimonials">Testimonials & Features ▾</a>
+                <a href="/testimonials" className={currentPage === 'testimonials' ? 'active' : ''}>Testimonials & Features ▾</a>
                 <ul className="dropdown-menu">
-                  <li><a href="/testimonials">Testimonials</a></li>
-                  <li><a href="/real-weddings">Real Weddings Blog</a></li>
+                  <li><a href="/testimonials" className={currentPage === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
+                  <li><a href="/real-weddings" className={currentPage === 'real-weddings' ? 'active' : ''}>Real Weddings Blog</a></li>
                 </ul>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <a href="/contact" className={currentPage === 'contact' ? 'active' : ''}>Contact</a>
               </li>
             </ul>
           </nav>

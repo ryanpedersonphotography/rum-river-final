@@ -35,6 +35,7 @@ export default function HistoryPage() {
 
   return (
     <PageTemplate 
+      currentPage="history"
       heroContent={heroContent}
       heroImage="/images/venue/barn-exterior-deck-stairs-trees.jpg"
     >

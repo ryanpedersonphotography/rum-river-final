@@ -360,6 +360,17 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   width: 100%;
 }
 
+/* Active page indicator */
+.nav-menu a.active {
+  font-weight: 700;
+  color: var(--champagne-gold) !important;
+}
+
+.header-enhanced.scrolled .nav-menu a.active {
+  font-weight: 700;
+  color: var(--champagne-gold) !important;
+}
+
 /* Dropdown Navigation */
 .nav-menu .dropdown {
   position: relative;
@@ -1720,7 +1731,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .footer-contact-info {
   font-size: 1.25rem; /* Use --text-xl */
   margin-bottom: 40px;
-  opacity: 0.9;
+  opacity: 0.95;
   line-height: 1.6;
 }
 
@@ -1754,7 +1765,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 .footer-address {
   margin-top: 40px;
-  opacity: 0.8;
+  opacity: 0.9;
   font-size: 1rem; /* Use --text-base */
   line-height: 1.8;
 }
