@@ -12,6 +12,18 @@ import RealWeddingPost from './pages/RealWeddingPost'
 import HistoryPage from './pages/HistoryPage'
 import EventsPage from './pages/EventsPage'
 import ThankYouPage from './pages/ThankYouPage'
+import HeroStandalone from './pages/HeroStandalone'
+import VenueStandalone from './pages/VenueStandalone'
+import MenuStandalone from './pages/MenuStandalone'
+import FooterStandalone from './pages/FooterStandalone'
+import SpacesStandalone from './pages/SpacesStandalone'
+import LoveStoriesStandalone from './pages/LoveStoriesStandalone'
+import ScheduleTourStandalone from './pages/ScheduleTourStandalone'
+import FeatureBlocksStandalone from './pages/FeatureBlocksStandalone'
+import FAQAccordionStandalone from './pages/FAQAccordionStandalone'
+import SocialProofStandalone from './pages/SocialProofStandalone'
+import LoveLettersStandalone from './pages/LoveLettersStandalone'
+import FindYourWayStandalone from './pages/FindYourWayStandalone'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 
@@ -44,6 +56,18 @@ export default function App() {
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/hero-demo" element={<HeroStandalone />} />
+        <Route path="/venue-demo" element={<VenueStandalone />} />
+        <Route path="/menu-demo" element={<MenuStandalone />} />
+        <Route path="/footer-demo" element={<FooterStandalone />} />
+        <Route path="/spaces-demo" element={<SpacesStandalone />} />
+        <Route path="/love-stories-demo" element={<LoveStoriesStandalone />} />
+        <Route path="/schedule-tour-demo" element={<ScheduleTourStandalone />} />
+        <Route path="/feature-blocks-demo" element={<FeatureBlocksStandalone />} />
+        <Route path="/faq-accordion-demo" element={<FAQAccordionStandalone />} />
+        <Route path="/social-proof-demo" element={<SocialProofStandalone />} />
+        <Route path="/love-letters-demo" element={<LoveLettersStandalone />} />
+        <Route path="/find-your-way-demo" element={<FindYourWayStandalone />} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>

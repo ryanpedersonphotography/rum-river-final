@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
+import SEO from '../components/SEO'
 import NetlifyForm from '../components/NetlifyForm'
 import { realWeddings } from '../data/realWeddings'
+import { pageConfigs } from '../data/seoDefaults'
 import VenueTabs from '../components/VenueTabs'
 import CarouselControls from '../components/CarouselControls'
 import VRTourButton from '../components/VRTourButton'
@@ -96,6 +98,13 @@ export default function HomePage() {
   }
   return (
     <>
+      <SEO 
+        title={pageConfigs.home.title}
+        description={pageConfigs.home.description}
+        keywords={pageConfigs.home.keywords}
+        image={pageConfigs.home.image}
+        url="/"
+      />
       <Header />
 
       {/* Floating CTA Button */}
