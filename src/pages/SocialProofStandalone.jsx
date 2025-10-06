@@ -159,24 +159,51 @@ export default function SocialProofStandalone() {
               fontSize: '0.9rem',
               lineHeight: '1.5'
             }}>
-{`<!-- Social Proof Section -->
-<section id="social-proof" className="social-proof">
-  <div className="container social-content">
-    <!-- Publication Logos -->
-    <div className="social-logos">
-      <span className="social-logo">THE KNOT</span>
-      <span className="social-logo">WEDDINGWIRE</span>
-      <span className="social-logo">MARTHA STEWART</span>
-      <span className="social-logo">MINNESOTA BRIDE</span>
+{`<!-- What Couples Say - Testimonials Section -->
+<section className="testimonials-section section">
+  <div className="content-wrapper">
+    <div className="section-header center">
+      <div className="script-accent">Love Letters</div>
+      <h2 className="section-title">What Couples Say</h2>
+      <p className="lead">Real stories from real couples who celebrated at Rum River Barn</p>
     </div>
-    
-    <!-- Testimonial Quote -->
-    <p className="social-text">
-      "Rum River Barn isn't just a venue—it's 
-      <span className="highlight">where dreams come to life</span>.
-      Their commitment to saying 'yes' to every couple's vision sets them apart as
-      <span className="highlight"> Minnesota's most accommodating wedding destination</span>."
-    </p>
+
+    <div className="testimonials-grid">
+      <!-- Testimonial Card 1 -->
+      <a href="/gallery" className="testimonial-card-link">
+        <div className="testimonial-card">
+          <blockquote className="testimonial-quote">
+            "From our first tour to our last dance, the team at Rum River made our dreams come true.
+            The barn was absolutely magical, and our guests are still talking about how perfect everything was."
+          </blockquote>
+          
+          <!-- Five Star Rating with Heroicons -->
+          <div className="five-star-rating">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+              <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+            </svg>
+            <!-- 4 more identical star SVGs -->
+          </div>
+          
+          <div className="testimonial-author">
+            <div className="couple-avatar">
+              <img 
+                src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=300&h=300&fit=crop&crop=face&auto=format&q=80" 
+                alt="Sarah & Michael Johnson"
+                className="avatar-image"
+              />
+              <!-- Champagne Gold Overlay -->
+              <div className="avatar-overlay"></div>
+            </div>
+            <div className="author-name">Sarah & Michael Johnson</div>
+            <!-- Floating CTA Text -->
+            <div className="wedding-gallery-cta">View Their Wedding Gallery</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Additional testimonial cards with identical structure... -->
+    </div>
   </div>
 </section>`}
             </pre>
@@ -194,152 +221,116 @@ export default function SocialProofStandalone() {
               fontSize: '0.9rem',
               lineHeight: '1.5'
             }}>
-{`// React Component for Social Proof Section
+{`// React Component for Testimonials Section
 import React from 'react'
+import './CohesiveDesign.css'
 
-// Social proof data structure
-const socialProofData = {
-  publications: [
-    { name: "THE KNOT", url: "https://theknot.com" },
-    { name: "WEDDINGWIRE", url: "https://weddingwire.com" },
-    { name: "MARTHA STEWART", url: "https://marthastewartweddings.com" },
-    { name: "MINNESOTA BRIDE", url: "https://minnesotabride.com" }
-  ],
-  testimonial: {
-    quote: "Rum River Barn isn't just a venue—it's where dreams come to life. Their commitment to saying 'yes' to every couple's vision sets them apart as Minnesota's most accommodating wedding destination.",
-    highlights: [
-      "where dreams come to life",
-      "Minnesota's most accommodating wedding destination"
-    ],
-    source: "Industry Recognition"
+// Testimonial data structure
+const testimonialsData = [
+  {
+    id: 1,
+    quote: "From our first tour to our last dance, the team at Rum River made our dreams come true. The barn was absolutely magical, and our guests are still talking about how perfect everything was.",
+    author: "Sarah & Michael Johnson",
+    avatar: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=300&h=300&fit=crop&crop=face&auto=format&q=80",
+    galleryLink: "/gallery"
+  },
+  {
+    id: 2,
+    quote: "We wanted rustic elegance, and Rum River delivered beyond our wildest expectations. The historic charm combined with modern amenities was exactly what we were looking for.",
+    author: "Emma & James Wilson",
+    avatar: "https://images.unsplash.com/photo-1519741497674-611481863552?w=300&h=300&fit=crop&crop=face&auto=format&q=80",
+    galleryLink: "/gallery"
+  },
+  {
+    id: 3,
+    quote: "The team went above and beyond to make our winter wedding absolutely magical. Even in February, the barn felt warm and romantic. We couldn't have asked for more.",
+    author: "Amanda & Chris Thompson",
+    avatar: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&h=300&fit=crop&crop=face&auto=format&q=80",
+    galleryLink: "/gallery"
   }
-}
+]
 
-export default function SocialProofSection() {
-  const formatQuoteWithHighlights = (quote, highlights) => {
-    let formattedQuote = quote
-    
-    highlights.forEach(highlight => {
-      const regex = new RegExp(\`(\${highlight})\`, 'gi')
-      formattedQuote = formattedQuote.replace(
-        regex, 
-        '<span class="highlight">$1</span>'
-      )
-    })
-    
-    return formattedQuote
-  }
+// Star Icon Component (Heroicons)
+const StarIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+  </svg>
+)
 
+// Testimonial Card Component
+const TestimonialCard = ({ testimonial }) => (
+  <a href={testimonial.galleryLink} className="testimonial-card-link">
+    <div className="testimonial-card">
+      <blockquote className="testimonial-quote">
+        "{testimonial.quote}"
+      </blockquote>
+      
+      {/* Five Star Rating */}
+      <div className="five-star-rating">
+        {[...Array(5)].map((_, index) => (
+          <StarIcon key={index} />
+        ))}
+      </div>
+      
+      <div className="testimonial-author">
+        <div className="couple-avatar">
+          <img 
+            src={testimonial.avatar}
+            alt={testimonial.author}
+            className="avatar-image"
+          />
+          {/* Champagne Gold Overlay - Animated */}
+          <div className="avatar-overlay"></div>
+        </div>
+        <div className="author-name">{testimonial.author}</div>
+        {/* Floating CTA Text */}
+        <div className="wedding-gallery-cta">
+          View Their Wedding Gallery
+        </div>
+      </div>
+    </div>
+  </a>
+)
+
+// Main Testimonials Section Component
+export default function TestimonialsSection() {
   return (
-    <section className="social-proof">
-      <div className="container social-content">
-        {/* Publication Logos */}
-        <div className="social-logos">
-          {socialProofData.publications.map((publication, index) => (
-            <span key={index} className="social-logo">
-              {publication.name}
-            </span>
+    <section className="testimonials-section section">
+      <div className="content-wrapper">
+        <div className="section-header center">
+          <div className="script-accent">Love Letters</div>
+          <h2 className="section-title">What Couples Say</h2>
+          <p className="lead">
+            Real stories from real couples who celebrated at Rum River Barn
+          </p>
+        </div>
+
+        <div className="testimonials-grid">
+          {testimonialsData.map(testimonial => (
+            <TestimonialCard 
+              key={testimonial.id} 
+              testimonial={testimonial} 
+            />
           ))}
         </div>
-        
-        {/* Testimonial Quote */}
-        <p 
-          className="social-text"
-          dangerouslySetInnerHTML={{
-            __html: \`"\${formatQuoteWithHighlights(
-              socialProofData.testimonial.quote, 
-              socialProofData.testimonial.highlights
-            )}"\`
-          }}
-        />
-      </div>
-    </section>
-  )
-}
-
-// Alternative implementation with manual highlight spans
-export function SocialProofAlternative() {
-  return (
-    <section className="social-proof">
-      <div className="container social-content">
-        <div className="social-logos">
-          <span className="social-logo">THE KNOT</span>
-          <span className="social-logo">WEDDINGWIRE</span>
-          <span className="social-logo">MARTHA STEWART</span>
-          <span className="social-logo">MINNESOTA BRIDE</span>
-        </div>
-        
-        <p className="social-text">
-          "Rum River Barn isn't just a venue—it's{' '}
-          <span className="highlight">where dreams come to life</span>.
-          Their commitment to saying 'yes' to every couple's vision sets them apart as{' '}
-          <span className="highlight">Minnesota's most accommodating wedding destination</span>."
-        </p>
-      </div>
-    </section>
-  )
-}
-
-// Animation on scroll (optional enhancement)
-import { useEffect } from 'react'
-
-export function SocialProofWithAnimation() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    const socialSection = document.querySelector('.social-proof')
-    if (socialSection) {
-      observer.observe(socialSection)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <section className="social-proof fade-up">
-      <div className="container social-content">
-        <div className="social-logos stagger-animation">
-          <span className="social-logo" style={{ animationDelay: '0.1s' }}>THE KNOT</span>
-          <span className="social-logo" style={{ animationDelay: '0.2s' }}>WEDDINGWIRE</span>
-          <span className="social-logo" style={{ animationDelay: '0.3s' }}>MARTHA STEWART</span>
-          <span className="social-logo" style={{ animationDelay: '0.4s' }}>MINNESOTA BRIDE</span>
-        </div>
-        
-        <p className="social-text" style={{ animationDelay: '0.6s' }}>
-          "Rum River Barn isn't just a venue—it's{' '}
-          <span className="highlight">where dreams come to life</span>.
-          Their commitment to saying 'yes' to every couple's vision sets them apart as{' '}
-          <span className="highlight">Minnesota's most accommodating wedding destination</span>."
-        </p>
       </div>
     </section>
   )
 }
 
 // Usage Examples
-const SocialProofVariations = () => {
+const TestimonialsVariations = () => {
   return (
     <>
       {/* Basic Implementation */}
-      <SocialProofSection />
+      <TestimonialsSection />
       
-      {/* With Custom Publications */}
-      <SocialProofSection 
-        publications={["BRIDES", "VOGUE", "STYLE ME PRETTY", "RUFFLED"]}
-        testimonial="Custom testimonial text here..."
+      {/* With Custom Data */}
+      <TestimonialsSection 
+        testimonials={customTestimonialsData}
+        sectionTitle="Client Reviews"
+        accentText="Testimonials"
       />
-      
-      {/* With Animation */}
-      <SocialProofWithAnimation />
     </>
   )
 }`}
@@ -358,186 +349,285 @@ const SocialProofVariations = () => {
               fontSize: '0.9rem',
               lineHeight: '1.5'
             }}>
-{`/* Social Proof Section */
-.social-proof {
-  background: var(--romantic-ivory);
-  padding: 80px 0;
-  text-align: center;
+{`/* Testimonials Section - What Couples Say */
+.testimonials-section {
+  background: white;
+  padding: 100px 0;
 }
 
-.container {
+.content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.social-content {
-  max-width: 900px;
+.section-header.center {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.script-accent {
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  color: var(--dusty-rose);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--warm-walnut);
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  opacity: 0.9;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-/* Publication Logos */
-.social-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
+/* Testimonials Grid */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.social-logo {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--sage-green);
-  opacity: 0.7;
-  transition: all 0.3s ease;
+/* Testimonial Card Link Wrapper */
+.testimonial-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.testimonial-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Testimonial Cards with Primary Card Hover Behavior */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(1.2);
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
+  overflow: hidden;
 }
 
-.social-logo:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-/* Add decorative elements */
-.social-logo::after {
+/* Champagne Gold Underline Animation */
+.testimonial-card::after {
   content: '';
   position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
   width: 0;
-  height: 2px;
-  background: var(--dusty-rose);
-  transition: width 0.3s ease;
+  height: 3px;
+  background: var(--champagne-gold);
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.social-logo:hover::after {
+/* Gleam Effect */
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -200%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 70%);
+  opacity: 0;
+  transform: rotate(45deg);
+  transition: left 0.8s ease, opacity 0.2s ease;
+}
+
+/* Card Hover States */
+.testimonial-card-link:hover .testimonial-card {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-card-link:hover .testimonial-card::after {
   width: 100%;
+}
+
+.testimonial-card-link:hover .testimonial-card::before {
+  opacity: 1;
+  left: 100%;
+  transition: left 0.8s ease, opacity 0.2s ease;
 }
 
 /* Testimonial Quote */
-.social-text {
+.testimonial-quote {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   color: var(--warm-walnut);
   font-style: italic;
-  font-weight: 400;
-  margin: 0;
+  margin: 0 0 2rem 0;
   position: relative;
+  z-index: 1;
+  text-align: left;
 }
 
-/* Quote Marks */
-.social-text::before,
-.social-text::after {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  color: var(--dusty-rose);
-  opacity: 0.3;
-  position: absolute;
-  line-height: 1;
+/* Five Star Rating with Heroicons */
+.five-star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 1.5rem 0;
 }
 
-.social-text::before {
-  content: '"';
-  top: -10px;
-  left: -30px;
+.star-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--champagne-gold);
+  transition: all 0.3s ease;
 }
 
-.social-text::after {
-  content: '"';
-  bottom: -40px;
-  right: -30px;
-}
-
-/* Highlighted Text */
-.highlight {
-  color: var(--dusty-rose);
-  font-weight: 500;
+/* Testimonial Author Section */
+.testimonial-author {
+  padding-top: 1rem;
   position: relative;
+  z-index: 1;
 }
 
-.highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
+/* Couple Avatar with Champagne Gold Overlay */
+.couple-avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.avatar-image {
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dusty-rose) 20%, 
-    var(--dusty-rose) 80%, 
-    transparent 100%);
-  opacity: 0.4;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(1.05) contrast(1.02);
+}
+
+/* Champagne Gold Overlay - Synced with Card Animation */
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.3) 0%,
+    rgba(212, 165, 116, 0.5) 50%,
+    rgba(212, 165, 116, 0.7) 100%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(4px);
+}
+
+/* Avatar Hover Effects */
+.testimonial-card-link:hover .couple-avatar {
+  transform: scale(1.05);
+}
+
+.testimonial-card-link:hover .avatar-image {
+  transform: scale(1.05);
+  filter: brightness(1.08) contrast(1.03);
+}
+
+.testimonial-card-link:hover .avatar-overlay {
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.6) 0%,
+    rgba(212, 165, 116, 0.8) 50%,
+    rgba(212, 165, 116, 0.9) 100%
+  );
+  backdrop-filter: blur(8px) saturate(1.3);
+  opacity: 0.8;
+}
+
+/* Author Name */
+.author-name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--dusty-rose);
+  margin-bottom: 0.5rem;
+}
+
+/* Floating Wedding Gallery CTA */
+.wedding-gallery-cta {
+  color: var(--dusty-rose);
+  opacity: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+  transform: translateY(10px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-card-link:hover .wedding-gallery-cta {
+  opacity: 0.85;
+  transform: translateY(0);
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .social-logos {
+  .testimonials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
   }
   
-  .social-text {
-    font-size: 1.5rem;
+  .testimonial-card {
+    padding: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .social-proof {
+  .testimonials-section {
     padding: 60px 0;
   }
   
-  .social-logos {
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
   }
   
-  .social-logo {
-    font-size: 0.75rem;
+  .testimonial-card {
+    padding: 1.5rem;
   }
   
-  .social-text {
-    font-size: 1.25rem;
-    line-height: 1.7;
-  }
-  
-  .social-text::before,
-  .social-text::after {
-    font-size: 2rem;
-  }
-  
-  .social-text::before {
-    top: -5px;
-    left: -20px;
-  }
-  
-  .social-text::after {
-    bottom: -25px;
-    right: -20px;
+  .testimonial-quote {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 480px) {
-  .social-logos {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .social-text {
-    font-size: 1.125rem;
-  }
-}
-
-/* Animation Enhancements */
+/* Animation Classes */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease;
+  transition: all 0.6s ease;
 }
 
 .fade-up.animate-in {
@@ -545,70 +635,17 @@ const SocialProofVariations = () => {
   transform: translateY(0);
 }
 
-.stagger-animation .social-logo {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 0.7;
-    transform: translateY(0);
-  }
-}
-
-.social-text {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
-}
-
 /* Alternative Layouts */
-.social-proof.compact {
+.testimonials-section.compact {
   padding: 60px 0;
 }
 
-.social-proof.compact .social-logos {
-  margin-bottom: 2rem;
-  gap: 2rem;
+.testimonials-section.compact .testimonials-grid {
+  gap: 1.5rem;
 }
 
-.social-proof.compact .social-text {
-  font-size: 1.5rem;
-}
-
-/* Dark Theme Variation */
-.social-proof.dark {
-  background: var(--warm-walnut);
-}
-
-.social-proof.dark .social-logo {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.social-proof.dark .social-text {
-  color: white;
-}
-
-.social-proof.dark .highlight {
-  color: var(--champagne-gold);
-}
-
-/* Centered Logo Grid */
-.social-logos.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 400px;
-  margin: 0 auto 3rem;
-}
-
-@media (max-width: 768px) {
-  .social-logos.grid {
-    grid-template-columns: 1fr;
-    max-width: 200px;
-  }
+.testimonials-section.compact .testimonial-card {
+  padding: 1.5rem;
 }`}
             </pre>
           </div>
