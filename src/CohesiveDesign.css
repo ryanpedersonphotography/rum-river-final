@@ -1571,6 +1571,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
     0 16px 64px rgba(0, 0, 0, 0.18),
     0 6px 24px rgba(0, 0, 0, 0.12),
     0 3px 12px rgba(212, 165, 116, 0.25);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .avatar-image {
@@ -1578,7 +1579,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   filter: brightness(1.05) contrast(1.02);
 }
 

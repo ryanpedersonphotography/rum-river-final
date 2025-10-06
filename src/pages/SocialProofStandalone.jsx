@@ -143,8 +143,8 @@ export default function SocialProofStandalone() {
       }}>
         <div className="content-wrapper">
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ color: 'var(--charcoal-gray)', marginBottom: '1rem' }}>Social Proof Section Code</h2>
-            <p style={{ color: 'var(--warm-walnut)' }}>HTML, JavaScript, and CSS implementation of the social proof section above</p>
+            <h2 style={{ color: 'var(--charcoal-gray)', marginBottom: '1rem' }}>Testimonials Section Code</h2>
+            <p style={{ color: 'var(--warm-walnut)' }}>HTML, JavaScript, and CSS implementation with synchronized 1.2s animations across all interactive elements</p>
           </div>
           
           {/* HTML Code */}
@@ -279,11 +279,11 @@ const TestimonialCard = ({ testimonial }) => (
             alt={testimonial.author}
             className="avatar-image"
           />
-          {/* Champagne Gold Overlay - Animated */}
+          {/* Champagne Gold Overlay - Synced with 1.2s Card Animation */}
           <div className="avatar-overlay"></div>
         </div>
         <div className="author-name">{testimonial.author}</div>
-        {/* Floating CTA Text */}
+        {/* Floating CTA Text - Animated from Below */}
         <div className="wedding-gallery-cta">
           View Their Wedding Gallery
         </div>
@@ -520,7 +520,7 @@ const TestimonialsVariations = () => {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   filter: brightness(1.05) contrast(1.02);
 }
 
@@ -542,7 +542,7 @@ const TestimonialsVariations = () => {
   backdrop-filter: blur(4px);
 }
 
-/* Avatar Hover Effects */
+/* Avatar Hover Effects - Synchronized with Card Timing */
 .testimonial-card-link:hover .couple-avatar {
   transform: scale(1.05);
 }
@@ -648,6 +648,271 @@ const TestimonialsVariations = () => {
   padding: 1.5rem;
 }`}
             </pre>
+          </div>
+
+          {/* React Token Theming */}
+          <div style={{ marginTop: '3rem' }}>
+            <h3 style={{ color: 'var(--dusty-rose)', marginBottom: '1rem', fontSize: '1.5rem' }}>React Token Theming</h3>
+            <p style={{ color: 'var(--warm-walnut)', marginBottom: '2rem' }}>
+              Replace hard-coded values with React design tokens for consistent theming across your application:
+            </p>
+            
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--sage-green)', marginBottom: '1rem', fontSize: '1.25rem' }}>Color Tokens</h4>
+              <pre style={{
+                background: '#2d3748',
+                color: '#e2e8f0',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                overflow: 'auto',
+                fontSize: '0.9rem',
+                lineHeight: '1.5'
+              }}>
+{`// Color Design Tokens
+const tokens = {
+  colors: {
+    // Primary Colors
+    dustyRose: 'var(--dusty-rose)',           // Author names, accent text
+    warmWalnut: 'var(--warm-walnut)',         // Section titles, quote text
+    champagneGold: 'var(--champagne-gold)',   // Star ratings, underlines, overlays
+    
+    // Background Colors
+    white: '#ffffff',                         // Card backgrounds
+    romanticIvory: 'var(--romantic-ivory)',   // Alternative card background
+    creamPearl: 'var(--cream-pearl)',         // Code section background
+    
+    // Text Colors
+    textDark: 'var(--text-dark)',             // Lead text, body copy
+    charcoalGray: 'var(--charcoal-gray)',     // Section headings
+    
+    // Overlay Colors
+    champagneOverlay: {
+      light: 'rgba(212, 165, 116, 0.3)',     // Base overlay
+      medium: 'rgba(212, 165, 116, 0.5)',    // Hover overlay
+      strong: 'rgba(212, 165, 116, 0.8)'     // Active overlay
+    }
+  }
+}
+
+// Usage in Components
+<div style={{ color: tokens.colors.dustyRose }}>
+  {testimonial.author}
+</div>
+
+<div style={{ 
+  background: \`linear-gradient(135deg, 
+    \${tokens.colors.champagneOverlay.light} 0%,
+    \${tokens.colors.champagneOverlay.medium} 50%,
+    \${tokens.colors.champagneOverlay.strong} 100%
+  )\`
+}}>
+  Avatar Overlay
+</div>`}
+              </pre>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--sage-green)', marginBottom: '1rem', fontSize: '1.25rem' }}>Spacing & Layout Tokens</h4>
+              <pre style={{
+                background: '#2d3748',
+                color: '#e2e8f0',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                overflow: 'auto',
+                fontSize: '0.9rem',
+                lineHeight: '1.5'
+              }}>
+{`// Spacing Design Tokens
+const tokens = {
+  spacing: {
+    // Section Spacing
+    sectionPadding: '100px',                  // Main section padding
+    sectionPaddingMobile: '60px',             // Mobile section padding
+    contentGap: '2.5rem',                     // Grid gap between cards
+    
+    // Card Spacing
+    cardPadding: '2.5rem',                    // Internal card padding
+    cardPaddingTablet: '2rem',                // Tablet card padding
+    cardPaddingMobile: '1.5rem',              // Mobile card padding
+    cardBorderRadius: '12px',                 // Card corner radius
+    
+    // Avatar Sizing
+    avatarSize: '120px',                      // Desktop avatar size
+    avatarSizeTablet: '100px',                // Tablet avatar size
+    avatarSizeMobile: '80px',                 // Mobile avatar size
+    
+    // Text Spacing
+    quoteMargin: '2rem',                      // Quote bottom margin
+    authorSpacing: '1rem',                    // Author section padding
+    ctaMargin: '0.5rem'                       // CTA top margin
+  },
+  
+  breakpoints: {
+    mobile: '768px',
+    tablet: '1024px',
+    desktop: '1200px'
+  }
+}
+
+// Responsive Usage
+const cardStyles = {
+  padding: tokens.spacing.cardPadding,
+  borderRadius: tokens.spacing.cardBorderRadius,
+  
+  [\`@media (max-width: \${tokens.breakpoints.tablet})\`]: {
+    padding: tokens.spacing.cardPaddingTablet
+  },
+  
+  [\`@media (max-width: \${tokens.breakpoints.mobile})\`]: {
+    padding: tokens.spacing.cardPaddingMobile
+  }
+}`}
+              </pre>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h4 style={{ color: 'var(--sage-green)', marginBottom: '1rem', fontSize: '1.25rem' }}>Animation Tokens</h4>
+              <pre style={{
+                background: '#2d3748',
+                color: '#e2e8f0',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                overflow: 'auto',
+                fontSize: '0.9rem',
+                lineHeight: '1.5'
+              }}>
+{`// Animation Design Tokens
+const tokens = {
+  animations: {
+    // Timing Functions
+    primaryEasing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',  // Primary card timing
+    quickEasing: 'ease',                                      // Quick transitions
+    
+    // Durations
+    primaryDuration: '1.2s',                                  // Synchronized card timing
+    quickDuration: '0.3s',                                    // Star hover effects
+    gleamDuration: '0.8s',                                    // Gleam sweep effect
+    
+    // Transform Values
+    cardLift: 'translateY(-8px)',                             // Card hover lift
+    avatarScale: 'scale(1.05)',                               // Avatar hover scale
+    ctaFloat: 'translateY(0)',                                // CTA text reveal
+    ctaHidden: 'translateY(10px)',                            // CTA initial position
+    
+    // Opacity Values
+    overlayHidden: '0',                                       // Hidden overlay
+    overlayVisible: '0.8',                                    // Visible overlay
+    ctaHidden: '0',                                           // Hidden CTA
+    ctaVisible: '0.85'                                        // Visible CTA
+  }
+}
+
+// Usage in Styled Components
+const TestimonialCard = styled.div\`
+  transition: all \${tokens.animations.primaryDuration} \${tokens.animations.primaryEasing};
+  
+  &:hover {
+    transform: \${tokens.animations.cardLift};
+  }
+\`
+
+const AvatarOverlay = styled.div\`
+  opacity: \${tokens.animations.overlayHidden};
+  transition: all \${tokens.animations.primaryDuration} \${tokens.animations.primaryEasing};
+  
+  \${TestimonialCard}:hover & {
+    opacity: \${tokens.animations.overlayVisible};
+  }
+\`
+
+const CTAText = styled.div\`
+  opacity: \${tokens.animations.ctaHidden};
+  transform: \${tokens.animations.ctaHidden};
+  transition: all \${tokens.animations.primaryDuration} \${tokens.animations.primaryEasing};
+  
+  \${TestimonialCard}:hover & {
+    opacity: \${tokens.animations.ctaVisible};
+    transform: \${tokens.animations.ctaFloat};
+  }
+\``}
+              </pre>
+            </div>
+
+            <div>
+              <h4 style={{ color: 'var(--sage-green)', marginBottom: '1rem', fontSize: '1.25rem' }}>Typography Tokens</h4>
+              <pre style={{
+                background: '#2d3748',
+                color: '#e2e8f0',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                overflow: 'auto',
+                fontSize: '0.9rem',
+                lineHeight: '1.5'
+              }}>
+{`// Typography Design Tokens
+const tokens = {
+  typography: {
+    // Font Families
+    fontScript: 'var(--font-script)',         // Script accent text
+    fontDisplay: 'var(--font-display)',       // Headings, quotes
+    fontBody: 'var(--font-body)',             // Body text, CTAs
+    
+    // Font Sizes
+    sectionTitle: '3rem',                     // Main section title
+    sectionTitleTablet: '2.5rem',             // Tablet section title
+    scriptAccent: '1.75rem',                  // Script accent size
+    quote: '1.125rem',                        // Testimonial quote
+    quoteMobile: '1rem',                      // Mobile quote size
+    authorName: '1.125rem',                   // Author name size
+    cta: '0.875rem',                          // CTA text size
+    
+    // Font Weights
+    light: '300',
+    regular: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
+    
+    // Line Heights
+    tight: '1.3',                             // Headings
+    normal: '1.6',                            // Quotes, body text
+    relaxed: '1.7'                            // Lead text
+  }
+}
+
+// Usage Examples
+const SectionTitle = styled.h2\`
+  font-family: \${tokens.typography.fontDisplay};
+  font-size: \${tokens.typography.sectionTitle};
+  font-weight: \${tokens.typography.semibold};
+  line-height: \${tokens.typography.tight};
+  color: \${tokens.colors.warmWalnut};
+  
+  @media (max-width: \${tokens.breakpoints.tablet}) {
+    font-size: \${tokens.typography.sectionTitleTablet};
+  }
+\`
+
+const TestimonialQuote = styled.blockquote\`
+  font-family: \${tokens.typography.fontDisplay};
+  font-size: \${tokens.typography.quote};
+  font-style: italic;
+  line-height: \${tokens.typography.normal};
+  color: \${tokens.colors.warmWalnut};
+  
+  @media (max-width: \${tokens.breakpoints.mobile}) {
+    font-size: \${tokens.typography.quoteMobile};
+  }
+\`
+
+const AuthorName = styled.div\`
+  font-family: \${tokens.typography.fontDisplay};
+  font-size: \${tokens.typography.authorName};
+  font-weight: \${tokens.typography.semibold};
+  color: \${tokens.colors.dustyRose};
+\``}
+              </pre>
+            </div>
           </div>
         </div>
       </section>
