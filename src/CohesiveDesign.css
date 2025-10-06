@@ -1620,6 +1620,121 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   transform: translateY(0);
 }
 
+/* Dark Theme Testimonials Section */
+.testimonials-section.dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+}
+
+.testimonials-section.dark .script-accent {
+  color: var(--champagne-gold);
+}
+
+.testimonials-section.dark .section-title {
+  color: #ffffff;
+}
+
+.testimonials-section.dark .lead {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark Theme Testimonial Cards */
+.testimonials-section.dark .testimonial-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.testimonials-section.dark .testimonial-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 255, 255, 0.06) 100%);
+  border-color: rgba(212, 165, 116, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Dark Theme Gleam Effect */
+.testimonials-section.dark .testimonial-card::before {
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(212, 165, 116, 0.4) 50%, 
+    transparent 70%);
+}
+
+/* Dark Theme Quote Text */
+.testimonials-section.dark .testimonial-quote {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dark Theme Star Rating */
+.testimonials-section.dark .star-icon {
+  color: var(--champagne-gold);
+  filter: drop-shadow(0 0 8px rgba(212, 165, 116, 0.3));
+}
+
+/* Dark Theme Avatar Effects */
+.testimonials-section.dark .avatar-image {
+  filter: brightness(0.9) contrast(1.1) saturate(1.1);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .avatar-image {
+  filter: brightness(1.0) contrast(1.15) saturate(1.2);
+}
+
+/* Dark Theme Avatar Overlay - Enhanced Glow */
+.testimonials-section.dark .avatar-overlay {
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.4) 0%,
+    rgba(212, 165, 116, 0.6) 50%,
+    rgba(212, 165, 116, 0.8) 100%);
+  box-shadow: 
+    inset 0 0 20px rgba(212, 165, 116, 0.2),
+    0 0 30px rgba(212, 165, 116, 0.1);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .avatar-overlay {
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.7) 0%,
+    rgba(212, 165, 116, 0.9) 50%,
+    rgba(212, 165, 116, 1.0) 100%);
+  box-shadow: 
+    inset 0 0 30px rgba(212, 165, 116, 0.3),
+    0 0 40px rgba(212, 165, 116, 0.2);
+  opacity: 0.9;
+}
+
+/* Dark Theme Author Name */
+.testimonials-section.dark .author-name {
+  color: var(--champagne-gold);
+  text-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+}
+
+/* Dark Theme CTA Text */
+.testimonials-section.dark .wedding-gallery-cta {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .wedding-gallery-cta {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+}
+
+/* Dark Theme Underline */
+.testimonials-section.dark .testimonial-card::after {
+  background: linear-gradient(90deg, 
+    var(--champagne-gold) 0%, 
+    rgba(212, 165, 116, 0.8) 50%, 
+    var(--champagne-gold) 100%);
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
+}
+
 /* Improved testimonial author alignment - No Divider */
 .testimonial-author {
   padding-top: 1rem;

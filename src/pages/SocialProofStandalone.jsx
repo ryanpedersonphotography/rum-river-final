@@ -3,12 +3,145 @@ import '../CohesiveDesign.css'
 export default function SocialProofStandalone() {
   return (
     <>
-      {/* ID: SOCIAL_PROOF_001 - What Couples Say */}
+      {/* ID: SOCIAL_PROOF_001 - What Couples Say - Light Theme */}
       <section className="testimonials-section section">
         <div className="content-wrapper">
           <div className="section-header center">
             <div className="script-accent">Love Letters</div>
             <h2 className="section-title">What Couples Say</h2>
+            <p className="lead">Real stories from real couples who celebrated at Rum River Barn</p>
+          </div>
+
+          <div className="testimonials-grid">
+            <a href="/gallery" className="testimonial-card-link">
+              <div className="testimonial-card">
+                <blockquote className="testimonial-quote">
+                  "From our first tour to our last dance, the team at Rum River made our dreams come true.
+                  The barn was absolutely magical, and our guests are still talking about how perfect everything was."
+                </blockquote>
+                <div className="five-star-rating">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="testimonial-author">
+                  <div className="couple-avatar">
+                    <img 
+                      src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=300&h=300&fit=crop&crop=face&auto=format&q=80" 
+                      alt="Sarah & Michael Johnson"
+                      className="avatar-image"
+                    />
+                    <div className="avatar-overlay"></div>
+                  </div>
+                  <div className="author-name">Sarah & Michael Johnson</div>
+                  <div className="wedding-gallery-cta">
+                    View Their Wedding Gallery
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="/gallery" className="testimonial-card-link">
+              <div className="testimonial-card">
+                <blockquote className="testimonial-quote">
+                  "We wanted rustic elegance, and Rum River delivered beyond our wildest expectations.
+                  The historic charm combined with modern amenities was exactly what we were looking for."
+                </blockquote>
+                <div className="five-star-rating">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="testimonial-author">
+                  <div className="couple-avatar">
+                    <img 
+                      src="https://images.unsplash.com/photo-1519741497674-611481863552?w=300&h=300&fit=crop&crop=face&auto=format&q=80" 
+                      alt="Emma & James Wilson"
+                      className="avatar-image"
+                    />
+                    <div className="avatar-overlay"></div>
+                  </div>
+                  <div className="author-name">Emma & James Wilson</div>
+                  <div className="wedding-gallery-cta">
+                    View Their Wedding Gallery
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="/gallery" className="testimonial-card-link">
+              <div className="testimonial-card">
+                <blockquote className="testimonial-quote">
+                  "The team went above and beyond to make our winter wedding absolutely magical.
+                  Even in February, the barn felt warm and romantic. We couldn't have asked for more."
+                </blockquote>
+                <div className="five-star-rating">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="star-icon">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="testimonial-author">
+                  <div className="couple-avatar">
+                    <img 
+                      src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&h=300&fit=crop&crop=face&auto=format&q=80" 
+                      alt="Amanda & Chris Thompson"
+                      className="avatar-image"
+                    />
+                    <div className="avatar-overlay"></div>
+                  </div>
+                  <div className="author-name">Amanda & Chris Thompson</div>
+                  <div className="wedding-gallery-cta">
+                    View Their Wedding Gallery
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ID: SOCIAL_PROOF_002 - What Couples Say - Dark Theme */}
+      <section className="testimonials-section section dark">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Love Letters</div>
+            <h2 className="section-title">What Couples Say - Dark Theme</h2>
             <p className="lead">Real stories from real couples who celebrated at Rum River Barn</p>
           </div>
 
@@ -646,6 +779,117 @@ const TestimonialsVariations = () => {
 
 .testimonials-section.compact .testimonial-card {
   padding: 1.5rem;
+}
+
+/* Dark Theme Variation */
+.testimonials-section.dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+}
+
+.testimonials-section.dark .script-accent {
+  color: var(--champagne-gold);
+}
+
+.testimonials-section.dark .section-title {
+  color: #ffffff;
+}
+
+.testimonials-section.dark .lead {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark Theme Testimonial Cards */
+.testimonials-section.dark .testimonial-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.testimonials-section.dark .testimonial-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 255, 255, 0.06) 100%);
+  border-color: rgba(212, 165, 116, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Dark Theme Gleam Effect */
+.testimonials-section.dark .testimonial-card::before {
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(212, 165, 116, 0.4) 50%, 
+    transparent 70%);
+}
+
+/* Dark Theme Text and Elements */
+.testimonials-section.dark .testimonial-quote {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonials-section.dark .star-icon {
+  color: var(--champagne-gold);
+  filter: drop-shadow(0 0 8px rgba(212, 165, 116, 0.3));
+}
+
+.testimonials-section.dark .author-name {
+  color: var(--champagne-gold);
+  text-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+}
+
+.testimonials-section.dark .wedding-gallery-cta {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .wedding-gallery-cta {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+}
+
+/* Dark Theme Avatar Effects */
+.testimonials-section.dark .avatar-image {
+  filter: brightness(0.9) contrast(1.1) saturate(1.1);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .avatar-image {
+  filter: brightness(1.0) contrast(1.15) saturate(1.2);
+}
+
+.testimonials-section.dark .avatar-overlay {
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.4) 0%,
+    rgba(212, 165, 116, 0.6) 50%,
+    rgba(212, 165, 116, 0.8) 100%);
+  box-shadow: 
+    inset 0 0 20px rgba(212, 165, 116, 0.2),
+    0 0 30px rgba(212, 165, 116, 0.1);
+}
+
+.testimonials-section.dark .testimonial-card-link:hover .avatar-overlay {
+  background: linear-gradient(135deg, 
+    rgba(212, 165, 116, 0.7) 0%,
+    rgba(212, 165, 116, 0.9) 50%,
+    rgba(212, 165, 116, 1.0) 100%);
+  box-shadow: 
+    inset 0 0 30px rgba(212, 165, 116, 0.3),
+    0 0 40px rgba(212, 165, 116, 0.2);
+  opacity: 0.9;
+}
+
+/* Dark Theme Underline */
+.testimonials-section.dark .testimonial-card::after {
+  background: linear-gradient(90deg, 
+    var(--champagne-gold) 0%, 
+    rgba(212, 165, 116, 0.8) 50%, 
+    var(--champagne-gold) 100%);
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
 }`}
             </pre>
           </div>
@@ -677,9 +921,17 @@ const tokens = {
     champagneGold: 'var(--champagne-gold)',   // Star ratings, underlines, overlays
     
     // Background Colors
-    white: '#ffffff',                         // Card backgrounds
+    white: '#ffffff',                         // Light theme card backgrounds
     romanticIvory: 'var(--romantic-ivory)',   // Alternative card background
     creamPearl: 'var(--cream-pearl)',         // Code section background
+    
+    // Dark Theme Colors
+    darkGradientStart: '#1a1a1a',             // Dark theme background start
+    darkGradientEnd: '#2d2d2d',               // Dark theme background end
+    darkCardBackground: 'rgba(255, 255, 255, 0.08)', // Dark theme card background
+    darkCardHover: 'rgba(255, 255, 255, 0.12)',      // Dark theme card hover
+    darkBorder: 'rgba(255, 255, 255, 0.1)',          // Dark theme borders
+    darkText: 'rgba(255, 255, 255, 0.9)',            // Dark theme text
     
     // Text Colors
     textDark: 'var(--text-dark)',             // Lead text, body copy
