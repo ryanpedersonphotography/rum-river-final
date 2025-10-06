@@ -248,6 +248,7 @@ export default function LoveLettersSection() {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
+
 /* Subtle background pattern */
 .testimonial-card::before {
   content: '';

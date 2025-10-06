@@ -24,8 +24,11 @@ import FAQAccordionStandalone from './pages/FAQAccordionStandalone'
 import SocialProofStandalone from './pages/SocialProofStandalone'
 import LoveLettersStandalone from './pages/LoveLettersStandalone'
 import FindYourWayStandalone from './pages/FindYourWayStandalone'
+import ScheduleVisitFormStandalone from './pages/ScheduleVisitFormStandalone'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
+import DemoNavbar from './components/DemoNavbar'
+import './components/DemoNavbar.css'
 
 export default function App() {
   // Check if we're in component library mode
@@ -42,6 +45,7 @@ export default function App() {
 
   return (
     <Router>
+      <DemoNavbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventsPage />} />
@@ -68,6 +72,7 @@ export default function App() {
         <Route path="/social-proof-demo" element={<SocialProofStandalone />} />
         <Route path="/love-letters-demo" element={<LoveLettersStandalone />} />
         <Route path="/find-your-way-demo" element={<FindYourWayStandalone />} />
+        <Route path="/schedule-visit-form-demo" element={<ScheduleVisitFormStandalone />} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>

@@ -157,9 +157,9 @@ export default function FeatureBlocksStandalone() {
             </pre>
           </div>
 
-          {/* JavaScript Code */}
+          {/* React JavaScript Code */}
           <div style={{ marginBottom: '3rem' }}>
-            <h3 style={{ color: 'var(--dusty-rose)', marginBottom: '1rem', fontSize: '1.5rem' }}>JavaScript Functionality</h3>
+            <h3 style={{ color: 'var(--dusty-rose)', marginBottom: '1rem', fontSize: '1.5rem' }}>React JavaScript Implementation</h3>
             <pre style={{
               background: '#2d3748',
               color: '#e2e8f0',
@@ -294,6 +294,239 @@ const useScrollAnimation = () => {
     return () => observer.disconnect()
   }, [])
 }`}
+            </pre>
+          </div>
+
+          {/* Vanilla JavaScript Code */}
+          <div style={{ marginBottom: '3rem' }}>
+            <h3 style={{ color: 'var(--dusty-rose)', marginBottom: '1rem', fontSize: '1.5rem' }}>Vanilla JavaScript Implementation</h3>
+            <pre style={{
+              background: '#2d3748',
+              color: '#e2e8f0',
+              padding: '2rem',
+              borderRadius: '8px',
+              overflow: 'auto',
+              fontSize: '0.9rem',
+              lineHeight: '1.5'
+            }}>
+{`// Vanilla JavaScript for Feature Blocks
+// Data structure for feature blocks
+const featureBlocksData = [
+  {
+    number: "01",
+    title: "The Historic Barn",
+    description: "Step into a piece of Minnesota history. Our meticulously restored barn combines century-old craftsmanship with modern amenities, creating the perfect backdrop for your celebration.",
+    features: [
+      "Climate-controlled comfort year-round",
+      "Original exposed beam architecture",
+      "Capacity for up to 300 guests", 
+      "State-of-the-art lighting system"
+    ],
+    image: "/images/barn-interior.jpg",
+    badge: "100+ Years",
+    link: "#explore-barn",
+    linkText: "Explore The Barn"
+  },
+  {
+    number: "02", 
+    title: "Vineyard Ceremonies",
+    description: "Exchange vows surrounded by rolling hills and grape vines. Our vineyard offers multiple ceremony sites, each with its own unique charm and breathtaking views.",
+    features: [
+      "Sunset ceremony perfection",
+      "Natural amphitheater setting",
+      "Rain backup in covered pavilion",
+      "Complimentary wine tasting for couples"
+    ],
+    image: "/images/vineyard-ceremony.jpg",
+    badge: "5 Locations",
+    link: "#ceremony-sites",
+    linkText: "View Ceremony Sites"
+  },
+  {
+    number: "03",
+    title: "Enchanted Forest", 
+    description: "Wander through our mile-long paths beneath ancient oaks and whispering pines. The forest provides endless opportunities for stunning photography and intimate moments.",
+    features: [
+      "Professional trail lighting available",
+      "Hidden clearings for portraits",
+      "Seasonal wildflower meadows",
+      "Private couple's photography hour"
+    ],
+    image: "/images/enchanted-forest.jpg",
+    badge: "400 Acres",
+    link: "#discover-grounds",
+    linkText: "Discover The Grounds"
+  }
+]
+
+// Function to create feature list HTML
+function createFeatureList(features) {
+  return features.map(feature => 
+    \`<li>\${feature}</li>\`
+  ).join('')
+}
+
+// Function to create a single block HTML
+function createBlockHTML(block, index) {
+  const isReverse = index % 2 === 1
+  const reverseClass = isReverse ? ' reverse' : ''
+  
+  return \`
+    <div class="block-item\${reverseClass}">
+      <div class="block-content">
+        <div class="number">\${block.number}</div>
+        <h3>\${block.title}</h3>
+        <p>\${block.description}</p>
+        <ul class="feature-list">
+          \${createFeatureList(block.features)}
+        </ul>
+        <a href="\${block.link}" class="btn-outline">
+          \${block.linkText}
+        </a>
+      </div>
+      <div class="block-image">
+        <img src="\${block.image}" alt="\${block.title}" width="800" height="500" />
+        <span class="image-badge">\${block.badge}</span>
+      </div>
+    </div>
+  \`
+}
+
+// Function to render all blocks
+function renderFeatureBlocks() {
+  const container = document.querySelector('.blocks-container')
+  if (!container) return
+  
+  const blocksHTML = featureBlocksData
+    .map((block, index) => createBlockHTML(block, index))
+    .join('')
+  
+  container.innerHTML = blocksHTML
+}
+
+// Scroll animation functionality
+function initScrollAnimations() {
+  // Check if Intersection Observer is supported
+  if (!window.IntersectionObserver) {
+    // Fallback: just show all blocks
+    document.querySelectorAll('.block-item').forEach(item => {
+      item.classList.add('animate-in')
+    })
+    return
+  }
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        // Optional: stop observing after animation
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+
+  // Observe all block items
+  document.querySelectorAll('.block-item').forEach(item => {
+    observer.observe(item)
+  })
+}
+
+// Button click handlers
+function initButtonHandlers() {
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-outline')) {
+      e.preventDefault()
+      const href = e.target.getAttribute('href')
+      
+      // Handle different link types
+      if (href.startsWith('#')) {
+        // Scroll to anchor
+        const target = document.querySelector(href)
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+        }
+      } else if (href.startsWith('/')) {
+        // Navigate to internal page
+        window.location.href = href
+      } else {
+        // External link
+        window.open(href, '_blank')
+      }
+    }
+  })
+}
+
+// Image lazy loading (performance optimization)
+function initLazyLoading() {
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.src = img.dataset.src || img.src
+          img.classList.remove('lazy')
+          imageObserver.unobserve(img)
+        }
+      })
+    })
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img)
+    })
+  }
+}
+
+// Main initialization function
+function initFeatureBlocks() {
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init)
+  } else {
+    init()
+  }
+  
+  function init() {
+    renderFeatureBlocks()
+    initScrollAnimations()
+    initButtonHandlers()
+    initLazyLoading()
+    
+    console.log('Feature blocks initialized')
+  }
+}
+
+// Auto-initialize when script loads
+initFeatureBlocks()
+
+// Export for manual initialization if needed
+window.FeatureBlocks = {
+  init: initFeatureBlocks,
+  render: renderFeatureBlocks,
+  data: featureBlocksData
+}
+
+// Usage examples:
+//
+// 1. Basic usage (auto-initializes):
+// <script src="feature-blocks.js"></script>
+//
+// 2. Manual initialization:
+// window.FeatureBlocks.init()
+//
+// 3. Custom data:
+// window.FeatureBlocks.data = customData
+// window.FeatureBlocks.render()
+//
+// 4. Re-render with new data:
+// fetch('/api/feature-blocks').then(r => r.json()).then(data => {
+//   window.FeatureBlocks.data = data
+//   window.FeatureBlocks.render()
+// })`}
             </pre>
           </div>
 

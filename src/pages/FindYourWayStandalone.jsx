@@ -1,4 +1,4 @@
-import { Icon } from '../components/Icon'
+import Icon from '../components/Icon'
 
 export default function FindYourWayStandalone() {
   return (
@@ -162,7 +162,7 @@ export default function FindYourWayStandalone() {
             }}>
 {`// React Component for Find Your Way Section
 import React from 'react'
-import { Icon } from '../components/Icon'
+import Icon from '../components/Icon'
 
 // Location data structure
 const locationData = {
