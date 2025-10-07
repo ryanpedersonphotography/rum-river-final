@@ -1,0 +1,33 @@
+{
+  "spacing": {
+    "xs": { "value": "0.5rem", "comment": "8px" },
+    "sm": { "value": "0.75rem", "comment": "12px" },
+    "md": { "value": "1rem", "comment": "16px - base unit" },
+    "lg": { "value": "1.5rem", "comment": "24px" },
+    "xl": { "value": "2rem", "comment": "32px" },
+    "2xl": { "value": "2.5rem", "comment": "40px" },
+    "3xl": { "value": "3rem", "comment": "48px" },
+    "4xl": { "value": "4rem", "comment": "64px" },
+    "5xl": { "value": "5rem", "comment": "80px" },
+    "6xl": { "value": "8rem", "comment": "128px" }
+  },
+  "size": {
+    "container": {
+      "max-width": { "value": "1200px", "comment": "Content wrapper max width" }
+    },
+    "border": {
+      "radius": {
+        "sm": { "value": "4px" },
+        "md": { "value": "8px" },
+        "lg": { "value": "12px" },
+        "pill": { "value": "50px" },
+        "circle": { "value": "50%" }
+      },
+      "width": {
+        "thin": { "value": "1px" },
+        "medium": { "value": "2px" },
+        "thick": { "value": "4px" }
+      }
+    }
+  }
+}

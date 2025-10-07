@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import SEO from '../components/SEO'
@@ -79,6 +79,7 @@ const venueData = {
 export default function HomePage() {
   const [activeVenue, setActiveVenue] = useState('barn')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false)
 
   const handleVenueChange = (venue) => {
     setActiveVenue(venue)
@@ -96,6 +97,20 @@ export default function HomePage() {
       prev === 0 ? venueData[activeVenue].images.length - 1 : prev - 1
     )
   }
+
+  // Show floating CTA after scrolling past 50% of hero
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('home')
+      if (heroSection) {
+        const heroHalfway = heroSection.offsetHeight * 0.5
+        setShowFloatingCTA(window.scrollY > heroHalfway)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   return (
     <>
       <SEO 
@@ -107,11 +122,13 @@ export default function HomePage() {
       />
       <Header />
 
-      {/* Floating CTA Button */}
-      <a href="#lets-connect-form" className="floating-cta">
-        <Icon name="calendar" size="sm" color="white" />
-        Schedule Your Tour
-      </a>
+      {/* Floating CTA Button - only shows after scrolling past hero */}
+      {showFloatingCTA && (
+        <a href="#lets-connect-form" className="floating-cta">
+          <Icon name="calendar" size="sm" color="white" />
+          Schedule Your Tour
+        </a>
+      )}
 
       {/* Hero Section - Enhanced */}
       <section id="home" className="hero-enhanced">
@@ -144,7 +161,7 @@ export default function HomePage() {
           <div className="venue-header center">
             <div className="script-accent">Your Perfect Setting</div>
             <h2 className="section-title">Discover Our Spaces</h2>
-            <p className="lead">Every corner tells a story, every space creates memories</p>
+            <p className="lead" style={{ textAlign: 'center' }}>Every corner tells a story, every space creates memories</p>
           </div>
           <VenueTabs
             tabs={[

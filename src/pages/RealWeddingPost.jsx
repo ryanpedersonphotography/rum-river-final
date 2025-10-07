@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { getWeddingBySlug } from '../data/realWeddings'
-import SmartImageSimple from '../components/SmartImageSimple'
+import SmartImage from '../components/SmartImage'
 import Footer from '../components/Footer'
 
 // Sample wedding data (fallback for old URLs)
@@ -343,7 +343,7 @@ export default function RealWeddingPost() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <SmartImageSimple
+                <SmartImage
                   src={slide.src}
                   alt={slide.alt}
                   style={{

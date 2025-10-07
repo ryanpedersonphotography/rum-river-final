@@ -1,0 +1,204 @@
+/**
+ * DESIGN TOKEN COMPATIBILITY LAYER
+ *
+ * This file provides backwards compatibility during the migration from
+ * old CSS custom properties to the new Style Dictionary token system.
+ *
+ * ⚠️ DO NOT USE THESE VARIABLES IN NEW CODE
+ * ⚠️ This layer will be removed once migration is complete
+ *
+ * See MIGRATION_PLAN.md for migration status
+ * See MIGRATION_GUIDE.md for new token names
+ */
+
+/* Import new design tokens */
+@import './generated/tokens.css';
+
+:root {
+  /* ========================================
+     COLOR COMPATIBILITY ALIASES
+     @deprecated - Use --color-base-* instead
+     ======================================== */
+
+  /** @deprecated Use --color-base-romantic-ivory instead */
+  --romantic-ivory: var(--color-base-romantic-ivory);
+
+  /** @deprecated Use --color-base-dusty-rose instead */
+  --dusty-rose: var(--color-base-dusty-rose);
+
+  /** @deprecated Use --color-base-sage-whisper instead */
+  --sage-whisper: var(--color-base-sage-whisper);
+
+  /** @deprecated Use --color-base-warm-walnut instead */
+  --warm-walnut: var(--color-base-warm-walnut);
+
+  /** @deprecated Use --color-base-champagne-gold instead */
+  --champagne-gold: var(--color-base-champagne-gold);
+
+  /** @deprecated Use --color-base-blush-pink instead */
+  --blush-pink: var(--color-base-blush-pink);
+
+  /** @deprecated Use --color-base-deep-forest instead */
+  --deep-forest: var(--color-base-deep-forest);
+
+  /** @deprecated Use --color-base-cream-pearl instead */
+  --cream-pearl: var(--color-base-cream-pearl);
+
+  /** @deprecated Use --color-base-muted-mauve instead */
+  --muted-mauve: var(--color-base-muted-mauve);
+
+  /** @deprecated Use --color-base-copper-glow instead */
+  --copper-glow: var(--color-base-copper-glow);
+
+  /** @deprecated Use --color-base-warm-cream instead */
+  --warm-cream: var(--color-base-warm-cream);
+
+  /** @deprecated Use --color-base-accent-gold instead */
+  --accent-gold: var(--color-base-accent-gold);
+
+  /** @deprecated Use --color-base-deep-brown instead */
+  --deep-brown: var(--color-base-deep-brown);
+
+  /** @deprecated Use --color-base-text-dark instead */
+  --text-dark: var(--color-base-text-dark);
+
+  /** @deprecated Use --color-base-sage-green instead */
+  --sage-green: var(--color-base-sage-green);
+
+  /** @deprecated Use --color-base-soft-white instead */
+  --soft-white: var(--color-base-soft-white);
+
+  /* ========================================
+     TYPOGRAPHY COMPATIBILITY ALIASES
+     @deprecated - Use --font-* instead
+     ======================================== */
+
+  /** @deprecated Use --font-family-display instead */
+  --font-display: var(--font-family-display);
+
+  /** @deprecated Use --font-family-body instead */
+  --font-body: var(--font-family-body);
+
+  /** @deprecated Use --font-family-script instead */
+  --font-script: var(--font-family-script);
+
+  /** @deprecated Use --font-size-xs instead */
+  --text-xs: var(--font-size-xs);
+
+  /** @deprecated Use --font-size-sm instead */
+  --text-sm: var(--font-size-sm);
+
+  /** @deprecated Use --font-size-base instead */
+  --text-base: var(--font-size-base);
+
+  /** @deprecated Use --font-size-lg instead */
+  --text-lg: var(--font-size-lg);
+
+  /** @deprecated Use --font-size-xl instead */
+  --text-xl: var(--font-size-xl);
+
+  /** @deprecated Use --font-size-2xl instead */
+  --text-2xl: var(--font-size-2xl);
+
+  /** @deprecated Use --font-size-3xl instead */
+  --text-3xl: var(--font-size-3xl);
+
+  /** @deprecated Use --font-size-4xl instead */
+  --text-4xl: var(--font-size-4xl);
+
+  /** @deprecated Use --font-size-5xl instead */
+  --text-5xl: var(--font-size-5xl);
+
+  /** @deprecated Use --font-size-6xl instead */
+  --text-6xl: var(--font-size-6xl);
+
+  /** @deprecated Use --font-size-hero instead */
+  --text-hero: var(--font-size-hero);
+
+  /* ========================================
+     SPACING COMPATIBILITY ALIASES
+     @deprecated - Use --spacing-* instead
+     ======================================== */
+
+  /** @deprecated Use --spacing-xs instead */
+  --space-xs: var(--spacing-xs);
+
+  /** @deprecated Use --spacing-sm instead */
+  --space-sm: var(--spacing-sm);
+
+  /** @deprecated Use --spacing-md instead */
+  --space-md: var(--spacing-md);
+
+  /** @deprecated Use --spacing-lg instead */
+  --space-lg: var(--spacing-lg);
+
+  /** @deprecated Use --spacing-xl instead */
+  --space-xl: var(--spacing-xl);
+
+  /** @deprecated Use --spacing-2xl instead */
+  --space-2xl: var(--spacing-2xl);
+
+  /** @deprecated Use --spacing-3xl instead */
+  --space-3xl: var(--spacing-3xl);
+
+  /** @deprecated Use --spacing-4xl instead */
+  --space-4xl: var(--spacing-4xl);
+
+  /** @deprecated Use --spacing-5xl instead */
+  --space-5xl: var(--spacing-5xl);
+
+  /** @deprecated Use --spacing-6xl instead */
+  --space-6xl: var(--spacing-6xl);
+
+  /* ========================================
+     RHYTHM SPACING (DEPRECATED)
+     These should be replaced with --spacing-* tokens
+     ======================================== */
+
+  /** @deprecated Use --spacing-xs instead */
+  --rhythm-xs: var(--spacing-xs);
+
+  /** @deprecated Use --spacing-lg instead */
+  --rhythm-sm: var(--spacing-lg);
+
+  /** @deprecated Use --spacing-3xl instead */
+  --rhythm-md: var(--spacing-3xl);
+
+  /** @deprecated Use --spacing-5xl instead */
+  --rhythm-lg: var(--spacing-5xl);
+
+  /** @deprecated Use --spacing-6xl instead */
+  --rhythm-xl: var(--spacing-6xl);
+
+  /* ========================================
+     TRANSITION COMPATIBILITY ALIASES
+     @deprecated - Use --transition-preset-* instead
+     ======================================== */
+
+  /** @deprecated Use --transition-preset-default instead */
+  --transition: var(--transition-preset-default);
+
+  /** @deprecated Use --transition-preset-smooth instead */
+  --transition-smooth: var(--transition-preset-smooth);
+
+  /** @deprecated Use --transition-preset-elegant instead */
+  --transition-elegant: var(--transition-preset-elegant);
+}
+
+/* ========================================
+   MIGRATION STATUS TRACKING
+   Remove sections as components are migrated
+   ======================================== */
+
+/**
+ * COMPONENTS STILL USING OLD TOKENS:
+ *
+ * Phase 2 - To Be Migrated:
+ * - [ ] All page components
+ * - [ ] All layout components
+ * - [ ] All feature components
+ * - [ ] CohesiveDesign.css global styles
+ *
+ * Once all components are migrated, this entire file can be deleted.
+ * Track progress in MIGRATION_PLAN.md
+ */

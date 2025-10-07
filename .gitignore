@@ -38,6 +38,9 @@ rum-river-wedding-barn/
 # Local Netlify folder
 .netlify
 
+# Generated design tokens (auto-built from tokens/*.json)
+src/generated/
+
 # Images
 *.jpg
 *.jpeg

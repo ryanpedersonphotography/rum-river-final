@@ -1,7 +1,21 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function FAQAccordion({ faqs }) {
   const [activeIndex, setActiveIndex] = useState(null)
+  const answerRefs = useRef([])
+
+  useEffect(() => {
+    // Dynamically set max-height based on actual content height
+    answerRefs.current.forEach((ref, index) => {
+      if (ref) {
+        if (activeIndex === index) {
+          ref.style.maxHeight = ref.scrollHeight + 'px'
+        } else {
+          ref.style.maxHeight = '0px'
+        }
+      }
+    })
+  }, [activeIndex])
 
   return (
     <section className="faq-section">
@@ -19,10 +33,17 @@ export default function FAQAccordion({ faqs }) {
             >
               <div className="faq-question">
                 <h3>{faq.question}</h3>
-                <span className="faq-toggle">+</span>
+                <div className="faq-toggle-wrapper">
+                  <span className="faq-toggle-icon"></span>
+                </div>
               </div>
-              <div className="faq-answer">
-                <p>{faq.answer}</p>
+              <div
+                className="faq-answer"
+                ref={el => answerRefs.current[index] = el}
+              >
+                <div className="faq-answer-content">
+                  <p>{faq.answer}</p>
+                </div>
               </div>
             </div>
           ))}

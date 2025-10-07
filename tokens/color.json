@@ -1,0 +1,49 @@
+{
+  "color": {
+    "base": {
+      "romantic-ivory": { "value": "#FBF8F4", "comment": "Primary background - warm, inviting ivory" },
+      "dusty-rose": { "value": "#9D6B7B", "comment": "Primary accent - WCAG AA Compliant: 4.8:1 contrast with white text" },
+      "sage-whisper": { "value": "#9CAA9E", "comment": "Secondary accent - soft sage green" },
+      "warm-walnut": { "value": "#6B4E3D", "comment": "Primary text - warm brown" },
+      "champagne-gold": { "value": "#E4C896", "comment": "Accent highlight - elegant gold" },
+      "blush-pink": { "value": "#F4E4E1", "comment": "Section background - soft pink" },
+      "deep-forest": { "value": "#3A4A3C", "comment": "Dark accent - forest green" },
+      "cream-pearl": { "value": "#FFFCF8", "comment": "Light background - pearl white" },
+      "muted-mauve": { "value": "#A08A85", "comment": "Neutral accent - muted mauve" },
+      "copper-glow": { "value": "#C97D60", "comment": "Warm accent - copper tone" },
+      "warm-cream": { "value": "#FAF6F2", "comment": "Background variant - warm cream" },
+      "accent-gold": { "value": "#D4A574", "comment": "Gold variant - brighter gold" },
+      "deep-brown": { "value": "#4A3426", "comment": "Dark text - deep brown" },
+      "text-dark": { "value": "#2C2416", "comment": "Darkest text - near black brown" },
+      "sage-green": { "value": "#7A8B7F", "comment": "Green variant - medium sage" },
+      "soft-white": { "value": "#FEFDFB", "comment": "Lightest background - soft white" }
+    },
+    "semantic": {
+      "background": {
+        "primary": { "value": "{color.base.romantic-ivory.value}" },
+        "secondary": { "value": "{color.base.blush-pink.value}" },
+        "light": { "value": "{color.base.cream-pearl.value}" },
+        "dark": { "value": "{color.base.deep-forest.value}" }
+      },
+      "text": {
+        "primary": { "value": "{color.base.warm-walnut.value}" },
+        "dark": { "value": "{color.base.text-dark.value}" },
+        "light": { "value": "{color.base.soft-white.value}" }
+      },
+      "accent": {
+        "primary": { "value": "{color.base.dusty-rose.value}" },
+        "secondary": { "value": "{color.base.sage-whisper.value}" },
+        "highlight": { "value": "{color.base.champagne-gold.value}" }
+      },
+      "button": {
+        "primary-bg": { "value": "{color.base.dusty-rose.value}" },
+        "primary-text": { "value": "#FFFFFF" },
+        "primary-hover-bg": { "value": "{color.base.warm-walnut.value}" },
+        "outline-border": { "value": "{color.base.dusty-rose.value}" },
+        "outline-text": { "value": "{color.base.dusty-rose.value}" },
+        "outline-hover-bg": { "value": "{color.base.dusty-rose.value}" },
+        "outline-hover-text": { "value": "#FFFFFF" }
+      }
+    }
+  }
+}

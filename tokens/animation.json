@@ -1,0 +1,34 @@
+{
+  "transition": {
+    "duration": {
+      "fast": { "value": "0.2s" },
+      "normal": { "value": "0.4s" },
+      "slow": { "value": "1.2s" }
+    },
+    "easing": {
+      "standard": { "value": "cubic-bezier(0.4, 0, 0.2, 1)", "comment": "Material Design standard" },
+      "smooth": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)", "comment": "Smooth with slight bounce" },
+      "elegant": { "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)", "comment": "Elegant easing" }
+    },
+    "preset": {
+      "default": {
+        "value": "all {transition.duration.normal.value} {transition.easing.standard.value}",
+        "comment": "Standard transition for most elements"
+      },
+      "smooth": {
+        "value": "all {transition.duration.normal.value} {transition.easing.smooth.value}",
+        "comment": "Smooth transition with bounce"
+      },
+      "elegant": {
+        "value": "all {transition.duration.slow.value} {transition.easing.elegant.value}",
+        "comment": "Slow, elegant transition"
+      }
+    }
+  },
+  "shadow": {
+    "sm": { "value": "0 1px 3px rgba(0, 0, 0, 0.1)" },
+    "md": { "value": "0 4px 6px rgba(0, 0, 0, 0.1)" },
+    "lg": { "value": "0 10px 30px rgba(0, 0, 0, 0.15)" },
+    "xl": { "value": "0 20px 40px rgba(0, 0, 0, 0.2)" }
+  }
+}
