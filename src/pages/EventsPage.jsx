@@ -38,7 +38,7 @@ export default function EventsPage() {
     <>
       <PageTemplate 
         heroContent={heroContent}
-        heroImage="/images/2014/05/Reins-Wedding_3-193.jpg"
+        heroImage="/images/venue/barn-interior-exposed-beams-chandeliers.jpg"
       >
 
       {/* Wedding Events - Dark Section */}
@@ -63,7 +63,7 @@ export default function EventsPage() {
               </CTAButton>
             </div>
             <div className="block-image styled-image light no-link">
-              <img src="/images/2014/05/Reins-Wedding_3-193.jpg" alt="Wedding Events at Rum River Barn" width="800" height="500" />
+              <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Wedding Events at Rum River Barn" width="800" height="500" />
             </div>
           </div>
         </div>
@@ -182,45 +182,14 @@ export default function EventsPage() {
       </section>
 
       {/* Contact Info Section */}
-      <section className="contact-info-section dark-section">
-        <div className="content-wrapper">
-          <div className="contact-info-content">
-            <div className="script-accent on-dark">Ready to Plan Your Event?</div>
-            <h2 className="section-title" style={{ color: 'white' }}>Let's Start Planning Together</h2>
-            <p className="lead" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-              Contact us today to schedule a tour of our beautiful venue and discuss how we can make your special event unforgettable.
-            </p>
-
-            <div className="contact-info-grid">
-              <div className="contact-info-item">
-                <div className="contact-info-label">Call Us</div>
-                <div className="contact-info-main">(320) 492-8584</div>
-                <div className="contact-info-secondary">(612) 801-0546</div>
-              </div>
-
-              <div className="contact-info-item">
-                <div className="contact-info-label">Visit Us</div>
-                <div className="contact-info-main">
-                  42618 78th Street<br />
-                  Hillman, MN 56338
-                </div>
-              </div>
-
-              <div className="contact-info-item">
-                <div className="contact-info-label">Service Area</div>
-                <div className="contact-info-main">
-                  Milaca, St. Cloud,<br />
-                  St. Paul & Beyond
-                </div>
-              </div>
-            </div>
-
-            <CTAButton href="/contact" variant="primary">
-              Schedule Your Tour
-            </CTAButton>
-          </div>
-        </div>
-      </section>
+      <ScheduleTourForm
+        formName="events-schedule-tour"
+        title="Let's Start Planning Together"
+        subtitle="Ready to Plan Your Event?"
+        description="Contact us today to schedule a tour of our beautiful venue and discuss how we can make your special event unforgettable."
+        submitText="Schedule Your Tour"
+        loadingText="SCHEDULING..."
+      />
 
       </PageTemplate>
     </>

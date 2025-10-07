@@ -78,7 +78,7 @@ export default function TestimonialsPage() {
   return (
     <PageTemplate 
       heroContent={heroContent}
-      heroImage="/images/venue/barn-exterior-deck-swing-under-tree.jpg"
+      heroImage="/images/2014/04/rumriverbarn-couple.jpg"
     >
 
       {/* Featured Testimonial */}

@@ -1,5 +1,6 @@
 import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
+import ScheduleTourForm from '../components/ScheduleTourForm'
 
 export default function VendorsPage() {
   const heroContent = (
@@ -109,7 +110,7 @@ export default function VendorsPage() {
   return (
     <PageTemplate 
       heroContent={heroContent}
-      heroImage="/images/venue/details-building-porch-architectural.jpg"
+      heroImage="/images/venue/barn-exterior-welcome-sign-entrance.jpg"
     >
       
       {/* Vendor Categories Section */}
@@ -164,29 +165,21 @@ export default function VendorsPage() {
         </div>
       </section>
 
-      {/* Vendor Application CTA */}
-      <section style={{
-        background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
-        padding: '3.5rem 0'
-      }}>
-        <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent">Join Our Network</div>
-            <h2 className="section-title">Are You a Wedding Professional?</h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              We're always looking for talented professionals to join our preferred vendor network. 
-              If you're interested in working with couples at Rum River Barn, we'd love to hear from you.
-            </p>
-            <a href="/contact" className="romantic-button primary">
-              Apply to Join
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Vendor Application Form */}
+      <ScheduleTourForm
+        formName="vendor-application"
+        title="Are You a Wedding Professional?"
+        subtitle="Join Our Network"
+        description="We're always looking for talented professionals to join our preferred vendor network. If you're interested in working with couples at Rum River Barn, we'd love to hear from you."
+        submitText="Apply to Join"
+        loadingText="SUBMITTING APPLICATION..."
+        lightTheme={true}
+        formType="vendor"
+        sectionStyle={{
+          background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
+          padding: '3.5rem 0'
+        }}
+      />
 
     </PageTemplate>
   )

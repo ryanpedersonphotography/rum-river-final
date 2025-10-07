@@ -16,16 +16,28 @@ export const ScheduleTourForm = ({
   submitText = 'Schedule Tour',
   loadingText = 'SCHEDULING...',
   className = '',
-  showHeader = true
+  showHeader = true,
+  sectionStyle = {},
+  lightTheme = false,
+  formType = 'tour' // 'tour' or 'vendor'
 }) => {
   return (
-    <section className={`cta-contact-section ${className}`.trim()}>
+    <section className={`cta-contact-section ${className}`.trim()} style={sectionStyle}>
       <div className="cta-contact-container">
         {showHeader && (
-          <div className="cta-contact-header">
-            <p className="script-font">{subtitle}</p>
-            <h2>{title}</h2>
-            <p>{description}</p>
+          <div className="cta-contact-header" style={lightTheme ? {
+            color: 'var(--warm-walnut)'
+          } : {}}>
+            <p className="script-font" style={lightTheme ? {
+              color: 'var(--dusty-rose)'
+            } : {}}>{subtitle}</p>
+            <h2 style={lightTheme ? {
+              color: 'var(--warm-walnut)'
+            } : {}}>{title}</h2>
+            <p style={lightTheme ? {
+              color: 'var(--warm-walnut)',
+              opacity: 0.8
+            } : {}}>{description}</p>
           </div>
         )}
         
@@ -46,109 +58,242 @@ export const ScheduleTourForm = ({
                 </div>
               )}
               
-              {/* Full Name */}
-              <div className="cta-form-group cta-full-width">
-                <label htmlFor="name">Your Name *</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  required 
-                  disabled={submitting} 
-                />
-              </div>
-              
-              {/* Email & Phone Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="phone">Phone Number *</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-              </div>
-              
-              {/* Event Date & Tour Date Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="proposedEventDate">Proposed Event Date</label>
-                  <input 
-                    type="date" 
-                    id="proposedEventDate" 
-                    name="proposedEventDate" 
-                    disabled={submitting} 
-                  />
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="preferredTourDate">Preferred Tour Date *</label>
-                  <input 
-                    type="date" 
-                    id="preferredTourDate" 
-                    name="preferredTourDate" 
-                    required 
-                    disabled={submitting} 
-                  />
-                </div>
-              </div>
-              
-              {/* Tour Time & Guest Count Row */}
-              <div className="cta-form-row">
-                <div className="cta-form-group">
-                  <label htmlFor="preferredTourTime">Preferred Tour Time</label>
-                  <select 
-                    id="preferredTourTime" 
-                    name="preferredTourTime" 
-                    disabled={submitting}
-                  >
-                    <option value="">Select Time</option>
-                    <option value="10:00 AM">10:00 AM</option>
-                    <option value="11:00 AM">11:00 AM</option>
-                    <option value="1:00 PM">1:00 PM</option>
-                    <option value="2:00 PM">2:00 PM</option>
-                    <option value="3:00 PM">3:00 PM</option>
-                    <option value="4:00 PM">4:00 PM</option>
-                  </select>
-                </div>
-                <div className="cta-form-group">
-                  <label htmlFor="guestCount">Estimated Guest Count</label>
-                  <select 
-                    id="guestCount" 
-                    name="guestCount" 
-                    disabled={submitting}
-                  >
-                    <option value="">Select Range</option>
-                    <option value="50-100">50-100 Guests</option>
-                    <option value="100-150">100-150 Guests</option>
-                    <option value="150-200">150-200 Guests</option>
-                    <option value="200+">200+ Guests</option>
-                  </select>
-                </div>
-              </div>
-              
-              {/* Message */}
-              <div className="cta-form-group cta-full-width">
-                <label htmlFor="message">Additional Information or Questions</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  placeholder="Tell us about your event plans or any specific questions..." 
-                  disabled={submitting}
-                ></textarea>
-              </div>
+              {formType === 'vendor' ? (
+                // Vendor Application Form Fields
+                <>
+                  {/* Business Name & Contact Name */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="businessName">Business Name *</label>
+                      <input 
+                        type="text" 
+                        id="businessName" 
+                        name="businessName" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="contactName">Contact Name *</label>
+                      <input 
+                        type="text" 
+                        id="contactName" 
+                        name="contactName" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Email & Phone Row */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="email">Email Address *</label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="phone">Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Service Category & Years in Business */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="serviceCategory">Service Category *</label>
+                      <select 
+                        id="serviceCategory" 
+                        name="serviceCategory" 
+                        required
+                        disabled={submitting}
+                      >
+                        <option value="">Select Category</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Videography">Videography</option>
+                        <option value="DJ & Entertainment">DJ & Entertainment</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Florist">Florist</option>
+                        <option value="Hair & Makeup">Hair & Makeup</option>
+                        <option value="Wedding Planning">Wedding Planning</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Officiants">Officiants</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="yearsInBusiness">Years in Business *</label>
+                      <select 
+                        id="yearsInBusiness" 
+                        name="yearsInBusiness" 
+                        required
+                        disabled={submitting}
+                      >
+                        <option value="">Select Range</option>
+                        <option value="Less than 1 year">Less than 1 year</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value="5-10 years">5-10 years</option>
+                        <option value="10+ years">10+ years</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  {/* Website & Service Area */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="website">Website URL</label>
+                      <input 
+                        type="url" 
+                        id="website" 
+                        name="website" 
+                        placeholder="https://"
+                        disabled={submitting} 
+                      />
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="serviceArea">Service Area</label>
+                      <input 
+                        type="text" 
+                        id="serviceArea" 
+                        name="serviceArea" 
+                        placeholder="e.g., Twin Cities, Central MN"
+                        disabled={submitting} 
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Message */}
+                  <div className="cta-form-group cta-full-width">
+                    <label htmlFor="message">Tell us about your services *</label>
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      placeholder="Describe your services, experience, and why you'd like to join our vendor network..." 
+                      required
+                      disabled={submitting}
+                    ></textarea>
+                  </div>
+                </>
+              ) : (
+                // Tour Scheduling Form Fields (Original)
+                <>
+                  {/* Full Name */}
+                  <div className="cta-form-group cta-full-width">
+                    <label htmlFor="name">Your Name *</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      required 
+                      disabled={submitting} 
+                    />
+                  </div>
+                  
+                  {/* Email & Phone Row */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="email">Email Address *</label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="phone">Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Event Date & Tour Date Row */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="proposedEventDate">Proposed Event Date</label>
+                      <input 
+                        type="date" 
+                        id="proposedEventDate" 
+                        name="proposedEventDate" 
+                        disabled={submitting} 
+                      />
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="preferredTourDate">Preferred Tour Date *</label>
+                      <input 
+                        type="date" 
+                        id="preferredTourDate" 
+                        name="preferredTourDate" 
+                        required 
+                        disabled={submitting} 
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Tour Time & Guest Count Row */}
+                  <div className="cta-form-row">
+                    <div className="cta-form-group">
+                      <label htmlFor="preferredTourTime">Preferred Tour Time</label>
+                      <select 
+                        id="preferredTourTime" 
+                        name="preferredTourTime" 
+                        disabled={submitting}
+                      >
+                        <option value="">Select Time</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                      </select>
+                    </div>
+                    <div className="cta-form-group">
+                      <label htmlFor="guestCount">Estimated Guest Count</label>
+                      <select 
+                        id="guestCount" 
+                        name="guestCount" 
+                        disabled={submitting}
+                      >
+                        <option value="">Select Range</option>
+                        <option value="50-100">50-100 Guests</option>
+                        <option value="100-150">100-150 Guests</option>
+                        <option value="150-200">150-200 Guests</option>
+                        <option value="200+">200+ Guests</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  {/* Message */}
+                  <div className="cta-form-group cta-full-width">
+                    <label htmlFor="message">Additional Information or Questions</label>
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      placeholder="Tell us about your event plans or any specific questions..." 
+                      disabled={submitting}
+                    ></textarea>
+                  </div>
+                </>
+              )}
               
               {/* Submit Button */}
               <FormSubmitButton

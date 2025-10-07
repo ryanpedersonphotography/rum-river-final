@@ -17,7 +17,11 @@ export default function PageTemplate({
         <section
           className="page-hero dark-section"
           style={{
-            background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("${heroImage}") center/cover`
+            background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${heroImage}") center/cover no-repeat`,
+            backgroundAttachment: 'fixed',
+            minHeight: '60vh',
+            display: 'flex',
+            alignItems: 'center'
           }}
         >
           <div className="content-wrapper">

@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import { Timeline } from '@knight-lab/timelinejs'
 import '@knight-lab/timelinejs/dist/css/timeline.css'
 import PageTemplate from '../components/PageTemplate'
+import ScheduleTourForm from '../components/ScheduleTourForm'
+import Icon from '../components/Icon'
 import { historyTimeline } from '../data/historyTimeline'
 
 export default function HistoryPage() {
@@ -36,7 +38,7 @@ export default function HistoryPage() {
   return (
     <PageTemplate 
       heroContent={heroContent}
-      heroImage="/images/venue/barn-exterior-deck-stairs-trees.jpg"
+      heroImage="/images/historical/early-barn-construction-1940s.jpg"
     >
 
       {/* Intro Section */}
@@ -342,155 +344,178 @@ export default function HistoryPage() {
 
           <div className="testimonials-grid">
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                The White Barn
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                Constructed from a virgin white pine found in 1932, the lumber was dried for 10 years,
-                hand-sawed, and aged another 10 years before construction. The west roof was sheeted entirely by one tree.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="building" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    The White Barn
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    Constructed from a virgin white pine found in 1932, the lumber was dried for 10 years,
+                    hand-sawed, and aged another 10 years before construction. The west roof was sheeted entirely by one tree.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                Norwegian Plow
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                At our entry sits the horse-driven plow the Selmers brought from Norway in 1914.
-                It was used to clear the vast wooded area to create open land for crops.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="cog" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    Norwegian Plow
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    At our entry sits the horse-driven plow the Selmers brought from Norway in 1914.
+                    It was used to clear the vast wooded area to create open land for crops.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                Bridal Room
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                The original one-room house built by Sigvart and Helga Selmer in 1914 still remains on the property,
-                now serving as the bridal dressing room - a perfect blend of history and modern celebration.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="home" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    Bridal Room
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    The original one-room house built by Sigvart and Helga Selmer in 1914 still remains on the property,
+                    now serving as the bridal dressing room - a perfect blend of history and modern celebration.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                Tibbett's Brook
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                Created by the Tibbett's Logging Company to transport pine logs to the Rum River and down to the Twin Cities.
-                Remnants of logging camps from over a century ago remain on the banks.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="globe" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    Tibbett's Brook
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    Created by the Tibbett's Logging Company to transport pine logs to the Rum River and down to the Twin Cities.
+                    Remnants of logging camps from over a century ago remain on the banks.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                Original Tools
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                Historic hand saws, hay sickles, the horse-drawn scoop shovel used for six weeks to dig the basement,
-                oil lamps, and wood-burning stoves tell the story of pioneer life.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="wrench" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    Original Tools
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    Historic hand saws, hay sickles, the horse-drawn scoop shovel used for six weeks to dig the basement,
+                    oil lamps, and wood-burning stoves tell the story of pioneer life.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="testimonial-card">
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                fontWeight: 400,
-                color: 'var(--warm-walnut)',
-                marginBottom: '1rem'
-              }}>
-                The Vineyard
-              </h3>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: 'var(--sage-green)'
-              }}>
-                Planted in 2003, our three acres feature 14 grape varietals developed by the University of Minnesota,
-                bringing a new agricultural tradition to this historic farming land.
-              </p>
+              <div className="location-item">
+                <div className="location-icon"><Icon name="sparkles" size="lg" color="primary" /></div>
+                <div className="location-text">
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem',
+                    fontWeight: 400,
+                    color: 'var(--warm-walnut)',
+                    marginBottom: '1rem'
+                  }}>
+                    The Vineyard
+                  </h3>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '1rem',
+                    lineHeight: 1.7,
+                    color: 'var(--sage-green)'
+                  }}>
+                    Planted in 2003, our three acres feature 14 grape varietals developed by the University of Minnesota,
+                    bringing a new agricultural tradition to this historic farming land.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section section-cream">
-        <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Become Part of Our Story</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Create Your Own History Here
-            </h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
-              Join the legacy of celebrations at Minnesota's original barn and country venue
-            </p>
-            <a href="/contact" className="romantic-button">
-              Schedule Your Tour
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Schedule Your Visit Form */}
+      <ScheduleTourForm
+        formName="history-schedule-tour"
+        title="Create Your Own History Here"
+        subtitle="Become Part of Our Story"
+        description="Join the legacy of celebrations at Minnesota's original barn and country venue."
+        submitText="Schedule Your Tour"
+        loadingText="SCHEDULING..."
+        lightTheme={true}
+        sectionStyle={{
+          background: 'linear-gradient(135deg, var(--warm-cream) 0%, var(--blush-pink) 100%)',
+          padding: '3.5rem 0'
+        }}
+      />
 
     </PageTemplate>
   )

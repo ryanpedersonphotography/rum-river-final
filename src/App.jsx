@@ -45,8 +45,8 @@ export default function App() {
 
   return (
     <Router>
-      <DemoNavbar />
       <Routes>
+        {/* Main site routes without DemoNavbar */}
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/vendor-list" element={<VendorsPage />} />
@@ -60,19 +60,21 @@ export default function App() {
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
         <Route path="/history" element={<HistoryPage />} />
-        <Route path="/hero-demo" element={<HeroStandalone />} />
-        <Route path="/venue-demo" element={<VenueStandalone />} />
-        <Route path="/menu-demo" element={<MenuStandalone />} />
-        <Route path="/footer-demo" element={<FooterStandalone />} />
-        <Route path="/spaces-demo" element={<SpacesStandalone />} />
-        <Route path="/love-stories-demo" element={<LoveStoriesStandalone />} />
-        <Route path="/schedule-tour-demo" element={<ScheduleTourStandalone />} />
-        <Route path="/feature-blocks-demo" element={<FeatureBlocksStandalone />} />
-        <Route path="/faq-accordion-demo" element={<FAQAccordionStandalone />} />
-        <Route path="/social-proof-demo" element={<SocialProofStandalone />} />
-        <Route path="/love-letters-demo" element={<LoveLettersStandalone />} />
-        <Route path="/find-your-way-demo" element={<FindYourWayStandalone />} />
-        <Route path="/schedule-visit-form-demo" element={<ScheduleVisitFormStandalone />} />
+        
+        {/* Demo routes with DemoNavbar */}
+        <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />
+        <Route path="/venue-demo" element={<><DemoNavbar /><VenueStandalone /></>} />
+        <Route path="/menu-demo" element={<><DemoNavbar /><MenuStandalone /></>} />
+        <Route path="/footer-demo" element={<><DemoNavbar /><FooterStandalone /></>} />
+        <Route path="/spaces-demo" element={<><DemoNavbar /><SpacesStandalone /></>} />
+        <Route path="/love-stories-demo" element={<><DemoNavbar /><LoveStoriesStandalone /></>} />
+        <Route path="/schedule-tour-demo" element={<><DemoNavbar /><ScheduleTourStandalone /></>} />
+        <Route path="/feature-blocks-demo" element={<><DemoNavbar /><FeatureBlocksStandalone /></>} />
+        <Route path="/faq-accordion-demo" element={<><DemoNavbar /><FAQAccordionStandalone /></>} />
+        <Route path="/social-proof-demo" element={<><DemoNavbar /><SocialProofStandalone /></>} />
+        <Route path="/love-letters-demo" element={<><DemoNavbar /><LoveLettersStandalone /></>} />
+        <Route path="/find-your-way-demo" element={<><DemoNavbar /><FindYourWayStandalone /></>} />
+        <Route path="/schedule-visit-form-demo" element={<><DemoNavbar /><ScheduleVisitFormStandalone /></>} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>
