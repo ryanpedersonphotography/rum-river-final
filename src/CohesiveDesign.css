@@ -301,39 +301,55 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .logo-wrapper {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.logo-circle {
-  width: 50px;
-  height: 50px;
-  background: var(--dusty-rose);
-  color: white;  /* WCAG compliant with new dusty-rose #9D6B7B */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.25rem;
+.logo-wrapper:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.logo-svg {
+  height: 60px;
+  width: auto;
+  transition: var(--transition);
 }
 
 .logo-text {
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
-.logo-name {
+.logo-line-1 {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--warm-walnut);
+  letter-spacing: 0.02em;
 }
 
-.logo-tagline {
-  font-size: 0.75rem;
-  color: var(--muted-mauve);
+.logo-line-2 {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--sage-green);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  margin-top: -0.2rem;
+}
+
+@media (max-width: 768px) {
+  .logo-svg {
+    height: 50px;
+  }
+  
+  .logo-line-1 {
+    font-size: 1.25rem;
+  }
+  
+  .logo-line-2 {
+    font-size: 0.8rem;
+  }
 }
 
 .nav-menu {

@@ -21,13 +21,12 @@ export default function Header() {
     <header id="header" className="header-enhanced">
       <div className="content-wrapper">
         <div className="header-content">
-          <div className="logo-wrapper">
-            <div className="logo-circle">RR</div>
+          <a href="/" className="logo-wrapper">
             <div className="logo-text">
-              <div className="logo-name">Rum River</div>
-              <div className="logo-tagline">Wedding Barn</div>
+              <div className="logo-line-1">Rum River</div>
+              <div className="logo-line-2">Wedding Venue</div>
             </div>
-          </div>
+          </a>
           <nav>
             <ul className="nav-menu">
               <li><a href="/">Home</a></li>
