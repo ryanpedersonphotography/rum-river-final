@@ -2784,7 +2784,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   background: var(--dusty-rose);
   color: white;  /* WCAG compliant with new dusty-rose #9D6B7B */
   border-color: var(--dusty-rose);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 4px 12px rgba(212, 165, 165, 0.3);
 }
 
@@ -3206,6 +3206,96 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   background: #4A3426;
   position: relative;
   overflow: hidden;
+}
+
+/* Override alternating-blocks dark styling when used with light backgrounds */
+.alternating-blocks.section-blush,
+.alternating-blocks.section-cream,
+.alternating-blocks.section {
+  background: var(--blush-pink) !important;
+  color: var(--warm-walnut) !important;
+}
+
+.alternating-blocks.section-blush .section-header,
+.alternating-blocks.section-cream .section-header,
+.alternating-blocks.section .section-header {
+  color: var(--warm-walnut) !important;
+}
+
+.alternating-blocks.section-blush .section-title,
+.alternating-blocks.section-cream .section-title,
+.alternating-blocks.section .section-title {
+  color: var(--warm-walnut) !important;
+}
+
+.alternating-blocks.section-blush .lead,
+.alternating-blocks.section-cream .lead,
+.alternating-blocks.section .lead,
+.alternating-blocks.section-blush p,
+.alternating-blocks.section-cream p,
+.alternating-blocks.section p {
+  color: var(--sage-green) !important;
+  opacity: 1 !important;
+}
+
+.alternating-blocks.section-blush .block-content h3,
+.alternating-blocks.section-cream .block-content h3,
+.alternating-blocks.section .block-content h3 {
+  color: var(--warm-walnut) !important;
+}
+
+/* Venue Display Animations */
+.venue-display {
+  position: relative;
+  overflow: hidden;
+}
+
+.venue-main-image {
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.venue-main-image.changing {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.venue-details {
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venue-details.changing {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.venue-feature {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venue-details.changing .venue-feature {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.venue-details.changing .venue-feature:nth-child(1) { transition-delay: 0ms; }
+.venue-details.changing .venue-feature:nth-child(2) { transition-delay: 50ms; }
+.venue-details.changing .venue-feature:nth-child(3) { transition-delay: 100ms; }
+.venue-details.changing .venue-feature:nth-child(4) { transition-delay: 150ms; }
+
+.venue-vr-tour {
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venue-details.changing .venue-vr-tour {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .map-embed iframe {

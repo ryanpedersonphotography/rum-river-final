@@ -80,10 +80,23 @@ export default function HomePage() {
   const [activeVenue, setActiveVenue] = useState('barn')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showFloatingCTA, setShowFloatingCTA] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const handleVenueChange = (venue) => {
-    setActiveVenue(venue)
-    setCurrentImageIndex(0)
+    if (venue === activeVenue) return // Don't animate if same venue
+    
+    setIsTransitioning(true)
+    
+    // Start fade out animation
+    setTimeout(() => {
+      setActiveVenue(venue)
+      setCurrentImageIndex(0)
+      
+      // End animation after content change
+      setTimeout(() => {
+        setIsTransitioning(false)
+      }, 50)
+    }, 250) // Half the animation duration
   }
 
   const nextImage = () => {
@@ -156,12 +169,12 @@ export default function HomePage() {
       </section>
 
       {/* Discover Our Spaces - Tabbed Venue Display */}
-      <section className="section-warm">
+      <section className="section section-cream">
         <div className="content-wrapper venue-content">
-          <div className="venue-header center">
+          <div className="section-header center">
             <div className="script-accent">Your Perfect Setting</div>
             <h2 className="section-title">Discover Our Spaces</h2>
-            <p className="lead" style={{ textAlign: 'center' }}>Every corner tells a story, every space creates memories</p>
+            <p className="lead">Every corner tells a story, every space creates memories</p>
           </div>
           <VenueTabs
             tabs={[
@@ -174,7 +187,7 @@ export default function HomePage() {
             onChange={handleVenueChange}
           />
           <div className="venue-display">
-            <div className="venue-main-image">
+            <div className={`venue-main-image ${isTransitioning ? 'changing' : ''}`}>
               <img src={venueData[activeVenue].images[currentImageIndex]} alt={venueData[activeVenue].title} width="800" height="500" />
               <CarouselControls
                 totalItems={venueData[activeVenue].images.length}
@@ -184,7 +197,7 @@ export default function HomePage() {
                 onDotClick={setCurrentImageIndex}
               />
             </div>
-            <div className="venue-details">
+            <div className={`venue-details ${isTransitioning ? 'changing' : ''}`}>
               <h3>{venueData[activeVenue].title}</h3>
               <p>{venueData[activeVenue].description}</p>
               <div className="venue-features">
@@ -199,8 +212,8 @@ export default function HomePage() {
               {/* VR Tour Buttons */}
               {(activeVenue === 'barn' || activeVenue === 'bridal') && (
                 <div className="venue-vr-tour" style={{
-                  marginTop: '2rem',
-                  padding: '1.5rem',
+                  marginTop: '1.5rem',
+                  padding: '1.25rem',
                   background: 'linear-gradient(135deg, var(--cream-pearl) 0%, var(--blush-pink) 100%)',
                   borderRadius: '12px',
                   border: '1px solid rgba(212, 165, 116, 0.2)'
@@ -208,15 +221,15 @@ export default function HomePage() {
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1rem'
+                    gap: '0.5rem',
+                    marginBottom: '0.75rem'
                   }}>
                     <span style={{
-                      fontSize: '1.5rem'
+                      fontSize: '1.25rem'
                     }}>🥽</span>
                     <h4 style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: '1.5rem',
+                      fontSize: '1.25rem',
                       fontWeight: 400,
                       color: 'var(--warm-walnut)',
                       margin: 0
@@ -226,12 +239,12 @@ export default function HomePage() {
                   </div>
                   <p style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '1rem',
-                    lineHeight: 1.6,
+                    fontSize: '0.9rem',
+                    lineHeight: 1.5,
                     color: 'var(--sage-green)',
-                    margin: '0 0 1.5rem 0'
+                    margin: '0 0 1rem 0'
                   }}>
-                    Experience this space in immersive 3D. Walk through and explore every detail from the comfort of your home.
+                    Experience this space in immersive 3D from your home.
                   </p>
                   <VRTourButton
                     tourUrl={activeVenue === 'barn' 
@@ -249,8 +262,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Love Stories Gallery */}
-      <section className="love-stories-section section">
+      {/* Numbered Feature Blocks - MOVED UP */}
+      <section className="alternating-blocks">
+        <div className="content-wrapper">
+          <div className="section-header center">
+            <div className="script-accent">Your Perfect Venue</div>
+            <h2 className="section-title">Why Choose Rum River Barn</h2>
+            <p className="lead">Discover what makes our venue the perfect setting for your unforgettable celebration</p>
+          </div>
+
+          <div className="blocks-container">
+            <div className="block-item">
+              <div className="block-content">
+                <div className="number">01</div>
+                <h3>A Picturesque Location For Your Special Event</h3>
+                <p className="lead">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</p>
+                <p>When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.</p>
+                <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
+                <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
+              </div>
+            </div>
+
+            <div className="block-item reverse">
+              <div className="block-content">
+                <div className="number">02</div>
+                <h3>Rum River Barn & Vineyard</h3>
+                <p className="lead">Milaca, St. Cloud, Saint Paul, and Brainerd MN</p>
+                <p>Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured old oak forests, and white pines next to a whispering brook, we offer Minnesota's premier barn wedding venue and country special events venue for your custom special event.</p>
+                <p>Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years.</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/property-field-wildflowers-natural.jpg" alt="Rum River Barn and Vineyard" width="800" height="500" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Love Stories Gallery - MOVED DOWN */}
+      <section className="love-stories-section section section-cream">
         <div className="content-wrapper">
           <div className="section-header center">
             <div className="script-accent">Real Love Stories</div>
@@ -289,7 +342,7 @@ export default function HomePage() {
       </section>
 
       {/* Experience Section */}
-      <section className="experience-section section">
+      <section className="experience-section section section-blush">
         <div className="content-wrapper">
           <div className="content-grid">
             <div className="experience-content">
@@ -340,48 +393,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Numbered Feature Blocks */}
-      <section className="alternating-blocks">
-        <div className="content-wrapper">
-          <div className="section-header center">
-            <div className="script-accent">Your Perfect Venue</div>
-            <h2 className="section-title">Why Choose Rum River Barn</h2>
-            <p className="lead">Discover what makes our venue the perfect setting for your unforgettable celebration</p>
-          </div>
-
-          <div className="blocks-container">
-            <div className="block-item">
-              <div className="block-content">
-                <div className="number">01</div>
-                <h3>A Picturesque Location For Your Special Event</h3>
-                <p className="lead">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</p>
-                <p>When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.</p>
-                <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
-                <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
-              </div>
-              <div className="block-image styled-image light no-link">
-                <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
-              </div>
-            </div>
-
-            <div className="block-item reverse">
-              <div className="block-content">
-                <div className="number">02</div>
-                <h3>Rum River Barn & Vineyard</h3>
-                <p className="lead">Milaca, St. Cloud, Saint Paul, and Brainerd MN</p>
-                <p>Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured old oak forests, and white pines next to a whispering brook, we offer Minnesota's premier barn wedding venue and country special events venue for your custom special event.</p>
-                <p>Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years.</p>
-              </div>
-              <div className="block-image styled-image light no-link">
-                <img src="/images/venue/property-field-wildflowers-natural.jpg" alt="Rum River Barn and Vineyard" width="800" height="500" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
-      <section className="testimonials-section section">
+      <section className="testimonials-section section section-cream">
         <div className="content-wrapper">
           <div className="section-header center">
             <div className="script-accent">Love Letters</div>
