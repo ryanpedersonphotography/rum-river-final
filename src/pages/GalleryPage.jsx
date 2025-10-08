@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Masonry } from 'masonic'
 import Lightbox from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
 import 'yet-another-react-lightbox/styles.css'
+import 'yet-another-react-lightbox/plugins/captions.css'
 import PageTemplate from '../components/PageTemplate'
 import VenueTabs from '../components/VenueTabs'
 
@@ -142,11 +144,12 @@ export default function GalleryPage() {
     setLightboxOpen(true)
   }
 
-  // Prepare slides for lightbox
+  // Prepare slides for lightbox with captions
   const slides = filteredPhotos.map(photo => ({
     src: photo.src.replace('w=800', 'w=1920'), // Higher res for lightbox
     alt: photo.alt,
-    title: photo.alt
+    title: photo.alt,
+    description: photo.alt
   }))
 
   const heroContent = (
@@ -211,6 +214,11 @@ export default function GalleryPage() {
         close={() => setLightboxOpen(false)}
         slides={slides}
         index={lightboxIndex}
+        plugins={[Captions]}
+        captions={{
+          showToggle: true,
+          descriptionTextAlign: 'center'
+        }}
       />
 
       <style>{`
