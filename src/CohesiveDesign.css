@@ -421,8 +421,8 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 .dropdown-menu a:hover {
-  background: var(--dusty-rose);
-  color: white !important;  /* WCAG compliant with new dusty-rose #9D6B7B */
+  background: var(--champagne-gold);
+  color: white !important;
 }
 
 /* ============================================
