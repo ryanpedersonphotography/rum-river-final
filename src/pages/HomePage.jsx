@@ -89,6 +89,23 @@ const venueData = {
       { label: 'Setting', value: 'Garden ceremony site' },
       { label: 'Backup', value: 'Weather protection available' }
     ]
+  },
+  reception: {
+    title: 'Reception Area',
+    images: [
+      '/images/reception/dsc_1785-large.jpeg',
+      '/images/reception/dsc_1786-enhanced-nr-large.jpeg',
+      '/images/reception/dsc_1787-large.jpeg',
+      '/images/reception/dsc_1788-large.jpeg',
+      '/images/reception/dsc_1790-large.jpeg'
+    ],
+    description: 'A beautiful space thoughtfully designed for dining, dancing, and celebrating with your guests in style and comfort.',
+    features: [
+      { label: 'Capacity', value: 'Up to 300 guests' },
+      { label: 'Features', value: 'Full service bar & dance floor' },
+      { label: 'Lighting', value: 'Ambient & customizable' },
+      { label: 'Setup', value: 'Flexible table arrangements' }
+    ]
   }
 }
 
@@ -212,6 +229,7 @@ export default function HomePage() {
           <VenueTabs
             tabs={[
               { key: 'barn', label: 'The Barn' },
+              { key: 'reception', label: 'Reception Area' },
               { key: 'bridal', label: 'Bridal Suite' },
               { key: 'groom', label: "Groom's Quarters" },
               { key: 'pavilion', label: 'Garden Pavilion' }
