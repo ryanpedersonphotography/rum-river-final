@@ -19,7 +19,12 @@ const venueData = {
     images: [
       '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
       '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg'
+      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg',
+      '/images/venue/barn-exterior-full-view-landscape.jpg',
+      '/images/venue/barn-exterior-welcome-sign-entrance.jpg',
+      '/images/venue/barn-exterior-deck-stairs-trees.jpg',
+      '/images/venue/barn-exterior-full-deck-view-evening.jpg',
+      '/images/venue/barn-exterior-deck-swing-golden-hour.jpg'
     ],
     description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
     features: [
@@ -32,9 +37,13 @@ const venueData = {
   bridal: {
     title: 'Bridal Suite',
     images: [
-      '/images/venue/details-building-entrance-windows.jpg',
-      '/images/venue/details-architectural-trim-windows.jpg',
-      '/images/venue/details-building-porch-architectural.jpg'
+      '/images/bridal-suite/1-large.jpeg',
+      '/images/bridal-suite/dsc_1766-large.jpeg',
+      '/images/bridal-suite/dsc_1768-large.jpeg',
+      '/images/bridal-suite/dsc_1770-2-large.jpeg',
+      '/images/bridal-suite/dsc_1773-large.jpeg',
+      '/images/bridal-suite/dsc_1774-large.jpeg',
+      '/images/bridal-suite/dsc_1776-large.jpeg'
     ],
     description: 'A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.',
     features: [
@@ -49,7 +58,10 @@ const venueData = {
     images: [
       '/images/venue/barn-exterior-entrance-lighting-view.jpg',
       '/images/venue/details-building-entrance-door.jpg',
-      '/images/venue/barn-exterior-deck-stairs-trees.jpg'
+      '/images/venue/barn-exterior-deck-stairs-trees.jpg',
+      '/images/venue/barn-exterior-stone-wall-trees.jpg',
+      '/images/venue/barn-exterior-landscaping-stone-border.jpg',
+      '/images/venue/details-building-porch-architectural.jpg'
     ],
     description: 'A sophisticated space designed for the groom and groomsmen to prepare, relax, and enjoy the moments before the ceremony.',
     features: [
@@ -62,9 +74,13 @@ const venueData = {
   pavilion: {
     title: 'Garden Pavilion',
     images: [
-      '/images/venue/barn-exterior-welcome-sign-rustic-charm.jpg',
       '/images/venue/property-field-wildflowers-natural.jpg',
-      '/images/venue/barn-exterior-deck-swing-under-tree.jpg'
+      '/images/venue/barn-exterior-deck-swing-under-tree.jpg',
+      '/images/venue/property-vineyard-perspective-hills.jpg',
+      '/images/venue/property-landscape-rural-vista.jpg',
+      '/images/venue/barn-exterior-vintage-tractor-rustic.jpg',
+      '/images/venue/details-swing-rustic-romance.jpg',
+      '/images/venue/barn-exterior-welcome-sign-rustic-charm.jpg'
     ],
     description: 'An enchanting outdoor space surrounded by lush gardens, perfect for ceremonies or cocktail hours under the open sky.',
     features: [
@@ -81,17 +97,20 @@ export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showFloatingCTA, setShowFloatingCTA] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0)
 
   const handleVenueChange = (venue) => {
     if (venue === activeVenue) return // Don't animate if same venue
-    
+
     setIsTransitioning(true)
-    
+
     // Start fade out animation
     setTimeout(() => {
       setActiveVenue(venue)
       setCurrentImageIndex(0)
-      
+      setThumbnailStartIndex(0) // Reset thumbnail carousel
+
       // End animation after content change
       setTimeout(() => {
         setIsTransitioning(false)
@@ -109,6 +128,20 @@ export default function HomePage() {
     setCurrentImageIndex((prev) =>
       prev === 0 ? venueData[activeVenue].images.length - 1 : prev - 1
     )
+  }
+
+  const thumbnailsPerView = 5 // Number of thumbnails visible at once
+  const totalImages = venueData[activeVenue]?.images.length || 0
+  const showCarouselControls = totalImages > thumbnailsPerView
+
+  const nextThumbnails = () => {
+    setThumbnailStartIndex((prev) =>
+      Math.min(prev + 1, Math.max(0, totalImages - thumbnailsPerView))
+    )
+  }
+
+  const prevThumbnails = () => {
+    setThumbnailStartIndex((prev) => Math.max(0, prev - 1))
   }
 
   // Show floating CTA after scrolling past 50% of hero
@@ -186,81 +219,115 @@ export default function HomePage() {
             activeTab={activeVenue}
             onChange={handleVenueChange}
           />
-          <div className="venue-display">
-            <div className={`venue-main-image ${isTransitioning ? 'changing' : ''}`}>
-              <img src={venueData[activeVenue].images[currentImageIndex]} alt={venueData[activeVenue].title} width="800" height="500" />
-              <CarouselControls
-                totalItems={venueData[activeVenue].images.length}
-                currentIndex={currentImageIndex}
-                onNext={nextImage}
-                onPrev={prevImage}
-                onDotClick={setCurrentImageIndex}
-              />
-            </div>
-            <div className={`venue-details ${isTransitioning ? 'changing' : ''}`}>
-              <h3>{venueData[activeVenue].title}</h3>
-              <p>{venueData[activeVenue].description}</p>
-              <div className="venue-features">
-                {venueData[activeVenue].features.map((feature, index) => (
-                  <div key={index} className="venue-feature">
-                    <h5>{feature.label}</h5>
-                    <p>{feature.value}</p>
-                  </div>
-                ))}
+          <div className="venue-display-with-gallery">
+            <div className="venue-top-section">
+              <div className={`venue-main-image ${isTransitioning ? 'changing' : ''}`}>
+                <img src={venueData[activeVenue].images[currentImageIndex]} alt={venueData[activeVenue].title} width="800" height="500" />
+
+                {/* Fullscreen Button */}
+                <button
+                  className="fullscreen-button"
+                  onClick={() => setIsFullscreen(true)}
+                  aria-label="View fullscreen"
+                >
+                  <Icon name="expand" size="md" color="white" />
+                </button>
+
+                <CarouselControls
+                  totalItems={venueData[activeVenue].images.length}
+                  currentIndex={currentImageIndex}
+                  onNext={nextImage}
+                  onPrev={prevImage}
+                  onDotClick={setCurrentImageIndex}
+                />
               </div>
-              
-              {/* VR Tour Buttons */}
-              {(activeVenue === 'barn' || activeVenue === 'bridal') && (
-                <div className="venue-vr-tour" style={{
-                  marginTop: '1.5rem',
-                  padding: '1.25rem',
-                  background: 'linear-gradient(135deg, var(--cream-pearl) 0%, var(--blush-pink) 100%)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(212, 165, 116, 0.2)'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    marginBottom: '0.75rem'
-                  }}>
-                    <span style={{
-                      fontSize: '1.25rem'
-                    }}>🥽</span>
-                    <h4 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.25rem',
-                      fontWeight: 400,
-                      color: 'var(--warm-walnut)',
-                      margin: 0
-                    }}>
-                      Take a Virtual Tour
-                    </h4>
-                  </div>
-                  <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.9rem',
-                    lineHeight: 1.5,
-                    color: 'var(--sage-green)',
-                    margin: '0 0 1rem 0'
-                  }}>
-                    Experience this space in immersive 3D from your home.
-                  </p>
-                  <VRTourButton
-                    tourUrl={activeVenue === 'barn' 
-                      ? 'https://my.matterport.com/show/?m=P25ecLeSZdF'
-                      : 'https://my.matterport.com/show/?m=sFjR96cKfqv'}
-                    variant="primary"
-                    showIcon={false}
-                  >
-                    Launch Virtual Tour
-                  </VRTourButton>
+              <div className={`venue-details ${isTransitioning ? 'changing' : ''}`}>
+                <h3>{venueData[activeVenue].title}</h3>
+                <p>{venueData[activeVenue].description}</p>
+                <div className="venue-features">
+                  {venueData[activeVenue].features.map((feature, index) => (
+                    <div key={index} className="venue-feature">
+                      <h5>{feature.label}</h5>
+                      <p>{feature.value}</p>
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
+            </div>
+
+            {/* Thumbnail Gallery - Carousel */}
+            <div className="venue-thumbnail-carousel">
+              <div className="venue-thumbnail-gallery">
+                <div
+                  className="venue-thumbnail-track"
+                  style={{
+                    transform: `translateX(-${thumbnailStartIndex * (160 + 16)}px)`,
+                    transition: 'transform 0.3s ease'
+                  }}
+                >
+                  {venueData[activeVenue].images.map((image, index) => (
+                    <div
+                      key={index}
+                      className={`venue-thumbnail ${currentImageIndex === index ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIndex(index)}
+                    >
+                      <img src={image} alt={`${venueData[activeVenue].title} view ${index + 1}`} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Hidden carousel navigation - shows on hover only when needed */}
+                {showCarouselControls && thumbnailStartIndex > 0 && (
+                  <button
+                    className="thumbnail-nav prev"
+                    onClick={prevThumbnails}
+                    aria-label="Previous thumbnails"
+                  >
+                    ‹
+                  </button>
+                )}
+                {showCarouselControls && thumbnailStartIndex < totalImages - thumbnailsPerView && (
+                  <button
+                    className="thumbnail-nav next"
+                    onClick={nextThumbnails}
+                    aria-label="Next thumbnails"
+                  >
+                    ›
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Fullscreen Image Modal */}
+      {isFullscreen && (
+        <div className="fullscreen-modal" onClick={() => setIsFullscreen(false)}>
+          <button className="fullscreen-close" onClick={() => setIsFullscreen(false)}>
+            <Icon name="close" size="lg" color="white" />
+          </button>
+          <img
+            src={venueData[activeVenue].images[currentImageIndex]}
+            alt={venueData[activeVenue].title}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="fullscreen-controls">
+            <button
+              className="fullscreen-nav prev"
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            >
+              ‹
+            </button>
+            <button
+              className="fullscreen-nav next"
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Numbered Feature Blocks - MOVED UP */}
       <section className="alternating-blocks">

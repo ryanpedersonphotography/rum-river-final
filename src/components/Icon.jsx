@@ -121,7 +121,9 @@ import {
   WindowIcon,
   GlobeAsiaAustraliaIcon,
   LanguageIcon,
-  AcademicCapIcon as GraduationCapIcon
+  AcademicCapIcon as GraduationCapIcon,
+  ArrowsPointingOutIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline'
 
 import {
@@ -176,7 +178,8 @@ const iconMap = {
   checkSolid: CheckCircleIconSolid,
   error: XCircleIcon,
   cancel: XCircleIcon,
-  close: XCircleIcon,
+  close: XMarkIcon,
+  x: XMarkIcon,
   warning: ExclamationTriangleIcon,
   alert: ExclamationTriangleIcon,
   
@@ -255,6 +258,8 @@ const iconMap = {
   download: ArrowDownTrayIcon,
   upload: ArrowUpTrayIcon,
   send: PaperAirplaneIcon,
+  expand: ArrowsPointingOutIcon,
+  fullscreen: ArrowsPointingOutIcon,
   
   // UI Elements
   chevronDown: ChevronDownIcon,
