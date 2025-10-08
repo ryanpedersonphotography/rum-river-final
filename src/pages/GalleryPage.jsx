@@ -242,6 +242,18 @@ export default function GalleryPage() {
           }
         }
 
+        /* Lightbox caption styling */
+        .yarl__slide_description {
+          font-family: 'Playfair Display', serif !important;
+          font-size: 1.5rem !important;
+          font-weight: 400 !important;
+          font-style: italic !important;
+          line-height: 1.4 !important;
+          color: #fff !important;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+          padding: 1rem 2rem !important;
+        }
+
         /* Stagger animation for items */
         .gallery-photo-card:nth-child(1) { animation-delay: 0s; }
         .gallery-photo-card:nth-child(2) { animation-delay: 0.05s; }
