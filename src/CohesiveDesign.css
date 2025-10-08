@@ -389,6 +389,11 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   width: 100%;
 }
 
+/* Remove underline for dropdown parent links */
+.dropdown > a:hover::after {
+  width: 0 !important;
+}
+
 /* Dropdown Navigation */
 .nav-menu .dropdown {
   position: relative;
@@ -398,8 +403,8 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(251, 247, 244, 0.98);
-  backdrop-filter: blur(20px);
+  background: rgba(251, 247, 244, 0.85);
+  backdrop-filter: blur(15px);
   border-radius: 8px;
   padding: 1rem 0;
   min-width: 220px;
