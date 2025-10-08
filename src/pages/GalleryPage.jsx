@@ -24,44 +24,59 @@ const photos = [
   { id: 14, src: '/images/venue/property-field-wildflowers-natural.jpg', category: 'property', alt: 'Wildflower fields' },
   { id: 15, src: '/images/venue/barn-exterior-vintage-tractor-rustic.jpg', category: 'property', alt: 'Vintage tractor decor' },
 
+  // Bridal Suite
+  { id: 16, src: '/images/bridal-suite/1-large.jpeg', category: 'property', alt: 'Bridal suite interior' },
+  { id: 17, src: '/images/bridal-suite/dsc_1766-large.jpeg', category: 'property', alt: 'Bridal suite getting ready area' },
+  { id: 18, src: '/images/bridal-suite/dsc_1768-large.jpeg', category: 'property', alt: 'Bridal suite details' },
+  { id: 19, src: '/images/bridal-suite/dsc_1770-2-large.jpeg', category: 'property', alt: 'Bridal suite lounge' },
+  { id: 20, src: '/images/bridal-suite/dsc_1773-large.jpeg', category: 'property', alt: 'Bridal suite vanity' },
+  { id: 21, src: '/images/bridal-suite/dsc_1774-large.jpeg', category: 'property', alt: 'Bridal suite seating' },
+  { id: 22, src: '/images/bridal-suite/dsc_1776-large.jpeg', category: 'property', alt: 'Bridal suite space' },
+
+  // Reception Area
+  { id: 23, src: '/images/reception/dsc_1785-large.jpeg', category: 'receptions', alt: 'Reception area setup' },
+  { id: 24, src: '/images/reception/dsc_1786-enhanced-nr-large.jpeg', category: 'receptions', alt: 'Reception dining area' },
+  { id: 25, src: '/images/reception/dsc_1787-large.jpeg', category: 'receptions', alt: 'Reception dance floor' },
+  { id: 26, src: '/images/reception/dsc_1788-large.jpeg', category: 'receptions', alt: 'Reception details' },
+  { id: 27, src: '/images/reception/dsc_1790-large.jpeg', category: 'receptions', alt: 'Reception space' },
+
   // Details & Decor
-  { id: 16, src: '/images/venue/details-swing-rustic-romance.jpg', category: 'details', alt: 'Romantic swing' },
-  { id: 17, src: '/images/venue/details-antique-windmill-rustic.jpg', category: 'details', alt: 'Antique windmill' },
-  { id: 18, src: '/images/venue/details-americana-flag-decor.jpg', category: 'details', alt: 'Americana decor' },
-  { id: 19, src: '/images/venue/details-vintage-tractor-rustic.jpg', category: 'details', alt: 'Vintage tractor' },
-  { id: 20, src: '/images/venue/details-antique-wheel-stone-wall.jpg', category: 'details', alt: 'Antique wheel display' },
-  { id: 21, src: '/images/venue/details-barn-sign-rustic-lettering.jpg', category: 'details', alt: 'Barn signage' },
-  { id: 22, src: '/images/venue/details-rum-river-barn-vineyard-sign.jpg', category: 'details', alt: 'Rum River Barn sign' },
-  { id: 23, src: '/images/venue/details-building-entrance-windows.jpg', category: 'details', alt: 'Building details' },
-  { id: 24, src: '/images/venue/details-architectural-trim-windows.jpg', category: 'details', alt: 'Architectural details' },
+  { id: 28, src: '/images/venue/details-swing-rustic-romance.jpg', category: 'details', alt: 'Romantic swing' },
+  { id: 29, src: '/images/venue/details-antique-windmill-rustic.jpg', category: 'details', alt: 'Antique windmill' },
+  { id: 30, src: '/images/venue/details-americana-flag-decor.jpg', category: 'details', alt: 'Americana decor' },
+  { id: 31, src: '/images/venue/details-antique-wheel-stone-wall.jpg', category: 'details', alt: 'Antique wheel display' },
+  { id: 32, src: '/images/venue/details-barn-sign-rustic-lettering.jpg', category: 'details', alt: 'Barn signage' },
+  { id: 33, src: '/images/venue/details-rum-river-barn-vineyard-sign.jpg', category: 'details', alt: 'Rum River Barn sign' },
+  { id: 34, src: '/images/venue/details-building-entrance-windows.jpg', category: 'details', alt: 'Building details' },
+  { id: 35, src: '/images/venue/details-architectural-trim-windows.jpg', category: 'details', alt: 'Architectural details' },
 
   // Wedding Photos
-  { id: 25, src: '/images/2014/05/Loria-Jason-wedding-1-0198.jpg', category: 'weddings', alt: 'Outdoor wedding ceremony' },
-  { id: 26, src: '/images/2014/05/Loria-Jason-wedding-1-0365.jpg', category: 'weddings', alt: 'Summer barn wedding' },
-  { id: 27, src: '/images/2014/05/Loria-Jason-wedding-1-0205.jpg', category: 'weddings', alt: 'Romantic first dance' },
-  { id: 28, src: '/images/2014/05/LB1_6499.jpg', category: 'weddings', alt: 'Golden hour portraits' },
-  { id: 29, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'weddings', alt: 'Intimate celebration' },
-  { id: 30, src: '/images/2014/05/Loria-Jason-wedding-1-0007.jpg', category: 'weddings', alt: 'Bridal party' },
-  { id: 31, src: '/images/2014/04/Loria-Jason-wedding-2-0026.jpg', category: 'weddings', alt: 'Wedding celebration' },
-  { id: 32, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0030.jpg', category: 'weddings', alt: 'Ceremony moments' },
-  { id: 33, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0031.jpg', category: 'weddings', alt: 'Wedding vows' },
+  { id: 36, src: '/images/2014/05/Loria-Jason-wedding-1-0198.jpg', category: 'weddings', alt: 'Outdoor wedding ceremony' },
+  { id: 37, src: '/images/2014/05/Loria-Jason-wedding-1-0365.jpg', category: 'weddings', alt: 'Summer barn wedding' },
+  { id: 38, src: '/images/2014/05/Loria-Jason-wedding-1-0205.jpg', category: 'weddings', alt: 'Romantic first dance' },
+  { id: 39, src: '/images/2014/05/LB1_6499.jpg', category: 'weddings', alt: 'Golden hour portraits' },
+  { id: 40, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'weddings', alt: 'Intimate celebration' },
+  { id: 41, src: '/images/2014/05/Loria-Jason-wedding-1-0007.jpg', category: 'weddings', alt: 'Bridal party' },
+  { id: 42, src: '/images/2014/04/Loria-Jason-wedding-2-0026.jpg', category: 'weddings', alt: 'Wedding celebration' },
+  { id: 43, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0030.jpg', category: 'weddings', alt: 'Ceremony moments' },
+  { id: 44, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0031.jpg', category: 'weddings', alt: 'Wedding vows' },
 
   // Ceremonies
-  { id: 34, src: '/images/2014/05/Loria-Jason-wedding-1-0006.jpg', category: 'ceremonies', alt: 'Ceremony setup' },
-  { id: 35, src: '/images/2014/05/Loria-Jason-wedding-1-0012.jpg', category: 'ceremonies', alt: 'Twilight ceremony' },
-  { id: 36, src: '/images/venue/barn-exterior-deck-swing-under-tree.jpg', category: 'ceremonies', alt: 'Outdoor ceremony space' },
+  { id: 45, src: '/images/2014/05/Loria-Jason-wedding-1-0006.jpg', category: 'ceremonies', alt: 'Ceremony setup' },
+  { id: 46, src: '/images/2014/05/Loria-Jason-wedding-1-0012.jpg', category: 'ceremonies', alt: 'Twilight ceremony' },
+  { id: 47, src: '/images/venue/barn-exterior-deck-swing-under-tree.jpg', category: 'ceremonies', alt: 'Outdoor ceremony space' },
 
   // Receptions
-  { id: 37, src: '/images/2014/05/LB1_6880.jpg', category: 'receptions', alt: 'Reception details' },
-  { id: 38, src: '/images/2014/05/LB1_7023.jpg', category: 'receptions', alt: 'Reception tables' },
-  { id: 39, src: '/images/2014/05/LB1_7342-2.jpg', category: 'receptions', alt: 'Dance floor' },
-  { id: 40, src: '/images/2014/05/Reins-Wedding_1-631.jpg', category: 'receptions', alt: 'Barn reception' },
+  { id: 48, src: '/images/2014/05/LB1_6880.jpg', category: 'receptions', alt: 'Reception details' },
+  { id: 49, src: '/images/2014/05/LB1_7023.jpg', category: 'receptions', alt: 'Reception tables' },
+  { id: 50, src: '/images/2014/05/LB1_7342-2.jpg', category: 'receptions', alt: 'Dance floor' },
+  { id: 51, src: '/images/2014/05/Reins-Wedding_1-631.jpg', category: 'receptions', alt: 'Barn reception' },
 
   // Videos (using thumbnail images with video badge)
-  { id: 41, src: '/images/2015/12/wedding-5.jpg', category: 'videos', alt: 'Wedding highlight video', isVideo: true },
-  { id: 42, src: '/images/2014/05/Kage0921.jpg', category: 'videos', alt: 'Venue tour video', isVideo: true },
-  { id: 43, src: '/images/2014/05/Reins-Wedding_3-287.jpg', category: 'videos', alt: 'Ceremony video', isVideo: true },
-  { id: 44, src: '/images/2014/05/IMG_0029.jpg', category: 'videos', alt: 'Reception video', isVideo: true },
+  { id: 52, src: '/images/2015/12/wedding-5.jpg', category: 'videos', alt: 'Wedding highlight video', isVideo: true },
+  { id: 53, src: '/images/2014/05/Kage0921.jpg', category: 'videos', alt: 'Venue tour video', isVideo: true },
+  { id: 54, src: '/images/2014/05/Reins-Wedding_3-287.jpg', category: 'videos', alt: 'Ceremony video', isVideo: true },
+  { id: 55, src: '/images/2014/05/IMG_0029.jpg', category: 'videos', alt: 'Reception video', isVideo: true },
 ]
 
 // Photo Card Component for Masonic
