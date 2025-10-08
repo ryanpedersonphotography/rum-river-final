@@ -24,7 +24,7 @@ export default function Header() {
           <a href="/" className="logo-wrapper">
             <div className="logo-text">
               <div className="logo-line-1">Rum River</div>
-              <div className="logo-line-2">Wedding Venue</div>
+              <div className="logo-line-2">Wedding Barn</div>
             </div>
           </a>
           <nav>

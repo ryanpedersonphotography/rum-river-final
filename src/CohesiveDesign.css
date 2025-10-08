@@ -324,7 +324,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--warm-walnut);
+  color: var(--dusty-rose);
   letter-spacing: 0.02em;
 }
 
@@ -332,7 +332,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 400;
-  color: var(--sage-green);
+  color: var(--accent-gold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: -0.2rem;
