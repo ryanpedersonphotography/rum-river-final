@@ -1,7 +1,37 @@
 # Single Source of Truth Migration Plan
 ## Complete Design Token System Implementation
 
-> **IMPORTANT**: This document is designed for Claude Code Sonnet to execute autonomously. Each phase includes specific commands, validation steps, and rollback procedures.
+> **📂 IMPROVED STRUCTURE**: This migration has been broken into smaller, focused files for easier navigation.
+> 
+> **Please use the new structure in `/migration/` directory:**
+> - [`migration/README.md`](./migration/README.md) - Overview and navigation
+> - [`migration/PHASE-1-PREPARATION.md`](./migration/PHASE-1-PREPARATION.md) - Environment setup
+> - [`migration/PHASE-2-AUDIT.md`](./migration/PHASE-2-AUDIT.md) - Codebase analysis
+> - [`migration/PHASE-3-CLEANUP.md`](./migration/PHASE-3-CLEANUP.md) - Remove duplicates
+> - [`migration/PHASE-4-MIGRATION.md`](./migration/PHASE-4-MIGRATION.md) - Replace hardcoded values
+> - [`migration/PHASE-5-VALIDATION.md`](./migration/PHASE-5-VALIDATION.md) - Testing & verification
+> - [`migration/PHASE-6-OPTIMIZATION.md`](./migration/PHASE-6-OPTIMIZATION.md) - Enforcement & docs
+> - [`migration/QUICK-REFERENCE.md`](./migration/QUICK-REFERENCE.md) - All commands in one place
+>
+> **📁 SCRIPTS LOCATION**: All migration scripts are pre-built in `/scripts/` directory  
+> **📖 DOCUMENTATION**: See `/scripts/README.md` for detailed script documentation  
+> **🔧 HELPER UTILITIES**: Token helpers available at `/src/utils/tokens.js`
+
+---
+
+## ⚠️ NOTE FOR CLAUDE CODE SONNET
+
+**This file is kept for reference but the migration should be executed using the phase-specific files in `/migration/` directory.**
+
+Each phase file contains:
+- Clear step-by-step instructions
+- Verification commands
+- Troubleshooting sections
+- Pause points for review
+
+**Start here:** [`migration/PHASE-1-PREPARATION.md`](./migration/PHASE-1-PREPARATION.md)
+
+The phase files are smaller and easier to navigate, reducing context switching and improving execution accuracy.
 
 ---
 
@@ -33,54 +63,38 @@ git checkout -b implement-single-source-tokens
 
 ### Step 1.2: Install Required Tools
 ```bash
-npm install --save-dev eslint-plugin-no-inline-styles
-npm install --save-dev stylelint stylelint-declaration-use-variable
+# First verify existing dependencies
+npm list chalk glob
+
+# Check if packages exist in npm registry
+npm view eslint-plugin-no-inline-styles --json 2>/dev/null || echo "Package not found - will skip"
+npm view stylelint-declaration-use-variable --json 2>/dev/null || echo "Package not found - will skip"
+
+# Install only if packages exist and dependencies are missing
 npm install --save-dev chalk glob
+# Install ESLint and Stylelint packages only if they exist:
+# npm install --save-dev eslint-plugin-no-inline-styles
+# npm install --save-dev stylelint-declaration-use-variable
 ```
 
-### Step 1.3: Create Migration Status Tracker
-```javascript
-// Create file: scripts/migration-tracker.js
-const fs = require('fs');
-const path = require('path');
+### Step 1.3: Verify Migration Scripts
+> **NOTE**: All migration scripts have been pre-created in `/scripts/` directory
 
-const TRACKER_FILE = path.join(__dirname, '../.migration-progress.json');
+**Available Scripts:**
+- `scripts/migration-tracker.js` - Progress tracking and state management
+- `scripts/audit-design-values.js` - Comprehensive codebase audit
+- `scripts/remove-duplicate-variables.js` - Remove :root from CohesiveDesign.css
+- `scripts/update-css-variables.js` - Update old variable names to new tokens
+- `scripts/migrate-jsx-hardcoded.js` - Replace hardcoded values with tokens
+- `scripts/validate-migration.js` - Validation test suite
 
-const initTracker = () => {
-  const initial = {
-    startTime: new Date().toISOString(),
-    phases: {
-      preparation: { status: 'in-progress', tasks: [] },
-      audit: { status: 'pending', tasks: [] },
-      cleanup: { status: 'pending', tasks: [] },
-      migration: { status: 'pending', tasks: [] },
-      validation: { status: 'pending', tasks: [] },
-      optimization: { status: 'pending', tasks: [] }
-    },
-    filesModified: [],
-    issuesFound: [],
-    rollbackPoints: []
-  };
-  fs.writeFileSync(TRACKER_FILE, JSON.stringify(initial, null, 2));
-  console.log('✅ Migration tracker initialized');
-};
+**Helper Utilities:**
+- `src/utils/tokens.js` - Token access helpers and component styles
 
-const updatePhase = (phase, status, task = null) => {
-  const tracker = JSON.parse(fs.readFileSync(TRACKER_FILE, 'utf8'));
-  tracker.phases[phase].status = status;
-  if (task) tracker.phases[phase].tasks.push(task);
-  fs.writeFileSync(TRACKER_FILE, JSON.stringify(tracker, null, 2));
-};
-
-const addModifiedFile = (filePath) => {
-  const tracker = JSON.parse(fs.readFileSync(TRACKER_FILE, 'utf8'));
-  if (!tracker.filesModified.includes(filePath)) {
-    tracker.filesModified.push(filePath);
-  }
-  fs.writeFileSync(TRACKER_FILE, JSON.stringify(tracker, null, 2));
-};
-
-module.exports = { initTracker, updatePhase, addModifiedFile };
+```bash
+# Verify scripts exist
+ls -la scripts/
+# Expected output: All 6 migration scripts listed
 ```
 
 ### Step 1.4: Initialize Migration
@@ -88,158 +102,57 @@ module.exports = { initTracker, updatePhase, addModifiedFile };
 node -e "require('./scripts/migration-tracker.js').initTracker()"
 ```
 
-### ✅ CHECKPOINT 1
+### ✅ CHECKPOINT 1 - PAUSE FOR REVIEW
 ```bash
 # Verify tracker exists
 cat .migration-progress.json | grep '"preparation".*"in-progress"'
 # Expected: Shows preparation phase in progress
+
+# Verify scripts are executable
+ls -la scripts/ | wc -l
+# Expected: Should show 7 items (6 scripts + README)
+
+# Check dependencies installed
+npm list chalk glob --depth=0
 ```
+
+**🛑 PAUSE HERE FOR REVIEW**: Confirm preparation completed successfully before proceeding to Phase 2.
 
 ---
 
 ## 🔍 PHASE 2: Comprehensive Audit
-**Duration**: 45 minutes | **Risk Level**: Low
+**Duration**: 45 minutes | **Risk Level**: Low | **Scope**: `src/**/*.{jsx,tsx,css}` files only
 
-### Step 2.1: Create Audit Script
-```javascript
-// Create file: scripts/audit-design-values.js
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const chalk = require('chalk');
+### Step 2.1: Run Comprehensive Audit
+> **Script Location**: `scripts/audit-design-values.js`
 
-const auditResults = {
-  hardcodedColors: [],
-  hardcodedSpacing: [],
-  hardcodedFonts: [],
-  cssVariableUsage: [],
-  tokenImports: [],
-  inlineStyles: []
-};
+**What it does:**
+- Scans all JSX/TSX and CSS files
+- Identifies hardcoded colors, spacing, and fonts
+- Finds CSS variable usage and token imports
+- Counts inline styles
+- Generates detailed `audit-report.json`
 
-// Patterns to detect
-const patterns = {
-  hexColors: /#[0-9A-Fa-f]{3,6}(?![0-9A-Fa-f])/g,
-  rgbColors: /rgb\([^)]+\)/g,
-  spacing: /\d+(?:px|rem|em|vh|vw)/g,
-  cssVars: /var\(--[^)]+\)/g,
-  tokenImports: /from ['"].*generated\/tokens/g,
-  inlineStyles: /style=\{\{[^}]+\}\}/g
-};
-
-const auditFile = (filePath) => {
-  const content = fs.readFileSync(filePath, 'utf8');
-  const relPath = path.relative(process.cwd(), filePath);
-  
-  // Check for hardcoded colors
-  const hexMatches = content.match(patterns.hexColors);
-  if (hexMatches) {
-    hexMatches.forEach(match => {
-      // Exclude ID selectors and URLs
-      if (!match.includes('#root') && !match.includes('#app')) {
-        auditResults.hardcodedColors.push({
-          file: relPath,
-          value: match,
-          line: content.substring(0, content.indexOf(match)).split('\n').length
-        });
-      }
-    });
-  }
-  
-  // Check for hardcoded spacing
-  if (filePath.endsWith('.jsx') || filePath.endsWith('.tsx')) {
-    const spacingMatches = content.match(patterns.spacing);
-    if (spacingMatches) {
-      spacingMatches.forEach(match => {
-        if (content.includes(`'${match}'`) || content.includes(`"${match}"`)) {
-          auditResults.hardcodedSpacing.push({
-            file: relPath,
-            value: match,
-            context: content.substring(content.indexOf(match) - 20, content.indexOf(match) + 30)
-          });
-        }
-      });
-    }
-  }
-  
-  // Check for CSS variable usage
-  const cssVarMatches = content.match(patterns.cssVars);
-  if (cssVarMatches) {
-    cssVarMatches.forEach(match => {
-      auditResults.cssVariableUsage.push({
-        file: relPath,
-        variable: match
-      });
-    });
-  }
-  
-  // Check for token imports
-  if (content.includes('generated/tokens')) {
-    auditResults.tokenImports.push(relPath);
-  }
-  
-  // Check for inline styles
-  if (filePath.endsWith('.jsx') || filePath.endsWith('.tsx')) {
-    const inlineMatches = content.match(patterns.inlineStyles);
-    if (inlineMatches) {
-      auditResults.inlineStyles.push({
-        file: relPath,
-        count: inlineMatches.length
-      });
-    }
-  }
-};
-
-// Run audit
-console.log(chalk.blue('🔍 Starting comprehensive audit...'));
-
-const jsxFiles = glob.sync('src/**/*.{jsx,tsx}', { ignore: 'node_modules/**' });
-const cssFiles = glob.sync('src/**/*.css', { ignore: ['node_modules/**', 'src/generated/**'] });
-
-[...jsxFiles, ...cssFiles].forEach(file => {
-  auditFile(file);
-});
-
-// Generate report
-const report = {
-  timestamp: new Date().toISOString(),
-  summary: {
-    hardcodedColors: auditResults.hardcodedColors.length,
-    hardcodedSpacing: auditResults.hardcodedSpacing.length,
-    cssVariables: auditResults.cssVariableUsage.length,
-    tokenImports: auditResults.tokenImports.length,
-    filesWithInlineStyles: auditResults.inlineStyles.length
-  },
-  details: auditResults
-};
-
-fs.writeFileSync('audit-report.json', JSON.stringify(report, null, 2));
-
-// Print summary
-console.log(chalk.green('\n✅ Audit Complete!\n'));
-console.log(chalk.yellow('Summary:'));
-console.log(`  • Hardcoded colors: ${report.summary.hardcodedColors}`);
-console.log(`  • Hardcoded spacing: ${report.summary.hardcodedSpacing}`);
-console.log(`  • CSS variables used: ${report.summary.cssVariables}`);
-console.log(`  • Files using tokens: ${report.summary.tokenImports}`);
-console.log(`  • Files with inline styles: ${report.summary.filesWithInlineStyles}`);
-console.log(chalk.gray('\nDetailed report saved to audit-report.json'));
-
-module.exports = report;
-```
-
-### Step 2.2: Run Audit
+**Execute:**
 ```bash
+# Run the audit
 node scripts/audit-design-values.js
+
+# Update tracker
 node -e "require('./scripts/migration-tracker.js').updatePhase('audit', 'completed', 'Full audit completed')"
 ```
 
-### ✅ CHECKPOINT 2
+### ✅ CHECKPOINT 2 - PAUSE FOR REVIEW
 ```bash
 # Verify audit completed
 test -f audit-report.json && echo "✅ Audit report exists" || echo "❌ Audit failed"
 cat .migration-progress.json | grep '"audit".*"completed"'
+
+# Review audit summary
+cat audit-report.json | grep -A 10 '"summary"'
 ```
+
+**🛑 PAUSE HERE FOR REVIEW**: Review audit results to understand scope of changes before proceeding to Phase 3.
 
 ---
 
@@ -247,133 +160,74 @@ cat .migration-progress.json | grep '"audit".*"completed"'
 **Duration**: 1 hour | **Risk Level**: Medium
 
 ### Step 3.1: Remove Duplicate CSS Variables
+> **Script Location**: `scripts/remove-duplicate-variables.js`
+
+**What it does:**
+- Removes :root block from CohesiveDesign.css
+- Adds import for generated tokens
+- Creates backup of original file
+
+**Reference Implementation** (see `scripts/remove-duplicate-variables.js`):
 ```javascript
-// Create file: scripts/remove-duplicate-variables.js
-const fs = require('fs');
-const path = require('path');
-const { addModifiedFile, updatePhase } = require('./migration-tracker');
-
-const COHESIVE_CSS = 'src/CohesiveDesign.css';
-
-// Read the file
-let content = fs.readFileSync(COHESIVE_CSS, 'utf8');
-const originalContent = content;
-
-// Remove :root block with CSS variables (keep imports and classes)
+// Removes :root block from CohesiveDesign.css
 const rootBlockRegex = /:root\s*\{[^}]*\}/s;
 content = content.replace(rootBlockRegex, '/* Root variables moved to tokens system */');
 
-// Add import for generated tokens at the top (after font imports)
+// Adds import for generated tokens
 if (!content.includes('generated/tokens.css')) {
-  const fontImports = content.match(/@import url\([^)]+\);/g) || [];
-  const lastFontImport = fontImports[fontImports.length - 1];
-  if (lastFontImport) {
-    const insertPosition = content.indexOf(lastFontImport) + lastFontImport.length;
-    content = content.slice(0, insertPosition) + 
-              '\n\n/* Import generated design tokens */\n@import \'./generated/tokens.css\';\n' + 
-              content.slice(insertPosition);
-  }
+  // Insert after font imports
+  content = insertTokenImport(content);
 }
 
-// Save modified file
-fs.writeFileSync(COHESIVE_CSS, content);
-addModifiedFile(COHESIVE_CSS);
-
-// Create backup
+// Creates backup and saves modified file
 fs.writeFileSync(COHESIVE_CSS + '.backup', originalContent);
+fs.writeFileSync(COHESIVE_CSS, content);
+```
 
-console.log('✅ Removed duplicate :root variables from CohesiveDesign.css');
-console.log('📁 Backup saved to CohesiveDesign.css.backup');
+**Execute:**
+```bash
+# Remove duplicate variables
+node scripts/remove-duplicate-variables.js
 ```
 
 ### Step 3.2: Update Variable References
-```javascript
-// Create file: scripts/update-css-variables.js
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const { addModifiedFile } = require('./migration-tracker');
+> **Script Location**: `scripts/update-css-variables.js`
 
-// Mapping from old to new variable names
+**What it does:**
+- Maps old variable names to new token names
+- Updates all CSS files to use new naming
+- Tracks modified files
+**Reference Implementation** (see `scripts/update-css-variables.js`):
+```javascript
+// Variable mapping (sample)
 const variableMap = {
-  '--romantic-ivory': '--color-base-romantic-ivory',
   '--dusty-rose': '--color-base-dusty-rose',
-  '--sage-whisper': '--color-base-sage-whisper',
-  '--warm-walnut': '--color-base-warm-walnut',
-  '--champagne-gold': '--color-base-champagne-gold',
-  '--blush-pink': '--color-base-blush-pink',
-  '--deep-forest': '--color-base-deep-forest',
-  '--cream-pearl': '--color-base-cream-pearl',
-  '--muted-mauve': '--color-base-muted-mauve',
-  '--copper-glow': '--color-base-copper-glow',
-  '--warm-cream': '--color-base-warm-cream',
-  '--accent-gold': '--color-base-accent-gold',
-  '--deep-brown': '--color-base-deep-brown',
-  '--text-dark': '--color-base-text-dark',
-  '--sage-green': '--color-base-sage-green',
-  '--soft-white': '--color-base-soft-white',
   '--font-display': '--font-family-display',
-  '--font-body': '--font-family-body',
-  '--font-script': '--font-family-script',
-  '--text-xs': '--font-size-xs',
-  '--text-sm': '--font-size-sm',
-  '--text-base': '--font-size-base',
-  '--text-lg': '--font-size-lg',
-  '--text-xl': '--font-size-xl',
-  '--text-2xl': '--font-size-2xl',
-  '--text-3xl': '--font-size-3xl',
-  '--text-4xl': '--font-size-4xl',
-  '--text-5xl': '--font-size-5xl',
-  '--text-6xl': '--font-size-6xl',
-  '--text-hero': '--font-size-hero',
-  '--space-xs': '--spacing-xs',
-  '--space-sm': '--spacing-sm',
-  '--space-md': '--spacing-md',
   '--space-lg': '--spacing-lg',
-  '--space-xl': '--spacing-xl',
-  '--space-2xl': '--spacing-2xl',
-  '--space-3xl': '--spacing-3xl',
-  '--space-4xl': '--spacing-4xl',
-  '--space-5xl': '--spacing-5xl',
-  '--space-6xl': '--spacing-6xl',
-  '--transition': '--transition-preset-default',
-  '--transition-smooth': '--transition-preset-smooth',
-  '--transition-elegant': '--transition-preset-elegant'
+  '--transition': '--transition-preset-default'
+  // ... full mapping in actual script
 };
 
-let totalReplacements = 0;
-const modifiedFiles = [];
-
-// Update CSS files
-const cssFiles = glob.sync('src/**/*.css', { 
-  ignore: ['node_modules/**', 'src/generated/**', 'src/tokens-compatibility.css'] 
-});
-
+// Updates all CSS files
 cssFiles.forEach(file => {
-  let content = fs.readFileSync(file, 'utf8');
-  const originalContent = content;
-  
   Object.entries(variableMap).forEach(([oldVar, newVar]) => {
-    const regex = new RegExp(`var\\(${oldVar.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\)`, 'g');
-    const matches = content.match(regex);
-    if (matches) {
-      content = content.replace(regex, `var(${newVar})`);
-      totalReplacements += matches.length;
-    }
+    content = content.replace(
+      new RegExp(`var\\(${oldVar}\\)`, 'g'), 
+      `var(${newVar})`
+    );
   });
-  
-  if (content !== originalContent) {
-    fs.writeFileSync(file, content);
-    addModifiedFile(file);
-    modifiedFiles.push(file);
-  }
 });
+```
 
-console.log(`✅ Updated ${totalReplacements} variable references in ${modifiedFiles.length} files`);
-modifiedFiles.forEach(f => console.log(`   📝 ${f}`));
+**Execute:**
+```bash
+# Update variable references
+node scripts/update-css-variables.js
 ```
 
 ### Step 3.3: Execute Cleanup
+> **Scripts Used**: `remove-duplicate-variables.js`, `update-css-variables.js`
+
 ```bash
 # Remove duplicate variables
 node scripts/remove-duplicate-variables.js
@@ -388,7 +242,7 @@ mv src/tokens-compatibility.css src/tokens-compatibility.css.deprecated
 node -e "require('./scripts/migration-tracker.js').updatePhase('cleanup', 'completed', 'Removed competing sources')"
 ```
 
-### ✅ CHECKPOINT 3
+### ✅ CHECKPOINT 3 - PAUSE FOR REVIEW
 ```bash
 # Verify no more duplicate :root in CohesiveDesign.css
 ! grep -q "^:root {" src/CohesiveDesign.css && echo "✅ Root removed" || echo "❌ Root still exists"
@@ -398,97 +252,52 @@ grep -q "generated/tokens.css" src/CohesiveDesign.css && echo "✅ Tokens import
 
 # Check migration progress
 cat .migration-progress.json | grep '"cleanup".*"completed"'
+
+# Test that site still builds
+npm run tokens:build && echo "✅ Tokens build OK"
 ```
+
+**🛑 PAUSE HERE FOR REVIEW**: Verify cleanup worked and site still builds before proceeding to Phase 4.
 
 ---
 
 ## 🔄 PHASE 4: Migrate Hardcoded Values
 **Duration**: 2 hours | **Risk Level**: High
 
-### Step 4.1: Create Token Helper Utilities
+### Step 4.1: Use Token Helper Utilities
+> **Location**: `src/utils/tokens.js` (Already created)
+
+**Available Helpers:**
+- `colors` - Direct access to color tokens
+- `spacing` - Direct access to spacing tokens
+- `typography` - Direct access to font tokens
+- `componentStyles` - Pre-built component style objects
+- `getColor(path)` - Get color by dot notation path
+- `getSpacing(size)` - Get spacing with fallback
+
+**Reference Implementation** (see `src/utils/tokens.js`):
 ```javascript
-// Create file: src/utils/tokens.js
 import tokens from '../generated/tokens.json';
 
-/**
- * Token helper utilities for easy access to design tokens
- */
-
-// Quick accessors for common token categories
+// Quick accessors
 export const colors = tokens.color;
 export const spacing = tokens.spacing;
 export const typography = tokens.font;
-export const shadows = tokens.shadow;
-export const transitions = tokens.transition;
 
-// Helper function to get semantic color
-export const getColor = (path) => {
-  const parts = path.split('.');
-  let value = tokens.color;
-  for (const part of parts) {
-    value = value[part];
-  }
-  return value;
-};
+// Helper functions
+export const getColor = (path) => { /* dot notation access */ };
+export const getSpacing = (size) => { /* spacing with fallback */ };
 
-// Helper function to get spacing value
-export const getSpacing = (size) => {
-  return tokens.spacing[size] || tokens.spacing.md;
-};
-
-// Helper function to build consistent component styles
+// Pre-built component styles
 export const componentStyles = {
-  card: {
-    padding: spacing['2xl'],
-    borderRadius: tokens.size.border.radius.lg,
-    boxShadow: shadows.md,
-    backgroundColor: colors.base['cream-pearl']
-  },
+  card: { /* padding, borderRadius, boxShadow, backgroundColor */ },
   button: {
-    primary: {
-      backgroundColor: colors.semantic.button['primary-bg'],
-      color: colors.semantic.button['primary-text'],
-      padding: `${spacing.md} ${spacing.xl}`,
-      borderRadius: tokens.size.border.radius.pill,
-      fontFamily: typography.family.body,
-      fontSize: typography.size.base,
-      fontWeight: typography.weight.semibold,
-      transition: transitions.preset.smooth
-    },
-    outline: {
-      backgroundColor: 'transparent',
-      color: colors.semantic.button['outline-text'],
-      border: `${tokens.size.border.width.medium} solid ${colors.semantic.button['outline-border']}`,
-      padding: `${spacing.md} ${spacing.xl}`,
-      borderRadius: tokens.size.border.radius.pill,
-      fontFamily: typography.family.body,
-      fontSize: typography.size.base,
-      fontWeight: typography.weight.semibold,
-      transition: transitions.preset.smooth
-    }
+    primary: { /* backgroundColor, color, padding, etc. */ },
+    outline: { /* outline button styles */ }
   },
   heading: {
-    h1: {
-      fontFamily: typography.family.display,
-      fontSize: typography.size['5xl'],
-      fontWeight: typography.weight.bold,
-      lineHeight: typography.lineHeight.tight,
-      color: colors.semantic.text.primary
-    },
-    h2: {
-      fontFamily: typography.family.display,
-      fontSize: typography.size['3xl'],
-      fontWeight: typography.weight.semibold,
-      lineHeight: typography.lineHeight.snug,
-      color: colors.semantic.text.primary
-    },
-    h3: {
-      fontFamily: typography.family.display,
-      fontSize: typography.size['2xl'],
-      fontWeight: typography.weight.medium,
-      lineHeight: typography.lineHeight.normal,
-      color: colors.semantic.text.primary
-    }
+    h1: { /* display font, 5xl size, bold weight */ },
+    h2: { /* display font, 3xl size, semibold weight */ }
   }
 };
 
@@ -504,9 +313,17 @@ export default {
 };
 ```
 
-### Step 4.2: Create Migration Script for JSX Files
+### Step 4.2: Migrate Hardcoded Values in JSX Files
+> **Script Location**: `scripts/migrate-jsx-hardcoded.js`
+
+**What it does:**
+- Reads audit-report.json for files to process
+- Adds token imports to JSX files
+- Replaces hardcoded colors, spacing, and font sizes
+- Creates backup files before modifying
+
+**Reference Implementation** (see `scripts/migrate-jsx-hardcoded.js`):
 ```javascript
-// Create file: scripts/migrate-jsx-hardcoded.js
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
@@ -516,37 +333,22 @@ const { addModifiedFile } = require('./migration-tracker');
 const auditReport = JSON.parse(fs.readFileSync('audit-report.json', 'utf8'));
 
 // Token value mappings
+// Maps hardcoded values to tokens
 const colorMap = {
-  '#FBF8F4': 'tokens.color.base["romantic-ivory"]',
   '#9D6B7B': 'tokens.color.base["dusty-rose"]',
-  '#9CAA9E': 'tokens.color.base["sage-whisper"]',
-  '#6B4E3D': 'tokens.color.base["warm-walnut"]',
-  '#E4C896': 'tokens.color.base["champagne-gold"]',
-  '#F4E4E1': 'tokens.color.base["blush-pink"]',
-  '#3A4A3C': 'tokens.color.base["deep-forest"]',
-  '#FFFCF8': 'tokens.color.base["cream-pearl"]',
-  '#A08A85': 'tokens.color.base["muted-mauve"]',
-  '#C97D60': 'tokens.color.base["copper-glow"]',
   '#666': 'tokens.color.semantic.text.primary',
-  '#999': 'tokens.color.base["muted-mauve"]',
-  '#f0f0f0': 'tokens.color.base["warm-cream"]',
-  '#FFFFFF': 'tokens.color.base["soft-white"]',
-  'white': 'tokens.color.base["soft-white"]'
+  // ... 15+ color mappings
 };
 
 const spacingMap = {
-  '0.5rem': 'tokens.spacing.xs',
-  '0.75rem': 'tokens.spacing.sm',
-  '1rem': 'tokens.spacing.md',
-  '1.5rem': 'tokens.spacing.lg',
   '2rem': 'tokens.spacing.xl',
-  '2.5rem': 'tokens.spacing["2xl"]',
-  '3rem': 'tokens.spacing["3xl"]',
-  '4rem': 'tokens.spacing["4xl"]',
-  '5rem': 'tokens.spacing["5xl"]',
-  '8px': 'tokens.spacing.xs',
-  '12px': 'tokens.spacing.sm',
-  '16px': 'tokens.spacing.md',
+  '1.5rem': 'tokens.spacing.lg',
+  // ... 20+ spacing mappings
+};
+
+const fontSizeMap = {
+  '1.5rem': 'tokens.font.size["2xl"]',
+  // ... font size mappings
   '24px': 'tokens.spacing.lg',
   '32px': 'tokens.spacing.xl',
   '40px': 'tokens.spacing["2xl"]',
@@ -663,6 +465,9 @@ console.log(`   🔄 Total replacements: ${totalMigrations}`);
 ```
 
 ### Step 4.3: Execute Migration
+> **Prerequisites**: Must run audit (Phase 2) first
+
+**Execute:**
 ```bash
 # Run JSX migration
 node scripts/migrate-jsx-hardcoded.js
@@ -671,7 +476,7 @@ node scripts/migrate-jsx-hardcoded.js
 node -e "require('./scripts/migration-tracker.js').updatePhase('migration', 'completed', 'Migrated hardcoded values')"
 ```
 
-### ✅ CHECKPOINT 4
+### ✅ CHECKPOINT 4 - PAUSE FOR REVIEW
 ```bash
 # Test that tokens are imported in modified files
 grep -l "generated/tokens" src/**/*.jsx | wc -l
@@ -681,14 +486,27 @@ grep -l "generated/tokens" src/**/*.jsx | wc -l
 
 # Check progress
 cat .migration-progress.json | grep '"migration".*"completed"'
+
+# Count modified files
+cat .migration-progress.json | grep -o '"filesModified"' -A 20 | wc -l
 ```
+
+**🛑 PAUSE HERE FOR REVIEW**: Verify migration completed and review modified files before final validation.
 
 ---
 
 ## ✅ PHASE 5: Validation & Testing
 **Duration**: 1 hour | **Risk Level**: Low
 
-### Step 5.1: Create Validation Script
+### Step 5.1: Run Validation Suite
+> **Script Location**: `scripts/validate-migration.js`
+
+**Tests Performed:**
+1. Tokens.css import verification
+2. No duplicate :root variables
+3. No hardcoded colors remaining
+4. Token imports in modified files
+5. Token build process works
 ```javascript
 // Create file: scripts/validate-migration.js
 const fs = require('fs');
@@ -809,6 +627,8 @@ process.exit(validationResults.failed.length === 0 ? 0 : 1);
 ```
 
 ### Step 5.2: Run Validation
+
+**Execute:**
 ```bash
 # Build tokens first
 npm run tokens:build
@@ -816,19 +636,28 @@ npm run tokens:build
 # Run validation
 node scripts/validate-migration.js
 
+# Check validation results
+cat validation-report.json | grep '"failed": \[\]' && echo "✅ All tests passed"
+
 # Run development server to visually verify
 npm run dev
 # Open browser and check that styles are working
 ```
 
-### ✅ CHECKPOINT 5
+### ✅ CHECKPOINT 5 - PAUSE FOR FINAL REVIEW
 ```bash
 # Check validation results
 cat validation-report.json | grep '"failed": \[\]' && echo "✅ All tests passed" || echo "❌ Some tests failed"
 
 # Verify site still builds
 npm run build && echo "✅ Build successful" || echo "❌ Build failed"
+
+# Show final summary
+echo "=== MIGRATION SUMMARY ==="
+cat .migration-progress.json | grep -A 1 '"phases"'
 ```
+
+**🛑 PAUSE HERE FOR FINAL REVIEW**: Verify all tests pass and review complete migration before Phase 6.
 
 ---
 
