@@ -20,7 +20,7 @@ collections:
     files:
       - name: "home"
         label: "🏠 Home Page"
-        file: "content/pages/home.json"
+        file: "public/content/pages/home.json"
         fields:
           - label: "Hero Section"
             name: "hero"
@@ -71,7 +71,7 @@ collections:
 
       - name: "property"
         label: "🏡 Property Page"
-        file: "content/pages/property.json"
+        file: "public/content/pages/property.json"
         fields:
           - label: "Hero Section"
             name: "hero"
@@ -101,7 +101,7 @@ collections:
   # Venues Collection - Individual venue spaces
   - name: "venues"
     label: "🏛️ Venue Spaces"
-    folder: "content/venues"
+    folder: "public/content/venues"
     create: true
     slug: "{{slug}}"
     fields:
@@ -123,7 +123,7 @@ collections:
   # Testimonials Collection
   - name: "testimonials"
     label: "💬 Testimonials"
-    folder: "content/testimonials"
+    folder: "public/content/testimonials"
     create: true
     slug: "{{slug}}"
     fields:
@@ -137,7 +137,7 @@ collections:
   # Real Weddings Collection
   - name: "weddings"
     label: "💍 Real Weddings"
-    folder: "content/weddings"
+    folder: "public/content/weddings"
     create: true
     slug: "{{year}}-{{month}}-{{slug}}"
     fields:

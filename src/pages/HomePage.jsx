@@ -11,10 +11,16 @@ import CTAButton from '../components/CTAButton'
 import ScheduleTourForm from '../components/ScheduleTourForm'
 import Footer from '../components/Footer'
 import Icon from '../components/Icon'
+import { usePageContent } from '../hooks/usePageContent'
+import { useTestimonials } from '../hooks/useVenueData'
 
 
 export default function HomePage() {
   const [showFloatingCTA, setShowFloatingCTA] = useState(false)
+  
+  // Load page content from CMS
+  const { content: pageContent, loading: contentLoading, error: contentError } = usePageContent('home')
+  const { testimonials, loading: testimonialsLoading, error: testimonialsError } = useTestimonials()
 
 
   // Show floating CTA after scrolling past 50% of hero
@@ -30,6 +36,62 @@ export default function HomePage() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Show loading state while content is being fetched
+  if (contentLoading) {
+    return (
+      <>
+        <SEO 
+          title={pageConfigs.home.title}
+          description={pageConfigs.home.description}
+          keywords={pageConfigs.home.keywords}
+          image={pageConfigs.home.image}
+          url="/"
+        />
+        <Header />
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          height: '60vh',
+          fontSize: '1.2rem',
+          color: 'var(--sage-green)'
+        }}>
+          Loading page content...
+        </div>
+        <Footer />
+      </>
+    )
+  }
+
+  // Show error state if content fails to load
+  if (contentError) {
+    return (
+      <>
+        <SEO 
+          title={pageConfigs.home.title}
+          description={pageConfigs.home.description}
+          keywords={pageConfigs.home.keywords}
+          image={pageConfigs.home.image}
+          url="/"
+        />
+        <Header />
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          height: '60vh',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ color: 'var(--warm-walnut)' }}>Unable to load page content</h2>
+          <p style={{ color: '#666' }}>Please try refreshing the page</p>
+          <p style={{ fontSize: '0.9rem', color: '#999' }}>Error: {contentError}</p>
+        </div>
+        <Footer />
+      </>
+    )
+  }
   return (
     <>
       <SEO 
@@ -54,17 +116,18 @@ export default function HomePage() {
         <div className="romantic-overlay"></div>
         <div className="content-wrapper">
           <div className="hero-content">
-            <div className="script-accent">Where Dreams Begin</div>
+            <div className="script-accent">{pageContent?.hero?.scriptAccent || 'Where Dreams Begin'}</div>
             <h1 className="hero-headline">
-              Rum River<br />
-              <span className="hero-accent">Wedding Barn</span>
+              {pageContent?.hero?.titleLine1 || 'Rum River'}<br />
+              <span className="hero-accent">{pageContent?.hero?.titleLine2 || 'Wedding Barn'}</span>
             </h1>
             <p className="lead hero-lead">
-              Nestled along Minnesota's scenic Rum River, our historic barn offers
-              the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.
+              {pageContent?.hero?.description || 'Nestled along Minnesota\'s scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.'}
             </p>
             <div className="hero-buttons">
-              <CTAButton href="/contact" variant="primary">Schedule Your Visit</CTAButton>
+              <CTAButton href={pageContent?.hero?.ctaLink || '/contact'} variant="primary">
+                {pageContent?.hero?.ctaText || 'Schedule Your Visit'}
+              </CTAButton>
             </div>
           </div>
         </div>

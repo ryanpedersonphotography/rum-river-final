@@ -2,102 +2,7 @@ import { useState, useEffect } from 'react'
 import VenueTabs from './VenueTabs'
 import CarouselControls from './CarouselControls'
 import Icon from './Icon'
-
-const venueData = {
-  barn: {
-    title: 'The Historic Barn',
-    images: [
-      '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
-      '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
-      '/images/venue/barn-interior-string-lights-ceiling-detail.jpg',
-      '/images/venue/barn-exterior-full-view-landscape.jpg',
-      '/images/venue/barn-exterior-welcome-sign-entrance.jpg',
-      '/images/venue/barn-exterior-deck-stairs-trees.jpg',
-      '/images/venue/barn-exterior-full-deck-view-evening.jpg',
-      '/images/venue/barn-exterior-deck-swing-golden-hour.jpg'
-    ],
-    description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
-    features: [
-      { label: 'Capacity', value: 'Up to 300 guests' },
-      { label: 'Features', value: 'Built-in bar & dance floor' },
-      { label: 'Lighting', value: 'Edison bulbs & chandeliers' },
-      { label: 'Climate', value: 'Heated & air conditioned' }
-    ]
-  },
-  bridal: {
-    title: 'Bridal Suite',
-    images: [
-      '/images/bridal-suite/1-large.jpeg',
-      '/images/bridal-suite/dsc_1766-large.jpeg',
-      '/images/bridal-suite/dsc_1768-large.jpeg',
-      '/images/bridal-suite/dsc_1770-2-large.jpeg',
-      '/images/bridal-suite/dsc_1773-large.jpeg',
-      '/images/bridal-suite/dsc_1774-large.jpeg',
-      '/images/bridal-suite/dsc_1776-large.jpeg'
-    ],
-    description: 'A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.',
-    features: [
-      { label: 'Capacity', value: 'Up to 12 people' },
-      { label: 'Features', value: 'Professional lighting & mirrors' },
-      { label: 'Amenities', value: 'Private bathroom & kitchenette' },
-      { label: 'Style', value: 'Vintage charm meets modern comfort' }
-    ]
-  },
-  groom: {
-    title: "Groom's Quarters",
-    images: [
-      '/images/venue/barn-exterior-entrance-lighting-view.jpg',
-      '/images/venue/details-building-entrance-door.jpg',
-      '/images/venue/barn-exterior-deck-stairs-trees.jpg',
-      '/images/venue/barn-exterior-stone-wall-trees.jpg',
-      '/images/venue/barn-exterior-landscaping-stone-border.jpg',
-      '/images/venue/details-building-porch-architectural.jpg'
-    ],
-    description: 'A sophisticated space designed for the groom and groomsmen to prepare, relax, and enjoy the moments before the ceremony.',
-    features: [
-      { label: 'Capacity', value: 'Up to 10 people' },
-      { label: 'Features', value: 'Pool table & lounge seating' },
-      { label: 'Amenities', value: 'Private entrance & facilities' },
-      { label: 'Style', value: 'Rustic elegance' }
-    ]
-  },
-  pavilion: {
-    title: 'Vineyard',
-    images: [
-      '/images/venue/property-field-wildflowers-natural.jpg',
-      '/images/venue/barn-exterior-deck-swing-under-tree.jpg',
-      '/images/venue/property-vineyard-perspective-hills.jpg',
-      '/images/venue/property-landscape-rural-vista.jpg',
-      '/images/venue/barn-exterior-vintage-tractor-rustic.jpg',
-      '/images/venue/details-swing-rustic-romance.jpg',
-      '/images/venue/barn-exterior-welcome-sign-rustic-charm.jpg'
-    ],
-    description: 'Our working vineyard features 14 Minnesota hardy grape varieties, creating a stunning natural backdrop for ceremonies and celebrations among the vines.',
-    features: [
-      { label: 'Capacity', value: 'Up to 150 guests' },
-      { label: 'Features', value: 'Natural canopy & string lights' },
-      { label: 'Setting', value: 'Vineyard ceremony site' },
-      { label: 'Backup', value: 'Weather protection available' }
-    ]
-  },
-  reception: {
-    title: 'Reception Area',
-    images: [
-      '/images/reception/dsc_1785-large.jpeg',
-      '/images/reception/dsc_1786-enhanced-nr-large.jpeg',
-      '/images/reception/dsc_1787-large.jpeg',
-      '/images/reception/dsc_1788-large.jpeg',
-      '/images/reception/dsc_1790-large.jpeg'
-    ],
-    description: 'A beautiful space thoughtfully designed for dining, dancing, and celebrating with your guests in style and comfort.',
-    features: [
-      { label: 'Capacity', value: 'Up to 300 guests' },
-      { label: 'Features', value: 'Full service bar & dance floor' },
-      { label: 'Lighting', value: 'Ambient & customizable' },
-      { label: 'Setup', value: 'Flexible table arrangements' }
-    ]
-  }
-}
+import { useVenueData } from '../hooks/useVenueData'
 
 /**
  * VenueDiscovery Component
@@ -111,16 +16,71 @@ export default function VenueDiscovery({
   subtitle = 'Your Perfect Setting',
   description = 'Every corner tells a story, every space creates memories'
 }) {
+  // Load venue data from CMS
+  const { venues: venueData, loading, error } = useVenueData()
+  
   const [activeVenue, setActiveVenue] = useState('barn')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0)
 
+  // Loading and error states
+  if (loading) {
+    return (
+      <section className={`${sectionClassName} ${className}`}>
+        <div className="content-wrapper venue-content">
+          <div className="section-header center">
+            <div className="script-accent">{subtitle}</div>
+            <h2 className="section-title">{title}</h2>
+            <p className="lead">{description}</p>
+          </div>
+          <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+            <p style={{ fontSize: '1.2rem', color: 'var(--sage-green)' }}>Loading venue information...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error || !venueData || Object.keys(venueData).length === 0) {
+    return (
+      <section className={`${sectionClassName} ${className}`}>
+        <div className="content-wrapper venue-content">
+          <div className="section-header center">
+            <div className="script-accent">{subtitle}</div>
+            <h2 className="section-title">{title}</h2>
+            <p className="lead">{description}</p>
+          </div>
+          <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+            <p style={{ fontSize: '1.2rem', color: 'var(--warm-walnut)' }}>Unable to load venue information. Please try again later.</p>
+            {error && <p style={{ fontSize: '0.9rem', color: '#666', marginTop: '1rem' }}>Error: {error}</p>}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   // Thumbnail carousel settings
   const thumbnailsPerView = 4
-  const totalImages = venueData[activeVenue].images.length
+  const totalImages = venueData[activeVenue]?.images?.length || 0
   const showCarouselControls = totalImages > thumbnailsPerView
+  
+  // Generate tabs from venue data sorted by order
+  const venueTabs = Object.values(venueData)
+    .sort((a, b) => (a.order || 0) - (b.order || 0))
+    .map(venue => ({
+      key: venue.key,
+      label: venue.title
+    }))
+
+  // Set initial venue when data loads
+  useEffect(() => {
+    if (venueData && Object.keys(venueData).length > 0 && !venueData[activeVenue]) {
+      const firstVenue = venueTabs[0]?.key || Object.keys(venueData)[0]
+      setActiveVenue(firstVenue)
+    }
+  }, [venueData, activeVenue, venueTabs])
 
   const handleVenueChange = (venue) => {
     if (venue === activeVenue) return
@@ -184,13 +144,7 @@ export default function VenueDiscovery({
         </div>
         
         <VenueTabs
-          tabs={[
-            { key: 'barn', label: 'The Barn' },
-            { key: 'reception', label: 'Reception Area' },
-            { key: 'bridal', label: 'Bridal Suite' },
-            { key: 'groom', label: "Groom's Quarters" },
-            { key: 'pavilion', label: 'Vineyard' }
-          ]}
+          tabs={venueTabs}
           activeTab={activeVenue}
           onChange={handleVenueChange}
         />
