@@ -444,7 +444,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 .dropdown-menu a:hover {
   background: var(--champagne-gold);
-  color: white !important;
+  color: var(--deep-brown) !important;
   font-weight: 600;
 }
 
