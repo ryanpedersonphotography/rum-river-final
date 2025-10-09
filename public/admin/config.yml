@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: master
 
-# Local development
-local_backend: true
+# Local development (comment out for production)
+# local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"

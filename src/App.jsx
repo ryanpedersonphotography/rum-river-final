@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 import HomePage from './pages/HomePage'
 import VendorsPage from './pages/VendorsPage'
 import PropertyPage from './pages/PropertyPage'
@@ -31,6 +32,27 @@ import DemoNavbar from './components/DemoNavbar'
 import './components/DemoNavbar.css'
 
 export default function App() {
+  // Initialize Netlify Identity Widget for CMS authentication
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Dynamic import to avoid SSR issues
+      import('netlify-identity-widget').then(netlifyIdentity => {
+        netlifyIdentity.default.init()
+        
+        // Handle redirect after authentication
+        netlifyIdentity.default.on('init', user => {
+          if (!user) {
+            netlifyIdentity.default.on('login', () => {
+              document.location.href = '/admin/'
+            })
+          }
+        })
+      }).catch(err => {
+        console.log('Netlify Identity not available:', err)
+      })
+    }
+  }, [])
+
   // Check if we're in component library mode
   const isComponentLibrary = window.location.hash === '#components'
   const isCohesive = window.location.hash === '#cohesive'
