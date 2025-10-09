@@ -1,0 +1,33 @@
+{
+  "title": "Bridal Suite",
+  "key": "bridal",
+  "description": "A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.",
+  "order": 3,
+  "images": [
+    "/images/bridal-suite/1-large.jpeg",
+    "/images/bridal-suite/dsc_1766-large.jpeg",
+    "/images/bridal-suite/dsc_1768-large.jpeg",
+    "/images/bridal-suite/dsc_1770-2-large.jpeg",
+    "/images/bridal-suite/dsc_1773-large.jpeg",
+    "/images/bridal-suite/dsc_1774-large.jpeg",
+    "/images/bridal-suite/dsc_1776-large.jpeg"
+  ],
+  "features": [
+    {
+      "label": "Capacity",
+      "value": "Up to 12 people"
+    },
+    {
+      "label": "Features",
+      "value": "Professional lighting & mirrors"
+    },
+    {
+      "label": "Amenities",
+      "value": "Private bathroom & kitchenette"
+    },
+    {
+      "label": "Style",
+      "value": "Vintage charm meets modern comfort"
+    }
+  ]
+}

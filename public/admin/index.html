@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rum River Wedding Barn - Content Manager</title>
+  <!-- Include the script that builds the page and powers Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.8.4/dist/decap-cms.js"></script>
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Custom styling for the CMS */
+    .nc-app-header {
+      background-color: #8B4513 !important;
+    }
+    .nc-app-header .nc-appHeader-siteLink {
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- A little help text to show when the CMS is loading -->
+  <div id="nc-root" style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <div style="text-align: center;">
+      <h2 style="color: #8B4513; margin-bottom: 10px;">Loading Rum River Wedding Barn CMS...</h2>
+      <p style="color: #666; margin: 0;">Please wait while the content management system loads.</p>
+    </div>
+  </div>
+  
+  <!-- Initialize Netlify Identity -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

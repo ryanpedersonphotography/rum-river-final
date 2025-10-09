@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "title": "The Property",
+    "description": "Discover the beautiful spaces and natural settings that make Rum River Barn the perfect venue for your celebration.",
+    "backgroundImage": "/images/venue/barn-interior-ceiling-beams-lighting.jpg"
+  },
+  "venueDiscovery": {
+    "scriptAccent": "Your Perfect Setting",
+    "title": "Discover Our Spaces",
+    "description": "Every corner tells a story, every space creates memories",
+    "sectionClassName": "section-warm"
+  },
+  "scheduleTour": {
+    "scriptAccent": "Ready to Visit?",
+    "title": "Schedule Your Property Tour",
+    "description": "Experience the beauty of Rum River Barn in person. Fill out the form below to schedule a private tour of our property."
+  }
+}

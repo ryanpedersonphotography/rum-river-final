@@ -1,0 +1,34 @@
+{
+  "title": "The Historic Barn",
+  "key": "barn",
+  "description": "Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.",
+  "order": 1,
+  "images": [
+    "/images/venue/barn-interior-exposed-beams-chandeliers.jpg",
+    "/images/venue/barn-interior-ceiling-beams-lighting.jpg",
+    "/images/venue/barn-interior-string-lights-ceiling-detail.jpg",
+    "/images/venue/barn-exterior-full-view-landscape.jpg",
+    "/images/venue/barn-exterior-welcome-sign-entrance.jpg",
+    "/images/venue/barn-exterior-deck-stairs-trees.jpg",
+    "/images/venue/barn-exterior-full-deck-view-evening.jpg",
+    "/images/venue/barn-exterior-deck-swing-golden-hour.jpg"
+  ],
+  "features": [
+    {
+      "label": "Capacity",
+      "value": "Up to 300 guests"
+    },
+    {
+      "label": "Features",
+      "value": "Built-in bar & dance floor"
+    },
+    {
+      "label": "Lighting",
+      "value": "Edison bulbs & chandeliers"
+    },
+    {
+      "label": "Climate",
+      "value": "Heated & air conditioned"
+    }
+  ]
+}

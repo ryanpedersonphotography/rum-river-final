@@ -1,0 +1,32 @@
+{
+  "title": "Groom's Quarters",
+  "key": "groom",
+  "description": "A sophisticated space designed for the groom and groomsmen to prepare, relax, and enjoy the moments before the ceremony.",
+  "order": 4,
+  "images": [
+    "/images/venue/barn-exterior-entrance-lighting-view.jpg",
+    "/images/venue/details-building-entrance-door.jpg",
+    "/images/venue/barn-exterior-deck-stairs-trees.jpg",
+    "/images/venue/barn-exterior-stone-wall-trees.jpg",
+    "/images/venue/barn-exterior-landscaping-stone-border.jpg",
+    "/images/venue/details-building-porch-architectural.jpg"
+  ],
+  "features": [
+    {
+      "label": "Capacity",
+      "value": "Up to 10 people"
+    },
+    {
+      "label": "Features",
+      "value": "Pool table & lounge seating"
+    },
+    {
+      "label": "Amenities",
+      "value": "Private entrance & facilities"
+    },
+    {
+      "label": "Style",
+      "value": "Rustic elegance"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Reception Area",
+  "key": "reception",
+  "description": "A beautiful space thoughtfully designed for dining, dancing, and celebrating with your guests in style and comfort.",
+  "order": 2,
+  "images": [
+    "/images/reception/dsc_1785-large.jpeg",
+    "/images/reception/dsc_1786-enhanced-nr-large.jpeg",
+    "/images/reception/dsc_1787-large.jpeg",
+    "/images/reception/dsc_1788-large.jpeg",
+    "/images/reception/dsc_1790-large.jpeg"
+  ],
+  "features": [
+    {
+      "label": "Capacity",
+      "value": "Up to 300 guests"
+    },
+    {
+      "label": "Features",
+      "value": "Full service bar & dance floor"
+    },
+    {
+      "label": "Lighting",
+      "value": "Ambient & customizable"
+    },
+    {
+      "label": "Setup",
+      "value": "Flexible table arrangements"
+    }
+  ]
+}
