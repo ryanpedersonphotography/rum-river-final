@@ -9,6 +9,7 @@ import {
   uploadImage,
   updateWeddingImages
 } from '../lib/contentful-management.js'
+import { realWeddings } from '../data/realWeddings.js'
 import './AdminPanel.css'
 
 export default function AdminWeddings() {
@@ -653,6 +654,19 @@ export default function AdminWeddings() {
                             ×
                           </button>
                         </div>
+                      ) : editingWedding.heroImageUrl ? (
+                        <div className="existing-upload-preview">
+                          <img 
+                            src={editingWedding.heroImageUrl.startsWith('//') ? `https:${editingWedding.heroImageUrl}` : editingWedding.heroImageUrl} 
+                            alt="Current hero" 
+                          />
+                          <div 
+                            className="replace-image-btn"
+                            onClick={() => fileInputRefs.current.heroImage?.click()}
+                          >
+                            Replace Image
+                          </div>
+                        </div>
                       ) : (
                         <div 
                           className="upload-placeholder"
@@ -685,6 +699,19 @@ export default function AdminWeddings() {
                           >
                             ×
                           </button>
+                        </div>
+                      ) : editingWedding.coverImageUrl ? (
+                        <div className="existing-upload-preview">
+                          <img 
+                            src={editingWedding.coverImageUrl.startsWith('//') ? `https:${editingWedding.coverImageUrl}` : editingWedding.coverImageUrl} 
+                            alt="Current cover" 
+                          />
+                          <div 
+                            className="replace-image-btn"
+                            onClick={() => fileInputRefs.current.coverImage?.click()}
+                          >
+                            Replace Image
+                          </div>
                         </div>
                       ) : (
                         <div 
@@ -719,6 +746,19 @@ export default function AdminWeddings() {
                             ×
                           </button>
                         </div>
+                      ) : editingWedding.featuredImageUrl ? (
+                        <div className="existing-upload-preview">
+                          <img 
+                            src={editingWedding.featuredImageUrl.startsWith('//') ? `https:${editingWedding.featuredImageUrl}` : editingWedding.featuredImageUrl} 
+                            alt="Current featured" 
+                          />
+                          <div 
+                            className="replace-image-btn"
+                            onClick={() => fileInputRefs.current.featuredImage?.click()}
+                          >
+                            Replace Image
+                          </div>
+                        </div>
                       ) : (
                         <div 
                           className="upload-placeholder"
@@ -740,7 +780,35 @@ export default function AdminWeddings() {
 
                 {/* Gallery Photos Upload */}
                 <div className="gallery-upload-section">
-                  <label>Photo Gallery (Max 35 photos)</label>
+                  <label>Photo Gallery (Max 35 photos) {editingWedding.photoUrls?.length ? `- Currently ${editingWedding.photoUrls.length} photos` : ''}</label>
+                  
+                  {/* Show existing gallery photos if any */}
+                  {editingWedding.photoUrls && editingWedding.photoUrls.length > 0 && !imageUploads.galleryPhotos.length && (
+                    <div className="existing-gallery-preview">
+                      <div className="existing-gallery-grid">
+                        {editingWedding.photoUrls.slice(0, 10).map((url, index) => (
+                          <img 
+                            key={index}
+                            src={url.startsWith('//') ? `https:${url}` : url}
+                            alt={`Current gallery ${index + 1}`}
+                          />
+                        ))}
+                        {editingWedding.photoUrls.length > 10 && (
+                          <div className="more-photos-indicator">
+                            +{editingWedding.photoUrls.length - 10} more
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        className="replace-gallery-btn"
+                        onClick={() => fileInputRefs.current.galleryPhotos?.click()}
+                      >
+                        Replace Gallery Photos
+                      </button>
+                    </div>
+                  )}
+                  
                   <div className="gallery-upload-box">
                     {imageUploads.galleryPhotos.length > 0 ? (
                       <div className="gallery-preview-grid">

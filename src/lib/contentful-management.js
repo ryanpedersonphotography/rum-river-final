@@ -23,16 +23,44 @@ async function managementFetch(path, options = {}) {
 }
 
 export async function getWeddingBlogs() {
-  const data = await managementFetch('/entries?content_type=weddingBlog&include=2')
+  const data = await managementFetch('/entries?content_type=weddingBlog')
   
-  // Create a map of asset IDs to their URLs
+  // Collect all asset IDs we need to fetch
+  const assetIds = new Set()
+  data.items.forEach(item => {
+    if (item.fields.heroImage?.['en-US']?.sys?.id) {
+      assetIds.add(item.fields.heroImage['en-US'].sys.id)
+    }
+    if (item.fields.coverImage?.['en-US']?.sys?.id) {
+      assetIds.add(item.fields.coverImage['en-US'].sys.id)
+    }
+    if (item.fields.featuredImage?.['en-US']?.sys?.id) {
+      assetIds.add(item.fields.featuredImage['en-US'].sys.id)
+    }
+    if (item.fields.photos?.['en-US']) {
+      item.fields.photos['en-US'].forEach(photo => {
+        if (photo?.sys?.id) assetIds.add(photo.sys.id)
+      })
+    }
+  })
+  
+  // Fetch assets in batches (max 100 at a time)
   const assetMap = {}
-  if (data.includes?.Asset) {
-    data.includes.Asset.forEach(asset => {
-      if (asset.fields?.file?.['en-US']?.url) {
-        assetMap[asset.sys.id] = asset.fields.file['en-US'].url
+  const assetIdArray = Array.from(assetIds)
+  for (let i = 0; i < assetIdArray.length; i += 100) {
+    const batch = assetIdArray.slice(i, i + 100)
+    if (batch.length > 0) {
+      try {
+        const assetData = await managementFetch(`/assets?sys.id[in]=${batch.join(',')}`)
+        assetData.items.forEach(asset => {
+          if (asset.fields?.file?.['en-US']?.url) {
+            assetMap[asset.sys.id] = asset.fields.file['en-US'].url
+          }
+        })
+      } catch (error) {
+        console.error('Error fetching assets:', error)
       }
-    })
+    }
   }
   
   return data.items.map(item => {
