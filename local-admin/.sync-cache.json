@@ -1,0 +1,30 @@
+{
+  "images": {
+    "hero-background.jpg": {
+      "assetId": "5dHeG7fErAecVz5PKXa7LL",
+      "hash": "37666c01a257d68ced2831a90be3c004",
+      "uploadedAt": "2025-10-10T03:38:17.055Z"
+    },
+    "barn-interior.jpg": {
+      "assetId": "p6JEZzU6zBKO1wkhWc3dh",
+      "hash": "c3f13b3bb37c80f2e7a37342bf809952",
+      "uploadedAt": "2025-10-10T03:38:21.705Z"
+    },
+    "property-field.jpg": {
+      "assetId": "5Yti1kDurXMNHT7u65Tb28",
+      "hash": "f8ef381c5e21167ab660799e9e55687e",
+      "uploadedAt": "2025-10-10T03:38:26.160Z"
+    },
+    "wedding-celebration.jpg": {
+      "assetId": "3q98p75VUiiBiTC5g8CIwr",
+      "hash": "960418ce9c0ff01518a77e2916a1bb8d",
+      "uploadedAt": "2025-10-10T03:38:30.980Z"
+    }
+  },
+  "content": {
+    "homepage": {
+      "hash": "e56df42baa806d324046f33f3ad9d2a1",
+      "syncedAt": "2025-10-10T03:38:36.342Z"
+    }
+  }
+}

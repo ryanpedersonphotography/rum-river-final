@@ -1,0 +1,1895 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "testimonial",
+        "type": "ContentType",
+        "createdAt": "2025-10-10T01:04:38.174Z",
+        "updatedAt": "2025-10-10T01:04:38.488Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:04:38.488Z",
+        "firstPublishedAt": "2025-10-10T01:04:38.488Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/content_types/testimonial"
+      },
+      "displayField": "authorName",
+      "name": "Testimonial",
+      "description": "A customer testimonial",
+      "fields": [
+        {
+          "id": "quote",
+          "name": "Quote",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "authorName",
+          "name": "Author Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "authorDetail",
+          "name": "Author Detail",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "featureBlock",
+        "type": "ContentType",
+        "createdAt": "2025-10-10T01:04:43.786Z",
+        "updatedAt": "2025-10-10T01:12:31.272Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-10-10T01:12:31.272Z",
+        "firstPublishedAt": "2025-10-10T01:04:44.190Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/content_types/featureBlock"
+      },
+      "displayField": "title",
+      "name": "Feature Block",
+      "description": "A feature block for the home page",
+      "fields": [
+        {
+          "id": "number",
+          "name": "Number",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "lead",
+          "name": "Lead Text",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "imageAlt",
+          "name": "Image Alt Text",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "reverse",
+          "name": "Reverse Layout",
+          "type": "Boolean",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "experienceFeature",
+        "type": "ContentType",
+        "createdAt": "2025-10-10T01:04:49.411Z",
+        "updatedAt": "2025-10-10T01:04:49.708Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:04:49.708Z",
+        "firstPublishedAt": "2025-10-10T01:04:49.708Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/content_types/experienceFeature"
+      },
+      "displayField": "title",
+      "name": "Experience Feature",
+      "description": "A feature item for the experience section",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "homePage",
+        "type": "ContentType",
+        "createdAt": "2025-10-10T01:04:54.256Z",
+        "updatedAt": "2025-10-10T01:12:32.009Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-10-10T01:12:32.009Z",
+        "firstPublishedAt": "2025-10-10T01:04:54.613Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/content_types/homePage"
+      },
+      "displayField": "heroTitleLine1",
+      "name": "Home Page",
+      "description": "Content for the website home page",
+      "fields": [
+        {
+          "id": "heroScriptAccent",
+          "name": "Hero Script Accent",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroTitleLine1",
+          "name": "Hero Title Line 1",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroTitleLine2",
+          "name": "Hero Title Line 2",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroDescription",
+          "name": "Hero Description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroCtaText",
+          "name": "Hero CTA Text",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroCtaLink",
+          "name": "Hero CTA Link",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "featureScriptAccent",
+          "name": "Feature Section Script Accent",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "featureTitle",
+          "name": "Feature Section Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "featureLead",
+          "name": "Feature Section Lead",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "featureBlocks",
+          "name": "Feature Blocks",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "featureBlock"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "experienceScriptAccent",
+          "name": "Experience Script Accent",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "experienceTitle",
+          "name": "Experience Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "experienceDescription",
+          "name": "Experience Description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "experienceFeatures",
+          "name": "Experience Features",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "experienceFeature"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "loveStoriesScriptAccent",
+          "name": "Love Stories Script Accent",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "loveStoriesTitle",
+          "name": "Love Stories Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "loveStoriesLead",
+          "name": "Love Stories Lead",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "testimonialsScriptAccent",
+          "name": "Testimonials Script Accent",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "testimonialsTitle",
+          "name": "Testimonials Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "testimonialItems",
+          "name": "Testimonial Items",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "testimonial"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "experienceImage",
+          "name": "Experience Section Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "heroBackgroundImage",
+          "name": "Hero Background Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        }
+      ]
+    }
+  ],
+  "tags": [
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "qqjgd2e69j47",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 1,
+        "createdAt": "2025-10-10T01:04:38.623Z",
+        "createdBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-10-10T01:04:38.623Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "testimonial",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "quote"
+        },
+        {
+          "fieldId": "authorName"
+        },
+        {
+          "fieldId": "authorDetail"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "qqjgd2e69j47",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 2,
+        "createdAt": "2025-10-10T01:04:44.354Z",
+        "createdBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-10-10T01:12:31.427Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "featureBlock",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "number"
+        },
+        {
+          "fieldId": "title"
+        },
+        {
+          "fieldId": "lead"
+        },
+        {
+          "fieldId": "content"
+        },
+        {
+          "fieldId": "imageAlt"
+        },
+        {
+          "fieldId": "reverse"
+        },
+        {
+          "fieldId": "image"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "qqjgd2e69j47",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 1,
+        "createdAt": "2025-10-10T01:04:49.789Z",
+        "createdBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-10-10T01:04:49.789Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "experienceFeature",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "title"
+        },
+        {
+          "fieldId": "description"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "qqjgd2e69j47",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 2,
+        "createdAt": "2025-10-10T01:04:54.787Z",
+        "createdBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-10-10T01:12:32.184Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5x2x3YONfjpNwPDz8037Do",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "homePage",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "heroScriptAccent"
+        },
+        {
+          "fieldId": "heroTitleLine1"
+        },
+        {
+          "fieldId": "heroTitleLine2"
+        },
+        {
+          "fieldId": "heroDescription"
+        },
+        {
+          "fieldId": "heroCtaText"
+        },
+        {
+          "fieldId": "heroCtaLink"
+        },
+        {
+          "fieldId": "featureScriptAccent"
+        },
+        {
+          "fieldId": "featureTitle"
+        },
+        {
+          "fieldId": "featureLead"
+        },
+        {
+          "fieldId": "featureBlocks"
+        },
+        {
+          "fieldId": "experienceScriptAccent"
+        },
+        {
+          "fieldId": "experienceTitle"
+        },
+        {
+          "fieldId": "experienceDescription"
+        },
+        {
+          "fieldId": "experienceFeatures"
+        },
+        {
+          "fieldId": "loveStoriesScriptAccent"
+        },
+        {
+          "fieldId": "loveStoriesTitle"
+        },
+        {
+          "fieldId": "loveStoriesLead"
+        },
+        {
+          "fieldId": "testimonialsScriptAccent"
+        },
+        {
+          "fieldId": "testimonialsTitle"
+        },
+        {
+          "fieldId": "testimonialItems"
+        },
+        {
+          "fieldId": "experienceImage"
+        },
+        {
+          "fieldId": "heroBackgroundImage"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "6cVLAXd88KMgiboB4NieBL",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:17.728Z",
+        "updatedAt": "2025-10-10T01:06:18.011Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:18.011Z",
+        "firstPublishedAt": "2025-10-10T01:06:18.011Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonial"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/6cVLAXd88KMgiboB4NieBL"
+      },
+      "fields": {
+        "quote": {
+          "en-US": "From our first tour to our last dance, the team at Rum River made our dreams come true. The barn was absolutely magical, and our guests are still talking about how perfect everything was."
+        },
+        "authorName": {
+          "en-US": "Sarah & Michael Johnson"
+        },
+        "authorDetail": {
+          "en-US": "Married October 2024"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "6uxAdHNppIgD65nTx35HUY",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:18.420Z",
+        "updatedAt": "2025-10-10T01:06:18.717Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:18.717Z",
+        "firstPublishedAt": "2025-10-10T01:06:18.717Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonial"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/6uxAdHNppIgD65nTx35HUY"
+      },
+      "fields": {
+        "quote": {
+          "en-US": "We wanted rustic elegance, and Rum River delivered beyond our wildest expectations. The historic charm combined with modern amenities was exactly what we were looking for."
+        },
+        "authorName": {
+          "en-US": "Emma & James Wilson"
+        },
+        "authorDetail": {
+          "en-US": "Married June 2024"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "6O23PTV1KHqNR4N7LbFt4Z",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:19.001Z",
+        "updatedAt": "2025-10-10T01:06:19.252Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:19.252Z",
+        "firstPublishedAt": "2025-10-10T01:06:19.252Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonial"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/6O23PTV1KHqNR4N7LbFt4Z"
+      },
+      "fields": {
+        "quote": {
+          "en-US": "The team went above and beyond to make our winter wedding absolutely magical. Even in February, the barn felt warm and romantic. We couldn't have asked for more."
+        },
+        "authorName": {
+          "en-US": "Amanda & Chris Thompson"
+        },
+        "authorDetail": {
+          "en-US": "Married February 2024"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "3MpeyUAGunGpEV1O5y2Qkv",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:19.694Z",
+        "updatedAt": "2025-10-10T01:06:20.013Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:20.013Z",
+        "firstPublishedAt": "2025-10-10T01:06:20.013Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "featureBlock"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/3MpeyUAGunGpEV1O5y2Qkv"
+      },
+      "fields": {
+        "number": {
+          "en-US": "01"
+        },
+        "title": {
+          "en-US": "A Picturesque Location For Your Special Event"
+        },
+        "lead": {
+          "en-US": "Near Milaca, Saint Paul, St Cloud, and Brainerd MN"
+        },
+        "content": {
+          "en-US": "When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.\n\nHere at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.\n\nOur goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at 612-801-0546!"
+        },
+        "imageAlt": {
+          "en-US": "Special event venue"
+        },
+        "reverse": {
+          "en-US": false
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "LRGSUlqcFQlD7IiAkDF6N",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:20.379Z",
+        "updatedAt": "2025-10-10T01:06:20.733Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:20.733Z",
+        "firstPublishedAt": "2025-10-10T01:06:20.733Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "featureBlock"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/LRGSUlqcFQlD7IiAkDF6N"
+      },
+      "fields": {
+        "number": {
+          "en-US": "02"
+        },
+        "title": {
+          "en-US": "Rum River Barn & Vineyard"
+        },
+        "lead": {
+          "en-US": "Milaca, St. Cloud, Saint Paul, and Brainerd MN"
+        },
+        "content": {
+          "en-US": "Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured old oak forests, and white pines next to a whispering brook, we offer Minnesota's premier barn wedding venue and country special events venue for your custom special event.\n\nEnjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests and developed for the past 100 years."
+        },
+        "imageAlt": {
+          "en-US": "Rum River Barn and Vineyard"
+        },
+        "reverse": {
+          "en-US": true
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "3PzCPgjQavNuhzcx06gYrZ",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:21.057Z",
+        "updatedAt": "2025-10-10T01:06:21.327Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:21.327Z",
+        "firstPublishedAt": "2025-10-10T01:06:21.327Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "experienceFeature"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/3PzCPgjQavNuhzcx06gYrZ"
+      },
+      "fields": {
+        "title": {
+          "en-US": "All-Inclusive Planning"
+        },
+        "description": {
+          "en-US": "Our experienced coordinators handle every detail, so you can focus on what matters most—each other."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "74E1d3Fj1dK6uTTwLeyBaf",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:21.601Z",
+        "updatedAt": "2025-10-10T01:06:21.855Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:21.855Z",
+        "firstPublishedAt": "2025-10-10T01:06:21.855Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "experienceFeature"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/74E1d3Fj1dK6uTTwLeyBaf"
+      },
+      "fields": {
+        "title": {
+          "en-US": "Customizable Packages"
+        },
+        "description": {
+          "en-US": "From intimate gatherings to grand celebrations, we tailor every element to your vision and budget."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "3hmwPL2nUBGO004QASKngq",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:22.143Z",
+        "updatedAt": "2025-10-10T01:06:22.439Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-10-10T01:06:22.439Z",
+        "firstPublishedAt": "2025-10-10T01:06:22.439Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "experienceFeature"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/3hmwPL2nUBGO004QASKngq"
+      },
+      "fields": {
+        "title": {
+          "en-US": "Historic Charm"
+        },
+        "description": {
+          "en-US": "Our lovingly restored 1920s barn combines century-old character with modern convenience."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "id": "4Ih9mLyQGoYHQWvYaprlg9",
+        "type": "Entry",
+        "createdAt": "2025-10-10T01:06:22.737Z",
+        "updatedAt": "2025-10-10T01:09:19.764Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2025-10-10T01:09:19.764Z",
+        "firstPublishedAt": "2025-10-10T01:06:23.054Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "homePage"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/qqjgd2e69j47/environments/master/entries/4Ih9mLyQGoYHQWvYaprlg9"
+      },
+      "fields": {
+        "heroScriptAccent": {
+          "en-US": "Where Dreams Begin"
+        },
+        "heroTitleLine1": {
+          "en-US": "Rum River"
+        },
+        "heroTitleLine2": {
+          "en-US": "Wedding Barn"
+        },
+        "heroDescription": {
+          "en-US": "Nestled along Minnesota's scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration."
+        },
+        "heroCtaText": {
+          "en-US": "Schedule Your Visit"
+        },
+        "heroCtaLink": {
+          "en-US": "/contact"
+        },
+        "featureScriptAccent": {
+          "en-US": "Your Perfect Venue"
+        },
+        "featureTitle": {
+          "en-US": "Why Choose Rum River Barn"
+        },
+        "featureLead": {
+          "en-US": "Discover what makes our venue the perfect setting for your unforgettable celebration"
+        },
+        "featureBlocks": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "3MpeyUAGunGpEV1O5y2Qkv"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "LRGSUlqcFQlD7IiAkDF6N"
+              }
+            }
+          ]
+        },
+        "experienceScriptAccent": {
+          "en-US": "The Rum River Experience"
+        },
+        "experienceTitle": {
+          "en-US": "More Than a Venue"
+        },
+        "experienceDescription": {
+          "en-US": "We don't just provide a space—we create an experience. From your first visit to your last dance, our dedicated team ensures every detail reflects your unique love story."
+        },
+        "experienceFeatures": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "3PzCPgjQavNuhzcx06gYrZ"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "74E1d3Fj1dK6uTTwLeyBaf"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "3hmwPL2nUBGO004QASKngq"
+              }
+            }
+          ]
+        },
+        "loveStoriesScriptAccent": {
+          "en-US": "Real Love Stories"
+        },
+        "loveStoriesTitle": {
+          "en-US": "Weddings at the Barn"
+        },
+        "loveStoriesLead": {
+          "en-US": "Every celebration tells a unique story of love, laughter, and happily ever after."
+        },
+        "testimonialsScriptAccent": {
+          "en-US": "Love Letters"
+        },
+        "testimonialsTitle": {
+          "en-US": "What Couples Say"
+        },
+        "testimonialItems": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6cVLAXd88KMgiboB4NieBL"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6uxAdHNppIgD65nTx35HUY"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6O23PTV1KHqNR4N7LbFt4Z"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assets": [
+  ],
+  "locales": [
+    {
+      "name": "English (United States)",
+      "code": "en-US",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "6LNiTyJbRiOReH6lelXKrM",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master",
+            "uuid": "70427580-01f8-4583-8174-ab4678f7817b"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "createdAt": "2025-10-10T01:03:34Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedAt": "2025-10-10T01:03:34Z"
+      }
+    }
+  ],
+  "webhooks": [
+  ],
+  "roles": [
+    {
+      "name": "Editor",
+      "description": "Allows editing, publishing and archiving of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "6M7zBwxadGmVlVzkpAIaJs",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qqjgd2e69j47"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "createdAt": "2025-10-10T01:03:34Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5x2x3YONfjpNwPDz8037Do"
+          }
+        },
+        "updatedAt": "2025-10-10T01:03:34Z"
+      }
+    }
+  ]
+}

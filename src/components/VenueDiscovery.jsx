@@ -25,6 +25,55 @@ export default function VenueDiscovery({
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0)
 
+  // Thumbnail carousel settings
+  const thumbnailsPerView = 4
+  const totalImages = venueData && venueData[activeVenue]?.images?.length || 0
+  const showCarouselControls = totalImages > thumbnailsPerView
+  
+  // Generate tabs from venue data sorted by order
+  const venueTabs = venueData ? Object.values(venueData)
+    .sort((a, b) => (a.order || 0) - (b.order || 0))
+    .map(venue => ({
+      key: venue.key,
+      label: venue.title
+    })) : []
+
+  const nextImage = () => {
+    if (!venueData || !venueData[activeVenue]) return
+    setCurrentImageIndex((prev) =>
+      (prev + 1) % venueData[activeVenue].images.length
+    )
+  }
+
+  const prevImage = () => {
+    if (!venueData || !venueData[activeVenue]) return
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? venueData[activeVenue].images.length - 1 : prev - 1
+    )
+  }
+
+  // Set initial venue when data loads
+  useEffect(() => {
+    if (venueData && Object.keys(venueData).length > 0 && !venueData[activeVenue]) {
+      const firstVenue = venueTabs[0]?.key || Object.keys(venueData)[0]
+      setActiveVenue(firstVenue)
+    }
+  }, [venueData, activeVenue, venueTabs])
+
+  // Handle keyboard navigation in fullscreen
+  useEffect(() => {
+    if (!isFullscreen) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsFullscreen(false)
+      if (e.key === 'ArrowLeft') prevImage()
+      if (e.key === 'ArrowRight') nextImage()
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isFullscreen, prevImage, nextImage])
+
   // Loading and error states
   if (loading) {
     return (
@@ -61,27 +110,6 @@ export default function VenueDiscovery({
     )
   }
 
-  // Thumbnail carousel settings
-  const thumbnailsPerView = 4
-  const totalImages = venueData[activeVenue]?.images?.length || 0
-  const showCarouselControls = totalImages > thumbnailsPerView
-  
-  // Generate tabs from venue data sorted by order
-  const venueTabs = Object.values(venueData)
-    .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map(venue => ({
-      key: venue.key,
-      label: venue.title
-    }))
-
-  // Set initial venue when data loads
-  useEffect(() => {
-    if (venueData && Object.keys(venueData).length > 0 && !venueData[activeVenue]) {
-      const firstVenue = venueTabs[0]?.key || Object.keys(venueData)[0]
-      setActiveVenue(firstVenue)
-    }
-  }, [venueData, activeVenue, venueTabs])
-
   const handleVenueChange = (venue) => {
     if (venue === activeVenue) return
 
@@ -98,18 +126,6 @@ export default function VenueDiscovery({
     }, 250)
   }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) =>
-      (prev + 1) % venueData[activeVenue].images.length
-    )
-  }
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? venueData[activeVenue].images.length - 1 : prev - 1
-    )
-  }
-
   const nextThumbnails = () => {
     setThumbnailStartIndex(prev => 
       Math.min(prev + 1, totalImages - thumbnailsPerView)
@@ -119,20 +135,6 @@ export default function VenueDiscovery({
   const prevThumbnails = () => {
     setThumbnailStartIndex(prev => Math.max(prev - 1, 0))
   }
-
-  // Handle keyboard navigation in fullscreen
-  useEffect(() => {
-    if (!isFullscreen) return
-
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsFullscreen(false)
-      if (e.key === 'ArrowLeft') prevImage()
-      if (e.key === 'ArrowRight') nextImage()
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isFullscreen])
 
   return (
     <section className={`${sectionClassName} ${className}`}>

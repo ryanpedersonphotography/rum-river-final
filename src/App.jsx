@@ -28,6 +28,7 @@ import ScheduleVisitFormStandalone from './pages/ScheduleVisitFormStandalone'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
+import AdminPanel from './pages/AdminPanel'
 import './components/DemoNavbar.css'
 
 export default function App() {
@@ -60,6 +61,9 @@ export default function App() {
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
         <Route path="/history" element={<HistoryPage />} />
+        
+        {/* Admin Panel */}
+        <Route path="/admin" element={<AdminPanel />} />
         
         {/* Demo routes with DemoNavbar */}
         <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />
