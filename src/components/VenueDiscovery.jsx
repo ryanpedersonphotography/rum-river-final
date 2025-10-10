@@ -79,10 +79,10 @@ export default function VenueDiscovery({
     return (
       <section className={`${sectionClassName} ${className}`}>
         <div className="content-wrapper venue-content">
-          <div className="section-header center">
-            <div className="script-accent">{subtitle}</div>
-            <h2 className="section-title">{title}</h2>
-            <p className="lead">{description}</p>
+          <div className="venue-discovery-content center">
+            <div className="script-accent">{subtitle || 'Your Perfect Setting'}</div>
+            <h2 className="section-title">{title || 'Discover Our Spaces'}</h2>
+            <p className="lead">{description || 'Every corner tells a story, every space creates memories'}</p>
           </div>
           <div style={{ textAlign: 'center', padding: '4rem 0' }}>
             <p style={{ fontSize: '1.2rem', color: 'var(--sage-green)' }}>Loading venue information...</p>
@@ -96,10 +96,10 @@ export default function VenueDiscovery({
     return (
       <section className={`${sectionClassName} ${className}`}>
         <div className="content-wrapper venue-content">
-          <div className="section-header center">
-            <div className="script-accent">{subtitle}</div>
-            <h2 className="section-title">{title}</h2>
-            <p className="lead">{description}</p>
+          <div className="venue-discovery-content center">
+            <div className="script-accent">{subtitle || 'Your Perfect Setting'}</div>
+            <h2 className="section-title">{title || 'Discover Our Spaces'}</h2>
+            <p className="lead">{description || 'Every corner tells a story, every space creates memories'}</p>
           </div>
           <div style={{ textAlign: 'center', padding: '4rem 0' }}>
             <p style={{ fontSize: '1.2rem', color: 'var(--warm-walnut)' }}>Unable to load venue information. Please try again later.</p>
@@ -139,10 +139,10 @@ export default function VenueDiscovery({
   return (
     <section className={`${sectionClassName} ${className}`}>
       <div className="content-wrapper venue-content">
-        <div className="section-header center">
-          <div className="script-accent">{subtitle}</div>
-          <h2 className="section-title">{title}</h2>
-          <p className="lead">{description}</p>
+        <div className="venue-discovery-content center">
+          <div className="script-accent">{subtitle || 'Your Perfect Setting'}</div>
+          <h2 className="section-title">{title || 'Discover Our Spaces'}</h2>
+          <p className="lead">{description || 'Every corner tells a story, every space creates memories'}</p>
         </div>
         
         <VenueTabs
@@ -151,31 +151,14 @@ export default function VenueDiscovery({
           onChange={handleVenueChange}
         />
         
-        <div className="venue-display-with-gallery">
+        <div className="venue-display-simple">
           <div className="venue-top-section">
-            <div className={`venue-main-image ${isTransitioning ? 'changing' : ''}`}>
+            <div className="venue-main-image">
               <img 
-                src={venueData[activeVenue].images[currentImageIndex]} 
+                src={venueData[activeVenue].images[0]} 
                 alt={venueData[activeVenue].title} 
                 width="800" 
                 height="500" 
-              />
-
-              {/* Fullscreen Button */}
-              <button
-                className="fullscreen-button"
-                onClick={() => setIsFullscreen(true)}
-                aria-label="View fullscreen"
-              >
-                <Icon name="expand" size="md" color="white" />
-              </button>
-
-              <CarouselControls
-                totalItems={venueData[activeVenue].images.length}
-                currentIndex={currentImageIndex}
-                onNext={nextImage}
-                onPrev={prevImage}
-                onDotClick={setCurrentImageIndex}
               />
             </div>
             
@@ -196,13 +179,7 @@ export default function VenueDiscovery({
           {/* Thumbnail Gallery - Carousel */}
           <div className="venue-thumbnail-carousel">
             <div className="venue-thumbnail-gallery">
-              <div
-                className="venue-thumbnail-track"
-                style={{
-                  transform: `translateX(-${thumbnailStartIndex * (160 + 16)}px)`,
-                  transition: 'transform 0.3s ease'
-                }}
-              >
+              <div className="venue-thumbnail-track">
                 {venueData[activeVenue].images.map((image, index) => (
                   <div
                     key={index}
@@ -214,25 +191,6 @@ export default function VenueDiscovery({
                 ))}
               </div>
 
-              {/* Thumbnail Navigation */}
-              {showCarouselControls && thumbnailStartIndex > 0 && (
-                <button
-                  className="thumbnail-nav prev"
-                  onClick={prevThumbnails}
-                  aria-label="Previous thumbnails"
-                >
-                  ‹
-                </button>
-              )}
-              {showCarouselControls && thumbnailStartIndex < totalImages - thumbnailsPerView && (
-                <button
-                  className="thumbnail-nav next"
-                  onClick={nextThumbnails}
-                  aria-label="Next thumbnails"
-                >
-                  ›
-                </button>
-              )}
             </div>
           </div>
         </div>

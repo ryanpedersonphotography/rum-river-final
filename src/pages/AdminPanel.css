@@ -147,11 +147,76 @@
 }
 
 .admin-section h2 {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   color: #333;
   font-size: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid #e0e0e0;
+}
+
+.section-description {
+  margin: 0 0 1.5rem;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Accordion Styles */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.section-header:hover {
+  background-color: #f8f9fa;
+  margin: 0 -1rem 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.accordion-toggle {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.accordion-toggle:hover {
+  background: #5a67d8;
+  transform: scale(1.1);
+}
+
+.section-content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
 }
 
 .form-group {

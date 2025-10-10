@@ -228,6 +228,22 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   margin: 1.5rem auto 0;
 }
 
+/* Content wrapper styling for new structure */
+.feature-blocks-content.center,
+.love-stories-content.center,
+.testimonials-content.center,
+.venue-discovery-content.center {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.feature-blocks-content.center .lead,
+.love-stories-content.center .lead,
+.testimonials-content.center .lead,
+.venue-discovery-content.center .lead {
+  margin: 1.5rem auto 0;
+}
+
 /* Floating CTA */
 .floating-cta {
   position: fixed;

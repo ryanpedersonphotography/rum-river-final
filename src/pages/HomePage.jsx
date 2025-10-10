@@ -143,7 +143,7 @@ export default function HomePage() {
       {/* Numbered Feature Blocks - MOVED UP */}
       <section className="alternating-blocks">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="feature-blocks-content center">
             <div className="script-accent">{pageContent?.featureBlocks?.scriptAccent || 'Your Perfect Venue'}</div>
             <h2 className="section-title">{pageContent?.featureBlocks?.title || 'Why Choose Rum River Barn'}</h2>
             <p className="lead">{pageContent?.featureBlocks?.lead || 'Discover what makes our venue the perfect setting for your unforgettable celebration'}</p>
@@ -210,7 +210,7 @@ export default function HomePage() {
       {/* Love Stories Gallery - MOVED DOWN */}
       <section className="love-stories-section section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="love-stories-content center">
             <div className="script-accent">{pageContent?.loveStories?.scriptAccent || 'Real Love Stories'}</div>
             <h2 className="section-title">{pageContent?.loveStories?.title || 'Weddings at the Barn'}</h2>
             <p className="lead">{pageContent?.loveStories?.lead || 'Every celebration tells a unique story of love, laughter, and happily ever after.'}</p>
@@ -325,7 +325,7 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="testimonials-section section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="testimonials-content center">
             <div className="script-accent">{pageContent?.testimonials?.scriptAccent || 'Love Letters'}</div>
             <h2 className="section-title">{pageContent?.testimonials?.title || 'What Couples Say'}</h2>
           </div>

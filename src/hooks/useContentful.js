@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getHomePageContent } from '../lib/contentful'
-import { localHomePageContent } from '../lib/localContent'
+import { localHomePageContent } from '../lib/localContent.js'
 
 /**
  * Hook to fetch HomePage content from Contentful

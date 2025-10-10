@@ -11,6 +11,12 @@ export default function AdminPanel() {
   const [authenticated, setAuthenticated] = useState(false)
   const [password, setPassword] = useState('')
   const [imageUploads, setImageUploads] = useState({})
+  const [expandedSections, setExpandedSections] = useState({
+    hero: true,
+    featureBlocks: false,
+    experience: false,
+    testimonials: false
+  })
   const fileInputRefs = useRef({})
 
   // Simple authentication
@@ -269,6 +275,13 @@ export default function AdminPanel() {
     }))
   }
 
+  const toggleSection = (sectionName) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionName]: !prev[sectionName]
+    }))
+  }
+
   if (!authenticated) {
     return (
       <div className="admin-login">
@@ -336,7 +349,13 @@ export default function AdminPanel() {
       <div className="admin-content">
         {/* Hero Section */}
         <section className="admin-section">
-          <h2>Hero Section</h2>
+          <div className="section-header" onClick={() => toggleSection('hero')}>
+            <h2>Hero Section</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.hero ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.hero && (<div className="section-content">
           <div className="form-group">
             <label>Script Accent</label>
             <input
@@ -431,11 +450,22 @@ export default function AdminPanel() {
               )}
             </div>
           </div>
+          </div>
+          )}
         </section>
 
         {/* Feature Blocks */}
         <section className="admin-section">
-          <h2>Feature Blocks</h2>
+          <div className="section-header" onClick={() => toggleSection('featureBlocks')}>
+            <h2>Feature Blocks</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.featureBlocks ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.featureBlocks && (<div className="section-content">
+          <p className="section-description">
+            These are the main content blocks that appear on your homepage, highlighting what makes your venue special.
+          </p>
           <div className="form-group">
             <label>Section Accent</label>
             <input
@@ -461,9 +491,17 @@ export default function AdminPanel() {
             />
           </div>
           
-          {content.featureBlocks.blocks.map((block, index) => (
-            <div key={index} className="sub-section">
-              <h3>Block {block.number}</h3>
+          {content.featureBlocks.blocks.map((block, index) => {
+            // Create better names for each block
+            const blockNames = {
+              '01': 'Special Event Location',
+              '02': 'Rum River Barn & Vineyard'
+            }
+            const blockName = blockNames[block.number] || `Block ${block.number}`
+            
+            return (
+              <div key={index} className="sub-section">
+                <h3>{blockName}</h3>
               <div className="form-group">
                 <label>Title</label>
                 <input
@@ -534,13 +572,25 @@ export default function AdminPanel() {
                   )}
                 </div>
               </div>
-            </div>
-          ))}
+              </div>
+            )
+          })}
+          </div>
+          )}
         </section>
 
         {/* Experience Section */}
         <section className="admin-section">
-          <h2>Experience Section</h2>
+          <div className="section-header" onClick={() => toggleSection('experience')}>
+            <h2>Experience Section</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.experience ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.experience && (<div className="section-content">
+          <p className="section-description">
+            This section describes the overall experience couples will have at your venue.
+          </p>
           <div className="form-group">
             <label>Script Accent</label>
             <input
@@ -611,11 +661,22 @@ export default function AdminPanel() {
               )}
             </div>
           </div>
+          </div>
+          )}
         </section>
 
         {/* Testimonials */}
         <section className="admin-section">
-          <h2>Testimonials</h2>
+          <div className="section-header" onClick={() => toggleSection('testimonials')}>
+            <h2>Testimonials</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.testimonials ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.testimonials && (<div className="section-content">
+          <p className="section-description">
+            Customer reviews and testimonials from couples who have celebrated at your venue.
+          </p>
           <div className="form-group">
             <label>Script Accent</label>
             <input
@@ -633,9 +694,15 @@ export default function AdminPanel() {
             />
           </div>
           
-          {content.testimonials.items.map((item, index) => (
-            <div key={index} className="sub-section">
-              <h3>Testimonial {index + 1}</h3>
+          {content.testimonials.items.map((item, index) => {
+            // Create better names for testimonials using author names
+            const testimonialName = item.authorName ? 
+              `${item.authorName.split('&')[0].trim()}'s Review` : 
+              `Testimonial ${index + 1}`
+            
+            return (
+              <div key={index} className="sub-section">
+                <h3>{testimonialName}</h3>
               <div className="form-group">
                 <label>Quote</label>
                 <textarea
@@ -660,8 +727,11 @@ export default function AdminPanel() {
                   onChange={(e) => updateTestimonial(index, 'authorDetail', e.target.value)}
                 />
               </div>
-            </div>
-          ))}
+              </div>
+            );
+          })}
+          </div>
+          )}
         </section>
       </div>
 
