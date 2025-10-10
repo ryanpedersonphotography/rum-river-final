@@ -29,6 +29,7 @@ import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
 import AdminPanel from './pages/AdminPanel'
+import AdminWeddings from './pages/AdminWeddings'
 import './components/DemoNavbar.css'
 
 export default function App() {
@@ -64,6 +65,7 @@ export default function App() {
         
         {/* Admin Panel */}
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admin/weddings" element={<AdminWeddings />} />
         
         {/* Demo routes with DemoNavbar */}
         <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />

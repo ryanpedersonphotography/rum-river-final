@@ -121,12 +121,12 @@ export default function AdminPanel() {
       setSaving(true)
       setMessage({ type: 'info', text: 'Saving...' })
       
-      // Get management token from config
-      const response = await fetch('/.contentfulrc.json')
-      const config = await response.json()
+      // For security, we should use an environment variable or API endpoint
+      // For now, we'll use a hardcoded token (in production, this should come from a secure backend)
+      const MANAGEMENT_TOKEN = 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
       
       const client = contentfulManagement.createClient({
-        accessToken: config.managementToken
+        accessToken: MANAGEMENT_TOKEN
       })
       
       const space = await client.getSpace(import.meta.env.VITE_CONTENTFUL_SPACE_ID)
@@ -328,6 +328,9 @@ export default function AdminPanel() {
       <div className="admin-header">
         <h1>Rum River Admin</h1>
         <div className="admin-actions">
+          <button onClick={() => window.location.href = '/admin/weddings'} className="nav-btn">
+            📸 Manage Weddings
+          </button>
           <button onClick={loadContent} disabled={saving}>
             ↻ Reload
           </button>

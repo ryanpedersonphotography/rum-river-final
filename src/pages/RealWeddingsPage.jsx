@@ -1,8 +1,23 @@
 import { Link } from 'react-router-dom'
 import PageTemplate from '../components/PageTemplate'
-import { realWeddings } from '../data/realWeddings'
+import { useWeddingBlogs } from '../hooks/useWeddingBlogs'
+import { realWeddings } from '../data/realWeddings' // Fallback
 
 export default function RealWeddingsPage() {
+  // Fetch wedding blogs from Contentful
+  const { blogs: weddings, loading, error } = useWeddingBlogs()
+  
+  // Use fallback data if Contentful is not available
+  const displayWeddings = weddings.length > 0 ? weddings : realWeddings.map(w => ({
+    slug: w.slug,
+    coupleName: w.coupleName,
+    coverImage: { url: w.coverImage },
+    season: w.date,
+    location: w.location,
+    photos: [],
+    introText: w.intro
+  }))
+
   const heroContent = (
     <>
       <h1 className="page-hero-title">
@@ -29,29 +44,41 @@ export default function RealWeddingsPage() {
             <p className="lead">Browse through our favorite celebrations and get inspired for your own special day</p>
           </div>
 
-          <div className="wedding-gallery">
-            {realWeddings.map((wedding, index) => (
-              <Link
-                key={wedding.slug}
-                to={`/real-weddings/${wedding.slug}`}
-                className="gallery-item image-reveal"
-              >
-                <img
-                  src={wedding.coverImage}
-                  alt={`${wedding.coupleName} Wedding`}
-                  width="800"
-                  height="800"
-                />
-                <div className="gallery-overlay">
-                  <div className="gallery-couple-names">{wedding.coupleName}</div>
-                  <div className="gallery-season">{wedding.date}</div>
-                  <div className="gallery-details">
-                    {wedding.photoCount} Photos • {wedding.location.split('•')[0].trim()}
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '4rem 0', gridColumn: '1 / -1' }}>
+              <p style={{ fontSize: '1.2rem', color: 'var(--sage-green)' }}>Loading weddings...</p>
+            </div>
+          ) : error ? (
+            <div style={{ textAlign: 'center', padding: '4rem 0', gridColumn: '1 / -1' }}>
+              <p style={{ fontSize: '1.2rem', color: 'var(--warm-walnut)' }}>Unable to load weddings. Please try again later.</p>
+            </div>
+          ) : (
+            <div className="wedding-gallery">
+              {displayWeddings.map((wedding, index) => (
+                <Link
+                  key={wedding.slug}
+                  to={`/real-weddings/${wedding.slug}`}
+                  className="gallery-item image-reveal"
+                >
+                  <img
+                    src={wedding.coverImage?.url?.startsWith('//') 
+                      ? `https:${wedding.coverImage.url}` 
+                      : wedding.coverImage?.url || wedding.coverImage}
+                    alt={`${wedding.coupleName} Wedding`}
+                    width="800"
+                    height="800"
+                  />
+                  <div className="gallery-overlay">
+                    <div className="gallery-couple-names">{wedding.coupleName}</div>
+                    <div className="gallery-season">{wedding.season}</div>
+                    <div className="gallery-details">
+                      {wedding.photos?.length || wedding.photoCount || 20} Photos • {wedding.location.split('•')[0].trim()}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

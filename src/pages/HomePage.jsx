@@ -13,6 +13,7 @@ import Footer from '../components/Footer'
 import Icon from '../components/Icon'
 import { useContentfulHomePage } from '../hooks/useContentful'
 import { useTestimonials } from '../hooks/useVenueData'
+import { useFeaturedWeddings } from '../hooks/useWeddingBlogs'
 
 
 export default function HomePage() {
@@ -21,6 +22,19 @@ export default function HomePage() {
   // Load page content from Contentful CMS (falls back to local if not configured)
   const { content: pageContent, loading: contentLoading, error: contentError } = useContentfulHomePage()
   const { testimonials, loading: testimonialsLoading, error: testimonialsError } = useTestimonials()
+  
+  // Load featured weddings from Contentful
+  const { blogs: featuredWeddings, loading: weddingsLoading } = useFeaturedWeddings(6)
+  
+  // Use fallback wedding data if Contentful not available
+  const displayWeddings = featuredWeddings.length > 0 ? featuredWeddings.map(w => ({
+    slug: w.slug,
+    coupleName: w.coupleName,
+    coverImage: w.coverImage?.url?.startsWith('//') ? `https:${w.coverImage.url}` : w.coverImage?.url,
+    date: w.season,
+    location: w.location,
+    photoCount: w.photos?.length || 20
+  })) : realWeddings.slice(0, 6)
 
 
   // Show floating CTA after scrolling past 50% of hero
@@ -217,7 +231,7 @@ export default function HomePage() {
           </div>
 
           <div className="wedding-gallery">
-            {realWeddings.slice(0, 6).map((wedding, index) => (
+            {displayWeddings.map((wedding, index) => (
               <Link
                 key={wedding.slug}
                 to={`/real-weddings/${wedding.slug}`}
