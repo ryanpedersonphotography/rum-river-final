@@ -578,47 +578,66 @@ export default function AdminWeddings() {
                         placeholder="e.g., Sarah Johnson Photography"
                       />
                     </div>
+                    
+                    <div className="form-group">
+                      <label>Tags</label>
+                      <input
+                        type="text"
+                        value={editingWedding.tags?.join(', ') || ''}
+                        onChange={(e) => updateEditingField('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
+                        placeholder="e.g., summer, outdoor, rustic"
+                      />
+                      <small className="field-hint">Separate tags with commas</small>
+                    </div>
 
-            <div className="form-group">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={editingWedding.featured}
-                  onChange={(e) => updateEditingField('featured', e.target.checked)}
-                />
-                Featured on Homepage
-              </label>
-            </div>
-
-            <div className="form-group">
-              <label>Vendors</label>
-              <div className="vendors-list">
-                {Object.entries(editingWedding.vendors || {}).map(([type, vendor]) => (
-                  <div key={type} className="vendor-item">
-                    <strong>{type}:</strong> {vendor.name}
-                    {vendor.url && <> (<a href={vendor.url} target="_blank" rel="noopener noreferrer">website</a>)</>}
-                    <button onClick={() => removeVendor(type)} className="remove-btn">×</button>
+                    <div className="form-group checkbox-group">
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={editingWedding.featured}
+                          onChange={(e) => updateEditingField('featured', e.target.checked)}
+                        />
+                        <span>Featured on Homepage</span>
+                      </label>
+                    </div>
                   </div>
-                ))}
-                <button onClick={addVendor} className="add-vendor-btn">+ Add Vendor</button>
-              </div>
-            </div>
+                </div>
+              )}
 
-            <div className="form-group">
-              <label>Tags</label>
-              <input
-                type="text"
-                value={editingWedding.tags?.join(', ') || ''}
-                onChange={(e) => updateEditingField('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
-                placeholder="e.g., summer, outdoor, rustic"
-              />
-            </div>
+              {activeTab === 'vendors' && (
+                <div className="vendors-tab">
+                  <div className="form-section">
+                    <h3>Vendor Credits</h3>
+                    <div className="vendors-list">
+                      {Object.entries(editingWedding.vendors || {}).map(([type, vendor]) => (
+                        <div key={type} className="vendor-item">
+                          <div className="vendor-info">
+                            <strong className="vendor-type">{type}:</strong>
+                            <span className="vendor-name">{vendor.name}</span>
+                            {vendor.url && (
+                              <a href={vendor.url} target="_blank" rel="noopener noreferrer" className="vendor-link">
+                                <span>↗</span>
+                              </a>
+                            )}
+                          </div>
+                          <button onClick={() => removeVendor(type)} className="remove-btn" title="Remove vendor">×</button>
+                        </div>
+                      ))}
+                      {Object.keys(editingWedding.vendors || {}).length === 0 && (
+                        <p className="empty-state">No vendors added yet</p>
+                      )}
+                      <button onClick={addVendor} className="add-vendor-btn">
+                        <span>+</span> Add Vendor
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-            {/* Image Upload Section */}
-            <div className="form-group">
-              <label>Wedding Photos</label>
-              <div className="wedding-images-upload">
-                <div className="upload-grid">
+              {activeTab === 'images' && (
+                <div className="images-tab">
+                  <div className="wedding-images-upload">
+                    <div className="upload-grid">
                   {/* Hero Image Upload */}
                   <div className="upload-item">
                     <label>Hero Image (Detail Page Banner)</label>
