@@ -22,6 +22,11 @@ export default function AdminWeddings() {
   const [loading, setLoading] = useState(true)
   const [uploadingImages, setUploadingImages] = useState(false)
   const [uploadProgress, setUploadProgress] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filterFeatured, setFilterFeatured] = useState(false)
+  const [sortBy, setSortBy] = useState('date') // 'date', 'name', 'season'
+  const [viewMode, setViewMode] = useState('grid') // 'grid' or 'list'
+  const [activeTab, setActiveTab] = useState('details') // 'details', 'images', 'vendors'
   const [imageUploads, setImageUploads] = useState({
     heroImage: null,
     coverImage: null,
@@ -378,122 +383,201 @@ export default function AdminWeddings() {
     )
   }
 
+  // Filter and sort weddings
+  const filteredWeddings = weddings
+    .filter(wedding => {
+      if (filterFeatured && !wedding.featured) return false
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase()
+        return (
+          wedding.coupleName?.toLowerCase().includes(query) ||
+          wedding.season?.toLowerCase().includes(query) ||
+          wedding.location?.toLowerCase().includes(query)
+        )
+      }
+      return true
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'name':
+          return (a.coupleName || '').localeCompare(b.coupleName || '')
+        case 'season':
+          return (a.season || '').localeCompare(b.season || '')
+        case 'date':
+        default:
+          return new Date(b.weddingDate || 0) - new Date(a.weddingDate || 0)
+      }
+    })
+
   return (
-    <div className="admin-panel">
+    <div className="admin-panel admin-weddings">
       <div className="admin-header">
-        <h1>Wedding Blogs Management</h1>
-        <div className="admin-actions">
-          <button onClick={() => navigate('/admin')}>
-            ← Back to Admin
+        <div className="header-top">
+          <button onClick={() => navigate('/admin')} className="back-btn">
+            ← Back
           </button>
-          <button onClick={handleNewWedding} className="save-btn">
-            + New Wedding
+          <h1>Wedding Blogs</h1>
+          <button onClick={handleNewWedding} className="primary-btn">
+            <span className="btn-icon">+</span>
+            New Wedding
           </button>
         </div>
       </div>
 
       {message && (
         <div className={`message ${message.type}`}>
-          {message.text}
+          <span>{message.text}</span>
+          <button onClick={() => setMessage(null)} className="message-close">×</button>
         </div>
       )}
 
       <div className="admin-content">
         {editingWedding ? (
           <div className="wedding-editor">
-            <h2>{editingWedding.isNew ? 'New Wedding' : `Edit: ${editingWedding.coupleName}`}</h2>
+            <div className="editor-header">
+              <h2>{editingWedding.isNew ? 'Create New Wedding Blog' : editingWedding.coupleName}</h2>
+              {!editingWedding.isNew && (
+                <div className="editor-status">
+                  {editingWedding.published ? (
+                    <span className="status-badge published">Published</span>
+                  ) : (
+                    <span className="status-badge draft">Draft</span>
+                  )}
+                </div>
+              )}
+            </div>
             
-            <div className="form-group">
-              <label>Couple Name*</label>
-              <input
-                type="text"
-                value={editingWedding.coupleName}
-                onChange={(e) => updateEditingField('coupleName', e.target.value)}
-                placeholder="e.g., Sarah & Michael"
-              />
+            {/* Tab Navigation */}
+            <div className="editor-tabs">
+              <button 
+                className={`tab-btn ${activeTab === 'details' ? 'active' : ''}`}
+                onClick={() => setActiveTab('details')}
+              >
+                Details
+              </button>
+              <button 
+                className={`tab-btn ${activeTab === 'images' ? 'active' : ''}`}
+                onClick={() => setActiveTab('images')}
+              >
+                Images
+              </button>
+              <button 
+                className={`tab-btn ${activeTab === 'vendors' ? 'active' : ''}`}
+                onClick={() => setActiveTab('vendors')}
+              >
+                Vendors {Object.keys(editingWedding.vendors || {}).length > 0 ? `(${Object.keys(editingWedding.vendors).length})` : ''}
+              </button>
             </div>
+            
+            {/* Tab Content */}
+            <div className="tab-content">
+              {activeTab === 'details' && (
+                <div className="details-tab">
+                  <div className="form-section">
+                    <h3>Basic Information</h3>
+                    <div className="form-group">
+                      <label>Couple Name*</label>
+                      <input
+                        type="text"
+                        value={editingWedding.coupleName}
+                        onChange={(e) => updateEditingField('coupleName', e.target.value)}
+                        placeholder="e.g., Sarah & Michael"
+                        required
+                      />
+                    </div>
 
-            <div className="form-group">
-              <label>URL Slug*</label>
-              <input
-                type="text"
-                value={editingWedding.slug}
-                onChange={(e) => updateEditingField('slug', e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-'))}
-                placeholder="e.g., sarah-michael-summer-2025"
-              />
-              <small>URL: /real-weddings/{editingWedding.slug || 'slug-here'}</small>
-            </div>
+                    <div className="form-group">
+                      <label>URL Slug*</label>
+                      <input
+                        type="text"
+                        value={editingWedding.slug}
+                        onChange={(e) => updateEditingField('slug', e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-'))}
+                        placeholder="e.g., sarah-michael-summer-2025"
+                        required
+                      />
+                      <small className="field-hint">URL: /real-weddings/{editingWedding.slug || 'slug-here'}</small>
+                    </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label>Wedding Date*</label>
-                <input
-                  type="date"
-                  value={editingWedding.weddingDate}
-                  onChange={(e) => updateEditingField('weddingDate', e.target.value)}
-                />
-              </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>Wedding Date*</label>
+                        <input
+                          type="date"
+                          value={editingWedding.weddingDate}
+                          onChange={(e) => updateEditingField('weddingDate', e.target.value)}
+                          required
+                        />
+                      </div>
 
-              <div className="form-group">
-                <label>Season*</label>
-                <input
-                  type="text"
-                  value={editingWedding.season}
-                  onChange={(e) => updateEditingField('season', e.target.value)}
-                  placeholder="e.g., Summer 2025"
-                />
-              </div>
-            </div>
+                      <div className="form-group">
+                        <label>Season*</label>
+                        <input
+                          type="text"
+                          value={editingWedding.season}
+                          onChange={(e) => updateEditingField('season', e.target.value)}
+                          placeholder="e.g., Summer 2025"
+                          required
+                        />
+                      </div>
 
-            <div className="form-group">
-              <label>Location*</label>
-              <input
-                type="text"
-                value={editingWedding.location}
-                onChange={(e) => updateEditingField('location', e.target.value)}
-              />
-            </div>
+                      <div className="form-group">
+                        <label>Guest Count</label>
+                        <input
+                          type="number"
+                          value={editingWedding.guestCount}
+                          onChange={(e) => updateEditingField('guestCount', e.target.value)}
+                          min="1"
+                          max="500"
+                        />
+                      </div>
+                    </div>
 
-            <div className="form-group">
-              <label>Introduction Text*</label>
-              <textarea
-                value={editingWedding.introText}
-                onChange={(e) => updateEditingField('introText', e.target.value)}
-                rows="3"
-                placeholder="Brief description of the wedding..."
-              />
-            </div>
+                    <div className="form-group">
+                      <label>Location*</label>
+                      <input
+                        type="text"
+                        value={editingWedding.location}
+                        onChange={(e) => updateEditingField('location', e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
 
-            <div className="form-group">
-              <label>Testimonial</label>
-              <textarea
-                value={editingWedding.testimonial}
-                onChange={(e) => updateEditingField('testimonial', e.target.value)}
-                rows="3"
-                placeholder="Quote from the couple..."
-              />
-            </div>
+                  <div className="form-section">
+                    <h3>Content</h3>
+                    <div className="form-group">
+                      <label>Introduction Text*</label>
+                      <textarea
+                        value={editingWedding.introText}
+                        onChange={(e) => updateEditingField('introText', e.target.value)}
+                        rows="4"
+                        placeholder="Brief description of the wedding..."
+                        required
+                      />
+                    </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label>Guest Count</label>
-                <input
-                  type="number"
-                  value={editingWedding.guestCount}
-                  onChange={(e) => updateEditingField('guestCount', e.target.value)}
-                />
-              </div>
+                    <div className="form-group">
+                      <label>Testimonial</label>
+                      <textarea
+                        value={editingWedding.testimonial}
+                        onChange={(e) => updateEditingField('testimonial', e.target.value)}
+                        rows="4"
+                        placeholder="Quote from the couple..."
+                      />
+                    </div>
+                  </div>
 
-              <div className="form-group">
-                <label>Photography Credits</label>
-                <input
-                  type="text"
-                  value={editingWedding.photoCredits}
-                  onChange={(e) => updateEditingField('photoCredits', e.target.value)}
-                  placeholder="e.g., Sarah Johnson Photography"
-                />
-              </div>
-            </div>
+                  <div className="form-section">
+                    <h3>Additional Details</h3>
+                    <div className="form-group">
+                      <label>Photography Credits</label>
+                      <input
+                        type="text"
+                        value={editingWedding.photoCredits}
+                        onChange={(e) => updateEditingField('photoCredits', e.target.value)}
+                        placeholder="e.g., Sarah Johnson Photography"
+                      />
+                    </div>
 
             <div className="form-group">
               <label>
@@ -707,7 +791,9 @@ export default function AdminWeddings() {
                     )}
                   </div>
                 )}
-              </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="editor-actions">
@@ -721,9 +807,65 @@ export default function AdminWeddings() {
           </div>
         ) : (
           <div className="weddings-list">
-            <h2>Existing Weddings ({weddings.length})</h2>
-            <div className="wedding-grid">
-              {weddings.map((wedding) => {
+            {/* Controls Bar */}
+            <div className="list-controls">
+              <div className="control-group">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search weddings..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              
+              <div className="control-group">
+                <label className="filter-label">
+                  <input
+                    type="checkbox"
+                    checked={filterFeatured}
+                    onChange={(e) => setFilterFeatured(e.target.checked)}
+                  />
+                  <span>Featured only</span>
+                </label>
+              </div>
+              
+              <div className="control-group">
+                <select 
+                  value={sortBy} 
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="sort-select"
+                >
+                  <option value="date">Sort by Date</option>
+                  <option value="name">Sort by Name</option>
+                  <option value="season">Sort by Season</option>
+                </select>
+              </div>
+              
+              <div className="control-group view-toggle">
+                <button 
+                  className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                  onClick={() => setViewMode('grid')}
+                  title="Grid view"
+                >
+                  ⊞
+                </button>
+                <button 
+                  className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+                  onClick={() => setViewMode('list')}
+                  title="List view"
+                >
+                  ☰
+                </button>
+              </div>
+              
+              <div className="results-count">
+                {filteredWeddings.length} {filteredWeddings.length === 1 ? 'wedding' : 'weddings'}
+              </div>
+            </div>
+            
+            <div className={viewMode === 'grid' ? 'wedding-grid' : 'wedding-list'}>
+              {filteredWeddings.map((wedding) => {
                 // Map of known cover images from local data
                 const localCoverImages = {
                   'anthony-and-linnea': '/wedding-photos/anthony-and-linnea/015.jpg',
@@ -746,8 +888,8 @@ export default function AdminWeddings() {
                   'kristine-leuze': '/wedding-photos/kristine-leuze/IMG_8877.jpg'
                 }
                 
-                // Try to use local image if no Contentful image
-                const coverImage = wedding.coverImage?.fields?.file?.url || 
+                // Try to use Contentful image first, then local fallback
+                const coverImage = wedding.coverImageUrl || 
                                  localCoverImages[wedding.slug] ||
                                  `/wedding-photos/${wedding.slug}/001.jpg` // Default to first image
                 

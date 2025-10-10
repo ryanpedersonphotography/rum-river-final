@@ -23,15 +23,46 @@ async function managementFetch(path, options = {}) {
 }
 
 export async function getWeddingBlogs() {
-  const data = await managementFetch('/entries?content_type=weddingBlog')
-  return data.items.map(item => ({
-    id: item.sys.id,
-    version: item.sys.version,
-    published: item.sys.publishedVersion !== undefined,
-    ...Object.fromEntries(
+  const data = await managementFetch('/entries?content_type=weddingBlog&include=2')
+  
+  // Create a map of asset IDs to their URLs
+  const assetMap = {}
+  if (data.includes?.Asset) {
+    data.includes.Asset.forEach(asset => {
+      if (asset.fields?.file?.['en-US']?.url) {
+        assetMap[asset.sys.id] = asset.fields.file['en-US'].url
+      }
+    })
+  }
+  
+  return data.items.map(item => {
+    const fields = Object.fromEntries(
       Object.entries(item.fields).map(([key, value]) => [key, value['en-US']])
     )
-  }))
+    
+    // Add URLs for image fields
+    if (fields.heroImage?.sys?.id) {
+      fields.heroImageUrl = assetMap[fields.heroImage.sys.id]
+    }
+    if (fields.coverImage?.sys?.id) {
+      fields.coverImageUrl = assetMap[fields.coverImage.sys.id]
+    }
+    if (fields.featuredImage?.sys?.id) {
+      fields.featuredImageUrl = assetMap[fields.featuredImage.sys.id]
+    }
+    if (fields.photos && Array.isArray(fields.photos)) {
+      fields.photoUrls = fields.photos
+        .map(photo => photo?.sys?.id ? assetMap[photo.sys.id] : null)
+        .filter(Boolean)
+    }
+    
+    return {
+      id: item.sys.id,
+      version: item.sys.version,
+      published: item.sys.publishedVersion !== undefined,
+      ...fields
+    }
+  })
 }
 
 export async function createWeddingBlog(fields) {
