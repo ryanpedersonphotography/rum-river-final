@@ -15,12 +15,14 @@ export default function AdminPanel() {
     hero: true,
     featureBlocks: false,
     experience: false,
-    testimonials: false
+    testimonials: false,
+    uiTexts: false,
+    venueDiscovery: false
   })
   const fileInputRefs = useRef({})
 
   // Simple authentication
-  const ADMIN_PASSWORD = 'rumriver2024' // Change this!
+  const ADMIN_PASSWORD = '1234' // Change this!
 
   useEffect(() => {
     // Check if already authenticated
@@ -123,7 +125,7 @@ export default function AdminPanel() {
       
       // For security, we should use an environment variable or API endpoint
       // For now, we'll use a hardcoded token (in production, this should come from a secure backend)
-      const MANAGEMENT_TOKEN = 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
+      const MANAGEMENT_TOKEN = import.meta.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN
       
       const client = contentfulManagement.createClient({
         accessToken: MANAGEMENT_TOKEN
@@ -176,6 +178,20 @@ export default function AdminPanel() {
       
       homePage.fields.testimonialsScriptAccent = { 'en-US': content.testimonials.scriptAccent }
       homePage.fields.testimonialsTitle = { 'en-US': content.testimonials.title }
+      
+      // Add UI text fields if they exist
+      if (content.uiTexts) {
+        homePage.fields.heroScrollText = { 'en-US': content.uiTexts.heroScrollText || 'Discover Your Perfect Day' }
+        homePage.fields.floatingCtaText = { 'en-US': content.uiTexts.floatingCtaText || 'Schedule Your Tour' }
+        homePage.fields.floatingCtaIcon = { 'en-US': content.uiTexts.floatingCtaIcon || 'calendar' }
+        homePage.fields.galleryCtaText = { 'en-US': content.uiTexts.galleryCtaText || 'View All Real Weddings' }
+        homePage.fields.galleryCtaLink = { 'en-US': content.uiTexts.galleryCtaLink || '/real-weddings' }
+        homePage.fields.starRatingEnabled = { 'en-US': content.uiTexts.starRatingEnabled !== undefined ? content.uiTexts.starRatingEnabled : true }
+        homePage.fields.starCount = { 'en-US': content.uiTexts.starCount || 5 }
+        homePage.fields.loadingText = { 'en-US': content.uiTexts.loadingText || 'Loading page content...' }
+        homePage.fields.errorTitle = { 'en-US': content.uiTexts.errorTitle || 'Unable to load page content' }
+        homePage.fields.errorDescription = { 'en-US': content.uiTexts.errorDescription || 'Please try refreshing the page' }
+      }
       
       // Link uploaded images to feature blocks if any
       if (uploadedAssets['featureBlock0']) {
@@ -330,6 +346,9 @@ export default function AdminPanel() {
         <div className="admin-actions">
           <button onClick={() => window.location.href = '/admin/weddings'} className="nav-btn">
             📸 Manage Weddings
+          </button>
+          <button onClick={() => window.location.href = '/admin/venues'} className="nav-btn">
+            🏛️ Manage Venues
           </button>
           <button onClick={loadContent} disabled={saving}>
             ↻ Reload
@@ -733,6 +752,198 @@ export default function AdminPanel() {
               </div>
             );
           })}
+          </div>
+          )}
+        </section>
+
+        {/* UI Texts Section */}
+        <section className="admin-section">
+          <div className="section-header" onClick={() => toggleSection('uiTexts')}>
+            <h2>UI Texts & Settings</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.uiTexts ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.uiTexts && (<div className="section-content">
+          <p className="section-description">
+            Manage various UI text elements and settings that appear throughout the homepage.
+          </p>
+          
+          <h3>Hero Section</h3>
+          <div className="form-group">
+            <label>Scroll Indicator Text</label>
+            <input
+              type="text"
+              value={content.uiTexts?.heroScrollText || ''}
+              onChange={(e) => updateField('uiTexts', 'heroScrollText', e.target.value)}
+              placeholder="Discover Your Perfect Day"
+            />
+          </div>
+
+          <h3>Floating CTA Button</h3>
+          <div className="form-group">
+            <label>Button Text</label>
+            <input
+              type="text"
+              value={content.uiTexts?.floatingCtaText || ''}
+              onChange={(e) => updateField('uiTexts', 'floatingCtaText', e.target.value)}
+              placeholder="Schedule Your Tour"
+            />
+          </div>
+          <div className="form-group">
+            <label>Button Icon</label>
+            <select
+              value={content.uiTexts?.floatingCtaIcon || 'calendar'}
+              onChange={(e) => updateField('uiTexts', 'floatingCtaIcon', e.target.value)}
+            >
+              <option value="calendar">Calendar</option>
+              <option value="phone">Phone</option>
+              <option value="email">Email</option>
+              <option value="location">Location</option>
+              <option value="heart">Heart</option>
+            </select>
+          </div>
+
+          <h3>Gallery Section</h3>
+          <div className="form-group">
+            <label>Gallery CTA Button Text</label>
+            <input
+              type="text"
+              value={content.uiTexts?.galleryCtaText || ''}
+              onChange={(e) => updateField('uiTexts', 'galleryCtaText', e.target.value)}
+              placeholder="View All Real Weddings"
+            />
+          </div>
+          <div className="form-group">
+            <label>Gallery CTA Link</label>
+            <input
+              type="text"
+              value={content.uiTexts?.galleryCtaLink || ''}
+              onChange={(e) => updateField('uiTexts', 'galleryCtaLink', e.target.value)}
+              placeholder="/real-weddings"
+            />
+          </div>
+
+          <h3>Star Ratings</h3>
+          <div className="form-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={content.uiTexts?.starRatingEnabled !== false}
+                onChange={(e) => updateField('uiTexts', 'starRatingEnabled', e.target.checked)}
+              />
+              Show Star Ratings on Testimonials
+            </label>
+          </div>
+          <div className="form-group">
+            <label>Number of Stars</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={content.uiTexts?.starCount || 5}
+              onChange={(e) => updateField('uiTexts', 'starCount', parseInt(e.target.value))}
+            />
+          </div>
+
+          <h3>Loading & Error States</h3>
+          <div className="form-group">
+            <label>Loading Message</label>
+            <input
+              type="text"
+              value={content.uiTexts?.loadingText || ''}
+              onChange={(e) => updateField('uiTexts', 'loadingText', e.target.value)}
+              placeholder="Loading page content..."
+            />
+          </div>
+          <div className="form-group">
+            <label>Error Title</label>
+            <input
+              type="text"
+              value={content.uiTexts?.errorTitle || ''}
+              onChange={(e) => updateField('uiTexts', 'errorTitle', e.target.value)}
+              placeholder="Unable to load page content"
+            />
+          </div>
+          <div className="form-group">
+            <label>Error Description</label>
+            <input
+              type="text"
+              value={content.uiTexts?.errorDescription || ''}
+              onChange={(e) => updateField('uiTexts', 'errorDescription', e.target.value)}
+              placeholder="Please try refreshing the page"
+            />
+          </div>
+          </div>
+          )}
+        </section>
+
+        {/* Venue Discovery Section */}
+        <section className="admin-section">
+          <div className="section-header" onClick={() => toggleSection('venueDiscovery')}>
+            <h2>Venue Discovery - Your Dream Venue Awaits</h2>
+            <button type="button" className="accordion-toggle">
+              {expandedSections.venueDiscovery ? '−' : '+'}
+            </button>
+          </div>
+          {expandedSections.venueDiscovery && (<div className="section-content">
+          <p className="section-description">
+            Manage the venue discovery section text. Note: Individual venue details are managed in Contentful.
+          </p>
+          
+          <div className="form-group">
+            <label>Script Accent</label>
+            <input
+              type="text"
+              value={content.venueDiscovery?.scriptAccent || ''}
+              onChange={(e) => updateField('venueDiscovery', 'scriptAccent', e.target.value)}
+              placeholder="Discover Our Spaces"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Section Title</label>
+            <input
+              type="text"
+              value={content.venueDiscovery?.title || ''}
+              onChange={(e) => updateField('venueDiscovery', 'title', e.target.value)}
+              placeholder="Your Dream Venue Awaits"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Section Description</label>
+            <textarea
+              value={content.venueDiscovery?.lead || ''}
+              onChange={(e) => updateField('venueDiscovery', 'lead', e.target.value)}
+              rows="3"
+              placeholder="Explore our stunning spaces through interactive 360° virtual tours..."
+            />
+          </div>
+          
+          <div className="venue-management-section">
+            <h4>Manage Individual Venues</h4>
+            <p>Edit venue details, upload images, and manage features for each space.</p>
+            <button 
+              type="button"
+              className="btn-primary"
+              onClick={() => window.location.href = '/admin/venues'}
+              style={{ marginTop: '1rem' }}
+            >
+              Manage All Venues →
+            </button>
+            
+            <div className="venue-quick-info" style={{ marginTop: '2rem' }}>
+              <p><strong>Available Venues:</strong></p>
+              <ul style={{ marginLeft: '20px', listStyle: 'disc' }}>
+                <li>The Historic Barn</li>
+                <li>Reception Area</li>
+                <li>Bridal Suite</li>
+                <li>Groom's Quarters</li>
+                <li>Vineyard</li>
+              </ul>
+            </div>
+          </div>
           </div>
           )}
         </section>

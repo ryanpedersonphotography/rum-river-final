@@ -3,8 +3,8 @@
 
 import contentfulManagement from 'contentful-management'
 
-const MANAGEMENT_TOKEN = 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
-const SPACE_ID = 'qqjgd2e69j47'
+const MANAGEMENT_TOKEN = process.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN
+const SPACE_ID = process.env.VITE_CONTENTFUL_SPACE_ID
 
 export async function handler(event, context) {
   // Enable CORS

@@ -1,7 +1,7 @@
 // Simple Contentful Management API client for browser use
 
-const MANAGEMENT_TOKEN = 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
-const SPACE_ID = 'qqjgd2e69j47'
+const MANAGEMENT_TOKEN = import.meta.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN
+const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID
 const BASE_URL = `https://api.contentful.com/spaces/${SPACE_ID}/environments/master`
 
 async function managementFetch(path, options = {}) {

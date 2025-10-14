@@ -29,6 +29,9 @@ dist-ssr
 .env.production.local
 .env.development.local
 
+# Contentful configuration (contains management token)
+.contentfulrc.json
+
 # Old sandbox site (don't commit the old WordPress export)
 rumrivermn-website-old-sandbox/
 

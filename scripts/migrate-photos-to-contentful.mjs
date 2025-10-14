@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Contentful configuration
-const MANAGEMENT_TOKEN = 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
-const SPACE_ID = 'qqjgd2e69j47'
+const MANAGEMENT_TOKEN = process.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN || 'mrx3-UU2GRDcxHOiWyFcAFBu6ZuUyFqZc5GSuwPClpE'
+const SPACE_ID = process.env.VITE_CONTENTFUL_SPACE_ID || 'qqjgd2e69j47'
 const ENVIRONMENT_ID = 'master'
 
 // Initialize Contentful client

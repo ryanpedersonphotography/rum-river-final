@@ -1,0 +1,5 @@
+{
+  "managementToken": "your_management_token_here",
+  "activeSpaceId": "your_space_id_here",
+  "activeEnvironmentId": "master"
+}
