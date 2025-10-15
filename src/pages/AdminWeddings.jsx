@@ -64,14 +64,14 @@ export default function AdminWeddings() {
     try {
       const connected = await testConnection()
       if (!connected) {
-        setMessage({ type: 'error', text: 'Failed to connect to Contentful' })
+        setMessage({ type: 'error', text: 'Failed to connect to storage' })
       } else {
         // Load weddings after successful connection
         await refetch()
       }
     } catch (error) {
       console.error('Connection check failed:', error)
-      setMessage({ type: 'error', text: `Failed to connect to Contentful: ${error.message}` })
+      setMessage({ type: 'error', text: `Failed to connect to storage: ${error.message}` })
       setLoading(false)
     }
   }
@@ -202,17 +202,10 @@ export default function AdminWeddings() {
       // Update wedding with image references
       if (Object.keys(imageAssetIds).length > 0) {
         setUploadProgress('Linking images to wedding...')
-        
-        // Find the wedding to get its Contentful ID and version
-        const managementWeddings = await getWeddingBlogs()
-        const existingWedding = managementWeddings.find(w => w.slug === editingWedding.slug)
-        
-        if (existingWedding) {
-          await updateWeddingImages(existingWedding.id, existingWedding.version, imageAssetIds)
-          
-          // Update local version number to prevent version conflicts
-          setEditingWedding(prev => ({ ...prev, version: existingWedding.version + 1 }))
-          
+
+        if (editingWedding.id) {
+          await updateWeddingImages(editingWedding.id, null, imageAssetIds)
+
           // Clear uploads
           setImageUploads({
             heroImage: null,
@@ -220,15 +213,15 @@ export default function AdminWeddings() {
             featuredImage: null,
             galleryPhotos: []
           })
-          
+
           // Clear file inputs
           Object.values(fileInputRefs.current).forEach(input => {
             if (input) input.value = ''
           })
-          
+
           // Refresh wedding data
           await refetch()
-          
+
           setMessage({ type: 'success', text: 'Images uploaded and linked successfully!' })
         } else {
           throw new Error('Wedding not found. Please save the wedding first.')
@@ -252,13 +245,9 @@ export default function AdminWeddings() {
     try {
       setSaving(true)
       setMessage({ type: 'info', text: 'Deleting wedding...' })
-      
-      // Find the wedding with its Contentful ID
-      const managementWeddings = await getWeddingBlogs()
-      const weddingToDelete = managementWeddings.find(w => w.slug === wedding.slug)
-      
-      if (weddingToDelete) {
-        await deleteWeddingBlog(weddingToDelete.id)
+
+      if (wedding.id) {
+        await deleteWeddingBlog(wedding.id)
         setMessage({ type: 'success', text: 'Wedding deleted successfully!' })
         refetch()
       } else {
@@ -315,15 +304,8 @@ export default function AdminWeddings() {
         // Create new entry
         await createWeddingBlog(entryData)
       } else {
-        // Update existing entry - find it first to get the version
-        const managementWeddings = await getWeddingBlogs()
-        const existingWedding = managementWeddings.find(w => w.slug === editingWedding.slug)
-        
-        if (existingWedding) {
-          await updateWeddingBlog(existingWedding.id, existingWedding.version, entryData)
-        } else {
-          throw new Error('Wedding not found')
-        }
+        // Update existing entry
+        await updateWeddingBlog(editingWedding.id, null, entryData)
       }
       
       setMessage({ type: 'success', text: 'Wedding saved successfully!' })
