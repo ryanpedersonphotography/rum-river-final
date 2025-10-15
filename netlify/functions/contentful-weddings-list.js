@@ -1,7 +1,5 @@
 // Secure read-only function using Contentful Delivery API
-import { createClient } from 'contentful';
-
-export async function handler(event, context) {
+exports.handler = async function(event, context) {
   // Check authentication via Netlify Identity
   if (!context.clientContext || !context.clientContext.user) {
     return {
@@ -14,6 +12,9 @@ export async function handler(event, context) {
   }
 
   try {
+    // Use dynamic import for ES modules in CommonJS context
+    const { createClient } = await import('contentful');
+    
     const space = process.env.VITE_CONTENTFUL_SPACE_ID;
     const accessToken = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
     const environment = process.env.CONTENTFUL_ENV || 'master';
@@ -125,4 +126,4 @@ export async function handler(event, context) {
       })
     };
   }
-}
+};
