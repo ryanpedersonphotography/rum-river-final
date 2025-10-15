@@ -1,5 +1,6 @@
 // Secure server-side function to fetch wedding blogs from Contentful
-import { createClient } from 'contentful-management';
+import contentful from 'contentful-management';
+const { createClient } = contentful;
 
 export async function handler(event, context) {
   // Check authentication via Netlify Identity
