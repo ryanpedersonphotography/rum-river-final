@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react'
-import { createClient } from 'contentful'
 
-// Contentful configuration
-const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID
-const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
-
-// Create Contentful client
-const client = SPACE_ID && ACCESS_TOKEN ? createClient({
-  space: SPACE_ID,
-  accessToken: ACCESS_TOKEN,
-  host: import.meta.env.VITE_CONTENTFUL_HOST || 'cdn.contentful.com'
-}) : null
+// JSON API configuration
+const API_BASE_URL = 'http://localhost:3001'
 
 /**
  * Hook to fetch wedding blog posts from Contentful
