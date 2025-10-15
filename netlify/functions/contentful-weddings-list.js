@@ -1,129 +1,120 @@
-// Secure read-only function using Contentful Delivery API
-exports.handler = async function(event, context) {
-  // Check authentication via Netlify Identity
+import contentful from 'contentful-management';
+
+const weddingContentType = 'weddingBlog';
+
+export async function handler(event, context) {
+  // Check authentication
   if (!context.clientContext || !context.clientContext.user) {
     return {
       statusCode: 401,
-      body: JSON.stringify({ 
-        error: 'Unauthorized',
-        message: 'You must be logged in to access this function'
-      })
+      body: JSON.stringify({ error: 'Unauthorized' })
     };
   }
+
+  const client = contentful.createClient({
+    accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN
+  });
 
   try {
-    // Use dynamic import for ES modules in CommonJS context
-    const { createClient } = await import('contentful');
-    
-    const space = process.env.VITE_CONTENTFUL_SPACE_ID;
-    const accessToken = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
-    const environment = process.env.CONTENTFUL_ENV || 'master';
+    const space = await client.getSpace(process.env.VITE_CONTENTFUL_SPACE_ID);
+    const environment = await space.getEnvironment('master');
 
-    // Check for required environment variables
-    if (!space || !accessToken) {
-      return { 
-        statusCode: 500, 
-        body: JSON.stringify({ 
-          error: 'Missing Contentful configuration',
-          details: 'Environment variables not set',
-          debug: {
-            hasSpace: !!space,
-            hasToken: !!accessToken,
-            environment: environment
-          }
-        }) 
-      };
-    }
-
-    // Create Contentful Delivery API client (read-only)
-    const client = createClient({ 
-      space, 
-      accessToken,
-      environment 
-    });
-
-    // Fetch wedding blog entries
-    const entries = await client.getEntries({
-      content_type: 'weddingBlog',
-      order: '-fields.date',
-      limit: 100,
-      include: 2 // Include linked assets
-    });
-
-    // Transform the data
-    const weddings = (entries.items || []).map((entry) => {
-      const fields = entry.fields;
+    switch (event.httpMethod) {
+      case 'GET':
+        return await getWeddingBlogs(environment);
       
-      // Handle featured image
-      let featuredImageUrl = null;
-      if (fields.featuredImage?.fields?.file?.url) {
-        featuredImageUrl = `https:${fields.featuredImage.fields.file.url}`;
-      }
-
-      // Handle gallery images
-      const gallery = (fields.gallery || []).map(img => {
-        if (img?.fields?.file?.url) {
-          return {
-            url: `https:${img.fields.file.url}`,
-            title: img.fields.title || '',
-            description: img.fields.description || ''
-          };
-        }
-        return null;
-      }).filter(Boolean);
-
-      return {
-        // System fields
-        id: entry.sys.id,
-        createdAt: entry.sys.createdAt,
-        updatedAt: entry.sys.updatedAt,
-        
-        // Content fields
-        title: fields.title || '',
-        slug: fields.slug || '',
-        date: fields.date || entry.sys.createdAt,
-        season: fields.season || '',
-        excerpt: fields.excerpt || '',
-        story: fields.story || '',
-        photographerCredit: fields.photographerCredit || '',
-        venue: fields.venue || 'Rum River Barn',
-        featured: fields.featured || false,
-        featuredImage: featuredImageUrl,
-        gallery: gallery
-      };
-    });
-
-    // Sort by date (newest first)
-    weddings.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    return { 
-      statusCode: 200, 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        success: true, 
-        count: weddings.length, 
-        weddings: weddings,
-        user: context.clientContext.user.email
-      }) 
-    };
-
-  } catch (err) {
-    console.error('Contentful error:', err);
-    
-    // Return helpful error information without exposing secrets
+      default:
+        return {
+          statusCode: 405,
+          body: JSON.stringify({ error: 'Method not allowed' })
+        };
+    }
+  } catch (error) {
+    console.error('Wedding function error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: 'Contentful read error',
-        details: err.message,
-        debug: {
-          space: process.env.VITE_CONTENTFUL_SPACE_ID,
-          environment: process.env.CONTENTFUL_ENV || 'master',
-          hasToken: !!process.env.VITE_CONTENTFUL_ACCESS_TOKEN
-        }
+      body: JSON.stringify({ 
+        error: 'Internal server error',
+        details: error.message 
       })
     };
   }
-};
+}
+
+async function getWeddingBlogs(environment) {
+  try {
+    const entries = await environment.getEntries({
+      content_type: weddingContentType,
+      order: '-fields.date',
+      include: 2
+    });
+
+    const weddings = await Promise.all(entries.items.map(async (item) => {
+      // Get featured image details
+      let featuredImageUrl = '';
+      if (item.fields.featuredImage && item.fields.featuredImage['en-US']) {
+        try {
+          const asset = await environment.getAsset(item.fields.featuredImage['en-US'].sys.id);
+          featuredImageUrl = asset.fields.file['en-US'].url;
+          if (featuredImageUrl && !featuredImageUrl.startsWith('http')) {
+            featuredImageUrl = `https:${featuredImageUrl}`;
+          }
+        } catch (err) {
+          console.error('Error fetching featured image:', err);
+        }
+      }
+
+      // Get gallery images
+      const gallery = [];
+      if (item.fields.gallery && item.fields.gallery['en-US']) {
+        for (const imgRef of item.fields.gallery['en-US']) {
+          try {
+            const asset = await environment.getAsset(imgRef.sys.id);
+            if (asset.fields.file && asset.fields.file['en-US']) {
+              gallery.push({
+                url: `https:${asset.fields.file['en-US'].url}`,
+                title: asset.fields.title ? asset.fields.title['en-US'] : '',
+                description: asset.fields.description ? asset.fields.description['en-US'] : ''
+              });
+            }
+          } catch (err) {
+            console.error('Error fetching gallery image:', err);
+          }
+        }
+      }
+
+      return {
+        id: item.sys.id,
+        title: item.fields.title ? item.fields.title['en-US'] : '',
+        slug: item.fields.slug ? item.fields.slug['en-US'] : '',
+        date: item.fields.date ? item.fields.date['en-US'] : new Date().toISOString(),
+        season: item.fields.season ? item.fields.season['en-US'] : '',
+        excerpt: item.fields.excerpt ? item.fields.excerpt['en-US'] : '',
+        story: item.fields.story ? item.fields.story['en-US'] : '',
+        photographerCredit: item.fields.photographerCredit ? item.fields.photographerCredit['en-US'] : '',
+        venue: item.fields.venue ? item.fields.venue['en-US'] : 'Rum River Barn',
+        featured: item.fields.featured ? item.fields.featured['en-US'] : false,
+        featuredImage: featuredImageUrl,
+        gallery: gallery,
+        published: item.sys.publishedAt ? true : false,
+        createdAt: item.sys.createdAt,
+        updatedAt: item.sys.updatedAt
+      };
+    }));
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        count: weddings.length,
+        weddings: weddings
+      })
+    };
+  } catch (error) {
+    console.error('Error fetching wedding blogs:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to fetch wedding blogs' })
+    };
+  }
+}
