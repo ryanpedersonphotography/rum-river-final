@@ -1,12 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-// In production, content is at repo root
-const CONTENT_DIR = path.join(__dirname, '..', '..', 'content')
+// In Netlify Functions, use relative path from function location
+const CONTENT_DIR = path.resolve(process.cwd(), 'content')
 
 async function readJSON(filename) {
   try {
