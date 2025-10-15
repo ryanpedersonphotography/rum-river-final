@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Admin User - Rum River</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 { color: #333; }
+        .info { 
+            background: #e3f2fd; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 20px 0;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #fc8181;
+        }
+        .test-credentials {
+            background: #fef5e7;
+            border: 1px solid #f9e79f;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .test-credentials h3 {
+            margin-top: 0;
+            color: #7e5109;
+        }
+        .test-credentials code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Setup Admin User</h1>
+        
+        <div class="info">
+            <strong>Quick Setup Instructions:</strong>
+            <ol>
+                <li>Click "Auto-Create Test User" below</li>
+                <li>This will create a test account programmatically</li>
+                <li>Use the credentials shown to log in</li>
+                <li>No email confirmation needed!</li>
+            </ol>
+        </div>
+
+        <button id="createUser">🚀 Auto-Create Test User</button>
+        <button id="openWidget">📧 Or Sign Up Manually</button>
+
+        <div id="testCreds" class="test-credentials" style="display: none;">
+            <h3>✅ Test User Created!</h3>
+            <p><strong>Email:</strong> <code id="testEmail">admin@rumriver.test</code></p>
+            <p><strong>Password:</strong> <code id="testPassword">RumRiver2024!</code></p>
+            <p>Use these credentials to log in at <a href="/test-admin.html">test-admin.html</a></p>
+        </div>
+
+        <div id="status"></div>
+
+        <hr style="margin: 30px 0;">
+        
+        <button onclick="window.location.href='/test-admin.html'">→ Go to Test Admin Page</button>
+    </div>
+
+    <script>
+        // Initialize Netlify Identity
+        netlifyIdentity.init({
+            APIUrl: 'https://rum-river-final.netlify.app/.netlify/identity'
+        });
+
+        // Manual signup button
+        document.getElementById('openWidget').onclick = () => {
+            netlifyIdentity.open('signup');
+        };
+
+        // Auto-create test user
+        document.getElementById('createUser').onclick = async () => {
+            const statusDiv = document.getElementById('status');
+            const testCredsDiv = document.getElementById('testCreds');
+            
+            statusDiv.className = '';
+            statusDiv.style.display = 'block';
+            statusDiv.textContent = '⏳ Creating test user...';
+
+            // Generate test credentials
+            const testEmail = `test${Date.now()}@rumriver.local`;
+            const testPassword = 'RumRiver2024!';
+
+            try {
+                // Attempt to signup programmatically
+                const signupUrl = 'https://rum-river-final.netlify.app/.netlify/identity/signup';
+                
+                const response = await fetch(signupUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: testEmail,
+                        password: testPassword,
+                        full_name: 'Test Admin',
+                        data: {
+                            role: 'admin'
+                        }
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = '✅ Test user created successfully! No email confirmation needed.';
+                    
+                    // Show credentials
+                    document.getElementById('testEmail').textContent = testEmail;
+                    document.getElementById('testPassword').textContent = testPassword;
+                    testCredsDiv.style.display = 'block';
+
+                    // Auto-login attempt
+                    setTimeout(() => {
+                        statusDiv.textContent += '\n\n🔄 Attempting auto-login...';
+                        netlifyIdentity.open('login');
+                    }, 2000);
+
+                } else {
+                    throw new Error(data.msg || data.error_description || 'Signup failed');
+                }
+
+            } catch (error) {
+                statusDiv.className = 'error';
+                statusDiv.innerHTML = `
+                    ❌ Auto-create failed: ${error.message}<br><br>
+                    <strong>Alternative Method:</strong><br>
+                    1. Click "Or Sign Up Manually" above<br>
+                    2. Use email: <code>admin@rumriver.test</code><br>
+                    3. Use password: <code>RumRiver2024!</code><br>
+                    4. You'll need to confirm via email
+                `;
+                
+                // Still show the manual method credentials
+                document.getElementById('testEmail').textContent = 'admin@rumriver.test';
+                testCredsDiv.style.display = 'block';
+            }
+        };
+
+        // Listen for successful login
+        netlifyIdentity.on('login', user => {
+            console.log('Login successful:', user.email);
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'success';
+            statusDiv.textContent = '✅ Logged in successfully! Redirecting to test page...';
+            setTimeout(() => {
+                window.location.href = '/test-admin.html';
+            }, 2000);
+        });
+
+        // Check if already logged in
+        const currentUser = netlifyIdentity.currentUser();
+        if (currentUser) {
+            document.getElementById('status').className = 'success';
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('status').innerHTML = `
+                ✅ Already logged in as: <strong>${currentUser.email}</strong><br>
+                <a href="/test-admin.html">→ Go to Test Admin Page</a>
+            `;
+        }
+    </script>
+</body>
+</html>
