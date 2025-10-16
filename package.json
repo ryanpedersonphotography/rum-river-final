@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "npm run tokens:build && vite build",
+    "build:studio": "cd studio && npm run build",
+    "deploy:studio": "cd studio && npm run deploy",
     "preview": "vite preview",
     "tokens:build": "style-dictionary build --config config.js",
     "tokens:watch": "nodemon --watch tokens --exec 'npm run tokens:build'",

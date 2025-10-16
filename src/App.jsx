@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import VendorsPage from './pages/VendorsPage'
+import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
 import ComponentPage from './pages/ComponentPage'
 import LocationPage from './pages/LocationPage'
@@ -51,7 +51,7 @@ export default function App() {
         {/* Main site routes without DemoNavbar */}
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/vendor-list" element={<VendorsPage />} />
+        <Route path="/vendor-list" element={<VendorsPageWithToggle />} />
         <Route path="/property" element={<PropertyPage />} />
         <Route path="/component" element={<ComponentPage />} />
         <Route path="/location" element={<LocationPage />} />
