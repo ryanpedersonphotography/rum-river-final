@@ -119,9 +119,9 @@ export default function VendorsPage() {
           {vendorCategories.map((category, categoryIndex) => (
             <div key={categoryIndex} style={{ marginBottom: '5rem' }}>
               {/* Category Header */}
-              <div className="section-header center" style={{ marginBottom: '3rem' }}>
-                <div style={{ marginBottom: '1rem' }}><Icon name={category.iconName} size="lg" color="primary" /></div>
-                <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '0' }}>
+              <div className="venue-discovery-content center">
+                <Icon name={category.iconName} size="lg" color="primary" />
+                <h2 className="section-title">
                   {category.title}
                 </h2>
               </div>

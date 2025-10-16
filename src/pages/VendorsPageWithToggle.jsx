@@ -3,14 +3,16 @@ import { createClient } from '@sanity/client'
 import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
 import ScheduleTourForm from '../components/ScheduleTourForm'
-import SanityDataToggle from '../components/SanityDataToggle'
 import { getClientConfig } from '../config/sanity.config'
 
 // Sanity client
 const client = createClient(getClientConfig('frontend'))
 
 export default function VendorsPageWithToggle() {
-  const [useSanityData, setUseSanityData] = useState(false)
+  const [useSanityData] = useState(() => {
+    const saved = localStorage.getItem('useSanityData')
+    return saved !== null ? JSON.parse(saved) : false
+  })
   const [sanityData, setSanityData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -178,14 +180,7 @@ export default function VendorsPageWithToggle() {
   const heroContent = useSanityData ? sanityHeroContent : hardcodedHeroContent
 
   return (
-    <>
-      {/* Data Source Toggle */}
-      <SanityDataToggle 
-        onToggle={setUseSanityData}
-        initialState={useSanityData}
-      />
-
-      <PageTemplate 
+    <PageTemplate 
         heroContent={heroContent}
         heroImage="/images/venue/barn-exterior-welcome-sign-entrance.jpg"
       >
@@ -234,15 +229,13 @@ export default function VendorsPageWithToggle() {
             {vendorCategories.map((category, categoryIndex) => (
               <div key={categoryIndex} style={{ marginBottom: '5rem' }}>
                 {/* Category Header */}
-                <div className="section-header center" style={{ marginBottom: '3rem' }}>
-                  <div style={{ marginBottom: '1rem' }}>
-                    <Icon name={category.iconName} size="lg" color="primary" />
-                  </div>
-                  <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '0' }}>
+                <div className="venue-discovery-content center">
+                  <Icon name={category.iconName} size="lg" color="primary" />
+                  <h2 className="section-title">
                     {category.title}
                   </h2>
                   {useSanityData && category.description && (
-                    <p className="section-lead">{category.description}</p>
+                    <p className="lead">{category.description}</p>
                   )}
                   {useSanityData && category.vendorCount !== undefined && (
                     <p style={{ color: '#999', fontSize: '0.9rem', marginTop: '0.5rem' }}>
@@ -252,7 +245,7 @@ export default function VendorsPageWithToggle() {
                 </div>
 
                 {/* Vendor Cards Grid */}
-                {!useSanityData && category.vendors.length > 0 ? (
+                {category.vendors && category.vendors.length > 0 ? (
                   <div className="testimonials-grid">
                     {category.vendors.map((vendor, vendorIndex) => (
                       <div key={vendorIndex} className="testimonial-card">
@@ -283,10 +276,20 @@ export default function VendorsPageWithToggle() {
                         }}>
                           📞 {vendor.phone}
                         </div>
+                        {vendor.website && (
+                          <a href={vendor.website} target="_blank" rel="noopener noreferrer" style={{
+                            display: 'inline-block',
+                            marginTop: '1rem',
+                            color: 'var(--sage-green)',
+                            textDecoration: 'underline'
+                          }}>
+                            Visit Website →
+                          </a>
+                        )}
                       </div>
                     ))}
                   </div>
-                ) : useSanityData && (
+                ) : (
                   <div style={{ 
                     textAlign: 'center', 
                     padding: '2rem', 
@@ -294,10 +297,7 @@ export default function VendorsPageWithToggle() {
                     borderRadius: '8px' 
                   }}>
                     <p style={{ color: '#666' }}>
-                      Individual vendor details not yet added to Sanity CMS.
-                    </p>
-                    <p style={{ color: '#999', fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                      Category structure is set up with {category.vendorCount || 0} vendors expected.
+                      No vendors listed in this category yet.
                     </p>
                   </div>
                 )}
@@ -347,6 +347,5 @@ export default function VendorsPageWithToggle() {
         />
 
       </PageTemplate>
-    </>
   )
 }

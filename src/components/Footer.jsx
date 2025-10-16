@@ -1,6 +1,10 @@
+import SanityToggleFooter from './SanityToggleFooter'
+
 export default function Footer() {
   return (
-    <footer style={{
+    <>
+      <SanityToggleFooter />
+      <footer style={{
       padding: '4rem 2rem 2.5rem',
       background: 'var(--text-dark)',
       color: 'white',
@@ -63,5 +67,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   )
 }

@@ -65,7 +65,7 @@ export default function HistoryPage() {
       {/* Timeline Section */}
       <section className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center" style={{ marginBottom: '3rem' }}>
+          <div className="venue-discovery-content center">
             <div className="script-accent">Journey Through Time</div>
             <h2 className="section-title">Our Timeline</h2>
             <p className="lead">Explore the rich history of our property from 1855 to today</p>
@@ -89,7 +89,7 @@ export default function HistoryPage() {
       {/* Historical Photo Gallery */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Through the Years</div>
             <h2 className="section-title">Historical Photo Gallery</h2>
             <p className="lead">Authentic photographs from the Selmer family archives spanning 100+ years</p>
@@ -336,7 +336,7 @@ export default function HistoryPage() {
       {/* Historical Highlights */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Living History</div>
             <h2 className="section-title">Historic Remnants</h2>
             <p className="lead">See pieces of history preserved throughout our property</p>

@@ -36,9 +36,9 @@ export default function RealWeddingsPage() {
     >
 
       {/* Weddings Gallery Grid */}
-      <section className="section">
+      <section className="love-stories-section section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="love-stories-content center">
             <div className="script-accent">Real Love Stories</div>
             <h2 className="section-title">Weddings at the Barn</h2>
             <p className="lead">Browse through our favorite celebrations and get inspired for your own special day</p>
@@ -83,23 +83,19 @@ export default function RealWeddingsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section section-cream">
+      <section className="section">
         <div className="content-wrapper">
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            <div className="script-accent" style={{ marginBottom: '1rem' }}>Ready to Create Your Story?</div>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              Let Your Love Story Unfold Here
-            </h2>
-            <p className="lead" style={{ marginBottom: '2rem' }}>
+          <div className="venue-discovery-content center">
+            <div className="script-accent">Ready to Create Your Story?</div>
+            <h2 className="section-title">Let Your Love Story Unfold Here</h2>
+            <p className="lead">
               Schedule a tour to see how we can help bring your wedding vision to life
             </p>
-            <a href="/contact" className="romantic-button">
-              Schedule Your Tour
-            </a>
+            <div className="gallery-footer">
+              <a href="/contact" className="romantic-button">
+                Schedule Your Tour
+              </a>
+            </div>
           </div>
         </div>
       </section>

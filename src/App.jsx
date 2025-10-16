@@ -7,8 +7,8 @@ import LocationPage from './pages/LocationPage'
 import GalleryPage from './pages/GalleryPage'
 import ContactPage from './pages/ContactPage'
 import TestimonialsPage from './pages/TestimonialsPage'
-import RealWeddingsIndex from './pages/RealWeddingsIndex'
-import RealWeddingPage from './pages/RealWeddingPage'
+import RealWeddingsPage from './pages/RealWeddingsPage'
+import RealWeddingPost from './pages/RealWeddingPost'
 import HistoryPage from './pages/HistoryPage'
 import EventsPage from './pages/EventsPage'
 import ThankYouPage from './pages/ThankYouPage'
@@ -59,8 +59,8 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
-        <Route path="/real-weddings" element={<RealWeddingsIndex />} />
-        <Route path="/real-weddings/:slug" element={<RealWeddingPage />} />
+        <Route path="/real-weddings" element={<RealWeddingsPage />} />
+        <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
         <Route path="/history" element={<HistoryPage />} />
         
         {/* Admin Panel */}
