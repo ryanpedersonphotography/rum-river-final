@@ -8,14 +8,10 @@ import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import { getClientConfig } from '../config/sanity.config'
 
-// Sanity client
-const client = createClient({
-  projectId: 'vicw6cgb',
-  dataset: 'production',
-  useCdn: true,
-  apiVersion: '2024-01-01'
-})
+// Sanity client with standardized config
+const client = createClient(getClientConfig('frontend'))
 
 // Image URL builder
 const builder = imageUrlBuilder(client)

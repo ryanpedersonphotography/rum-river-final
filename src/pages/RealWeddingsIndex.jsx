@@ -4,14 +4,10 @@ import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import { getClientConfig } from '../config/sanity.config'
 
-// Sanity client
-const client = createClient({
-  projectId: 'vicw6cgb',
-  dataset: 'production',
-  useCdn: true,
-  apiVersion: '2024-01-01'
-})
+// Sanity client with standardized config
+const client = createClient(getClientConfig('frontend'))
 
 // Image URL builder
 const builder = imageUrlBuilder(client)
@@ -19,44 +15,44 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-// GROQ queries
-const WEDDINGS_QUERY = `
-  *[_type == "wedding" && (
-    $query == "" || 
-    coupleNames match "*" + $query + "*" ||
-    title match "*" + $query + "*"
-  ) && (
-    $season == "" || season == $season
-  ) && (
-    $tag == "" || $tag in tags[]
-  )] | order(weddingDate desc) [$start...$end] {
-    title,
-    slug,
-    coupleNames,
-    weddingDate,
-    coverImage,
-    season,
-    tags,
-    excerpt
+// GROQ queries - Optimized with combined query for better performance
+const WEDDINGS_WITH_COUNT = `
+  {
+    "items": *[_type == "wedding" && (
+      $query == "" || 
+      coupleNames match "*" + $query + "*" ||
+      title match "*" + $query + "*"
+    ) && (
+      $season == "" || season == $season
+    ) && (
+      $tag == "" || $tag in tags[]
+    )] | order(weddingDate desc) [$start...$end] {
+      title,
+      slug,
+      coupleNames,
+      weddingDate,
+      coverImage,
+      season,
+      tags,
+      excerpt
+    },
+    "total": count(*[_type == "wedding" && (
+      $query == "" || 
+      coupleNames match "*" + $query + "*" ||
+      title match "*" + $query + "*"
+    ) && (
+      $season == "" || season == $season
+    ) && (
+      $tag == "" || $tag in tags[]
+    )])
   }
 `
 
-const WEDDINGS_COUNT = `
-  count(*[_type == "wedding" && (
-    $query == "" || 
-    coupleNames match "*" + $query + "*" ||
-    title match "*" + $query + "*"
-  ) && (
-    $season == "" || season == $season
-  ) && (
-    $tag == "" || $tag in tags[]
-  )])
-`
-
+// Optimized to fetch only first 100 documents for unique values (most will be duplicates)
 const SEASONS_AND_TAGS = `
   {
-    "seasons": array::unique(*[_type == "wedding" && defined(season)].season),
-    "tags": array::unique(*[_type == "wedding"].tags[])
+    "seasons": array::unique(*[_type == "wedding" && defined(season)][0...100].season),
+    "tags": array::unique(*[_type == "wedding"][0...100].tags[])
   }
 `
 
@@ -108,20 +104,19 @@ export default function RealWeddingsIndex() {
       try {
         setLoading(true)
         
-        const [weddingsData, countData, filtersData] = await Promise.all([
-          client.fetch(WEDDINGS_QUERY, { query, season, tag, start, end }),
-          client.fetch(WEDDINGS_COUNT, { query, season, tag }),
+        const [weddingsResult, filtersData] = await Promise.all([
+          client.fetch(WEDDINGS_WITH_COUNT, { query, season, tag, start, end }),
           client.fetch(SEASONS_AND_TAGS)
         ])
         
         // For pagination, append results; for new searches, replace
         if (page === 1) {
-          setWeddings(weddingsData)
+          setWeddings(weddingsResult.items)
         } else {
-          setWeddings(prev => [...prev, ...weddingsData])
+          setWeddings(prev => [...prev, ...weddingsResult.items])
         }
         
-        setTotalCount(countData)
+        setTotalCount(weddingsResult.total)
         setSeasons(filtersData.seasons || [])
         setTags(filtersData.tags || [])
         

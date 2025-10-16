@@ -1,15 +1,9 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
+import { getClientConfig } from '../config/sanity.config'
 
-const projectId = 'vicw6cgb'
-const dataset = 'production'
-
-export const sanityClient = createClient({
-  projectId,
-  dataset,
-  useCdn: true, // Set to false for development/debugging
-  apiVersion: '2024-01-01', // Use current date (YYYY-MM-DD) to target the latest API version
-})
+// Use standardized configuration - frontend context with CDN
+export const sanityClient = createClient(getClientConfig('frontend'))
 
 // Image URL builder
 const builder = imageUrlBuilder(sanityClient)
