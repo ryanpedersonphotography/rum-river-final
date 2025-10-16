@@ -8,7 +8,7 @@ import {
   testConnection,
   uploadImage,
   updateWeddingImages
-} from '../lib/contentful-management.js'
+} from '../lib/sanity-management.js'
 import { realWeddings } from '../data/realWeddings.js'
 import './AdminPanel.css'
 
@@ -64,14 +64,14 @@ export default function AdminWeddings() {
     try {
       const connected = await testConnection()
       if (!connected) {
-        setMessage({ type: 'error', text: 'Failed to connect to Contentful' })
+        setMessage({ type: 'error', text: 'Failed to connect to Sanity' })
       } else {
         // Load weddings after successful connection
         await refetch()
       }
     } catch (error) {
       console.error('Connection check failed:', error)
-      setMessage({ type: 'error', text: `Failed to connect to Contentful: ${error.message}` })
+      setMessage({ type: 'error', text: `Failed to connect to Sanity: ${error.message}` })
       setLoading(false)
     }
   }
@@ -868,7 +868,7 @@ export default function AdminWeddings() {
                       disabled={uploadingImages || editingWedding.isNew}
                       className="upload-all-btn"
                     >
-                      {uploadingImages ? 'Uploading...' : 'Upload All Images to Contentful'}
+                      {uploadingImages ? 'Uploading...' : 'Upload All Images to Sanity'}
                     </button>
                     {uploadProgress && (
                       <div className="upload-progress">{uploadProgress}</div>
