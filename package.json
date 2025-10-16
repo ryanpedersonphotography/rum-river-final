@@ -38,6 +38,8 @@
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
+    "@sanity/presentation": "^2.0.0",
+    "@sanity/visual-editing": "^3.1.0",
     "@vitejs/plugin-react": "^4.3.4",
     "chokidar": "^4.0.3",
     "less": "^4.4.1",

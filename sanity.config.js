@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {presentationTool} from '@sanity/presentation'
 
 // Import schemas
 import page from './schemas/page'
@@ -117,6 +118,15 @@ export default defineConfig({
           ])
     }),
     visionTool(),
+    presentationTool({
+      previewUrl: {
+        origin: import.meta.env.DEV ? 'http://localhost:5173' : 'https://rum-river-final.netlify.app',
+        previewMode: {
+          enable: '/preview/enable',
+          disable: '/preview/disable'
+        }
+      }
+    }),
   ],
   schema: {
     types: [

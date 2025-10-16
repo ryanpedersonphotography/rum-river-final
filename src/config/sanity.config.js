@@ -50,7 +50,12 @@ export function getClientConfig(context = 'frontend') {
     apiVersion: sanityConfig.apiVersion,
     useCdn,
     // Perspective for draft content
-    perspective: context === 'preview' ? 'previewDrafts' : 'published'
+    perspective: context === 'preview' ? 'previewDrafts' : 'published',
+    // Enable stega (content source maps) in development for visual editing
+    stega: {
+      enabled: isDevelopment && context === 'frontend',
+      studioUrl: isDevelopment ? 'http://localhost:3333' : undefined
+    }
   }
 }
 
