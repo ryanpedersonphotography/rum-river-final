@@ -1,0 +1,106 @@
+{
+  "node": "v20.19.0",
+  "npm": "10.8.2",
+  "sanity": {
+    "localVersion": "4.10.3",
+    "globalVersion": "4.6.0",
+    "whoami": {
+      "user": "asdfadsfasdfdsaf (Robot)",
+      "email": null,
+      "roles": ["developer"]
+    },
+    "project": {
+      "id": "vicw6cgb",
+      "name": "rum-river-final",
+      "datasetList": ["production"],
+      "cors": [
+        "http://localhost:3333",
+        "http://localhost:5173", 
+        "https://rum-river-final.netlify.app",
+        "https://rum-river-final.sanity.studio",
+        "http://localhost:3000",
+        "http://localhost:3001"
+      ]
+    }
+  },
+  "studioConfig": {
+    "present": true,
+    "projectId": "vicw6cgb",
+    "dataset": "production"
+  },
+  "envKeys": {
+    "studio": ["SANITY_AUTH_TOKEN"],
+    "web": [],
+    "root": [
+      "VITE_CONTENTFUL_SPACE_ID",
+      "VITE_CONTENTFUL_ACCESS_TOKEN", 
+      "VITE_CONTENTFUL_MANAGEMENT_TOKEN",
+      "CONTENTFUL_MANAGEMENT_TOKEN",
+      "DATABASE_URI",
+      "PAYLOAD_SECRET",
+      "VITE_SANITY_PROJECT_ID",
+      "VITE_SANITY_DATASET",
+      "SANITY_API_TOKEN"
+    ]
+  },
+  "frontendExpectations": {
+    "usesViteEnv": true,
+    "queriesFound": ["contentBlocks", "heroBlock", "venueDiscoveryBlock", "weddingBlog"],
+    "viteEnvUsageLocations": [
+      "./src/config/sanity.config.js",
+      "./netlify/functions/sanity-weddings-list.js",
+      "./scripts/migrate-contentful-to-sanity.js",
+      "./lib/sanity.js"
+    ]
+  },
+  "dataChecks": {
+    "pages": [],
+    "homePages": [
+      {"_id": "homePage", "slug": null},
+      {"_id": "homepage", "slug": null}
+    ],
+    "homeIntegrity": {
+      "hasHero": true,
+      "heroType": "heroBlock"
+    },
+    "singletons": {
+      "siteSettingsExists": true
+    },
+    "unknownFields": {
+      "sectionClassName": [],
+      "subtitle": []
+    },
+    "referenceHealth": {
+      "status": "unable_to_verify_references"
+    },
+    "missingSlugs": {
+      "page": "no_page_documents_found",
+      "homePage": "home_pages_missing_slugs"
+    },
+    "documentCount": 223
+  },
+  "netlify": {
+    "connected": true,
+    "envKeys": [
+      "CONTENTFUL_ENV",
+      "CONTENTFUL_MANAGEMENT_TOKEN",
+      "DATABASE_URI", 
+      "NODE_VERSION",
+      "PAYLOAD_SECRET",
+      "SANITY_API_TOKEN",
+      "VITE_CONTENTFUL_ACCESS_TOKEN",
+      "VITE_CONTENTFUL_PREVIEW_TOKEN", 
+      "VITE_CONTENTFUL_SPACE_ID",
+      "VITE_SANITY_DATASET",
+      "VITE_SANITY_PROJECT_ID"
+    ]
+  },
+  "issues": [
+    "No documents of type 'page' found - migration may use different schema",
+    "Two homePage documents found: 'homePage' and 'homepage' (duplicate)",
+    "Homepage documents missing slug fields", 
+    "Schema check command failed - CLI version incompatibility",
+    "Web directory not found - using root for Vite project"
+  ],
+  "status": "MIGRATION_ARCHITECTURE_MISMATCH"
+}

@@ -1,0 +1,116 @@
+{
+  "auditContext": "RUN_FROM_STUDIO_DIRECTORY",
+  "node": "v20.19.0",
+  "npm": "10.8.2",
+  "sanity": {
+    "localVersion": "4.10.3",
+    "globalVersion": "4.6.0",
+    "whoami": {
+      "user": "asdfadsfasdfdsaf (Robot)",
+      "email": null,
+      "roles": ["developer"]
+    },
+    "project": {
+      "id": "vicw6cgb",
+      "name": "rum-river-final",
+      "datasetList": ["production"],
+      "cors": [
+        "http://localhost:3333",
+        "http://localhost:5173", 
+        "https://rum-river-final.netlify.app",
+        "https://rum-river-final.sanity.studio",
+        "http://localhost:3000",
+        "http://localhost:3001"
+      ]
+    }
+  },
+  "studioConfig": {
+    "present": true,
+    "projectId": "vicw6cgb",
+    "dataset": "production",
+    "configFiles": ["sanity.config.js", "sanity.cli.ts"]
+  },
+  "envKeys": {
+    "studio": ["SANITY_AUTH_TOKEN"],
+    "parent": [
+      "VITE_CONTENTFUL_SPACE_ID",
+      "VITE_CONTENTFUL_ACCESS_TOKEN", 
+      "VITE_CONTENTFUL_MANAGEMENT_TOKEN",
+      "CONTENTFUL_MANAGEMENT_TOKEN",
+      "DATABASE_URI",
+      "PAYLOAD_SECRET",
+      "VITE_SANITY_PROJECT_ID",
+      "VITE_SANITY_DATASET",
+      "SANITY_API_TOKEN"
+    ]
+  },
+  "frontendExpectations": {
+    "usesViteEnv": true,
+    "viteEnvUsageLocations": [
+      "../netlify/functions/sanity-weddings-list.js",
+      "../scripts/migrate-contentful-to-sanity.js", 
+      "../scripts/migrate-all-contentful-to-sanity.js",
+      "../src/config/sanity.config.js"
+    ]
+  },
+  "dataChecks": {
+    "pages": [],
+    "pageTypes": [
+      {"_type": "contactPage", "_id": "contactPage", "title": null},
+      {"_type": "eventsPage", "_id": "eventsPage", "title": null},
+      {"_type": "faqPage", "_id": "faqPage", "title": "Frequently Asked Questions"},
+      {"_type": "galleryPage", "_id": "galleryPage", "title": "Photo Gallery"},
+      {"_type": "historyPage", "_id": "historyPage", "title": "Our History"},
+      {"_type": "homePage", "_id": "homePage", "title": "Homepage"},
+      {"_type": "homePage", "_id": "homepage", "title": "Homepage"},
+      {"_type": "locationPage", "_id": "locationPage", "title": "Location"},
+      {"_type": "privacyPage", "_id": "privacyPage", "title": "Privacy Policy"},
+      {"_type": "propertyPage", "_id": "propertyPage", "title": "The Property"},
+      {"_type": "termsPage", "_id": "termsPage", "title": "Terms of Service"}
+    ],
+    "homeIntegrity": {
+      "hasHero": true,
+      "heroType": "heroBlock",
+      "heroFields": {
+        "hasImage": true,
+        "scriptAccent": "Where Dreams Begin",
+        "titleLine1": "Rum River",
+        "titleLine2": "Wedding Barn"
+      },
+      "backgroundImageRef": "image-36a9e7766804bbe86f5302eaba42db14431fb39e-1280x854-jpg"
+    },
+    "singletons": {
+      "siteSettingsExists": true
+    },
+    "documentCount": 223,
+    "duplicateHomepage": true
+  },
+  "schemaStatus": {
+    "schemaExtracted": true,
+    "workspaceId": "rum-river-wedding-barn",
+    "lastModified": "2025-10-16T20:14:27.770Z",
+    "schemaId": "_.schemas.rum-river-wedding-barn"
+  },
+  "netlify": {
+    "status": "not_checked_from_studio_context"
+  },
+  "criticalFindings": [
+    "Duplicate homepage documents found: 'homePage' and 'homepage'",
+    "Hero block exists with valid background image reference",
+    "All page-specific schemas present (contactPage, eventsPage, etc.)",
+    "No legacy 'page' documents - using page-specific schema architecture",
+    "Several pages missing titles (contactPage, eventsPage, testimonialsPage)"
+  ],
+  "heroAnalysis": {
+    "status": "HERO_DATA_COMPLETE",
+    "hasBackgroundImage": true,
+    "imageAssetId": "image-36a9e7766804bbe86f5302eaba42db14431fb39e-1280x854-jpg",
+    "heroContent": {
+      "scriptAccent": "Where Dreams Begin",
+      "titleLine1": "Rum River", 
+      "titleLine2": "Wedding Barn"
+    },
+    "recommendation": "Hero data is complete - issue likely in frontend rendering or CSS"
+  },
+  "status": "HERO_DATA_VALID_FRONTEND_ISSUE"
+}

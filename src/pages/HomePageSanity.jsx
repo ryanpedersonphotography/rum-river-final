@@ -1,114 +1,95 @@
-import PageRenderer from '../components/PageRenderer'
-import { localHomePageContent } from '../lib/localContent'
+import { useState, useEffect } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+import { HOME_PAGE } from '../lib/pageQueries'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import SEO from '../components/SEO'
+import HeroBlockRenderer from '../components/blocks/HeroBlockRenderer'
+import VenueDiscoveryBlockRenderer from '../components/blocks/VenueDiscoveryBlockRenderer'
+import FeatureBlocksBlockRenderer from '../components/blocks/FeatureBlocksBlockRenderer'
+import GalleryBlockRenderer from '../components/blocks/GalleryBlockRenderer'
+import ExperienceBlockRenderer from '../components/blocks/ExperienceBlockRenderer'
+import TestimonialsBlockRenderer from '../components/blocks/TestimonialsBlockRenderer'
+import FormBlockRenderer from '../components/blocks/FormBlockRenderer'
 
-/**
- * HomePage with Sanity CMS Integration
- * Uses PageRenderer to fetch and display content from Sanity
- * Falls back to local content if Sanity is unavailable
- */
 export default function HomePage() {
-  // Create fallback content structure for PageRenderer
-  const fallbackContent = {
-    title: 'Homepage',
-    slug: { current: 'homepage' },
-    seo: {
-      metaTitle: 'Rum River Wedding Barn - Minnesota\'s Premier Wedding Venue',
-      metaDescription: 'Nestled along Minnesota\'s scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.',
-      keywords: ['wedding venue', 'Minnesota wedding', 'barn wedding', 'rustic wedding', 'Rum River']
-    },
-    contentBlocks: [
-      // Hero Block
-      {
-        _type: 'heroBlock',
-        ...localHomePageContent.hero,
-        scrollText: 'Discover Your Perfect Day',
-        showFloatingCta: true,
-        floatingCtaText: 'Schedule Your Tour',
-        floatingCtaIcon: 'calendar'
-      },
-      
-      // Venue Discovery Block
-      {
-        _type: 'venueDiscoveryBlock',
-        scriptAccent: 'Your Perfect Setting',
-        title: 'Discover Our Spaces',
-        description: 'Every corner tells a story, every space creates memories',
-        sectionStyle: 'section-cream'
-      },
-      
-      // Feature Blocks
-      {
-        _type: 'featureBlocksBlock',
-        ...localHomePageContent.featureBlocks,
-        sectionStyle: 'alternating-blocks',
-        centerContent: true,
-        blocks: localHomePageContent.featureBlocks.blocks
-      },
-      
-      // Gallery Block (Love Stories)
-      {
-        _type: 'galleryBlock',
-        ...localHomePageContent.loveStories,
-        sectionStyle: 'section-cream',
-        galleryType: 'weddings',
-        maxWeddings: 6,
-        ctaText: 'View All Real Weddings',
-        ctaLink: '/real-weddings',
-        showCta: true
-      },
-      
-      // Experience Block
-      {
-        _type: 'experienceBlock',
-        ...localHomePageContent.experience,
-        sectionStyle: 'section-blush',
-        layout: 'content-left',
-        features: localHomePageContent.experience.features.map(feature => ({
-          ...feature,
-          icon: feature.title === 'All-Inclusive Planning' ? 'check' :
-                feature.title === 'Customizable Packages' ? 'sparkles' : 'home',
-          iconColor: 'primary',
-          iconSize: 'lg'
-        })),
-        imageAlt: 'Wedding Celebration'
-      },
-      
-      // Testimonials Block
-      {
-        _type: 'testimonialsBlock',
-        ...localHomePageContent.testimonials,
-        sectionStyle: 'section-cream',
-        testimonials: localHomePageContent.testimonials.items,
-        maxTestimonials: 3,
-        showStarRating: true,
-        starCount: 5,
-        layout: 'grid'
-      },
-      
-      // Form Block
-      {
-        _type: 'formBlock',
-        title: 'Start Planning Your Perfect Day',
-        subtitle: 'Schedule Your Tour',
-        description: 'We\'d love to show you around our beautiful venue and discuss your wedding vision.',
-        formType: 'tour',
-        formName: 'home-schedule-tour',
-        submitText: 'Schedule Tour',
-        loadingText: 'SCHEDULING...',
-        redirectPath: '/thank-you',
-        sectionStyle: 'cta-contact-section',
-        lightTheme: false,
-        showHeader: true
-      }
-    ]
+  const [page, setPage] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let mounted = true
+    setLoading(true)
+    sanityClient.fetch(HOME_PAGE).then(data => {
+      if (!mounted) return
+      setPage(data)
+      setLoading(false)
+    }).catch(() => setLoading(false))
+    return () => { mounted = false }
+  }, [])
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          height: '60vh',
+          fontSize: '1.2rem',
+          color: 'var(--sage-green)'
+        }}>
+          Loading page content...
+        </div>
+        <Footer />
+      </>
+    )
+  }
+
+  if (!page) {
+    return (
+      <>
+        <Header />
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          height: '60vh',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ color: 'var(--warm-walnut)' }}>Page not found</h2>
+          <p style={{ color: '#666' }}>Please check the URL or try refreshing the page</p>
+        </div>
+        <Footer />
+      </>
+    )
   }
 
   return (
-    <PageRenderer 
-      slug="homepage"
-      fallbackContent={fallbackContent}
-      showHeader={true}
-      showFooter={true}
-    />
+    <>
+      <SEO 
+        title={page.seo?.metaTitle || page.title}
+        description={page.seo?.metaDescription}
+        keywords={page.seo?.keywords}
+        image={page.seo?.openGraphImage}
+        noIndex={page.seo?.noIndex}
+      />
+      
+      <Header />
+
+      {/* Render hero */}
+      {page.hero && <HeroBlockRenderer data={page.hero} />}
+      
+      {/* Render other blocks */}
+      {page.venueDiscovery && <VenueDiscoveryBlockRenderer data={page.venueDiscovery} />}
+      {page.featureBlocks && <FeatureBlocksBlockRenderer data={page.featureBlocks} />}
+      {page.loveStories && <GalleryBlockRenderer data={page.loveStories} />}
+      {page.experience && <ExperienceBlockRenderer data={page.experience} />}
+      {page.testimonials && <TestimonialsBlockRenderer data={page.testimonials} />}
+      {page.scheduleTour && <FormBlockRenderer data={page.scheduleTour} />}
+
+      <Footer />
+    </>
   )
 }

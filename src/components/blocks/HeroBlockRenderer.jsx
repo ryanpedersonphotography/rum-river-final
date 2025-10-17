@@ -1,58 +1,34 @@
 import CTAButton from '../CTAButton'
-import { getImageUrl } from '../../lib/sanityClient'
+import { urlFor } from '../../lib/sanityClient'
 
-/**
- * HeroBlockRenderer Component
- * Renders hero section from Sanity CMS data
- */
-export default function HeroBlockRenderer({ data, blockIndex }) {
-  const {
-    scriptAccent = 'Where Dreams Begin',
-    titleLine1 = 'Rum River',
-    titleLine2 = 'Wedding Barn',
-    description = 'Nestled along Minnesota\'s scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.',
-    ctaText = 'Schedule Your Visit',
-    ctaLink = '/contact',
-    scrollText = 'Discover Your Perfect Day',
-    backgroundImage
-  } = data
-
-  // Get optimized background image URL
-  const backgroundImageUrl = backgroundImage 
-    ? getImageUrl(backgroundImage, { width: 1920, height: 1080, quality: 85 })
-    : null
-
-  const heroStyle = backgroundImageUrl 
-    ? { backgroundImage: `url(${backgroundImageUrl})` }
-    : {}
-
+export default function HeroBlockRenderer({ data }) {
+  const bgUrl = data?.backgroundImage ? urlFor(data.backgroundImage).width(2000).height(1200).fit('crop').auto('format').url() : null
+  
   return (
-    <section 
-      id="home" 
-      className="hero-enhanced"
-      style={heroStyle}
-    >
-      <div className="romantic-overlay"></div>
-      <div className="content-wrapper">
+    <section id="home" className="hero-section">
+      <div className="hero-background">
+        {bgUrl && <img src={bgUrl} alt={data?.backgroundImage?.alt || 'Hero'} />}
+        <div className="hero-overlay"></div>
+      </div>
+      <div className="hero-content-wrapper">
         <div className="hero-content">
-          <div className="script-accent">{scriptAccent}</div>
-          <h1 className="hero-headline">
-            {titleLine1}<br />
-            <span className="hero-accent">{titleLine2}</span>
-          </h1>
-          <p className="lead hero-lead">
-            {description}
-          </p>
-          <div className="hero-buttons">
-            <CTAButton href={ctaLink} variant="primary">
-              {ctaText}
-            </CTAButton>
+          <div className="hero-text">
+            {data?.scriptAccent && <span className="hero-script-accent">{data.scriptAccent}</span>}
+            <h1 className="hero-title">
+              <span>{data?.titleLine1 || 'Rum River'}</span>
+              <span>{data?.titleLine2 || 'Wedding Barn'}</span>
+            </h1>
+            {data?.description && <p className="hero-lead">{data.description}</p>}
+            <div className="hero-actions">
+              {data?.ctaText && data?.ctaLink && (
+                <CTAButton text={data.ctaText} href={data.ctaLink} variant="primary" size="large" />
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="hero-scroll-indicator">
-        <span>{scrollText}</span>
-        <div className="scroll-arrow">↓</div>
+      <div className="floating-cta show">
+        <CTAButton text="Schedule Your Tour" href="#lets-connect-form" variant="primary" size="medium" />
       </div>
     </section>
   )

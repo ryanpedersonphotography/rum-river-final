@@ -34,8 +34,6 @@ export function hasSanityData(pageName) {
   const migratedPages = [
     'vendorsPage',
     'faqPage',
-    'privacyPage',
-    'termsPage',
     // Add more as they get migrated
   ]
   

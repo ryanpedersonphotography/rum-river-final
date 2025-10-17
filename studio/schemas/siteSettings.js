@@ -58,8 +58,29 @@ export default {
         {
           name: 'address',
           title: 'Address',
-          type: 'text',
-          rows: 3
+          type: 'object',
+          fields: [
+            {
+              name: 'street',
+              title: 'Street Address',
+              type: 'string'
+            },
+            {
+              name: 'city',
+              title: 'City',
+              type: 'string'
+            },
+            {
+              name: 'state',
+              title: 'State',
+              type: 'string'
+            },
+            {
+              name: 'zip',
+              title: 'ZIP Code',
+              type: 'string'
+            }
+          ]
         }
       ]
     },
@@ -82,6 +103,126 @@ export default {
           name: 'twitter',
           title: 'Twitter URL',
           type: 'url'
+        },
+        {
+          name: 'pinterest',
+          title: 'Pinterest URL',
+          type: 'url'
+        }
+      ]
+    },
+    {
+      name: 'businessHours',
+      title: 'Business Hours',
+      type: 'object',
+      fields: [
+        {
+          name: 'monday',
+          title: 'Monday',
+          type: 'string'
+        },
+        {
+          name: 'tuesday',
+          title: 'Tuesday',
+          type: 'string'
+        },
+        {
+          name: 'wednesday',
+          title: 'Wednesday',
+          type: 'string'
+        },
+        {
+          name: 'thursday',
+          title: 'Thursday',
+          type: 'string'
+        },
+        {
+          name: 'friday',
+          title: 'Friday',
+          type: 'string'
+        },
+        {
+          name: 'saturday',
+          title: 'Saturday',
+          type: 'string'
+        },
+        {
+          name: 'sunday',
+          title: 'Sunday',
+          type: 'string'
+        }
+      ]
+    },
+    {
+      name: 'analytics',
+      title: 'Analytics',
+      type: 'object',
+      fields: [
+        {
+          name: 'googleAnalyticsId',
+          title: 'Google Analytics ID',
+          type: 'string'
+        },
+        {
+          name: 'facebookPixelId',
+          title: 'Facebook Pixel ID',
+          type: 'string'
+        }
+      ]
+    },
+    {
+      name: 'footer',
+      title: 'Footer',
+      type: 'object',
+      fields: [
+        {
+          name: 'copyrightText',
+          title: 'Copyright Text',
+          type: 'string'
+        },
+        {
+          name: 'quickLinks',
+          title: 'Quick Links',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'text',
+                  title: 'Link Text',
+                  type: 'string'
+                },
+                {
+                  name: 'url',
+                  title: 'URL',
+                  type: 'string'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'legalLinks',
+          title: 'Legal Links',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'text',
+                  title: 'Link Text',
+                  type: 'string'
+                },
+                {
+                  name: 'url',
+                  title: 'URL',
+                  type: 'string'
+                }
+              ]
+            }
+          ]
         }
       ]
     }

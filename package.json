@@ -14,9 +14,15 @@
     "admin:sync": "node local-admin/sync-to-contentful.mjs",
     "admin:watch": "node local-admin/sync-to-contentful.mjs --watch",
     "admin:edit": "code local-admin/content/homepage.json",
-    "sanity:dev": "sanity dev",
-    "sanity:build": "sanity build",
-    "sanity:deploy": "sanity deploy"
+    "sanity": "scripts/sanity.sh",
+    "sanity:debug": "scripts/sanity.sh debug",
+    "sanity:query": "scripts/sanity.sh documents query",
+    "sanity:dataset": "scripts/sanity.sh dataset list",
+    "sanity:cors": "scripts/sanity.sh cors list",
+    "sanity:schema:check": "scripts/sanity.sh schema check",
+    "sanity:build": "scripts/sanity.sh build dist",
+    "sanity:deploy": "scripts/sanity.sh deploy dist --no-build",
+    "sanity:dev": "sanity dev"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

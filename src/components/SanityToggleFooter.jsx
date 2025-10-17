@@ -7,8 +7,6 @@ const MIGRATED_PAGES = [
   '/',                // ✅ HomePage - fully migrated with all content
   '/vendor-list',     // ✅ VendorsPage - full vendor data migrated
   '/faq',            // ✅ FAQPage - has content (from earlier migration)
-  '/privacy-policy', // ✅ PrivacyPage - has content (from earlier migration)  
-  '/terms-of-service', // ✅ TermsPage - has content (from earlier migration)
   '/events',         // ✅ EventsPage - fully migrated with all event blocks
   '/property',       // ✅ PropertyPage - fully migrated with venue discovery
   '/location',       // ✅ LocationPage - fully migrated with maps and amenities

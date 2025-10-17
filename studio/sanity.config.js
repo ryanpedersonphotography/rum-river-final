@@ -14,8 +14,6 @@ import locationPage from './schemas/pages/locationPage'
 import testimonialsPage from './schemas/pages/testimonialsPage'
 import historyPage from './schemas/pages/historyPage'
 import thankYouPage from './schemas/pages/thankYouPage'
-import privacyPage from './schemas/pages/privacyPage'
-import termsPage from './schemas/pages/termsPage'
 import faqPage from './schemas/pages/faqPage'
 
 // Import old page schema (for migration)
@@ -23,6 +21,11 @@ import page from './schemas/page'
 import siteSettings from './schemas/siteSettings'
 import seoSettings from './schemas/seoSettings'
 import richText from './schemas/richText'
+
+// Import global/layout schemas
+import headerSettings from './schemas/global/headerSettings'
+import footerSettings from './schemas/global/footerSettings'
+import globalSettings from './schemas/global/globalSettings'
 
 // Block schemas
 import heroBlock from './schemas/blocks/heroBlock'
@@ -192,41 +195,48 @@ export default defineConfig({
                   ])
               ),
             
+            
             S.divider(),
             
-            // 📜 Legal Pages
+            // 🌐 Global Layout & Settings
             S.listItem()
-              .title('📜 Legal Pages')
+              .title('🌐 Global Layout & Settings')
               .child(
                 S.list()
-                  .title('Legal Pages')
+                  .title('Global Layout & Settings')
                   .items([
                     S.listItem()
-                      .title('🔒 Privacy Policy')
+                      .title('🎛️ Global Settings')
                       .child(
                         S.document()
-                          .schemaType('privacyPage')
-                          .documentId('privacyPage')
+                          .schemaType('globalSettings')
+                          .documentId('globalSettings')
                       ),
                     S.listItem()
-                      .title('📜 Terms of Service')
+                      .title('🧭 Header Settings')
                       .child(
                         S.document()
-                          .schemaType('termsPage')
-                          .documentId('termsPage')
+                          .schemaType('headerSettings')
+                          .documentId('headerSettings')
+                      ),
+                    S.listItem()
+                      .title('🦶 Footer Settings')
+                      .child(
+                        S.document()
+                          .schemaType('footerSettings')
+                          .documentId('footerSettings')
+                      ),
+                    
+                    S.divider(),
+                    
+                    S.listItem()
+                      .title('⚙️ Legacy Site Settings')
+                      .child(
+                        S.document()
+                          .schemaType('siteSettings')
+                          .documentId('siteSettings')
                       ),
                   ])
-              ),
-            
-            S.divider(),
-            
-            // ⚙️ Settings
-            S.listItem()
-              .title('⚙️ Settings')
-              .child(
-                S.document()
-                  .schemaType('siteSettings')
-                  .documentId('siteSettings')
               ),
           ])
     }),
@@ -254,8 +264,6 @@ export default defineConfig({
       testimonialsPage,
       historyPage,
       thankYouPage,
-      privacyPage,
-      termsPage,
       faqPage,
       
       // Dynamic content documents
@@ -267,7 +275,10 @@ export default defineConfig({
       venue,
       testimonial,
       
-      // Settings
+      // Settings and Global Layout
+      globalSettings,
+      headerSettings,
+      footerSettings,
       siteSettings,
       
       // Object types (not shown in menu)
