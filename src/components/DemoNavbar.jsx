@@ -23,7 +23,8 @@ export default function DemoNavbar() {
     { path: '/social-proof-demo', label: 'Social Proof', category: 'Content' },
     { path: '/love-letters-demo', label: 'Love Letters', category: 'Content' },
     { path: '/find-your-way-demo', label: 'Find Your Way', category: 'Maps' },
-    { path: '/schedule-visit-form-demo', label: 'Visit Form', category: 'Forms' }
+    { path: '/schedule-visit-form-demo', label: 'Visit Form', category: 'Forms' },
+    { path: '/button-demo', label: 'Button System', category: 'Components' }
   ]
 
   // Group pages by category
