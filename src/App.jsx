@@ -25,6 +25,7 @@ import SocialProofStandalone from './pages/SocialProofStandalone'
 import LoveLettersStandalone from './pages/LoveLettersStandalone'
 import FindYourWayStandalone from './pages/FindYourWayStandalone'
 import ScheduleVisitFormStandalone from './pages/ScheduleVisitFormStandalone'
+import ButtonStandalone from './pages/ButtonStandalone'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
@@ -81,6 +82,7 @@ export default function App() {
         <Route path="/love-letters-demo" element={<><DemoNavbar /><LoveLettersStandalone /></>} />
         <Route path="/find-your-way-demo" element={<><DemoNavbar /><FindYourWayStandalone /></>} />
         <Route path="/schedule-visit-form-demo" element={<><DemoNavbar /><ScheduleVisitFormStandalone /></>} />
+        <Route path="/button-demo" element={<><DemoNavbar /><ButtonStandalone /></>} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>

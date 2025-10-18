@@ -3,9 +3,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
 
+/* Import Design Tokens (before other styles) */
+@import './generated/tokens.css';
+
 /* COHESIVE DESIGN SYSTEM - ROMANTIC RUSTIC ELEGANCE */
 
 :root {
+  /* ============================================
+     ⚠️  LEGACY CSS VARIABLES - REMOVAL PLANNED ⚠️
+     
+     These variables are duplicated in ./generated/tokens.css
+     and will be REMOVED in Q1 2025 after migration is complete.
+     
+     DO NOT ADD NEW VARIABLES HERE!
+     Add new tokens to /tokens/*.json instead.
+     
+     Migration status: 
+     ✅ Design tokens system active (./generated/tokens.css)
+     🔄 Legacy variables maintained for transition period
+     📅 Legacy removal target: February 2025
+     ============================================ */
+  
   /* Romantic Earth Palette */
   --romantic-ivory: #FBF8F4;
   --dusty-rose: #9D6B7B;  /* WCAG AA Compliant: 4.8:1 contrast with white text */
@@ -222,6 +240,18 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 .section-header {
   margin-bottom: 3rem;
+}
+
+/* Ensure section headers in pages display vertically, not horizontally */
+.section-header.center {
+  display: block;
+  text-align: center;
+}
+
+.section-header.center > * {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-header.center .lead {
@@ -490,8 +520,11 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
   overflow: hidden;
   
   /* Default colors for light backgrounds */
+  /* Fallback for older browsers */
   background: var(--dusty-rose);
   color: white;
+  /* Modern color-mix() for richer primary button */
+  background: color-mix(in srgb, var(--dusty-rose) 85%, var(--warm-walnut) 15%);
 }
 
 /* Hover effect for all buttons */
@@ -531,6 +564,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 /* ============================================
    AUTOMATIC DARK BACKGROUND ADAPTATION
    Buttons automatically change on dark sections
+   Supports both class-based and data-theme dark modes
    ============================================ */
 
 /* Dark section detection - ANY of these parent classes trigger dark mode */
@@ -539,11 +573,17 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .alternating-blocks .romantic-button,
 .contact-info-section .romantic-button,
 .hero-enhanced .romantic-button,
-.footer-contact .romantic-button {
+.footer-contact .romantic-button,
+/* Support for dark class and data-theme strategies */
+:root.dark .romantic-button,
+html[data-theme="dark"] .romantic-button {
   /* Auto-switch to light colors on dark backgrounds */
+  /* Fallback for older browsers */
   background: white;
   color: var(--warm-walnut);
   border-color: white;
+  /* Modern color-mix() for better contrast */
+  background: color-mix(in srgb, white 95%, var(--champagne-gold) 5%);
 }
 
 .dark-section .romantic-button:hover,
@@ -551,10 +591,16 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .alternating-blocks .romantic-button:hover,
 .contact-info-section .romantic-button:hover,
 .hero-enhanced .romantic-button:hover,
-.footer-contact .romantic-button:hover {
+.footer-contact .romantic-button:hover,
+/* Support for dark class and data-theme strategies */
+:root.dark .romantic-button:hover,
+html[data-theme="dark"] .romantic-button:hover {
+  /* Fallback for older browsers */
   background: var(--champagne-gold);
   color: var(--warm-walnut);
   border-color: var(--champagne-gold);
+  /* Modern color-mix() for richer hover effect */
+  background: color-mix(in srgb, var(--champagne-gold) 90%, white 10%);
 }
 
 /* Outline variant on dark backgrounds */
@@ -562,20 +608,32 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .dark-gradient-section .romantic-button.outline,
 .alternating-blocks .romantic-button.outline,
 .contact-info-section .romantic-button.outline,
-.footer-contact .romantic-button.outline {
+.footer-contact .romantic-button.outline,
+/* Support for dark class and data-theme strategies */
+:root.dark .romantic-button.outline,
+html[data-theme="dark"] .romantic-button.outline {
+  /* Fallback for older browsers */
   background: transparent;
   color: white;
   border-color: white;
+  /* Modern color-mix() for subtle background tint */
+  background: color-mix(in srgb, transparent 95%, white 5%);
 }
 
 .dark-section .romantic-button.outline:hover,
 .dark-gradient-section .romantic-button.outline:hover,
 .alternating-blocks .romantic-button.outline:hover,
 .contact-info-section .romantic-button.outline:hover,
-.footer-contact .romantic-button.outline:hover {
+.footer-contact .romantic-button.outline:hover,
+/* Support for dark class and data-theme strategies */
+:root.dark .romantic-button.outline:hover,
+html[data-theme="dark"] .romantic-button.outline:hover {
+  /* Fallback for older browsers */
   background: white;
   color: var(--warm-walnut);
   border-color: white;
+  /* Modern color-mix() for softer white on hover */
+  background: color-mix(in srgb, white 90%, var(--champagne-gold) 10%);
 }
 
 /* Special header button behavior */
@@ -615,8 +673,13 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 .romantic-button.vr-special {
+  /* Fallback for older browsers */
   background: linear-gradient(135deg, var(--warm-walnut) 0%, var(--deep-brown) 100%);
   color: white;
+  /* Modern color-mix() enhanced gradient */
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--warm-walnut) 95%, var(--champagne-gold) 5%) 0%, 
+    color-mix(in srgb, var(--deep-brown) 90%, var(--warm-walnut) 10%) 100%);
   border: none;
   border-radius: 8px;
   font-size: 0.875rem;
@@ -3807,9 +3870,19 @@ ul li {
 .footer-contact h2,
 .cta-contact-section .section-title,
 .cta-contact-section .block-title,
-.cta-contact-section h2 {
+.cta-contact-section h2,
+/* Support for dark class and data-theme strategies */
+:root.dark .section-title,
+:root.dark .block-title,
+:root.dark h2,
+html[data-theme="dark"] .section-title,
+html[data-theme="dark"] .block-title,
+html[data-theme="dark"] h2 {
+  /* Fallback for older browsers */
   color: white;
   opacity: 1;
+  /* Modern color-mix() for warmer white */
+  color: color-mix(in srgb, white 95%, var(--champagne-gold) 5%);
 }
 
 /* Dark sections - auto white text for body */
