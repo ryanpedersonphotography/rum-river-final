@@ -1,0 +1,440 @@
+{
+  "meta": {
+    "title": "Button System Documentation",
+    "purpose": "CTAButton → shadcn Button migration guide",
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-18",
+    "sections": ["current-implementation", "shadcn-migration", "props-mapping", "usage-patterns", "token-integration", "accessibility"],
+    "totalVariants": 7,
+    "migrationStatus": "ready",
+    "documentationUrl": "https://rum-river-final.netlify.app/button-demo"
+  },
+  
+  "currentImplementation": {
+    "component": "CTAButton",
+    "location": "src/components/CTAButton.jsx",
+    "variants": [
+      {
+        "name": "primary",
+        "description": "Main call-to-action button with dusty-rose background",
+        "usage": "<CTAButton variant=\"primary\">Click Me</CTAButton>",
+        "styling": "Background: var(--dusty-rose), Color: white"
+      },
+      {
+        "name": "outline",
+        "description": "Outlined button with transparent background",
+        "usage": "<CTAButton variant=\"outline\">Click Me</CTAButton>",
+        "styling": "Border: var(--dusty-rose), Color: var(--dusty-rose)"
+      },
+      {
+        "name": "vr-special",
+        "description": "Special variant with gradient background",
+        "usage": "<CTAButton variant=\"vr-special\">Special Action</CTAButton>",
+        "styling": "Gradient: var(--warm-walnut) to var(--deep-brown)"
+      },
+      {
+        "name": "vr-barn",
+        "description": "Barn-themed variant",
+        "usage": "<CTAButton variant=\"vr-barn\">Barn Action</CTAButton>",
+        "styling": "Custom barn styling"
+      },
+      {
+        "name": "vr-bridal",
+        "description": "Bridal-themed variant",
+        "usage": "<CTAButton variant=\"vr-bridal\">Bridal Action</CTAButton>",
+        "styling": "Custom bridal styling"
+      },
+      {
+        "name": "submit",
+        "description": "Form submission button",
+        "usage": "<CTAButton variant=\"submit\">Submit</CTAButton>",
+        "styling": "Primary styling with type=\"submit\""
+      },
+      {
+        "name": "floating",
+        "description": "Floating action button",
+        "usage": "<CTAButton variant=\"floating\">Float</CTAButton>",
+        "styling": "Fixed positioning with special effects"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "small",
+        "description": "Smaller padding and font size",
+        "usage": "<CTAButton size=\"small\">Small</CTAButton>"
+      },
+      {
+        "name": "normal",
+        "description": "Default size (can be omitted)",
+        "usage": "<CTAButton>Normal</CTAButton>"
+      },
+      {
+        "name": "large",
+        "description": "Larger padding and font size",
+        "usage": "<CTAButton size=\"large\">Large</CTAButton>"
+      }
+    ],
+    "props": {
+      "variant": {
+        "type": "string",
+        "default": "primary",
+        "options": ["primary", "outline", "vr-special", "vr-barn", "vr-bridal", "submit", "floating"],
+        "description": "Visual style variant of the button"
+      },
+      "size": {
+        "type": "string",
+        "default": "normal", 
+        "options": ["small", "normal", "large"],
+        "description": "Size of the button"
+      },
+      "href": {
+        "type": "string",
+        "description": "External link URL (renders as <a> tag)"
+      },
+      "to": {
+        "type": "string",
+        "description": "React Router path (renders as <Link> component)"
+      },
+      "onClick": {
+        "type": "function",
+        "description": "Click event handler"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Disabled state"
+      },
+      "type": {
+        "type": "string",
+        "default": "button",
+        "options": ["button", "submit", "reset"],
+        "description": "Button type attribute"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS classes"
+      },
+      "ariaLabel": {
+        "type": "string",
+        "description": "Accessibility label"
+      },
+      "target": {
+        "type": "string",
+        "description": "Link target (for href prop)"
+      },
+      "rel": {
+        "type": "string",
+        "description": "Link relationship (for href prop)"
+      }
+    }
+  },
+
+  "shadcnMigration": {
+    "targetComponent": "@/components/ui/button",
+    "installation": "npx shadcn-ui@latest add button",
+    "variantMappings": {
+      "primary": "default",
+      "outline": "outline",
+      "vr-special": "default + custom className",
+      "vr-barn": "secondary + custom className", 
+      "vr-bridal": "outline + custom className",
+      "submit": "default + type=\"submit\"",
+      "floating": "default + fixed positioning"
+    },
+    "sizeMappings": {
+      "small": "sm",
+      "normal": "default",
+      "large": "lg"
+    },
+    "migrationExamples": [
+      {
+        "description": "Simple primary button",
+        "before": "<CTAButton variant=\"primary\">Click Me</CTAButton>",
+        "after": "<Button variant=\"default\">Click Me</Button>"
+      },
+      {
+        "description": "Outline button",
+        "before": "<CTAButton variant=\"outline\">Click Me</CTAButton>",
+        "after": "<Button variant=\"outline\">Click Me</Button>"
+      },
+      {
+        "description": "Large primary button",
+        "before": "<CTAButton variant=\"primary\" size=\"large\">Click Me</CTAButton>",
+        "after": "<Button variant=\"default\" size=\"lg\">Click Me</Button>"
+      },
+      {
+        "description": "External link button",
+        "before": "<CTAButton variant=\"primary\" href=\"/gallery\">View Gallery</CTAButton>",
+        "after": "<Button variant=\"default\" asChild><a href=\"/gallery\">View Gallery</a></Button>"
+      },
+      {
+        "description": "Router link button",
+        "before": "<CTAButton variant=\"outline\" to=\"/contact\">Contact</CTAButton>",
+        "after": "<Button variant=\"outline\" asChild><Link to=\"/contact\">Contact</Link></Button>"
+      },
+      {
+        "description": "Button with icon",
+        "before": "<CTAButton variant=\"primary\"><Icon name=\"calendar\" size=\"sm\" color=\"white\" />Schedule</CTAButton>",
+        "after": "<Button variant=\"default\"><Calendar className=\"mr-2 h-4 w-4\" />Schedule</Button>"
+      },
+      {
+        "description": "Disabled button",
+        "before": "<CTAButton variant=\"primary\" disabled>Coming Soon</CTAButton>",
+        "after": "<Button variant=\"default\" disabled>Coming Soon</Button>"
+      },
+      {
+        "description": "Submit button",
+        "before": "<CTAButton variant=\"submit\">Submit Form</CTAButton>",
+        "after": "<Button variant=\"default\" type=\"submit\">Submit Form</Button>"
+      }
+    ]
+  },
+
+  "iconMigration": {
+    "from": "Custom Icon component",
+    "to": "Lucide React",
+    "installation": "npm install lucide-react",
+    "mappings": [
+      {
+        "current": "<Icon name=\"calendar\" size=\"sm\" color=\"white\" />",
+        "shadcn": "<Calendar className=\"mr-2 h-4 w-4\" />",
+        "notes": "Import: import { Calendar } from 'lucide-react'"
+      },
+      {
+        "current": "<Icon name=\"camera\" size=\"sm\" color=\"dusty-rose\" />",
+        "shadcn": "<Camera className=\"mr-2 h-4 w-4\" />",
+        "notes": "Import: import { Camera } from 'lucide-react'"
+      },
+      {
+        "current": "<Icon name=\"arrow-right\" size=\"sm\" color=\"white\" />",
+        "shadcn": "<ArrowRight className=\"ml-2 h-4 w-4\" />",
+        "notes": "Import: import { ArrowRight } from 'lucide-react'"
+      },
+      {
+        "current": "<Icon name=\"phone\" size=\"sm\" color=\"white\" />",
+        "shadcn": "<Phone className=\"mr-2 h-4 w-4\" />",
+        "notes": "Import: import { Phone } from 'lucide-react'"
+      },
+      {
+        "current": "<Icon name=\"mail\" size=\"sm\" color=\"dusty-rose\" />",
+        "shadcn": "<Mail className=\"mr-2 h-4 w-4\" />",
+        "notes": "Import: import { Mail } from 'lucide-react'"
+      }
+    ],
+    "sizeMappings": {
+      "sm": "h-4 w-4",
+      "md": "h-5 w-5", 
+      "lg": "h-6 w-6"
+    },
+    "positioningClasses": {
+      "leading": "mr-2",
+      "trailing": "ml-2"
+    }
+  },
+
+  "tokenIntegration": {
+    "tokenSystem": "Style Dictionary",
+    "tokenFile": "src/generated/tokens.css",
+    "buttonTokens": {
+      "colors": {
+        "primary-bg": "var(--color-semantic-button-primary-bg)",
+        "primary-text": "var(--color-semantic-button-primary-text)",
+        "primary-hover-bg": "var(--color-semantic-button-primary-hover-bg)",
+        "outline-border": "var(--color-semantic-button-outline-border)",
+        "outline-text": "var(--color-semantic-button-outline-text)",
+        "outline-hover-bg": "var(--color-semantic-button-outline-hover-bg)",
+        "outline-hover-text": "var(--color-semantic-button-outline-hover-text)"
+      },
+      "spacing": {
+        "padding-sm": "var(--spacing-sm) var(--spacing-lg)",
+        "padding-default": "var(--spacing-md) var(--spacing-xl)",
+        "padding-lg": "var(--spacing-lg) var(--spacing-2xl)"
+      },
+      "typography": {
+        "font-family": "var(--font-family-body)",
+        "font-size-sm": "var(--font-size-sm)",
+        "font-size-default": "var(--font-size-base)",
+        "font-size-lg": "var(--font-size-lg)",
+        "font-weight": "var(--font-weight-medium)"
+      },
+      "borders": {
+        "radius": "var(--size-border-radius-pill)",
+        "width": "var(--size-border-width-medium)"
+      },
+      "effects": {
+        "transition": "var(--transition-preset-default)",
+        "shadow": "var(--shadow-sm)",
+        "shadow-hover": "var(--shadow-md)"
+      }
+    },
+    "darkModeSupport": {
+      "strategies": [":root.dark", "html[data-theme=\"dark\"]"],
+      "colorMixSupport": true,
+      "fallbacks": "Graceful degradation for older browsers"
+    }
+  },
+
+  "usagePatterns": {
+    "common": [
+      {
+        "name": "Primary CTA",
+        "description": "Main call-to-action button on pages",
+        "current": "<CTAButton variant=\"primary\" size=\"large\">Schedule Your Visit</CTAButton>",
+        "shadcn": "<Button variant=\"default\" size=\"lg\">Schedule Your Visit</Button>"
+      },
+      {
+        "name": "Secondary Action",
+        "description": "Secondary actions like viewing galleries",
+        "current": "<CTAButton variant=\"outline\">View Gallery</CTAButton>",
+        "shadcn": "<Button variant=\"outline\">View Gallery</Button>"
+      },
+      {
+        "name": "Navigation Link",
+        "description": "Styled links that look like buttons",
+        "current": "<CTAButton variant=\"primary\" to=\"/contact\">Contact Us</CTAButton>",
+        "shadcn": "<Button variant=\"default\" asChild><Link to=\"/contact\">Contact Us</Link></Button>"
+      },
+      {
+        "name": "External Link",
+        "description": "Links to external websites",
+        "current": "<CTAButton variant=\"outline\" href=\"https://example.com\" target=\"_blank\">Visit Site</CTAButton>",
+        "shadcn": "<Button variant=\"outline\" asChild><a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">Visit Site</a></Button>"
+      },
+      {
+        "name": "Form Submit",
+        "description": "Form submission buttons",
+        "current": "<CTAButton variant=\"submit\">Send Message</CTAButton>",
+        "shadcn": "<Button type=\"submit\">Send Message</Button>"
+      }
+    ],
+    "withIcons": [
+      {
+        "name": "Schedule Button",
+        "description": "Button with calendar icon",
+        "current": "<CTAButton variant=\"primary\"><Icon name=\"calendar\" size=\"sm\" color=\"white\" />Schedule Visit</CTAButton>",
+        "shadcn": "<Button variant=\"default\"><Calendar className=\"mr-2 h-4 w-4\" />Schedule Visit</Button>"
+      },
+      {
+        "name": "Contact Button", 
+        "description": "Button with phone icon",
+        "current": "<CTAButton variant=\"outline\"><Icon name=\"phone\" size=\"sm\" color=\"dusty-rose\" />Call Now</CTAButton>",
+        "shadcn": "<Button variant=\"outline\"><Phone className=\"mr-2 h-4 w-4\" />Call Now</Button>"
+      },
+      {
+        "name": "Arrow Button",
+        "description": "Button with trailing arrow",
+        "current": "<CTAButton variant=\"primary\">Learn More <Icon name=\"arrow-right\" size=\"sm\" color=\"white\" /></CTAButton>",
+        "shadcn": "<Button variant=\"default\">Learn More <ArrowRight className=\"ml-2 h-4 w-4\" /></Button>"
+      }
+    ]
+  },
+
+  "accessibility": {
+    "requirements": [
+      "WCAG 2.1 AA compliance",
+      "Minimum 4.5:1 color contrast ratio",
+      "Keyboard navigation support",
+      "Screen reader compatibility",
+      "Focus indicators",
+      "Appropriate ARIA labels"
+    ],
+    "currentImplementation": {
+      "colorContrast": "4.8:1 (dusty-rose on white text)",
+      "focusIndicators": "Built-in browser focus rings",
+      "keyboardNav": "Tab and Enter key support",
+      "ariaLabels": "Optional ariaLabel prop"
+    },
+    "shadcnBenefits": [
+      "Built-in accessibility features",
+      "Proper ARIA attributes",
+      "Keyboard navigation",
+      "Focus management",
+      "Screen reader support"
+    ],
+    "migrationNotes": [
+      "Maintain existing ariaLabel prop as aria-label",
+      "Ensure custom variants maintain contrast ratios", 
+      "Test keyboard navigation after migration",
+      "Verify screen reader compatibility"
+    ]
+  },
+
+  "migrationChecklist": {
+    "preparation": [
+      "✅ Install shadcn/ui button component",
+      "✅ Install lucide-react for icons",
+      "✅ Review current button usage across codebase",
+      "✅ Identify custom variants needing special handling"
+    ],
+    "implementation": [
+      "Replace import statements",
+      "Update variant prop values",
+      "Migrate size props",
+      "Convert icon components to Lucide",
+      "Handle link buttons with asChild pattern",
+      "Apply custom styling for special variants"
+    ],
+    "testing": [
+      "Visual regression testing",
+      "Accessibility testing",
+      "Keyboard navigation testing",
+      "Cross-browser compatibility",
+      "Mobile responsiveness",
+      "Dark mode functionality"
+    ],
+    "cleanup": [
+      "Remove old CTAButton component",
+      "Update documentation",
+      "Remove unused dependencies",
+      "Update design system documentation"
+    ]
+  },
+
+  "troubleshooting": {
+    "commonIssues": [
+      {
+        "issue": "Styling differences after migration",
+        "solution": "Use cn() utility to combine shadcn classes with custom styles",
+        "example": "className={cn(\"bg-rose-400 hover:bg-amber-900\", className)}"
+      },
+      {
+        "issue": "Link buttons not working",
+        "solution": "Use asChild prop with appropriate child element",
+        "example": "<Button asChild><Link to=\"/path\">Text</Link></Button>"
+      },
+      {
+        "issue": "Icons not displaying correctly",
+        "solution": "Import correct Lucide icon and use proper className",
+        "example": "import { Calendar } from 'lucide-react'"
+      },
+      {
+        "issue": "Custom variants not matching design",
+        "solution": "Create custom variant classes and use with cn() utility",
+        "example": "Use design tokens for consistent styling"
+      }
+    ]
+  },
+
+  "codeExamples": {
+    "imports": {
+      "current": "import CTAButton from '../components/CTAButton'\nimport Icon from '../components/Icon'",
+      "shadcn": "import { Button } from '@/components/ui/button'\nimport { Calendar, Camera, ArrowRight, Phone, Mail } from 'lucide-react'\nimport { Link } from 'react-router-dom'\nimport { cn } from '@/lib/utils'"
+    },
+    "basicUsage": {
+      "current": "// Current CTAButton usage\n<CTAButton variant=\"primary\">Click Me</CTAButton>\n<CTAButton variant=\"outline\" size=\"large\">Outline Large</CTAButton>\n<CTAButton variant=\"primary\" disabled>Disabled</CTAButton>",
+      "shadcn": "// Shadcn Button usage\n<Button variant=\"default\">Click Me</Button>\n<Button variant=\"outline\" size=\"lg\">Outline Large</Button>\n<Button variant=\"default\" disabled>Disabled</Button>"
+    },
+    "withLinks": {
+      "current": "// Current link buttons\n<CTAButton variant=\"primary\" href=\"/gallery\">External Link</CTAButton>\n<CTAButton variant=\"outline\" to=\"/contact\">Router Link</CTAButton>",
+      "shadcn": "// Shadcn link buttons\n<Button variant=\"default\" asChild>\n  <a href=\"/gallery\">External Link</a>\n</Button>\n<Button variant=\"outline\" asChild>\n  <Link to=\"/contact\">Router Link</Link>\n</Button>"
+    },
+    "withIcons": {
+      "current": "// Current icon buttons\n<CTAButton variant=\"primary\">\n  <Icon name=\"calendar\" size=\"sm\" color=\"white\" />\n  Schedule Visit\n</CTAButton>",
+      "shadcn": "// Shadcn icon buttons\n<Button variant=\"default\">\n  <Calendar className=\"mr-2 h-4 w-4\" />\n  Schedule Visit\n</Button>"
+    },
+    "customStyling": {
+      "current": "// Current custom styling\n<CTAButton variant=\"vr-special\" className=\"my-custom-class\">\n  Special Action\n</CTAButton>",
+      "shadcn": "// Shadcn custom styling\n<Button \n  variant=\"default\" \n  className={cn(\n    \"bg-gradient-to-r from-amber-900 to-stone-800\",\n    \"hover:from-amber-800 hover:to-stone-700\",\n    \"my-custom-class\"\n  )}\n>\n  Special Action\n</Button>"
+    }
+  }
+}
