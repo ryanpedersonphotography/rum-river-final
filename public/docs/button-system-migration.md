@@ -1,8 +1,29 @@
+---
+type: design-system-migration
+component: Button
+framework: React + Vite + Design Tokens (Style Dictionary)
+target: shadcn/ui Button with semantic token integration
+migration-goal: Align CTAButton with shadcn patterns while preserving romantic theme tokens
+output-format: src/components/ui/button.tsx + token mappings in globals.css
+ai-action: refactor legacy CTAButton, preserve all props and accessibility, replace hardcoded colors with semantic tokens
+stack: React Router + Lucide React + Class Variance Authority + color-mix() CSS
+---
+
 # Button System Migration Documentation
 
-## Meta Information
-- **Component**: CTAButton
-- **Target**: shadcn/ui Button
+<!--
+Design Intent:
+- Maintain exact romantic theme aesthetic (dusty-rose, warm-walnut palette)
+- Preserve accessibility (focus rings, ARIA, keyboard navigation, screen reader support)
+- Keep dark mode parity with dual strategy (:root.dark + html[data-theme="dark"])
+- Do NOT simplify icon/label composition logic - maintain flexibility
+- Preserve all link behaviors (href, React Router to prop, asChild pattern)
+- Keep custom gradient variants (vr-special, vr-barn, vr-bridal) as semantic overrides
+-->
+
+## System Context
+- **Legacy Component**: CTAButton (src/components/CTAButton.jsx)
+- **Target**: shadcn/ui Button with romantic theme integration
 - **Migration Status**: Ready for implementation
 - **Last Updated**: October 18, 2025
 - **Complexity**: Medium
@@ -10,13 +31,50 @@
 - **Dependencies**: lucide-react, @radix-ui/react-slot, class-variance-authority
 
 ## Table of Contents
-1. [Current Implementation](#current-implementation)
-2. [Migration Target](#migration-target)
-3. [Complete Code Examples](#complete-code-examples)
-4. [Advanced Patterns](#advanced-patterns)
-5. [Framework Integration](#framework-integration)
-6. [Migration Process](#migration-process)
-7. [Troubleshooting](#troubleshooting)
+1. [Component Anatomy](#component-anatomy)
+2. [Token Crosswalk](#token-crosswalk)
+3. [Current Implementation](#current-implementation)
+4. [Migration Target](#migration-target)
+5. [Complete Code Examples](#complete-code-examples)
+6. [Advanced Patterns](#advanced-patterns)
+7. [Framework Integration](#framework-integration)
+8. [Migration Process](#migration-process)
+9. [Troubleshooting](#troubleshooting)
+10. [Output Requirements](#output-requirements)
+11. [Verification Checklist](#verification-checklist)
+
+---
+
+## Component Anatomy
+| Part | Purpose | Current Class | Target Token | Notes |
+|------|---------|---------------|--------------|-------|
+| Container | Click target & layout | `romantic-button` | `--color-semantic-button-primary-bg` | Main button surface |
+| Background | Color surface | `bg-dusty-rose` | `--color-semantic-button-primary-bg` | Primary brand color |
+| Border | Outline definition | `border-dusty-rose` | `--color-semantic-button-outline-border` | 2px solid border |
+| Text | Button label | `text-white` | `--color-semantic-button-primary-text` | High contrast text |
+| Icon | Leading/trailing element | `mr-2 ml-2` | `--spacing-sm` | Lucide React icons |
+| Hover State | Interactive feedback | `hover:bg-warm-walnut` | `--color-semantic-button-primary-hover-bg` | Darker on hover |
+| Focus Ring | Accessibility outline | `focus-visible:ring-2` | `--focus-ring` | Keyboard navigation |
+| Radius | Corner rounding | `rounded-full` | `--size-border-radius-pill` | 50px rounded |
+| Padding | Internal spacing | `px-8 py-3` | `--spacing-lg --spacing-md` | Comfortable touch target |
+| Typography | Font styling | `font-medium text-sm` | `--font-family-body --font-size-sm` | Montserrat medium weight |
+
+## Token Crosswalk
+| Legacy Variable | New Semantic Token | Context | Usage |
+|-----------------|-------------------|---------|-------|
+| `--dusty-rose` | `--color-semantic-button-primary-bg` | Primary button background | Solid fill |
+| `--warm-walnut` | `--color-semantic-button-primary-hover-bg` | Primary hover state | Darker interaction |
+| `--dusty-rose` | `--color-semantic-button-outline-border` | Outline button border | 2px solid border |
+| `--dusty-rose` | `--color-semantic-button-outline-text` | Outline button text | Matching border color |
+| `white` | `--color-semantic-button-primary-text` | Primary button text | High contrast |
+| `white` | `--color-semantic-button-outline-hover-text` | Outline hover text | Text on fill hover |
+| `--champagne-gold` | `--color-semantic-accent-highlight` | Special accent states | vr-special gradients |
+| `--font-body` | `--font-family-body` | Button typography | Montserrat sans-serif |
+| `--space-lg` | `--spacing-lg` | Horizontal padding | 24px left/right |
+| `--space-md` | `--spacing-md` | Vertical padding | 16px top/bottom |
+| `--transition` | `--transition-preset-default` | Animation timing | 0.4s cubic-bezier |
+| `50px` | `--size-border-radius-pill` | Corner radius | Full pill shape |
+| `2px` | `--size-border-width-medium` | Border thickness | Outline variant |
 
 ---
 
@@ -1358,4 +1416,92 @@ npm uninstall old-icon-library
 
 ---
 
-This comprehensive migration guide provides everything needed to successfully transition from CTAButton to shadcn/ui Button components while maintaining all functionality, styling, and accessibility features.
+## Output Requirements
+
+When implementing this migration, AI systems should:
+
+1. **Generate a complete component file** (`src/components/ui/button.tsx`)
+   - Full TypeScript implementation with proper interfaces
+   - Include all variant mappings and size options
+   - Maintain prop compatibility with legacy CTAButton
+
+2. **Do not modify existing shadcn primitives** in `/components/ui`
+   - Extend the base Button component, don't replace it
+   - Use composition patterns for custom variants
+
+3. **Use semantic data attributes** for debugging and testing
+   - `data-variant="primary|outline|vr-special"`
+   - `data-size="sm|default|lg"`
+   - `data-component="button"`
+
+4. **Use existing design tokens exclusively**
+   - Reference tokens from `src/generated/tokens.css`
+   - Do not introduce new color values or hardcoded styles
+   - Leverage `color-mix()` for hover states with fallbacks
+
+5. **Maintain TypeScript prop interface compatibility**
+   - Preserve all current CTAButton props
+   - Add proper type definitions for variants and sizes
+   - Include proper JSDoc comments for IntelliSense
+
+6. **Output complete, production-ready code**
+   - Include all imports and dependencies
+   - Provide proper component export structure
+   - Include forwardRef for ref forwarding
+
+## Reference Visual
+**Design Reference**: [https://rum-river-final.netlify.app/button-demo](https://rum-river-final.netlify.app/button-demo)  
+**Target**: Replicate exact visual parity across all variants and states including hover, focus, and disabled states
+
+## Verification Checklist
+
+### Pre-Migration
+- [ ] Design tokens are built and available (`npm run tokens:build`)
+- [ ] Current CTAButton usage documented and tested
+- [ ] Backup branch created (`git checkout -b backup-before-button-migration`)
+- [ ] shadcn/ui dependencies installed (`npx shadcn-ui@latest add button`)
+
+### Implementation
+- [ ] Uses only semantic design tokens (no hardcoded colors)
+- [ ] Compiles without TypeScript errors
+- [ ] Maintains all original prop interfaces
+- [ ] Preserves accessibility features (ARIA, focus, keyboard nav)
+- [ ] Supports both dark mode strategies (`:root.dark` + `html[data-theme="dark"]`)
+
+### Testing
+- [ ] Passes Playwright smoke tests for `/button-demo` page
+- [ ] Visual regression diff < 1% from original design
+- [ ] All button variants render correctly
+- [ ] Hover and focus states match original behavior
+- [ ] Link behaviors work (href, React Router `to` prop, `asChild`)
+- [ ] Icon positioning and spacing maintained
+- [ ] Form submission buttons function correctly
+
+### Performance
+- [ ] Bundle size impact < 5KB additional
+- [ ] Lucide icons tree-shaken properly (only imports used icons)
+- [ ] No console warnings or errors
+- [ ] Lighthouse accessibility score maintained (100)
+
+### Integration
+- [ ] Works with existing dark mode system
+- [ ] Integrates with current design token workflow
+- [ ] Compatible with React Router navigation
+- [ ] Maintains existing CSS class compatibility where needed
+
+### Cleanup
+- [ ] Legacy CTAButton component removed
+- [ ] Unused Icon component dependencies cleaned up
+- [ ] Documentation updated to reference new component
+- [ ] No remaining references to old button classes in CSS
+
+### Final Validation
+- [ ] Production build succeeds (`npm run build`)
+- [ ] All demo pages load without errors
+- [ ] Visual spot-check on key pages (homepage, contact, gallery)
+- [ ] Cross-browser testing completed (Chrome, Firefox, Safari)
+- [ ] Mobile responsiveness verified
+
+---
+
+This comprehensive migration guide and template provides everything needed to successfully transition from CTAButton to shadcn/ui Button components while maintaining all functionality, styling, and accessibility features. The structured format ensures AI systems can follow the migration process systematically and produce consistent, production-ready results.
