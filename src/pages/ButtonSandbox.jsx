@@ -981,6 +981,47 @@ cursor: pointer;`}
 
       {/* HomePage Specific Buttons */}
       <ButtonDemo
+        title="HomePage - Hero CTA Button"
+        description="Main call-to-action button from the hero section (raw HTML)"
+        htmlCode={`<a href="/contact" class="romantic-button primary">
+  Schedule Your Visit
+</a>`}
+        cssCode={`.romantic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.romantic-button.primary {
+  background: var(--color-base-dusty-rose, #9D6B7B);
+  color: white;
+}
+
+.romantic-button.primary:hover {
+  background: var(--color-base-warm-walnut, #6B4E3D);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(157, 107, 123, 0.3);
+  text-decoration: none;
+  color: white;
+}`}
+      >
+        <a href="/contact" className="romantic-button primary">
+          Schedule Your Visit
+        </a>
+      </ButtonDemo>
+
+      <ButtonDemo
         title="HomePage - Floating CTA Button"
         description="Fixed position CTA that appears after scrolling (from HomePage)"
         htmlCode={`<a href="#lets-connect-form" className="floating-cta">
