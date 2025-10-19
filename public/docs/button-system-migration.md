@@ -858,6 +858,16 @@ html[data-theme="dark"] .romantic-button {
 }
 ```
 
+#### Dark Mode Token Overrides
+| Light Mode Token | Dark Mode Override | Purpose |
+|------------------|--------------------|---------|
+| `--color-semantic-button-primary-bg` | `color-mix(in srgb, white 95%, var(--color-base-champagne-gold) 5%)` | Softened white background |
+| `--color-semantic-button-primary-text` | `var(--color-base-warm-walnut)` | Warm brown text on light bg |
+| `--color-semantic-button-outline-border` | `white` | White border for contrast |
+| `--color-semantic-button-outline-text` | `white` | White text for visibility |
+| `--color-semantic-button-outline-hover-bg` | `color-mix(in srgb, white 90%, var(--color-base-dusty-rose) 10%)` | Subtle rose tint on hover |
+| `--color-semantic-accent-highlight` | `var(--color-base-champagne-gold)` | Preserved gold accent |
+
 #### Shadcn Dark Mode Integration
 ```tsx
 // components/ui/button.tsx - Enhanced with dark mode
@@ -1367,6 +1377,13 @@ export { Calendar, Camera, ArrowRight, Phone, Mail } from "lucide-react"
 import { Calendar } from "@/components/icons"
 ```
 
+**Performance Notes:**
+- Lucide icons are tree-shaken by default when imported individually
+- Each icon adds ~2-4KB to bundle when properly imported
+- Avoid wildcard imports (`import * from "lucide-react"`) which can add 200KB+
+- Use dynamic imports for rarely-used special variants to reduce initial bundle size
+- Monitor bundle analyzer to ensure icon tree-shaking is working correctly
+
 #### Code Splitting
 ```tsx
 // Lazy load button variants for better performance
@@ -1428,6 +1445,8 @@ When implementing this migration, AI systems should:
 2. **Do not modify existing shadcn primitives** in `/components/ui`
    - Extend the base Button component, don't replace it
    - Use composition patterns for custom variants
+   - **Important**: shadcn primitives should never be overwritten, only wrapped
+   - Reference: [shadcn/ui Button API](https://ui.shadcn.com/docs/components/button) for proper extension patterns
 
 3. **Use semantic data attributes** for debugging and testing
    - `data-variant="primary|outline|vr-special"`
@@ -1438,6 +1457,9 @@ When implementing this migration, AI systems should:
    - Reference tokens from `src/generated/tokens.css`
    - Do not introduce new color values or hardcoded styles
    - Leverage `color-mix()` for hover states with fallbacks
+   - **Token Coverage**: Ensure crosswalk includes all accent colors (dusty-rose, champagne-gold, sage-whisper)
+   - **Missing Tokens**: Verify outline hover text, disabled state tokens are included
+   - **Color-mix() Fallback**: Include `background: var(--fallback-color);` before `color-mix()` for Safari compatibility
 
 5. **Maintain TypeScript prop interface compatibility**
    - Preserve all current CTAButton props
@@ -1448,6 +1470,10 @@ When implementing this migration, AI systems should:
    - Include all imports and dependencies
    - Provide proper component export structure
    - Include forwardRef for ref forwarding
+   - **Test ID Format**: Every variant × size combination should include `data-testid="btn-<tone>-<variant>-<size>"`
+   - **Legacy Removal**: Remove legacy CTAButton aliases after one full release cycle (target: v2.0)
+   - **Accessibility**: Ensure WCAG 2.1 AA compliance with proper contrast ratios and keyboard navigation
+   - **ARIA Spec**: Reference [ARIA Button Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/) for proper implementation
 
 ## Single Source of Truth
 
@@ -1466,7 +1492,380 @@ When implementing this migration, AI systems should:
 
 **Target**: Replicate exact visual parity across all variants and states including hover, focus, and disabled states
 
-## 📋 Storyboard Lite Validation (no Storybook needed)
+## 📋 Storyboard Lite Validation (Approved Fallback)
+
+**Note**: This "Storyboard Lite" approach is the approved alternative to external Storybook dependencies. It provides the same validation capabilities using internal application routes.
+
+### Preview & Validation Routes Implementation
+
+Create these routes in your Next.js + shadcn site to validate the button migration:
+
+| Route | Purpose | Required Elements |
+|-------|---------|-------------------|
+| `/ds/buttons` | Full button matrix (tone × variant × size) with interactive states | Button grid, hover/focus/disabled states, data-testid attributes |
+| `/ds/colors` | Live token values in light/dark mode | Token table, computed color values, theme toggle |
+| `/ds/primitives` | Token → Tailwind mapping for developers | Bridge documentation, CSS custom property mappings |
+
+#### `/ds/buttons` Implementation Requirements
+
+```jsx
+// app/(site)/ds/buttons/page.tsx
+'use client'
+import { Button } from "@/components/ui/button"
+import { Calendar, Camera, ArrowRight } from "lucide-react"
+
+export default function DSButtonsPage() {
+  const variants = ['default', 'outline', 'secondary', 'ghost', 'link']
+  const sizes = ['sm', 'default', 'lg']
+  const tones = ['brand', 'secondary', 'accent', 'neutral']
+  
+  return (
+    <main data-testid="page-ds-buttons" className="container mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">Button System Matrix</h1>
+      
+      {/* Interactive Button Grid */}
+      <div className="grid grid-cols-5 gap-4 mb-8">
+        {variants.map(variant => 
+          sizes.map(size => (
+            <Button 
+              key={`${variant}-${size}`}
+              variant={variant}
+              size={size}
+              data-testid={`btn-brand-${variant}-${size}`}
+            >
+              {variant} {size}
+            </Button>
+          ))
+        )}
+      </div>
+      
+      {/* Custom Variants (vr-special, vr-barn, vr-bridal) */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Custom Variants</h2>
+        <div className="flex gap-4">
+          <Button 
+            className="bg-gradient-to-r from-amber-900 to-stone-800 hover:from-amber-800 hover:to-stone-700 text-white border-none rounded-lg"
+            data-testid="btn-special-custom-default"
+          >
+            <Camera className="mr-2 h-4 w-4" />
+            VR Special
+          </Button>
+          <Button 
+            className="bg-amber-700 hover:bg-amber-600 text-white border-amber-800"
+            data-testid="btn-barn-custom-default"
+          >
+            Barn Experience
+          </Button>
+          <Button 
+            className="bg-rose-100 hover:bg-rose-200 text-rose-800 border-rose-300"
+            data-testid="btn-bridal-custom-default"
+          >
+            Bridal Suite
+          </Button>
+        </div>
+      </section>
+      
+      {/* State Examples */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Button States</h2>
+        <div className="flex gap-4">
+          <Button data-testid="btn-default-normal">Normal</Button>
+          <Button disabled data-testid="btn-default-disabled">Disabled</Button>
+          <Button className="focus:ring-2" data-testid="btn-default-focus">Focus (tab to see)</Button>
+        </div>
+      </section>
+      
+      {/* Icon Combinations */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Icon Examples</h2>
+        <div className="flex gap-4 flex-wrap">
+          <Button data-testid="btn-icon-leading">
+            <Calendar className="mr-2 h-4 w-4" />
+            Schedule Visit
+          </Button>
+          <Button variant="outline" data-testid="btn-icon-trailing">
+            Contact Us
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
+    </main>
+  )
+}
+```
+
+#### `/ds/colors` Implementation Requirements
+
+```jsx
+// app/(site)/ds/colors/page.tsx
+'use client'
+import { useTheme } from 'next-themes'
+
+export default function DSColorsPage() {
+  const { theme, setTheme } = useTheme()
+  
+  const semanticTokens = [
+    { name: '--color-semantic-button-primary-bg', description: 'Primary button background' },
+    { name: '--color-semantic-button-primary-text', description: 'Primary button text' },
+    { name: '--color-semantic-button-primary-hover-bg', description: 'Primary hover state' },
+    { name: '--color-semantic-button-outline-border', description: 'Outline border' },
+    { name: '--color-semantic-button-outline-text', description: 'Outline text' },
+    { name: '--color-semantic-button-outline-hover-bg', description: 'Outline hover background' },
+    { name: '--color-semantic-accent-primary', description: 'Dusty rose accent' },
+    { name: '--color-semantic-accent-highlight', description: 'Champagne gold highlight' },
+  ]
+  
+  return (
+    <main data-testid="page-ds-colors" className="container mx-auto p-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Design Token Colors</h1>
+        <button 
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="px-4 py-2 border rounded"
+        >
+          Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
+        </button>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {semanticTokens.map(token => (
+          <div key={token.name} className="border rounded p-4">
+            <div className="flex items-center gap-4">
+              <div 
+                className="w-12 h-12 rounded border"
+                style={{ backgroundColor: `var(${token.name})` }}
+              />
+              <div>
+                <code className="text-sm font-mono">{token.name}</code>
+                <p className="text-sm text-gray-600">{token.description}</p>
+                <span className="text-xs text-gray-500">
+                  Computed: {getComputedStyle(document.documentElement).getPropertyValue(token.name)}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  )
+}
+```
+
+#### `/ds/primitives` Implementation Requirements
+
+```jsx
+// app/(site)/ds/primitives/page.tsx
+export default function DSPrimitivesPage() {
+  const tokenMappings = [
+    {
+      category: 'Button Colors',
+      mappings: [
+        { token: '--color-semantic-button-primary-bg', tailwind: 'bg-primary', css: 'var(--color-base-dusty-rose)' },
+        { token: '--color-semantic-button-primary-hover-bg', tailwind: 'hover:bg-primary/90', css: 'var(--color-base-warm-walnut)' },
+        { token: '--color-semantic-button-outline-border', tailwind: 'border-primary', css: 'var(--color-base-dusty-rose)' },
+      ]
+    },
+    {
+      category: 'Spacing',
+      mappings: [
+        { token: '--spacing-sm', tailwind: 'p-2', css: '0.75rem' },
+        { token: '--spacing-md', tailwind: 'p-4', css: '1rem' },
+        { token: '--spacing-lg', tailwind: 'p-6', css: '1.5rem' },
+      ]
+    }
+  ]
+  
+  return (
+    <main data-testid="page-ds-primitives" className="container mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">Token → Primitive Mapping</h1>
+      
+      {tokenMappings.map(category => (
+        <section key={category.category} className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">{category.category}</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border border-gray-300">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="border border-gray-300 p-3 text-left">Design Token</th>
+                  <th className="border border-gray-300 p-3 text-left">Tailwind Class</th>
+                  <th className="border border-gray-300 p-3 text-left">CSS Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {category.mappings.map(mapping => (
+                  <tr key={mapping.token}>
+                    <td className="border border-gray-300 p-3">
+                      <code className="text-sm">{mapping.token}</code>
+                    </td>
+                    <td className="border border-gray-300 p-3">
+                      <code className="text-sm">{mapping.tailwind}</code>
+                    </td>
+                    <td className="border border-gray-300 p-3">
+                      <code className="text-sm">{mapping.css}</code>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))}
+    </main>
+  )
+}
+```
+
+### Original CSS/React Code Reference
+
+#### Current CTAButton.jsx (Legacy)
+```jsx
+// src/components/CTAButton.jsx
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const CTAButton = ({ 
+  variant = 'primary',
+  size = 'normal',
+  href,
+  to,
+  onClick,
+  children,
+  className = '',
+  disabled = false,
+  type = 'button',
+  ariaLabel,
+  target,
+  rel,
+  ...props
+}) => {
+  const baseClasses = 'romantic-button'
+  
+  const variantClasses = {
+    primary: '',
+    outline: 'outline',
+    'vr-special': 'vr-special',
+    'vr-barn': 'vr-barn',
+    'vr-bridal': 'vr-bridal',
+    submit: '',
+    floating: 'floating'
+  }
+  
+  const sizeClasses = {
+    small: 'small',
+    normal: '',
+    large: 'large'
+  }
+  
+  const finalClassName = [
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    disabled ? 'disabled' : '',
+    className
+  ].filter(Boolean).join(' ')
+  
+  const commonProps = {
+    className: finalClassName,
+    disabled,
+    'aria-label': ariaLabel,
+    ...props
+  }
+  
+  if (href) {
+    return <a href={href} target={target} rel={rel} {...commonProps}>{children}</a>
+  }
+  
+  if (to) {
+    return <Link to={to} {...commonProps}>{children}</Link>
+  }
+  
+  return <button type={type} onClick={onClick} {...commonProps}>{children}</button>
+}
+
+export default CTAButton
+```
+
+#### Current CSS Styling (Legacy)
+```css
+/* Base button styles */
+.romantic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border: 2px solid var(--dusty-rose);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: var(--dusty-rose);
+  color: white;
+}
+
+.romantic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.9);
+}
+
+.romantic-button.outline {
+  background: transparent;
+  color: var(--dusty-rose);
+  border-color: var(--dusty-rose);
+}
+
+.romantic-button.outline:hover {
+  background: var(--dusty-rose);
+  color: white;
+}
+
+.romantic-button.vr-special {
+  background: linear-gradient(135deg, var(--warm-walnut) 0%, var(--deep-brown) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Dark mode adaptations */
+.dark-section .romantic-button,
+:root.dark .romantic-button,
+html[data-theme="dark"] .romantic-button {
+  background: white;
+  color: var(--warm-walnut);
+  border-color: white;
+  background: color-mix(in srgb, white 95%, var(--champagne-gold) 5%);
+}
+```
+
+#### Current Design Tokens (Reference)
+```css
+/* src/generated/tokens.css */
+:root {
+  --color-base-dusty-rose: #9D6B7B;
+  --color-base-warm-walnut: #6B4E3D;
+  --color-base-champagne-gold: #E4C896;
+  --color-base-deep-brown: #4A3426;
+  --color-semantic-button-primary-bg: var(--color-base-dusty-rose);
+  --color-semantic-button-primary-text: #FFFFFF;
+  --color-semantic-button-primary-hover-bg: var(--color-base-warm-walnut);
+  --color-semantic-button-outline-border: var(--color-base-dusty-rose);
+  --color-semantic-button-outline-text: var(--color-base-dusty-rose);
+  --color-semantic-button-outline-hover-bg: var(--color-base-dusty-rose);
+  --color-semantic-button-outline-hover-text: #FFFFFF;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --size-border-radius-pill: 50px;
+  --transition-preset-default: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
 
 ### Validate the Migration (No External Tools Needed)
 
