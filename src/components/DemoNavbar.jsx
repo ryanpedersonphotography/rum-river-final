@@ -25,7 +25,8 @@ export default function DemoNavbar() {
     { path: '/find-your-way-demo', label: 'Find Your Way', category: 'Maps' },
     { path: '/schedule-visit-form-demo', label: 'Visit Form', category: 'Forms' },
     { path: '/button-demo', label: 'Button System', category: 'Components' },
-    { path: '/button-sandbox', label: 'Button Sandbox', category: 'Components' }
+    { path: '/button-sandbox', label: 'Button Sandbox', category: 'Components' },
+    { path: '/schedule-tour-demo', label: 'Schedule Tour', category: 'Forms' }
   ]
 
   // Group pages by category

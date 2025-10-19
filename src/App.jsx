@@ -27,6 +27,7 @@ import FindYourWayStandalone from './pages/FindYourWayStandalone'
 import ScheduleVisitFormStandalone from './pages/ScheduleVisitFormStandalone'
 import ButtonStandalone from './pages/ButtonStandalone'
 import ButtonSandbox from './pages/ButtonSandbox'
+import ScheduleTourDemo from './pages/ScheduleTourDemo'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
@@ -85,6 +86,7 @@ export default function App() {
         <Route path="/schedule-visit-form-demo" element={<><DemoNavbar /><ScheduleVisitFormStandalone /></>} />
         <Route path="/button-demo" element={<><DemoNavbar /><ButtonStandalone /></>} />
         <Route path="/button-sandbox" element={<><DemoNavbar /><ButtonSandbox /></>} />
+        <Route path="/schedule-tour-demo" element={<><DemoNavbar /><ScheduleTourDemo /></>} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>
