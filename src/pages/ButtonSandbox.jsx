@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { CTAButton } from '../components/CTAButton';
 import { VRTourButton } from '../components/VRTourButton';
+import { FormSubmitButton } from '../components/FormSubmitButton';
+import { Link } from 'react-router-dom';
+import Icon from '../components/Icon';
 
 export default function ButtonSandbox() {
   const [showCSS, setShowCSS] = useState(true);
+  const [submitStates, setSubmitStates] = useState({
+    normal: false,
+    loading: false,
+    disabled: true
+  });
 
   const ButtonDemo = ({ title, description, children, cssCode, htmlCode }) => (
     <div className="demo-section">
@@ -318,6 +326,123 @@ export default function ButtonSandbox() {
         .venue-tab.on-dark:hover {
           background: var(--color-base-champagne-gold, #E4C896);
           color: var(--color-base-deep-forest, #3A4A3C);
+        }
+
+        /* HomePage specific buttons */
+        .floating-cta-demo {
+          position: relative;
+          background: var(--color-base-dusty-rose, #9D6B7B);
+          color: white;
+          text-decoration: none;
+          padding: 1rem 1.5rem;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 20px rgba(157, 107, 123, 0.4);
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .floating-cta-demo:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 30px rgba(157, 107, 123, 0.5);
+          text-decoration: none;
+          color: white;
+        }
+
+        .gallery-item-demo {
+          display: block;
+          background: var(--color-base-blush-pink, #F4E4E1);
+          border-radius: 12px;
+          padding: 1.5rem;
+          text-decoration: none;
+          color: var(--color-base-warm-walnut, #6B4E3D);
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .gallery-item-demo:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 30px rgba(157, 107, 123, 0.2);
+          border-color: var(--color-base-dusty-rose, #9D6B7B);
+          text-decoration: none;
+          color: var(--color-base-warm-walnut, #6B4E3D);
+        }
+
+        .gallery-item-demo::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s ease;
+        }
+
+        .gallery-item-demo:hover::before {
+          left: 100%;
+        }
+
+        .scroll-indicator-demo {
+          text-align: center;
+          padding: 1rem;
+          color: var(--color-base-warm-walnut, #6B4E3D);
+        }
+
+        .scroll-arrow-demo {
+          font-size: 1.5rem;
+          margin-top: 0.5rem;
+          animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+
+        .submit-state-controls {
+          background: var(--color-base-romantic-ivory, #FBF8F4);
+          padding: 1rem;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+          border: 2px dashed rgba(157, 107, 123, 0.2);
+        }
+
+        .submit-state-controls h4 {
+          margin: 0 0 0.5rem 0;
+          color: var(--color-base-warm-walnut, #6B4E3D);
+        }
+
+        .state-toggle {
+          background: var(--color-base-sage-whisper, #9CAA9E);
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          cursor: pointer;
+          font-size: 0.875rem;
+          transition: all 0.3s ease;
+        }
+
+        .state-toggle:hover {
+          background: var(--color-base-deep-forest, #3A4A3C);
+        }
+
+        .state-toggle.active {
+          background: var(--color-base-dusty-rose, #9D6B7B);
         }
 
         @media (max-width: 768px) {
@@ -854,6 +979,274 @@ cursor: pointer;`}
         </CTAButton>
       </ButtonDemo>
 
+      {/* HomePage Specific Buttons */}
+      <ButtonDemo
+        title="HomePage - Floating CTA Button"
+        description="Fixed position CTA that appears after scrolling (from HomePage)"
+        htmlCode={`<a href="#lets-connect-form" className="floating-cta">
+  <Icon name="calendar" size="sm" color="white" />
+  Schedule Your Tour
+</a>`}
+        cssCode={`.floating-cta {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--color-base-dusty-rose, #9D6B7B);
+  color: white;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(157, 107, 123, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.floating-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(157, 107, 123, 0.5);
+}`}
+      >
+        <a href="#lets-connect-form" className="floating-cta-demo">
+          <Icon name="calendar" size="sm" color="white" />
+          Schedule Your Tour
+        </a>
+      </ButtonDemo>
+
+      <ButtonDemo
+        title="HomePage - Gallery Item Links"
+        description="Interactive gallery cards that act as navigation buttons"
+        htmlCode={`<Link
+  to="/real-weddings/couple-name"
+  className="gallery-item image-reveal"
+>
+  <div className="gallery-overlay">
+    <h3>Sarah & Michael</h3>
+    <p>View Their Story</p>
+  </div>
+</Link>`}
+        cssCode={`.gallery-item {
+  display: block;
+  background: var(--color-base-blush-pink, #F4E4E1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--color-base-warm-walnut, #6B4E3D);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(157, 107, 123, 0.2);
+  border-color: var(--color-base-dusty-rose, #9D6B7B);
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.gallery-item:hover::before {
+  left: 100%;
+}`}
+      >
+        <Link to="/real-weddings/example" className="gallery-item-demo">
+          <h4 style={{ margin: '0 0 0.5rem 0' }}>Sarah & Michael</h4>
+          <p style={{ margin: 0, fontSize: '0.875rem', opacity: 0.8 }}>View Their Love Story →</p>
+        </Link>
+      </ButtonDemo>
+
+      <ButtonDemo
+        title="HomePage - Scroll Indicator"
+        description="Animated scroll prompt from hero section"
+        htmlCode={`<div className="hero-scroll-indicator">
+  <span>Discover Your Perfect Day</span>
+  <div className="scroll-arrow">↓</div>
+</div>`}
+        cssCode={`.hero-scroll-indicator {
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-base-warm-walnut, #6B4E3D);
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}`}
+      >
+        <div className="scroll-indicator-demo">
+          <span>Discover Your Perfect Day</span>
+          <div className="scroll-arrow-demo">↓</div>
+        </div>
+      </ButtonDemo>
+
+      {/* Form Submit Button States */}
+      <ButtonDemo
+        title="FormSubmitButton - Interactive States"
+        description="Form submission button with loading, disabled, and normal states"
+        htmlCode={`<FormSubmitButton 
+  submitting={false}
+  submitText="Schedule Tour"
+  loadingText="SCHEDULING..."
+  icon="📅"
+  showIcon={true}
+/>
+
+<FormSubmitButton 
+  submitting={true}
+  submitText="Schedule Tour"
+  loadingText="SCHEDULING..."
+/>
+
+<FormSubmitButton 
+  disabled={true}
+  submitText="Schedule Tour"
+/>`}
+        cssCode={`.romantic-button.primary {
+  background: var(--color-base-dusty-rose, #9D6B7B);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.romantic-button.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.romantic-button.primary[aria-busy="true"] {
+  background: var(--color-base-sage-whisper, #9CAA9E);
+  cursor: progress;
+}
+
+/* Icon spacing - inline styles from component */
+.icon-spacing {
+  margin-right: 0.5rem;
+}`}
+      >
+        <div className="submit-state-controls">
+          <h4>Interactive Submit Button States:</h4>
+          <button 
+            className={`state-toggle ${!submitStates.normal && !submitStates.loading && !submitStates.disabled ? 'active' : ''}`}
+            onClick={() => setSubmitStates({normal: true, loading: false, disabled: false})}
+          >
+            Normal
+          </button>
+          <button 
+            className={`state-toggle ${submitStates.loading ? 'active' : ''}`}
+            onClick={() => setSubmitStates({normal: false, loading: true, disabled: false})}
+          >
+            Loading
+          </button>
+          <button 
+            className={`state-toggle ${submitStates.disabled ? 'active' : ''}`}
+            onClick={() => setSubmitStates({normal: false, loading: false, disabled: true})}
+          >
+            Disabled
+          </button>
+        </div>
+        
+        <FormSubmitButton 
+          submitting={submitStates.loading}
+          disabled={submitStates.disabled}
+          submitText="Schedule Tour"
+          loadingText="SCHEDULING..."
+          icon="📅"
+          showIcon={submitStates.normal || (!submitStates.loading && !submitStates.disabled)}
+        />
+        <FormSubmitButton 
+          submitting={false}
+          disabled={false}
+          submitText="Send Message"
+          loadingText="SENDING..."
+          className="ml-2"
+        />
+      </ButtonDemo>
+
+      {/* VRTourButton Icon Spacing Issue */}
+      <ButtonDemo
+        title="VRTourButton - Icon Spacing (Inline Style Issue)"
+        description="Shows the inline style used for icon spacing in VRTourButton"
+        htmlCode={`<VRTourButton 
+  tourUrl="https://example.com/vr-tour"
+  variant="vr-special"
+  icon="🥽"
+  showIcon={true}
+>
+  Launch Virtual Tour
+</VRTourButton>
+
+{/* Internal implementation: */}
+{showIcon && (
+  <span style={{ marginRight: '0.5rem' }}>{icon}</span>
+)}`}
+        cssCode={`/* VRTourButton uses inline styles for icon spacing */
+.vr-tour-icon {
+  margin-right: 0.5rem; /* Should be moved to CSS class */
+}
+
+/* Better approach would be: */
+.romantic-button .icon {
+  margin-right: var(--spacing-xs, 0.5rem);
+}
+
+.romantic-button .icon:last-child {
+  margin-right: 0;
+  margin-left: var(--spacing-xs, 0.5rem);
+}`}
+      >
+        <VRTourButton 
+          tourUrl="https://example.com/vr-tour"
+          variant="vr-special"
+          icon="🥽"
+          showIcon={true}
+        >
+          Launch Virtual Tour
+        </VRTourButton>
+        <div style={{ 
+          marginTop: '0.5rem', 
+          padding: '0.5rem', 
+          background: 'rgba(212, 165, 165, 0.1)', 
+          borderRadius: '4px',
+          fontSize: '0.875rem',
+          color: 'var(--color-base-warm-walnut, #6B4E3D)'
+        }}>
+          ⚠️ Note: This component uses inline styles for icon spacing instead of CSS classes
+        </div>
+      </ButtonDemo>
+
       {/* Summary */}
       <div className="demo-section">
         <div className="demo-header">
@@ -878,7 +1271,17 @@ cursor: pointer;`}
             <li><strong>.romantic-button.outline</strong> - Direct HTML outline button</li>
             <li><strong>.venue-tab</strong> - Tab-style navigation buttons</li>
             <li><strong>.cta-submit-button</strong> - Form submission styling</li>
+            <li><strong>.floating-cta</strong> - Fixed position floating CTA</li>
+            <li><strong>.gallery-item</strong> - Interactive gallery navigation cards</li>
+            <li><strong>.scroll-arrow</strong> - Animated scroll indicators</li>
             <li><strong>.on-dark</strong> - Modifier for dark backgrounds</li>
+          </ul>
+
+          <h4 style={{ color: 'var(--color-base-warm-walnut, #6B4E3D)' }}>Specialized Components:</h4>
+          <ul style={{ color: 'var(--color-base-warm-walnut, #6B4E3D)' }}>
+            <li><strong>FormSubmitButton</strong> - Form submission with loading states</li>
+            <li><strong>VRTourButton</strong> - Virtual tour launcher (wraps CTAButton)</li>
+            <li><strong>Icon Integration</strong> - Buttons with leading/trailing icons</li>
           </ul>
 
           <h4 style={{ color: 'var(--color-base-warm-walnut, #6B4E3D)' }}>Design Tokens Used:</h4>
