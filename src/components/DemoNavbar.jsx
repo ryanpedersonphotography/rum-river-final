@@ -24,7 +24,8 @@ export default function DemoNavbar() {
     { path: '/love-letters-demo', label: 'Love Letters', category: 'Content' },
     { path: '/find-your-way-demo', label: 'Find Your Way', category: 'Maps' },
     { path: '/schedule-visit-form-demo', label: 'Visit Form', category: 'Forms' },
-    { path: '/button-demo', label: 'Button System', category: 'Components' }
+    { path: '/button-demo', label: 'Button System', category: 'Components' },
+    { path: '/button-sandbox', label: 'Button Sandbox', category: 'Components' }
   ]
 
   // Group pages by category
