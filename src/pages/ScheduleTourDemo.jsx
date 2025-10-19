@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScheduleTourForm } from '../components/ScheduleTourForm';
 import NetlifyForm from '../components/NetlifyForm';
 import FormSubmitButton from '../components/FormSubmitButton';
+import Icon from '../components/Icon';
 
 export default function ScheduleTourDemo() {
   const [showCode, setShowCode] = useState(true);
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false);
+
+  // Show floating CTA after scrolling past header
+  useEffect(() => {
+    const handleScroll = () => {
+      const headerSection = document.querySelector('.demo-header-section');
+      if (headerSection) {
+        const headerBottom = headerSection.offsetTop + headerSection.offsetHeight;
+        setShowFloatingCTA(window.scrollY > headerBottom);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const CodeBlock = ({ title, children, language = 'jsx' }) => (
     <div className="code-demo">
@@ -48,6 +64,14 @@ export default function ScheduleTourDemo() {
 
   return (
     <div className="schedule-tour-demo">
+      {/* Floating CTA Button - shows after scrolling past header */}
+      <a 
+        href="#default-form" 
+        className={`floating-cta ${showFloatingCTA ? 'visible' : 'hidden'}`}
+      >
+        <Icon name="calendar" size="sm" color="white" />
+        Try Forms Below
+      </a>
       <style>{`
         .schedule-tour-demo {
           max-width: 1200px;
@@ -298,6 +322,50 @@ export default function ScheduleTourDemo() {
             grid-template-columns: 1fr;
           }
         }
+
+        /* Floating CTA specific to demo page */
+        .floating-cta {
+          position: fixed;
+          bottom: 2rem;
+          right: 2rem;
+          background: var(--color-base-dusty-rose, #9D6B7B);
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 50px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          border: none;
+          font-size: 0.9rem;
+          text-decoration: none;
+          /* Default hidden state */
+          opacity: 0;
+          transform: translateY(20px) scale(0.8);
+          pointer-events: none;
+        }
+
+        .floating-cta.visible {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          pointer-events: auto;
+        }
+
+        .floating-cta.hidden {
+          opacity: 0;
+          transform: translateY(20px) scale(0.8);
+          pointer-events: none;
+        }
+
+        .floating-cta:hover {
+          transform: translateY(-3px) scale(1);
+          box-shadow: 0 15px 40px rgba(157, 107, 123, 0.4);
+        }
       `}</style>
 
       {/* Header */}
@@ -317,6 +385,7 @@ export default function ScheduleTourDemo() {
       </div>
 
       {/* Main ScheduleTourForm Component */}
+      <div id="default-form">
       <DemoSection
         title="ScheduleTourForm Component (Default)"
         description="The main reusable component used across HomePage, ContactPage, and other pages"
@@ -354,6 +423,7 @@ export default function ScheduleTourDemo() {
       >
         <ScheduleTourForm />
       </DemoSection>
+      </div>
 
       {/* Light Theme Variant */}
       <DemoSection
