@@ -1,12 +1,12 @@
 ---
 type: design-system-migration
 component: Hero
-framework: React + Vite + Design Tokens (Style Dictionary)
+framework: React + Next.js + Design Tokens (Style Dictionary)
 target: shadcn/ui Hero with semantic token integration
 migration-goal: Align hero system with shadcn patterns while preserving romantic theme tokens
 output-format: src/components/ui/hero.tsx + token mappings in globals.css
 ai-action: refactor legacy hero CSS, preserve all content patterns and accessibility, replace hardcoded colors with semantic tokens
-stack: React Router + Lucide React + Next.js Image + Framer Motion (optional) + color-mix() CSS
+stack: Next.js + Lucide React + next/image + Framer Motion (optional) + color-mix() CSS
 ---
 
 # Hero System Migration Documentation
@@ -58,6 +58,7 @@ Design Intent:
 | Lead Text | Description | `.hero-lead` | `text-xl text-amber-50/95` | Supporting copy |
 | Button Container | CTA layout | `.hero-buttons` | `flex gap-4` | Action buttons |
 | Scroll Indicator | Navigation hint | `.hero-scroll-indicator` | `absolute bottom-8` | Animated scroll arrow |
+| Mobile Layout | Small screen adaptation | Media queries | `min-h-[70vh] md:min-h-screen` | Reduced height on mobile |
 | Floating CTA | Fixed button | `.floating-cta` | `fixed bottom-8 right-8` | Persistent call-to-action |
 
 ## Token Crosswalk
@@ -75,6 +76,9 @@ Design Intent:
 | `--space-lg` | `--spacing-lg` | Hero content padding | 24px spacing |
 | `--space-xl` | `--spacing-xl` | Section margins | 32px spacing |
 | `100vh` | `--size-viewport-height` | Full-screen hero height | Viewport-based sizing |
+| **Dark Mode Overrides** | | | |
+| `rgba(107, 78, 61, 0.9)` → `rgba(255, 255, 255, 0.1)` | `--color-semantic-background-overlay-primary-dark` | Dark mode overlay start | Light overlay in dark theme |
+| `rgba(58, 74, 60, 0.8)` → `rgba(228, 200, 150, 0.2)` | `--color-semantic-background-overlay-secondary-dark` | Dark mode overlay end | Champagne tint in dark theme |
 
 ---
 
@@ -273,11 +277,13 @@ html[data-theme="dark"] .hero-enhanced {
 npx shadcn-ui@latest init
 
 # Install required dependencies
-npm install next/image
 npm install framer-motion    # Optional for animations
 npm install @radix-ui/react-slot
 npm install class-variance-authority
 npm install clsx tailwind-merge
+
+# Note: next/image is built into Next.js 13+
+# Ensure Next.js Image optimization is configured in next.config.js
 ```
 
 ### Shadcn Hero Component Structure
@@ -1760,10 +1766,13 @@ html[data-theme="dark"] .hero-enhanced {
 ### What NOT to Do (Guardrails)
 
 - **Hardcode image URLs** in Hero components; use props and CMS integration
-- **Skip image optimization**; always use Next.js Image component with proper sizing
+- **Skip image optimization**; always use Next.js Image component with proper sizing  
+- **Use inline CSS styles** in hero components; maintain styling via tokens/variants only
 - **Ignore responsive behavior**; test all height variants on mobile devices
 - **Override shadcn/ui internals**; extend through composition and props
+- **Create too many CTAs**; limit to 1 primary + 1 optional secondary action maximum
 - **Forget accessibility**; include proper alt text, ARIA landmarks, and focus management
+- **Skip performance testing**; validate Core Web Vitals on mobile networks
 
 ### Note on Preset Components
 
@@ -1776,6 +1785,200 @@ Hero system flows through token integration:
 `tokens.css` → `tailwind.config.js` → shadcn primitives → Hero presets
 
 Preview the complete component showcase at `/ds/heroes`.
+
+---
+
+## Migration Process
+
+### Step-by-Step Migration Guide
+
+#### Phase 1: Image Optimization Setup
+```bash
+# 1. Configure Next.js Image optimization
+# next.config.js
+module.exports = {
+  images: {
+    domains: ['your-domain.com'],
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+}
+
+# 2. Optimize hero images for web
+# Target dimensions: 1920x1080 (16:9) minimum
+# Format: WebP with JPEG fallback
+# Quality: 85% compression
+# File size: < 500KB for hero images
+```
+
+#### Phase 2: Performance-First Implementation
+```tsx
+// Critical performance considerations for hero sections
+const Hero = ({ image, imageAlt, height, ...props }) => {
+  return (
+    <section className={cn(heroVariants({ height }))}>
+      {/* Priority loading for above-fold heroes */}
+      <Image
+        src={image}
+        alt={imageAlt}
+        fill
+        className="object-cover"
+        priority={height === "screen" || height === "xl"}
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..."
+        sizes="100vw"
+      />
+      
+      {/* Hero variants with video must have fallback static image */}
+      {props.videoSrc && (
+        <video className="absolute inset-0" poster={image}>
+          <source src={props.videoSrc} type="video/mp4" />
+        </video>
+      )}
+    </section>
+  )
+}
+```
+
+#### Phase 3: Mobile-First Responsive Implementation
+```tsx
+// Mobile optimization patterns
+const MobileOptimizedHero = (props) => {
+  return (
+    <Hero
+      {...props}
+      // Reduced height on mobile, full screen on desktop
+      className="min-h-[70vh] md:min-h-screen"
+      // Mobile-specific content adjustments
+      contentClassName="px-4 md:px-8 text-center md:text-left"
+      // Simplified mobile variant
+      scrollIndicator={false} // Hide on mobile to save space
+      floatingCTA={false}     // Avoid mobile performance issues
+    >
+      {/* Mobile-only variant example */}
+      <div className="block md:hidden mb-4">
+        <p className="text-sm text-amber-200">Mobile-optimized content</p>
+      </div>
+    </Hero>
+  )
+}
+```
+
+#### Phase 4: Content Migration Strategy
+- Audit all existing hero content and imagery
+- Optimize images with proper dimensions and compression
+- Test loading performance on slow connections (3G simulation)
+- Verify text legibility across all overlay variants
+- Ensure mobile responsive behavior on actual devices
+
+---
+
+## Troubleshooting
+
+### Common Migration Issues
+
+#### Issue 1: Poor Image Loading Performance
+**Problem**: Hero images loading slowly, affecting LCP scores
+```tsx
+// Problem: Unoptimized images
+<Hero image="/large-unoptimized-image.jpg" />
+
+// Solution: Proper Next.js Image optimization
+<Hero 
+  image="/optimized-hero.webp"
+  imageAlt="Descriptive alt text"
+  className="min-h-screen"
+  // Force priority loading for above-fold heroes
+  imagePriority={true}
+/>
+
+// Additional: Use blur placeholder
+// Generate with: npx @plaiceholder/cli your-image.jpg
+blurDataURL="data:image/jpeg;base64,..." 
+```
+
+#### Issue 2: Mobile Layout Breaking
+**Problem**: Hero content not legible or properly sized on mobile
+```tsx
+// Problem: Fixed desktop sizing
+<Hero height="screen" className="text-left" />
+
+// Solution: Mobile-responsive approach
+<Hero 
+  height="lg"
+  align="center" // Better for mobile
+  className="min-h-[70vh] md:min-h-screen"
+  contentClassName="px-4 text-center md:text-left md:px-8"
+/>
+```
+
+#### Issue 3: Too Many CTAs Overwhelming Users
+**Problem**: Multiple competing calls-to-action in hero
+```tsx
+// Problem: Visual competition
+<Hero
+  primaryAction={{ text: "Book Now", href: "/book" }}
+  secondaryAction={{ text: "Learn More", href: "/about" }}
+  tertiaryAction={{ text: "Contact", href: "/contact" }} // Too many!
+/>
+
+// Solution: Prioritized CTA hierarchy
+<Hero
+  primaryAction={{ 
+    text: "Schedule Your Visit", 
+    href: "/contact",
+    variant: "primary" // Visually dominant
+  }}
+  secondaryAction={{ 
+    text: "View Gallery", 
+    href: "/gallery",
+    variant: "outline" // Clearly secondary
+  }}
+  // Move other actions below the fold
+/>
+```
+
+---
+
+## Output Requirements
+
+When implementing this migration, AI systems should:
+
+1. **Generate a complete component file** (`src/components/ui/hero.tsx`)
+   - Full TypeScript implementation with proper interfaces
+   - Include all variant mappings and height options
+   - Maintain prop compatibility with legacy hero patterns
+
+2. **Prioritize single primary call-to-action** in hero design
+   - Primary action should be visually dominant (solid button, prominent placement)
+   - Secondary action should be clearly less dominant (outline/ghost variant, smaller)
+   - Limit to maximum 2 CTAs to avoid overwhelming users
+   - Follow hierarchy: Primary CTA → Secondary CTA → Other page elements
+
+3. **Implement performance-first image handling**
+   - Use Next.js Image component with proper optimization
+   - Include priority loading for above-fold heroes
+   - Provide blur placeholders for smooth loading experience
+   - Ensure video backgrounds have static image fallbacks
+
+4. **Use design tokens exclusively for styling**
+   - Reference tokens from `src/generated/tokens.css`
+   - Do not use inline CSS styles; maintain styling via tokens/variants
+   - Leverage semantic color tokens for overlay and text colors
+   - Use spacing tokens for consistent layout spacing
+
+5. **Ensure mobile-responsive behavior**
+   - Include mobile-specific height variants (70vh on mobile → 100vh desktop)
+   - Test text legibility and touch target sizes on small screens
+   - Consider mobile-only content variants or simplified layouts
+   - Validate performance on mobile networks and devices
+
+6. **Output production-ready, accessible code**
+   - Include proper ARIA landmarks (role="banner" for main hero)
+   - Provide descriptive alt text for all hero images
+   - Support reduced motion preferences for animations
+   - Include keyboard navigation support and focus management
 
 ## Verification Checklist
 
@@ -1796,13 +1999,13 @@ Preview the complete component showcase at `/ds/heroes`.
 
 ### Testing
 - [ ] Storyboard Lite routes load without errors (`/ds/heroes`, `/ds/typography`, `/ds/animations`)
-- [ ] Passes Playwright tests for hero functionality
-- [ ] Visual regression diff < 1% from original design
-- [ ] All hero height variants render correctly
-- [ ] Overlay and alignment options work as expected
-- [ ] Animation system respects `prefers-reduced-motion`
-- [ ] Image loading performance meets Core Web Vitals targets
-- [ ] Theme toggle works across all hero variants
+- [ ] Passes Playwright tests for hero functionality  
+- [ ] Visual regression threshold < 1% difference from original design (measurable via Percy/Chromatic)
+- [ ] All hero height variants render correctly across viewport sizes
+- [ ] Overlay and alignment options work as expected on mobile + desktop
+- [ ] Animation system respects `prefers-reduced-motion` media query
+- [ ] Image loading performance meets Core Web Vitals targets (LCP < 2.5s, CLS < 0.1)
+- [ ] Theme toggle works across all hero variants without layout shift
 
 ### Performance
 - [ ] Bundle size impact < 10KB additional (including Next.js Image)
