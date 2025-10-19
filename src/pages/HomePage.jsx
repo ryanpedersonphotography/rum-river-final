@@ -118,12 +118,13 @@ export default function HomePage() {
       <Header />
 
       {/* Floating CTA Button - only shows after scrolling past hero */}
-      {showFloatingCTA && (
-        <a href="#lets-connect-form" className="floating-cta">
-          <Icon name="calendar" size="sm" color="white" />
-          Schedule Your Tour
-        </a>
-      )}
+      <a 
+        href="#lets-connect-form" 
+        className={`floating-cta ${showFloatingCTA ? 'visible' : 'hidden'}`}
+      >
+        <Icon name="calendar" size="sm" color="white" />
+        Schedule Your Tour
+      </a>
 
       {/* Hero Section - Enhanced */}
       <section id="home" className="hero-enhanced">
@@ -157,7 +158,7 @@ export default function HomePage() {
       {/* Numbered Feature Blocks - MOVED UP */}
       <section className="alternating-blocks">
         <div className="content-wrapper">
-          <div className="feature-blocks-content center">
+          <div className="section-header center">
             <div className="script-accent">{pageContent?.featureBlocks?.scriptAccent || 'Your Perfect Venue'}</div>
             <h2 className="section-title">{pageContent?.featureBlocks?.title || 'Why Choose Rum River Barn'}</h2>
             <p className="lead">{pageContent?.featureBlocks?.lead || 'Discover what makes our venue the perfect setting for your unforgettable celebration'}</p>
