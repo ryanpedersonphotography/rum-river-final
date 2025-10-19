@@ -1449,430 +1449,76 @@ When implementing this migration, AI systems should:
    - Provide proper component export structure
    - Include forwardRef for ref forwarding
 
-## Reference Visual
-**Design Reference**: [https://rum-river-final.netlify.app/button-demo](https://rum-river-final.netlify.app/button-demo)  
+## Single Source of Truth
+
+- **Tokens**: `src/generated/tokens.css` (semantic `--color-semantic-*`, plus button-specific tokens)
+- **Bridge**: `src/CohesiveDesign.css` (maps tokens → CSS custom properties)
+- **Primitives**: shadcn/ui components consume design tokens via CSS variables
+- **Design System**: `src/components/ds/*` (e.g. `DSButton`) wraps primitives; this is our public design layer
+- **Storyboard Lite**: `/ds/*` pages visualize the DS layer and tokens (no Storybook needed)
+
+## Reference Visual & Validation Routes
+- **Storyboard Lite (Buttons)**: [/ds/buttons](https://rum-river-final.netlify.app/ds/buttons) — Full matrix (tone × variant × size), hover/active/focus
+- **Storyboard Lite (Colors)**: [/ds/colors](https://rum-river-final.netlify.app/ds/colors) — Live token values, light/dark
+- **Primitives Bridge**: [/ds/primitives](https://rum-river-final.netlify.app/ds/primitives) — Tokens → Tailwind mapping
+- **Public Demo**: [/button-demo](https://rum-river-final.netlify.app/button-demo) — Public-facing demo page
+- **Token Reference**: [/tokens](https://rum-river-final.netlify.app/tokens) — Complete token documentation
+
 **Target**: Replicate exact visual parity across all variants and states including hover, focus, and disabled states
 
-## 📚 Storybook Support (minimal, non-intrusive)
+## 📋 Storyboard Lite Validation (no Storybook needed)
 
-### Why
-Use Storybook as a living specification for the new token-driven Button system. It shows every variant × tone × size with the same CSS tokens and globals the app uses.
+### Validate the Migration (No External Tools Needed)
 
-### Install (dev only)
-```bash
-pnpm add -D @storybook/react-vite @storybook/test \
-  @storybook/addon-essentials @storybook/addon-interactions \
-  @storybook/addon-a11y @storybook/addon-themes
-```
+1. **Run the app and open these routes:**
+   ```bash
+   # Run and validate locally
+   npm run dev
+   
+   # Open these routes:
+   open http://localhost:3000/ds/buttons
+   open http://localhost:3000/ds/colors  
+   open http://localhost:3000/button-demo
+   ```
 
-### Scripts
-```json
-{
-  "scripts": {
-    "storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build"
-  }
-}
-```
+   - `/ds/buttons` — Full matrix (tone × variant × size), hover/active/focus states
+   - `/ds/colors` — Live token values, light/dark mode preview
+   - `/ds/primitives` — Tokens → Tailwind bridge mapping
+   - `/button-demo` — Public-facing demo page of DSButton
 
-### .storybook/main.ts
-```typescript
-import type { StorybookConfig } from "@storybook/react-vite";
+2. **Light/Dark Mode Testing:**
+   - Toggle theme (ThemeToggle component) and confirm text/contrast remains AA+ on `/ds/buttons`
+   - Confirm `--color-*` variables change when dark mode is active
+   - Verify dual dark mode strategy works (`:root.dark` + `html[data-theme="dark"]`)
 
-const config: StorybookConfig = {
-  framework: { name: "@storybook/react-vite", options: {} },
-  stories: ["../src/stories/**/*.mdx", "../src/stories/**/*.stories.@(ts|tsx)"],
-  addons: [
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions", 
-    "@storybook/addon-a11y",
-    "@storybook/addon-themes"
-  ],
-  docs: { autodocs: true },
-  staticDirs: ["../public"]
-};
-export default config;
-```
+3. **Token Integrity Check:**
+   - Open DevTools → Computed styles on a DSButton
+   - Verify background uses `--color-semantic-button-*` tokens (not raw hex values)
+   - Verify borders/radius/transitions come from design tokens (`--size-border-radius-*`, `--transition-preset-*`)
+   - Check that color-mix() fallbacks work in supported browsers
 
-### .storybook/preview.ts
-Load your real CSS so stories match the app, and provide a simple theme switch that does not depend on external providers.
+4. **Cross-Browser Smoke Testing:**
+   ```bash
+   # Cross-browser validation (if Playwright configured)
+   npm run test:e2e
+   ```
+   - Tests assert `/ds/buttons`, `/ds/colors`, and `/` render without critical errors
+   - Validates keyboard navigation and accessibility
 
-```typescript
-import type { Preview } from "@storybook/react";
-// Load tokens + app globals first so CSS vars are available
-import "../src/generated/tokens.css";
-import "../src/CohesiveDesign.css";
+### What NOT to Do (Guardrails)
 
-const preview: Preview = {
-  parameters: {
-    layout: "centered",
-    controls: { expanded: true },
-    a11y: { disable: false },
-    backgrounds: {
-      default: "App Background",
-      values: [
-        { name: "App Background", value: "var(--color-semantic-background-primary)" },
-        { name: "Card", value: "var(--color-semantic-background-light)" },
-        { name: "Dark Section", value: "var(--color-semantic-background-dark)" },
-        { name: "White", value: "#fff" }
-      ]
-    }
-  },
-  // Lightweight dark-mode toggle via data-theme; avoids client providers
-  decorators: [
-    (Story, ctx) => {
-      const mode = (ctx.globals.theme as "light"|"dark") ?? "light";
-      const root = document.documentElement;
-      root.classList.toggle("dark", mode === "dark");
-      root.setAttribute("data-theme", mode);
-      return Story();
-    }
-  ],
-  globals: { theme: "light" },
-  globalTypes: {
-    theme: {
-      name: "Theme",
-      description: "Light/Dark",
-      defaultValue: "light",
-      toolbar: {
-        icon: "mirror",
-        items: [
-          { value: "light", title: "Light" },
-          { value: "dark", title: "Dark" }
-        ],
-        dynamicTitle: true
-      }
-    }
-  }
-};
-export default preview;
-```
+- **Hardcode colors** in DSButton or consumers (no hex values in component CSS)
+- **Tweak shadcn/ui internals** for styling; fix via tokens/bridge in `CohesiveDesign.css` instead
+- **Add per-component theme files**; design tokens are the single source of truth
+- **Skip token validation**; always verify DevTools shows token usage, not hardcoded values
 
-### Stories: Button System
-Create a small but complete matrix to validate tokens, variants, tones, sizes.
+### Note on shadcn Primitives
 
-```typescript
-// src/stories/Button.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/ui/button";
-import { Calendar, Camera, ArrowRight } from "lucide-react";
+We keep shadcn primitives as implementation dependencies. Styling flows through the token system:
 
-const meta: Meta<typeof Button> = {
-  title: "Design System/Button",
-  component: Button,
-  args: { children: "Click me" },
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "outline", "secondary", "ghost", "link"]
-    },
-    size: {
-      control: "select", 
-      options: ["sm", "default", "lg"]
-    }
-  }
-};
-export default meta;
-type Story = StoryObj<typeof Button>;
+`tokens.css` → `CohesiveDesign.css @import` → CSS custom properties → shadcn primitives → `DSButton`
 
-// Basic variants
-export const Primary: Story = { 
-  args: { variant: "default", children: "Schedule Your Visit" } 
-};
-
-export const Outline: Story = { 
-  args: { variant: "outline", children: "View Gallery" } 
-};
-
-export const Secondary: Story = { 
-  args: { variant: "secondary", children: "Learn More" } 
-};
-
-export const Ghost: Story = { 
-  args: { variant: "ghost", children: "Subtle Action" } 
-};
-
-export const Link: Story = { 
-  args: { variant: "link", children: "Learn More" } 
-};
-
-// Sizes
-export const Small: Story = { 
-  args: { variant: "default", size: "sm", children: "Small Button" } 
-};
-
-export const Large: Story = { 
-  args: { variant: "default", size: "lg", children: "Large Button" } 
-};
-
-// With icons
-export const WithLeadingIcon: Story = {
-  args: {
-    variant: "default",
-    children: (
-      <>
-        <Calendar className="mr-2 h-4 w-4" />
-        Schedule Visit
-      </>
-    )
-  }
-};
-
-export const WithTrailingIcon: Story = {
-  args: {
-    variant: "outline", 
-    children: (
-      <>
-        Contact Us
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </>
-    )
-  }
-};
-
-// States
-export const Disabled: Story = {
-  args: { variant: "default", disabled: true, children: "Coming Soon" }
-};
-
-export const Loading: Story = {
-  args: {
-    variant: "default",
-    disabled: true,
-    children: "Loading..."
-  }
-};
-
-// Custom romantic variants (legacy CTAButton styles)
-export const RomanticSpecial: Story = {
-  args: {
-    variant: "default",
-    className: "bg-gradient-to-r from-amber-900 to-stone-800 hover:from-amber-800 hover:to-stone-700 border-none rounded-lg",
-    children: "Virtual Tour Experience"
-  }
-};
-
-export const RomanticBarn: Story = {
-  args: {
-    variant: "secondary",
-    className: "bg-amber-700 hover:bg-amber-600 border-amber-800 text-white",
-    children: "Barn Experience"
-  }
-};
-
-export const RomanticBridal: Story = {
-  args: {
-    variant: "outline",
-    className: "bg-rose-100 hover:bg-rose-200 text-rose-800 border-rose-300",
-    children: "Bridal Suite"
-  }
-};
-
-// Complete matrix visualization
-export const Matrix: Story = {
-  render: () => {
-    const variants = ["default", "outline", "secondary", "ghost", "link"] as const;
-    const sizes = ["sm", "default", "lg"] as const;
-    
-    return (
-      <div style={{ display: "grid", gap: 24, maxWidth: 800 }}>
-        <h2 style={{ fontFamily: "var(--font-family-display)", fontSize: "var(--font-size-2xl)" }}>
-          Button Matrix
-        </h2>
-        
-        {variants.map(variant => (
-          <div key={variant}>
-            <div style={{ 
-              opacity: 0.7, 
-              fontSize: 12, 
-              marginBottom: 12, 
-              textTransform: "uppercase",
-              fontWeight: "var(--font-weight-medium)"
-            }}>
-              {variant}
-            </div>
-            <div style={{ 
-              display: "grid", 
-              gap: 12, 
-              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))" 
-            }}>
-              {sizes.map(size => (
-                <div key={`${variant}-${size}`} style={{ 
-                  border: "1px solid var(--color-semantic-accent-secondary)", 
-                  borderRadius: 8, 
-                  padding: 16,
-                  backgroundColor: "var(--color-semantic-background-light)"
-                }}>
-                  <div style={{ 
-                    fontSize: 11, 
-                    opacity: 0.7, 
-                    marginBottom: 8,
-                    textAlign: "center"
-                  }}>
-                    {size}
-                  </div>
-                  <div style={{ textAlign: "center" }}>
-                    <Button variant={variant} size={size}>
-                      {variant === "link" ? "Learn more" : "Click me"}
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-};
-```
-
-### Stories: Design Tokens (visual sanity)
-```typescript
-// src/stories/Tokens.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
-
-const Swatch = ({ name, value }: { name: string; value?: string }) => (
-  <div style={{ 
-    display: "grid", 
-    gridTemplateColumns: "120px 1fr", 
-    gap: 12, 
-    alignItems: "center",
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "var(--color-semantic-background-light)"
-  }}>
-    <div style={{
-      height: 40, 
-      borderRadius: 8, 
-      background: `var(${name})`,
-      border: "1px solid var(--color-semantic-accent-secondary)",
-      boxShadow: "var(--shadow-sm)"
-    }} />
-    <div>
-      <code style={{ 
-        fontSize: 12, 
-        fontFamily: "monospace",
-        display: "block",
-        marginBottom: 4
-      }}>
-        {name}
-      </code>
-      {value && (
-        <div style={{ 
-          fontSize: 10, 
-          opacity: 0.6,
-          fontFamily: "monospace"
-        }}>
-          {value}
-        </div>
-      )}
-    </div>
-  </div>
-);
-
-function TokensGrid() {
-  const colorTokens = [
-    "--color-semantic-background-primary",
-    "--color-semantic-background-secondary", 
-    "--color-semantic-background-light",
-    "--color-semantic-background-dark",
-    "--color-semantic-text-primary",
-    "--color-semantic-text-dark",
-    "--color-semantic-text-light",
-    "--color-semantic-accent-primary",
-    "--color-semantic-accent-secondary",
-    "--color-semantic-accent-highlight",
-    "--color-semantic-button-primary-bg",
-    "--color-semantic-button-primary-text",
-    "--color-semantic-button-outline-border"
-  ];
-  
-  const spacingTokens = [
-    "--spacing-xs", "--spacing-sm", "--spacing-md", 
-    "--spacing-lg", "--spacing-xl", "--spacing-2xl"
-  ];
-  
-  return (
-    <div style={{ display: "grid", gap: 32, minWidth: 500 }}>
-      <div>
-        <h1 style={{ 
-          fontFamily: "var(--font-family-display)", 
-          fontSize: "var(--font-size-3xl)",
-          marginBottom: 24
-        }}>
-          Design Tokens
-        </h1>
-        
-        <h2 style={{ 
-          fontFamily: "var(--font-family-display)", 
-          fontSize: "var(--font-size-xl)",
-          marginBottom: 16,
-          color: "var(--color-semantic-accent-primary)"
-        }}>
-          Semantic Colors
-        </h2>
-        <div style={{ display: "grid", gap: 8, marginBottom: 32 }}>
-          {colorTokens.map(token => <Swatch key={token} name={token} />)}
-        </div>
-        
-        <h2 style={{ 
-          fontFamily: "var(--font-family-display)", 
-          fontSize: "var(--font-size-xl)",
-          marginBottom: 16,
-          color: "var(--color-semantic-accent-primary)"
-        }}>
-          Spacing Scale
-        </h2>
-        <div style={{ display: "grid", gap: 8 }}>
-          {spacingTokens.map(token => (
-            <div key={token} style={{
-              display: "grid",
-              gridTemplateColumns: "200px 1fr",
-              alignItems: "center",
-              gap: 12,
-              padding: 8
-            }}>
-              <code style={{ fontSize: 12 }}>{token}</code>
-              <div style={{
-                height: 8,
-                backgroundColor: "var(--color-semantic-accent-primary)",
-                width: `var(${token})`,
-                borderRadius: 4,
-                minWidth: 4
-              }} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const meta: Meta = { title: "Foundation/Tokens" };
-export default meta;
-export const Colors: StoryObj = { render: () => <TokensGrid /> };
-```
-
-### .gitignore
-```gitignore
-# Storybook
-/storybook-static
-```
-
-### Verification
-1. `pnpm storybook` → Storybook opens on :6006 with no errors
-2. Toggle Theme toolbar (Light/Dark); colors switch using your dual dark mode strategy
-3. Button stories reflect your romantic theme token system (hover, focus rings)
-4. Build: `pnpm build:storybook` completes successfully
-5. Matrix story shows all variant × size combinations working
-
-### Notes / Guardrails
-- **No external theme providers** inside Storybook (keeps it SSR-agnostic)
-- **Rely on tokens.css + CohesiveDesign.css** for the theme bridge (semantic tokens)
-- **Keep stories small**; treat Storybook as a visual spec, not another app
-- **Use your existing token system** - no new dependencies or complexity
-- **Perfect for design handoffs** and component validation during migration
+Preview the complete token mapping at `/ds/primitives`.
 
 ## Verification Checklist
 
@@ -1890,13 +1536,15 @@ export const Colors: StoryObj = { render: () => <TokensGrid /> };
 - [ ] Supports both dark mode strategies (`:root.dark` + `html[data-theme="dark"]`)
 
 ### Testing
-- [ ] Passes Playwright smoke tests for `/button-demo` page
-- [ ] Visual regression diff < 1% from original design
-- [ ] All button variants render correctly
+- [ ] Storyboard Lite routes load without errors (`/ds/buttons`, `/ds/colors`, `/ds/primitives`)
+- [ ] Passes Playwright smoke tests for `/button-demo` page  
+- [ ] Visual regression diff < 1% from original design (compare `/ds/buttons` matrix)
+- [ ] All button variants render correctly on `/ds/buttons`
 - [ ] Hover and focus states match original behavior
 - [ ] Link behaviors work (href, React Router `to` prop, `asChild`)
 - [ ] Icon positioning and spacing maintained
 - [ ] Form submission buttons function correctly
+- [ ] Theme toggle works on `/ds/buttons` and `/ds/colors`
 
 ### Performance
 - [ ] Bundle size impact < 5KB additional
@@ -1918,10 +1566,11 @@ export const Colors: StoryObj = { render: () => <TokensGrid /> };
 
 ### Final Validation
 - [ ] Production build succeeds (`npm run build`)
-- [ ] All demo pages load without errors
+- [ ] All Storyboard Lite routes load without errors (`/ds/buttons`, `/ds/colors`, `/ds/primitives`)
+- [ ] Public demo page works (`/button-demo`)
 - [ ] Visual spot-check on key pages (homepage, contact, gallery)
 - [ ] Cross-browser testing completed (Chrome, Firefox, Safari)
-- [ ] Mobile responsiveness verified
+- [ ] Mobile responsiveness verified on `/ds/buttons` matrix
 
 ---
 
