@@ -455,6 +455,294 @@ export default function SpacesDemoStandalone() {
           padding: 0 2rem;
         }
         
+        /* Preview Gallery - Perfect Width Distribution */
+        .venue-preview-gallery {
+          margin: 2.5rem 0 2rem 0;
+          width: 100%;
+        }
+
+        .preview-thumbnail-track {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+          width: 100%;
+        }
+
+        .preview-thumbnail {
+          position: relative;
+          aspect-ratio: 16/10;
+          border-radius: 12px;
+          overflow: hidden;
+          cursor: pointer;
+          border: 3px solid transparent;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          background: #f8f8f8;
+        }
+
+        .preview-thumbnail.morphing {
+          opacity: 0;
+          transform: scale(0.8) translateY(20px);
+          pointer-events: none;
+        }
+
+        .preview-thumbnail::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, transparent, rgba(157, 107, 123, 0.1));
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          z-index: 1;
+        }
+
+        .preview-thumbnail:hover::before {
+          opacity: 1;
+        }
+
+        .preview-thumbnail.active {
+          border-color: #9D6B7B;
+          box-shadow: 0 12px 36px rgba(157, 107, 123, 0.3);
+          transform: translateY(-4px) scale(1.02);
+        }
+
+        .preview-thumbnail img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .preview-thumbnail:hover img {
+          transform: scale(1.08);
+        }
+
+        /* Gallery Expand Section */
+        .gallery-expand-section {
+          text-align: center;
+          margin: 2rem 0 2.5rem 0;
+        }
+
+        .gallery-expand-button {
+          background: linear-gradient(135deg, rgba(157, 107, 123, 0.05), transparent);
+          border: 2px solid #9D6B7B;
+          color: #9D6B7B;
+          padding: 1rem 2.5rem;
+          border-radius: 50px;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 0.9rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          cursor: pointer;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          position: relative;
+          overflow: hidden;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .gallery-expand-button .button-icon {
+          display: inline-block;
+          transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+
+        .gallery-expand-button::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          background: linear-gradient(45deg, #9D6B7B, #C899A3, #9D6B7B);
+          border-radius: 50px;
+          opacity: 0;
+          z-index: -1;
+          transition: opacity 0.5s ease;
+          animation: shimmerGradient 3s linear infinite;
+        }
+
+        @keyframes shimmerGradient {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+
+        .gallery-expand-button:hover::before {
+          opacity: 0.2;
+        }
+
+        .gallery-expand-button:hover {
+          background: #9D6B7B;
+          color: white;
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 10px 30px rgba(157, 107, 123, 0.3);
+        }
+
+        .gallery-expand-button:hover .button-icon {
+          transform: translateY(3px);
+        }
+
+        /* Expanded Gallery - Dramatic Masonry */
+        .expanded-gallery {
+          position: relative;
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: max-height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      opacity 0.5s ease;
+        }
+
+        .expanded-gallery.expanded {
+          max-height: 3000px;
+          opacity: 1;
+        }
+
+        .masonry-gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          padding: 2rem 0;
+          position: relative;
+        }
+
+        /* Masonry Items */
+        .masonry-item {
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          cursor: pointer;
+          background: #f8f8f8;
+          transform-origin: center center;
+        }
+
+        .masonry-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Morph Animation for First 3 Images */
+        .morph-item {
+          opacity: 0;
+          transform: scale(0.3) translateY(-100px);
+        }
+
+        .morph-item.morph-0 {
+          grid-column: span 2;
+          grid-row: span 2;
+          aspect-ratio: 4/3;
+        }
+
+        .morph-item.morph-1 {
+          aspect-ratio: 3/4;
+        }
+
+        .morph-item.morph-2 {
+          aspect-ratio: 1/1;
+        }
+
+        .morph-item.morphed {
+          animation: morphExpand 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes morphExpand {
+          0% {
+            opacity: 0;
+            transform: scale(0.3) translateY(-100px) rotate(-10deg);
+          }
+          40% {
+            opacity: 0.5;
+            transform: scale(0.6) translateY(-50px) rotate(-5deg);
+          }
+          70% {
+            opacity: 0.9;
+            transform: scale(1.1) translateY(10px) rotate(2deg);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0) rotate(0deg);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+          }
+        }
+
+        /* Slide Up Animation for Additional Images */
+        .slide-item {
+          opacity: 0;
+          transform: translateY(150px) scale(0.8);
+          aspect-ratio: 16/10;
+        }
+
+        .slide-item:nth-child(odd) {
+          aspect-ratio: 3/4;
+        }
+
+        .slide-item:nth-child(3n) {
+          aspect-ratio: 1/1;
+          grid-column: span 1;
+        }
+
+        .slide-item:nth-child(5n) {
+          grid-column: span 2;
+          aspect-ratio: 16/9;
+        }
+
+        .slide-item.slid-up {
+          animation: slideUpBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes slideUpBounce {
+          0% {
+            opacity: 0;
+            transform: translateY(150px) scale(0.8) rotate(5deg);
+          }
+          50% {
+            opacity: 0.7;
+            transform: translateY(50px) scale(0.9) rotate(-2deg);
+          }
+          75% {
+            opacity: 0.9;
+            transform: translateY(-10px) scale(1.02) rotate(1deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+          }
+        }
+
+        /* Hover Effects for All Masonry Items */
+        .masonry-item:hover {
+          transform: translateY(-8px) scale(1.03);
+          box-shadow: 0 20px 50px rgba(157, 107, 123, 0.25);
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          z-index: 10;
+        }
+
+        .masonry-item:hover img {
+          transform: scale(1.1);
+        }
+
+        .masonry-item::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(157, 107, 123, 0.1) 50%,
+            rgba(157, 107, 123, 0.3) 100%
+          );
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          pointer-events: none;
+        }
+
+        .masonry-item:hover::after {
+          opacity: 1;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .venue-display {
@@ -490,6 +778,29 @@ export default function SpacesDemoStandalone() {
           
           .venue-main-image img {
             height: 300px;
+          }
+
+          .preview-thumbnail-track {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+          }
+          
+          .preview-thumbnail {
+            aspect-ratio: 16/11;
+          }
+          
+          .masonry-gallery {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+          }
+          
+          .gallery-expand-button {
+            padding: 0.875rem 2rem;
+            font-size: 0.8rem;
+          }
+          
+          .gallery-expand-button .button-icon {
+            font-size: 1rem;
           }
         }
       `}</style>
