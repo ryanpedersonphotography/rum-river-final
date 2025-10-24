@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom'
 import { realWeddings } from '../data/realWeddings'
 import CTAButton from '../components/CTAButton'
+import LoveStoriesGalleryWithVariants from '../components/LoveStoriesGalleryWithVariants'
+import LoveStoriesGalleryWithFilters from '../components/LoveStoriesGalleryWithFilters'
+import LoveStoriesGalleryWithFiveFilters from '../components/LoveStoriesGalleryWithFiveFilters'
 
 export default function LoveStoriesDemoStandalone() {
   return (
     <>
-      {/* Love Stories Gallery Component */}
+      {/* Love Stories Gallery with Five-Tier Filter System (NEW!) */}
+      <LoveStoriesGalleryWithFiveFilters />
+      
+      {/* Love Stories Gallery with Three-Tier Filter System */}
+      <LoveStoriesGalleryWithFilters />
+      
+      {/* Love Stories Gallery with Simple Color Variants (LOVE_STORIES_GALLERY_001) */}
+      <LoveStoriesGalleryWithVariants />
+      
+      {/* Original Love Stories Gallery Component */}
       <section style={{
         background: '#F4E4E1', // blush-pink
         padding: '100px 0',
