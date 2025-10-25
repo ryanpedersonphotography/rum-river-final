@@ -2010,6 +2010,466 @@ export default function MultiFilterSpacesDemo() {
             </div>
           )}
 
+          {/* Live Code Generation */}
+          <div style={{
+            marginTop: '4rem',
+            padding: '2rem',
+            background: themeMode === 'dark' 
+              ? 'rgba(255, 255, 255, 0.05)' 
+              : 'rgba(0, 0, 0, 0.05)',
+            borderRadius: activeVariant.borderRadius,
+            border: `1px solid ${themeMode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`
+          }}>
+            <h3 style={{
+              fontSize: '1.5rem',
+              color: activeVariant.primary,
+              marginBottom: '1.5rem',
+              fontFamily: "'Playfair Display', serif",
+              textAlign: 'center'
+            }}>
+              🔧 Generated Code
+            </h3>
+            
+            <CodeAccordion
+              sections={[
+                {
+                  title: "📦 Design Tokens",
+                  language: "css",
+                  code: `/* Spaces Component Design Tokens - ${activeVariant.label} */
+:root {
+  /* Theme Variables */
+  --theme-mode: ${themeMode};
+  --section-bg: ${activeVariant.sectionBg.includes('gradient') ? activeVariant.sectionBg : `"${activeVariant.sectionBg}"`};
+  --text-color: ${activeVariant.textColor};
+  
+  /* Color Palette - ${activeVariant.paletteName} */
+  --primary-color: ${activeVariant.primary};
+  --secondary-color: ${activeVariant.secondary};
+  --accent-color: ${activeVariant.accent};
+  --neutral-color: ${activeVariant.neutral};
+  
+  /* Layout Configuration */
+  --layout-structure: "${activeVariant.layoutStructure}";
+  --grid-columns: ${activeVariant.gridColumns};
+  --grid-arrangement: "${activeVariant.gridArrangement}";
+  
+  /* Visual Style */
+  --border-radius: ${activeVariant.borderRadius};
+  --box-shadow: ${activeVariant.boxShadow};
+  --padding: ${activeVariant.padding};
+  --gap: ${activeVariant.gap};
+  
+  /* Animation Properties */
+  --animation-duration: ${activeVariant.animationDuration};
+  --animation-easing: ${activeVariant.animationEasing};
+  --animation-transform: ${activeVariant.animationTransform};
+}`
+                },
+                {
+                  title: "⚛️ React Component",
+                  language: "jsx",
+                  code: `// Spaces Component Implementation
+// Generated variant: ${activeVariant.id}
+
+import React, { useState } from 'react';
+
+export default function SpacesSection() {
+  const [activeVenue, setActiveVenue] = useState('barn');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const venueData = {
+    barn: {
+      title: 'The Historic Barn',
+      images: [
+        '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
+        '/images/venue/barn-interior-ceiling-beams-lighting.jpg',
+        '/images/venue/barn-exterior-full-view-landscape.jpg'
+      ],
+      description: 'Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.',
+      features: [
+        { label: 'Capacity', value: 'Up to 300 guests' },
+        { label: 'Built', value: '1920s architecture' },
+        { label: 'Features', value: 'Climate controlled' },
+        { label: 'Style', value: 'Rustic elegance' }
+      ]
+    },
+    bridal: {
+      title: 'Bridal Suite',
+      images: [
+        '/images/venue/barn-interior-exposed-beams-chandeliers.jpg',
+        '/images/venue/details-antique-wheel-rustic-decor.jpg'
+      ],
+      description: 'A luxurious private space for the bride and bridal party to prepare for the big day.',
+      features: [
+        { label: 'Capacity', value: 'Up to 8 people' },
+        { label: 'Amenities', value: 'Full mirror, seating' },
+        { label: 'Natural Light', value: 'Large windows' },
+        { label: 'Privacy', value: 'Separate entrance' }
+      ]
+    },
+    groom: {
+      title: "Groom's Quarters",
+      images: [
+        '/images/venue/barn-exterior-welcome-sign-entrance.jpg',
+        '/images/venue/details-building-entrance-door.jpg'
+      ],
+      description: 'A comfortable retreat for the groom and groomsmen.',
+      features: [
+        { label: 'Capacity', value: 'Up to 6 people' },
+        { label: 'Atmosphere', value: 'Relaxed and private' }
+      ]
+    },
+    pavilion: {
+      title: 'Garden Pavilion',
+      images: [
+        '/images/venue/property-field-wildflowers-natural.jpg',
+        '/images/venue/barn-exterior-deck-swing-under-tree.jpg'
+      ],
+      description: 'An enchanting outdoor space perfect for ceremonies or cocktail hours.',
+      features: [
+        { label: 'Setting', value: 'Outdoor garden' },
+        { label: 'Use', value: 'Ceremonies, cocktails' }
+      ]
+    }
+  };
+
+  const handleVenueChange = (venue) => {
+    setActiveVenue(venue);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) =>
+      (prev + 1) % venueData[activeVenue].images.length
+    );
+  };
+
+  return (
+    <section className="spaces-section">
+      <div className="content-wrapper">
+        <div className="section-header">
+          <div className="script-accent">Your Perfect Setting</div>
+          <h2 className="section-title">Discover Our Spaces</h2>
+          <p className="lead">
+            Every corner tells a story, every space creates memories
+          </p>
+        </div>
+        
+        <div className="venue-tabs">
+          {Object.entries(venueData).map(([key, venue]) => (
+            <button
+              key={key}
+              className={\`venue-tab \${activeVenue === key ? 'active' : ''}\`}
+              onClick={() => handleVenueChange(key)}
+            >
+              {venue.title}
+            </button>
+          ))}
+        </div>
+        
+        <div className="spaces-content layout-${layout}">
+          <div className="venue-main-image">
+            <img 
+              src={venueData[activeVenue].images[currentImageIndex]} 
+              alt={venueData[activeVenue].title} 
+            />
+            <button className="carousel-arrow prev" onClick={prevImage}>←</button>
+            <button className="carousel-arrow next" onClick={nextImage}>→</button>
+          </div>
+          
+          <div className="venue-details">
+            <h3>{venueData[activeVenue].title}</h3>
+            <p>{venueData[activeVenue].description}</p>
+            <div className="venue-features">
+              {venueData[activeVenue].features.map((feature, index) => (
+                <div key={index} className="venue-feature">
+                  <h5>{feature.label}</h5>
+                  <p>{feature.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}`
+                },
+                {
+                  title: "🎨 CSS Styles",
+                  language: "css",
+                  code: `/* Spaces Section Styles - ${activeVariant.label} */
+.spaces-section {
+  background: ${activeVariant.sectionBg.includes('gradient') ? activeVariant.sectionBg : activeVariant.sectionBg};
+  padding: ${activeVariant.padding} 0;
+  transition: background 0.6s ease;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.script-accent {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.75rem;
+  color: ${activeVariant.primary};
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: ${activeVariant.textColor};
+  margin: 0 0 1.5rem 0;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 1.5rem auto 0;
+  color: ${activeVariant.textColor};
+}
+
+.venue-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.venue-tab {
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  color: ${activeVariant.textColor};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.venue-tab.active {
+  border: 2px solid ${activeVariant.primary};
+  background: ${activeVariant.primary};
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.spaces-content {
+  display: grid;
+  gap: ${activeVariant.gap};
+  align-items: start;
+}
+
+.spaces-content.layout-classic,
+.spaces-content.layout-split {
+  grid-template-columns: 1fr 1fr;
+}
+
+.spaces-content.layout-stacked,
+.spaces-content.layout-carousel {
+  grid-template-columns: 1fr;
+}
+
+.venue-main-image {
+  position: relative;
+  border-radius: ${activeVariant.borderRadius};
+  overflow: hidden;
+  box-shadow: ${activeVariant.boxShadow};
+  transition: all ${activeVariant.animationDuration} ${activeVariant.animationEasing};
+}
+
+.venue-main-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.venue-main-image:hover .carousel-arrow {
+  opacity: 1;
+}
+
+.carousel-arrow.prev {
+  left: 1rem;
+}
+
+.carousel-arrow.next {
+  right: 1rem;
+}
+
+.venue-details h3 {
+  font-size: 2rem;
+  color: ${activeVariant.textColor};
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+.venue-details > p {
+  font-size: 1.125rem;
+  color: ${activeVariant.textColor};
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.venue-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.venue-feature {
+  text-align: left;
+}
+
+.venue-feature h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: ${activeVariant.primary};
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.venue-feature p {
+  font-size: 0.875rem;
+  color: ${activeVariant.textColor};
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Layout Variations */
+.spaces-content.layout-grid {
+  grid-template-columns: repeat(${activeVariant.gridColumns}, 1fr);
+  grid-template-rows: ${activeVariant.gridArrangement};
+}
+
+.spaces-content.layout-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  gap: ${activeVariant.gap};
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0 20px;
+  }
+  
+  .spaces-content {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .venue-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .venue-main-image img {
+    height: 250px;
+  }
+}`
+                },
+                {
+                  title: "📱 Usage Guide",
+                  language: "markdown",
+                  code: `# Spaces Component Usage
+
+## Current Configuration
+- **Theme**: ${themeMode}
+- **Layout**: ${layout} (${layoutOptions[layout].description})
+- **Colors**: ${colorPalettes[colorPalette].name}
+- **Style**: ${displayStyle}
+- **Animation**: ${animationStyle} (${animationSpeeds[animationSpeed].description})
+- **Spacing**: ${spacing}
+
+## Implementation Steps
+
+1. **Copy the CSS** into your stylesheet
+2. **Import the React component** into your page
+3. **Add venue data** with images and descriptions
+4. **Customize the layout** using the grid options
+
+## Layout Options
+
+### Classic Layouts
+- \`classic\`: Traditional side-by-side layout (default)
+- \`stacked\`: Image above, content below
+- \`split\`: Sidebar navigation with main content
+
+### Advanced Layouts
+- \`carousel\`: Full-width carousel with overlaid content
+- \`grid\`: Custom grid arrangement (${activeVariant.gridColumns} columns)
+- \`masonry\`: Pinterest-style masonry layout
+
+### Color Themes
+- **Rustic**: Warm earth tones for traditional venues
+- **Elegant**: Sophisticated jewel tones for luxury events
+- **Modern**: Clean contemporary colors for modern venues
+- **Nature**: Fresh greens for outdoor and garden venues
+- **Classic**: Timeless neutrals for versatile styling
+
+### Animation Effects
+- **Fade**: Simple opacity transitions
+- **Slide**: Smooth sliding animations
+- **Zoom**: Scale effects on hover
+- **Bounce**: Playful bounce animations
+
+## Performance Notes
+- Uses CSS Grid for responsive layouts
+- Efficient state management with React hooks
+- Optimized for mobile devices
+- Lazy loading support for gallery images
+
+## Customization Tips
+- Adjust grid columns for different venue counts
+- Modify aspect ratios for different image sizes
+- Add transition delays for staggered animations
+- Use CSS custom properties for theme consistency
+
+## Browser Support
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile responsive design
+- Graceful fallbacks for older browsers`
+                }
+              ]}
+              theme={themeMode}
+              accent={activeVariant.primary}
+            />
+          </div>
+
         </div>
       </section>
     </>
