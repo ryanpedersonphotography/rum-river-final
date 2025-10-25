@@ -32,6 +32,7 @@ import HeroDemoStandalone from './pages/HeroDemoStandalone'
 import ButtonDemoStandalone from './pages/ButtonDemoStandalone'
 import MainNavbarDemoStandalone from './pages/MainNavbarDemoStandalone'
 import FloatingCTADemoStandalone from './pages/FloatingCTADemoStandalone'
+import ScheduleTourButtonDemoStandalone from './pages/ScheduleTourButtonDemoStandalone'
 import MenuDemoStandalone from './pages/MenuDemoStandalone'
 import VenueDemoStandalone from './pages/VenueDemoStandalone'
 import SpacesDemoStandalone from './pages/SpacesDemoStandalone'
@@ -92,6 +93,7 @@ export default function App() {
         <Route path="/button-demo-standalone" element={<ButtonDemoStandalone />} />
         <Route path="/main-navbar-demo-standalone" element={<MainNavbarDemoStandalone />} />
         <Route path="/floating-cta-demo-standalone" element={<FloatingCTADemoStandalone />} />
+        <Route path="/schedule-tour-button-demo-standalone" element={<ScheduleTourButtonDemoStandalone />} />
         <Route path="/menu-demo-standalone" element={<MenuDemoStandalone />} />
         <Route path="/venue-demo-standalone" element={<VenueDemoStandalone />} />
         <Route path="/spaces-demo-standalone" element={<SpacesDemoStandalone />} />
