@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MultiFilterSpacesDemo from '../components/MultiFilterSpacesDemo';
 
 /**
  * SpacesDemoStandalone Component
@@ -804,6 +805,9 @@ export default function SpacesDemoStandalone() {
           }
         }
       `}</style>
+
+      {/* Multi-Filter Spaces Demo */}
+      <MultiFilterSpacesDemo />
 
       {/* Discover Our Spaces - Tabbed Venue Display */}
       <section className="section-warm">
