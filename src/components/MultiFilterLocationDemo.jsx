@@ -24,27 +24,44 @@ export default function MultiFilterLocationDemo() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Location data structure
+  // Location data structure with exact SVG icons from original
   const locationData = {
     address: {
       title: 'Address',
       content: '42618 78th Street\nHillman, MN 56338',
-      icon: 'location'
+      svg: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="icon icon-lg icon-primary">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"></path>
+        </svg>
+      )
     },
     access: {
       title: 'Easy Access From',
       content: '45 min from Minneapolis\n30 min from St. Cloud\n1 hour from Brainerd',
-      icon: 'truck'
+      svg: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="icon icon-lg icon-primary">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m6.75 4.5v-3a1.5 1.5 0 0 0-1.5-1.5H9.75a1.5 1.5 0 0 0-1.5 1.5v3m3 0a1.5 1.5 0 0 0 1.5-1.5V18a1.5 1.5 0 0 0-1.5-1.5H12a1.5 1.5 0 0 0-1.5 1.5v.75m3 0H21.375a1.125 1.125 0 0 0 1.125-1.125V14.25m-3.375 4.5v-3a1.5 1.5 0 0 0-1.5-1.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v3"></path>
+        </svg>
+      )
     },
     airport: {
       title: 'Nearest Airport',
       content: 'Minneapolis-St. Paul International\n55 miles (1 hour drive)',
-      icon: 'rocket'
+      svg: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="icon icon-lg icon-primary">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103-.212-.207-.422-.314-.632a13.762 13.762 0 0 1-.895-3.957c-.043-.684-.06-1.369-.053-2.054a13.78 13.78 0 0 1 .198-2.058c.06-.687.146-1.372.257-2.054.111-.683.249-1.364.415-2.041a14.9 14.9 0 0 1 1.82-3.943"></path>
+        </svg>
+      )
     },
     accommodations: {
       title: 'Accommodations',
       content: 'Partner hotels in Princeton & Milaca\nGroup rates available',
-      icon: 'building'
+      svg: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="icon icon-lg icon-primary">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m2.25-18v18m13.5-18v18m2.25-18v18M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.75m-.75 3h.75m-.75 3h.75m-3.75-16.5h.75m-.75 3h.75m-.75 3h.75m-.75 3h.75"></path>
+        </svg>
+      )
     }
   };
 
@@ -316,7 +333,7 @@ export default function MultiFilterLocationDemo() {
           <div style={{
             order: isMobile ? 2 : 1
           }}>
-            <div style={{
+            <div className={displayStyle === 'original' ? 'experience-features' : ''} style={displayStyle === 'original' ? {} : {
               display: 'flex',
               flexDirection: 'column',
               gap: activeVariant.itemGap
@@ -324,7 +341,8 @@ export default function MultiFilterLocationDemo() {
               {Object.entries(locationData).map(([key, item]) => (
                 <div
                   key={key}
-                  style={{
+                  className={displayStyle === 'original' ? 'feature-item' : ''}
+                  style={displayStyle === 'original' ? {} : {
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '1.5rem',
@@ -332,80 +350,75 @@ export default function MultiFilterLocationDemo() {
                     cursor: 'pointer'
                   }}
                   onMouseEnter={(e) => {
-                    if (animationStyle === 'zoom') {
-                      e.currentTarget.style.transform = 'scale(1.02)';
-                    } else if (animationStyle === 'slide') {
-                      e.currentTarget.style.transform = 'translateY(-5px)';
-                    } else if (animationStyle === 'bounce') {
-                      e.currentTarget.style.transform = 'translateY(-8px)';
+                    if (displayStyle !== 'original') {
+                      if (animationStyle === 'zoom') {
+                        e.currentTarget.style.transform = 'scale(1.02)';
+                      } else if (animationStyle === 'slide') {
+                        e.currentTarget.style.transform = 'translateY(-5px)';
+                      } else if (animationStyle === 'bounce') {
+                        e.currentTarget.style.transform = 'translateY(-8px)';
+                      }
                     }
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'none';
+                    if (displayStyle !== 'original') {
+                      e.currentTarget.style.transform = 'none';
+                    }
                   }}
                 >
                   {/* Feature Icon */}
                   <div 
                     className={displayStyle === 'original' ? 'feature-icon' : ''}
-                    style={{
-                      width: displayStyle === 'original' ? '64px' : '48px',
-                      height: displayStyle === 'original' ? '64px' : '48px',
+                    style={displayStyle === 'original' ? {} : {
+                      width: '48px',
+                      height: '48px',
                       borderRadius: '50%',
-                      background: displayStyle === 'original'
-                        ? 'var(--warm-walnut, #8B4513)'
-                        : `linear-gradient(135deg, ${activeVariant.primary}, ${activeVariant.accent})`,
+                      background: `linear-gradient(135deg, ${activeVariant.primary}, ${activeVariant.accent})`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: displayStyle === 'original' 
-                        ? 'none' 
-                        : `0 8px 25px rgba(${activeVariant.primary.replace('#', '')}, 0.3)`,
-                      border: displayStyle === 'original' ? 'none' : 'none'
+                      boxShadow: `0 8px 25px rgba(${activeVariant.primary.replace('#', '')}, 0.3)`
                     }}
                   >
-                    <Icon 
-                      name={item.icon} 
-                      size="lg" 
-                      color={displayStyle === 'original' ? 'primary' : 'white'}
-                      solid={false}
-                      style={displayStyle === 'original' ? {
-                        color: 'var(--warm-walnut, #8B4513)'
-                      } : {
-                        width: '24px',
-                        height: '24px',
-                        strokeWidth: '1.5',
-                        stroke: 'currentColor',
-                        fill: 'none'
-                      }}
-                    />
+                    {displayStyle === 'original' ? (
+                      item.svg
+                    ) : (
+                      <Icon 
+                        name={item.icon || 'location'} 
+                        size="lg" 
+                        color="white"
+                        solid={false}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          strokeWidth: '1.5',
+                          stroke: 'currentColor',
+                          fill: 'none'
+                        }}
+                      />
+                    )}
                   </div>
                   
                   {/* Feature Content */}
-                  <div style={{ flex: 1 }}>
-                    <h4 style={{
-                      fontSize: displayStyle === 'original' ? '1.25rem' : '1.1rem',
-                      fontWeight: displayStyle === 'original' ? 600 : 600,
+                  <div className={displayStyle === 'original' ? 'feature-content' : ''} style={displayStyle === 'original' ? { whiteSpace: 'pre-line' } : { flex: 1 }}>
+                    <h4 style={displayStyle === 'original' ? {} : {
+                      fontSize: '1.1rem',
+                      fontWeight: 600,
                       color: activeVariant.primary,
                       marginBottom: '0.5rem',
-                      fontFamily: displayStyle === 'original' 
-                        ? 'var(--font-body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)' 
-                        : activeVariant.typography === 'elegant' 
+                      fontFamily: activeVariant.typography === 'elegant' 
                         ? "'Playfair Display', serif" 
                         : "'Montserrat', sans-serif"
                     }}>
                       {item.title}
                     </h4>
-                    <p style={{
-                      fontSize: displayStyle === 'original' ? '1rem' : '0.95rem',
-                      lineHeight: displayStyle === 'original' ? '1.6' : '1.5',
+                    <p style={displayStyle === 'original' ? { whiteSpace: 'pre-line' } : {
+                      fontSize: '0.95rem',
+                      lineHeight: '1.5',
                       color: activeVariant.textColor,
-                      opacity: displayStyle === 'original' ? 0.85 : 0.8,
-                      whiteSpace: 'pre-line',
-                      fontWeight: displayStyle === 'original' ? 400 : 400,
-                      fontFamily: displayStyle === 'original' 
-                        ? 'var(--font-body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)' 
-                        : 'inherit'
+                      opacity: 0.8,
+                      whiteSpace: 'pre-line'
                     }}>
                       {item.content}
                     </p>
@@ -611,6 +624,56 @@ export default function MultiFilterLocationDemo() {
         
         .location-demo-item:hover {
           transform: ${activeVariant.animationTransform};
+        }
+
+        /* Copied from CohesiveDesign.css - Feature Icon Styles */
+        .experience-features {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .feature-icon {
+          font-size: 2rem;
+          flex-shrink: 0;
+        }
+
+        .feature-item {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 2rem;
+          align-items: flex-start;
+        }
+
+        .feature-content h4 {
+          font-family: var(--font-display);
+          font-size: 1.25rem;
+          color: var(--warm-walnut);
+          margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+          color: #6b7280;
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+
+        /* Base icon styles */
+        .icon {
+          display: inline-flex;
+          flex-shrink: 0;
+          transition: all 0.3s ease;
+        }
+
+        /* Icon sizes */
+        .icon-lg {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        /* Icon colors */
+        .icon-primary {
+          color: var(--dusty-rose);
         }
       `}</style>
 
