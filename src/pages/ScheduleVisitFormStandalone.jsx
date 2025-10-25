@@ -1,6 +1,11 @@
+import MultiFilterLocationDemo from '../components/MultiFilterLocationDemo';
+
 export default function ScheduleVisitFormStandalone() {
   return (
     <>
+      {/* Multi-Filter Location Demo */}
+      <MultiFilterLocationDemo />
+      
       {/* Schedule Your Visit Form */}
       <section className="contact-section section">
         <div className="content-wrapper">

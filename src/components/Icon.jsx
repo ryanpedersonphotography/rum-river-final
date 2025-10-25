@@ -293,6 +293,11 @@ const iconMap = {
   discount: ReceiptPercentIcon,
   tag: TagIcon,
   
+  // Transportation
+  truck: TruckIcon,
+  transport: TruckIcon,
+  delivery: TruckIcon,
+  
   // Misc
   flag: FlagIcon,
   bell: BellIcon,
