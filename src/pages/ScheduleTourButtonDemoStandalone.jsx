@@ -794,7 +794,6 @@ export default function ScheduleTourButtonDemoStandalone() {
 
       {/* Live Code Generation */}
       <div style={{
-        margin: '4rem 2rem',
         padding: '2rem',
         background: themeMode === 'dark' 
           ? 'rgba(255, 255, 255, 0.05)' 
