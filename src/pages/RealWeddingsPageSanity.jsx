@@ -3,12 +3,21 @@ import { Link } from 'react-router-dom'
 import { createClient } from '@sanity/client'
 import PageTemplate from '../components/PageTemplate'
 
+// Check if we're in preview mode
+const isPreviewMode = typeof window !== 'undefined' &&
+  sessionStorage.getItem('sanity-preview-mode') === 'true'
+
 // Configure Sanity client
 const client = createClient({
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
   dataset: import.meta.env.VITE_SANITY_DATASET,
-  useCdn: true,
+  useCdn: !isPreviewMode, // Disable CDN in preview mode for fresh data
   apiVersion: '2024-01-01',
+  perspective: isPreviewMode ? 'previewDrafts' : 'published', // Show drafts in preview
+  stega: {
+    enabled: isPreviewMode, // Enable stega encoding for visual editing
+    studioUrl: 'https://rum-river-final.sanity.studio',
+  }
 })
 
 export default function RealWeddingsPageSanity() {

@@ -19,7 +19,9 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    # Allow Sanity Studio to embed site for Presentation Tool (visual editing)
+    # X-Frame-Options = "DENY"  # Disabled - using CSP frame-ancestors instead
+    Content-Security-Policy = "frame-ancestors 'self' https://*.sanity.studio https://rum-river-final.sanity.studio http://localhost:3333"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"

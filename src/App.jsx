@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { VisualEditing } from '@sanity/visual-editing/react'
 import HomePage from './pages/HomePage'
 import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
@@ -67,6 +69,24 @@ export default function App() {
   const isComponentLibrary = window.location.hash === '#components'
   const isCohesive = window.location.hash === '#cohesive'
 
+  // Check for Sanity preview mode
+  const [isPreviewMode, setIsPreviewMode] = useState(false)
+
+  useEffect(() => {
+    // Check sessionStorage for preview mode
+    const previewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
+    setIsPreviewMode(previewMode)
+
+    // Listen for storage changes (in case preview mode is toggled in another tab)
+    const handleStorageChange = () => {
+      const newPreviewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
+      setIsPreviewMode(newPreviewMode)
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
   if (isComponentLibrary) {
     return <ComponentLibrary />
   }
@@ -77,6 +97,13 @@ export default function App() {
 
   return (
     <Router>
+      {/* Enable visual editing when in preview mode */}
+      {isPreviewMode && (
+        <VisualEditing
+          projectId={import.meta.env.VITE_SANITY_PROJECT_ID}
+          dataset={import.meta.env.VITE_SANITY_DATASET}
+        />
+      )}
       <Routes>
         {/* Main site routes without DemoNavbar */}
         <Route path="/" element={<HomePage />} />
