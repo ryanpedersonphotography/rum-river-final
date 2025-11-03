@@ -56,6 +56,7 @@ import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
 import AdminPanel from './pages/AdminPanel'
 import AdminWeddings from './pages/AdminWeddings'
+import SanityWeddingsTest from './pages/SanityWeddingsTest'
 import './components/DemoNavbar.css'
 
 export default function App() {
@@ -116,7 +117,10 @@ export default function App() {
         {/* Admin Panel */}
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/admin/weddings" element={<AdminWeddings />} />
-        
+
+        {/* Sanity Test Page */}
+        <Route path="/sanity-weddings-test" element={<SanityWeddingsTest />} />
+
         {/* Demo routes with DemoNavbar */}
         <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />
         <Route path="/venue-demo" element={<><DemoNavbar /><VenueStandalone /></>} />
