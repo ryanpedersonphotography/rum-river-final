@@ -55,3 +55,7 @@ src/generated/
 *.ico
 .env
 .contentfulrc.json
+
+# Sanity build artifacts
+studio-dist/
+.sanity/runtime/
