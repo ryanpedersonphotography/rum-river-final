@@ -57,6 +57,8 @@ import DemoNavbar from './components/DemoNavbar'
 import AdminPanel from './pages/AdminPanel'
 import AdminWeddings from './pages/AdminWeddings'
 import SanityWeddingsTest from './pages/SanityWeddingsTest'
+import PreviewEnable from './pages/PreviewEnable'
+import PreviewDisable from './pages/PreviewDisable'
 import './components/DemoNavbar.css'
 
 export default function App() {
@@ -120,6 +122,10 @@ export default function App() {
 
         {/* Sanity Test Page */}
         <Route path="/sanity-weddings-test" element={<SanityWeddingsTest />} />
+
+        {/* Sanity Preview Mode Routes */}
+        <Route path="/preview/enable" element={<PreviewEnable />} />
+        <Route path="/preview/disable" element={<PreviewDisable />} />
 
         {/* Demo routes with DemoNavbar */}
         <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />
