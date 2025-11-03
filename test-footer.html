@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Footer Test</title>
+    <script>
+        // Test if footer is loading
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost:3001/');
+                const html = await response.text();
+                
+                // Check if React rendered
+                const hasReactContent = html.includes('hero-section') || html.includes('hero-title');
+                const hasFooter = html.includes('Rum River Barn') && html.includes('Visit Us');
+                
+                document.getElementById('status').innerHTML = `
+                    <p>✓ Page loaded successfully</p>
+                    <p>${hasReactContent ? '✓' : '✗'} React content rendered</p>
+                    <p>${hasFooter ? '✓' : '✗'} Footer content found</p>
+                `;
+                
+                // Try to fetch Sanity data directly
+                const module = await import('http://localhost:3001/src/lib/sanityClient.js');
+                document.getElementById('status').innerHTML += '<p>✓ Sanity client loaded</p>';
+            } catch (err) {
+                document.getElementById('status').innerHTML = `<p>Error: ${err.message}</p>`;
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Testing Footer Integration</h1>
+    <div id="status">Loading...</div>
+    <hr>
+    <iframe src="http://localhost:3001/" width="100%" height="600"></iframe>
+</body>
+</html>

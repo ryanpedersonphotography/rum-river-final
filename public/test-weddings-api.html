@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Wedding API - Rum River Admin</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-bar {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-info {
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .user-info strong {
+            color: #2d3748;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #f56565;
+            color: white;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+        }
+        
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #fc8181;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .weddings-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .wedding-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .wedding-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .wedding-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        
+        .wedding-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .wedding-date {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        .wedding-status {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-published {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .badge-draft {
+            background: #feebc8;
+            color: #7c2d12;
+        }
+        
+        .badge-featured {
+            background: #fbb6ce;
+            color: #702459;
+        }
+        
+        .wedding-content {
+            color: #4a5568;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .wedding-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #718096;
+        }
+        
+        .wedding-images {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .image-thumb {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid transparent;
+        }
+        
+        .image-thumb.featured {
+            border-color: #667eea;
+        }
+        
+        .raw-response {
+            background: #2d3748;
+            color: #63b3ed;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .toggle-raw {
+            margin-top: 20px;
+            background: #4a5568;
+            color: white;
+        }
+        
+        .toggle-raw:hover {
+            background: #2d3748;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test Wedding Blogs API</h1>
+        
+        <div class="status-bar">
+            <div class="user-info">
+                <strong>Status:</strong> <span id="userStatus">Not logged in</span>
+            </div>
+            <div>
+                <button id="loginBtn" class="btn-primary">Login</button>
+                <button id="logoutBtn" class="btn-danger" style="display: none;">Logout</button>
+            </div>
+        </div>
+        
+        <div id="message"></div>
+        
+        <div class="btn-group">
+            <button id="fetchWeddings" class="btn-success" disabled>
+                📥 Fetch Weddings from Contentful
+            </button>
+            <button id="toggleRaw" class="toggle-raw" style="display: none;">
+                👁️ Show/Hide Raw Response
+            </button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            ⏳ Loading weddings...
+        </div>
+        
+        <div id="weddingsList"></div>
+        
+        <div id="rawResponse" class="raw-response" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Initialize Netlify Identity
+        netlifyIdentity.init({
+            APIUrl: 'https://rum-river-final.netlify.app/.netlify/identity'
+        });
+        
+        // UI Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const fetchBtn = document.getElementById('fetchWeddings');
+        const toggleRawBtn = document.getElementById('toggleRaw');
+        const messageDiv = document.getElementById('message');
+        const loadingDiv = document.getElementById('loading');
+        const weddingsDiv = document.getElementById('weddingsList');
+        const rawDiv = document.getElementById('rawResponse');
+        const userStatusSpan = document.getElementById('userStatus');
+        
+        // Helper function to show message
+        function showMessage(message, type = 'info') {
+            messageDiv.className = type;
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            
+            if (type !== 'error') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Update UI based on auth state
+        function updateUI() {
+            const user = netlifyIdentity.currentUser();
+            
+            if (user) {
+                userStatusSpan.textContent = `Logged in as ${user.email}`;
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+                fetchBtn.disabled = false;
+            } else {
+                userStatusSpan.textContent = 'Not logged in';
+                loginBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+                fetchBtn.disabled = true;
+                weddingsDiv.innerHTML = '';
+                rawDiv.style.display = 'none';
+                toggleRawBtn.style.display = 'none';
+            }
+        }
+        
+        // Login handler
+        loginBtn.onclick = () => {
+            netlifyIdentity.open();
+        };
+        
+        // Logout handler
+        logoutBtn.onclick = () => {
+            netlifyIdentity.logout();
+        };
+        
+        // Toggle raw response
+        toggleRawBtn.onclick = () => {
+            rawDiv.style.display = rawDiv.style.display === 'none' ? 'block' : 'none';
+        };
+        
+        // Fetch weddings handler
+        fetchBtn.onclick = async () => {
+            const user = netlifyIdentity.currentUser();
+            if (!user) {
+                showMessage('Please login first', 'error');
+                return;
+            }
+            
+            loadingDiv.style.display = 'block';
+            weddingsDiv.innerHTML = '';
+            rawDiv.innerHTML = '';
+            messageDiv.style.display = 'none';
+            
+            try {
+                // Get JWT token
+                const token = await user.jwt();
+                
+                // Call the Netlify Function
+                const response = await fetch('/.netlify/functions/contentful-weddings-list', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage(`✅ Successfully fetched ${data.count} wedding blogs!`, 'success');
+                    
+                    // Display raw response
+                    rawDiv.textContent = JSON.stringify(data, null, 2);
+                    toggleRawBtn.style.display = 'inline-block';
+                    
+                    // Display formatted weddings
+                    displayWeddings(data.weddings);
+                } else {
+                    showMessage(`❌ Error: ${data.error} - ${data.details}`, 'error');
+                    rawDiv.textContent = JSON.stringify(data, null, 2);
+                    rawDiv.style.display = 'block';
+                }
+            } catch (error) {
+                showMessage(`❌ Network error: ${error.message}`, 'error');
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        };
+        
+        // Display weddings in a nice format
+        function displayWeddings(weddings) {
+            if (!weddings || weddings.length === 0) {
+                weddingsDiv.innerHTML = '<p style="text-align: center; color: #718096;">No wedding blogs found</p>';
+                return;
+            }
+            
+            const html = weddings.map(wedding => `
+                <div class="wedding-card">
+                    <div class="wedding-header">
+                        <div>
+                            <div class="wedding-title">${wedding.title || 'Untitled'}</div>
+                            <div class="wedding-date">${new Date(wedding.date).toLocaleDateString()}</div>
+                        </div>
+                        <div class="wedding-status">
+                            ${wedding.published ? '<span class="badge badge-published">Published</span>' : '<span class="badge badge-draft">Draft</span>'}
+                            ${wedding.featured ? '<span class="badge badge-featured">Featured</span>' : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="wedding-content">
+                        ${wedding.excerpt || 'No excerpt available'}
+                    </div>
+                    
+                    <div class="wedding-meta">
+                        <span>📍 ${wedding.venue || 'No venue'}</span>
+                        <span>🎨 ${wedding.season || 'No season'}</span>
+                        <span>📸 ${wedding.photographerCredit || 'No photographer'}</span>
+                    </div>
+                    
+                    ${(wedding.featuredImage || wedding.gallery?.length > 0) ? `
+                        <div class="wedding-images">
+                            <strong>Images:</strong>
+                            <div class="image-grid">
+                                ${wedding.featuredImage ? `<img src="${wedding.featuredImage}?w=160" class="image-thumb featured" title="Featured Image">` : ''}
+                                ${wedding.gallery ? wedding.gallery.slice(0, 5).map(img => 
+                                    `<img src="${img.url}?w=160" class="image-thumb" title="${img.caption || 'Gallery Image'}">`
+                                ).join('') : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('\n');
+            
+            weddingsDiv.innerHTML = `
+                <h2 style="margin-bottom: 20px;">Wedding Blogs (${weddings.length} total)</h2>
+                <div class="weddings-grid">${html}</div>
+            `;
+        }
+        
+        // Auth event listeners
+        netlifyIdentity.on('login', user => {
+            console.log('User logged in:', user);
+            updateUI();
+            netlifyIdentity.close();
+        });
+        
+        netlifyIdentity.on('logout', () => {
+            console.log('User logged out');
+            updateUI();
+            showMessage('Logged out successfully', 'success');
+        });
+        
+        // Initial UI update
+        updateUI();
+    </script>
+</body>
+</html>

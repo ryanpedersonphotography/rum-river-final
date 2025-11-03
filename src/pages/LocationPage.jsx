@@ -23,7 +23,7 @@ export default function LocationPage() {
       {/* ID: MAP_DIRECTIONS_001 - Map & Directions Section */}
       <section id="map-directions" className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Find Us</div>
             <h2 className="section-title">Getting Here</h2>
             <p className="lead">Conveniently located in the heart of Minnesota with easy access from major cities</p>
@@ -88,7 +88,7 @@ export default function LocationPage() {
       {/* Surrounding Cities Section */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Easy to Reach</div>
             <h2 className="section-title">Surrounding Cities</h2>
             <p className="lead">Just an hour northwest of 494/694 Minneapolis/St. Paul</p>
@@ -161,7 +161,7 @@ export default function LocationPage() {
       {/* On-Site Amenities */}
       <section className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">On the Property</div>
             <h2 className="section-title">On-Site Amenities</h2>
             <p className="lead">Extend your stay and explore everything our property has to offer</p>
@@ -214,7 +214,7 @@ export default function LocationPage() {
       {/* Nearby Accommodations & Activities */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Local Area</div>
             <h2 className="section-title">Nearby Accommodations & Points of Interest</h2>
             <p className="lead">Lodging options and activities for your guests to enjoy</p>
@@ -257,7 +257,7 @@ export default function LocationPage() {
       {/* Parking & Arrival Info */}
       <section className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Arrival Information</div>
             <h2 className="section-title">Parking & Access</h2>
           </div>

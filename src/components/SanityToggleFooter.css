@@ -1,0 +1,92 @@
+.sanity-toggle-footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.sanity-toggle-footer:hover {
+  opacity: 1;
+}
+
+.sanity-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+  user-select: none;
+}
+
+.sanity-toggle-checkbox {
+  width: 28px;
+  height: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #666;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin: 0;
+}
+
+.sanity-toggle-checkbox:checked {
+  background: #4CAF50;
+}
+
+.sanity-toggle-checkbox::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.sanity-toggle-checkbox:checked::after {
+  transform: translateX(12px);
+}
+
+.sanity-toggle-text {
+  color: #999;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 35px;
+}
+
+/* Even more subtle on mobile */
+@media (max-width: 768px) {
+  .sanity-toggle-footer {
+    opacity: 0.2;
+  }
+  
+  .sanity-toggle-label {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  
+  .sanity-toggle-checkbox {
+    width: 24px;
+    height: 14px;
+  }
+  
+  .sanity-toggle-checkbox::after {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .sanity-toggle-checkbox:checked::after {
+    transform: translateX(10px);
+  }
+}

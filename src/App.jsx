@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import VendorsPage from './pages/VendorsPage'
+import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
 import ComponentPage from './pages/ComponentPage'
 import LocationPage from './pages/LocationPage'
@@ -25,6 +25,32 @@ import SocialProofStandalone from './pages/SocialProofStandalone'
 import LoveLettersStandalone from './pages/LoveLettersStandalone'
 import FindYourWayStandalone from './pages/FindYourWayStandalone'
 import ScheduleVisitFormStandalone from './pages/ScheduleVisitFormStandalone'
+import ButtonStandalone from './pages/ButtonStandalone'
+import ButtonSandbox from './pages/ButtonSandbox'
+import ScheduleTourDemo from './pages/ScheduleTourDemo'
+import HeroDemoStandalone from './pages/HeroDemoStandalone'
+import ButtonDemoStandalone from './pages/ButtonDemoStandalone'
+import MainNavbarDemoStandalone from './pages/MainNavbarDemoStandalone'
+import FloatingCTADemoStandalone from './pages/FloatingCTADemoStandalone'
+import ScheduleTourButtonDemoStandalone from './pages/ScheduleTourButtonDemoStandalone'
+import RumRiverExperienceDemoStandalone from './pages/RumRiverExperienceDemoStandalone'
+import MenuDemoStandalone from './pages/MenuDemoStandalone'
+import VenueDemoStandalone from './pages/VenueDemoStandalone'
+import SpacesDemoStandalone from './pages/SpacesDemoStandalone'
+import SpacesProfessionalStandalone from './pages/SpacesProfessionalStandalone'
+import SpacesGalleryShowcase from './pages/SpacesGalleryShowcase'
+import LoveStoriesDemoStandalone from './pages/LoveStoriesDemoStandalone'
+import SocialProofDemoStandalone from './pages/SocialProofDemoStandalone'
+import SocialProof001DemoStandalone from './pages/SocialProof001DemoStandalone'
+import FooterDemoStandalone from './pages/FooterDemoStandalone'
+import ScheduleTourDemoStandalone from './pages/ScheduleTourDemoStandalone'
+import FAQAccordionDemoStandalone from './pages/FAQAccordionDemoStandalone'
+import FindYourWayDemoStandalone from './pages/FindYourWayDemoStandalone'
+import FindYourWayV2Demo from './pages/FindYourWayV2Demo'
+import FindYourWayV2DemoStandalone from './pages/FindYourWayV2DemoStandalone'
+import MapDirectionsStandalone from './pages/MapDirectionsStandalone'
+import HistoryTimelineStandalone from './pages/HistoryTimelineStandalone'
+import FAQStandaloneSingle from './pages/FAQStandaloneSingle'
 import ComponentLibrary from './ComponentLibrary'
 import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
@@ -51,7 +77,7 @@ export default function App() {
         {/* Main site routes without DemoNavbar */}
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/vendor-list" element={<VendorsPage />} />
+        <Route path="/vendor-list" element={<VendorsPageWithToggle />} />
         <Route path="/property" element={<PropertyPage />} />
         <Route path="/component" element={<ComponentPage />} />
         <Route path="/location" element={<LocationPage />} />
@@ -62,6 +88,30 @@ export default function App() {
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
         <Route path="/history" element={<HistoryPage />} />
+        
+        {/* Standalone demo routes (no navigation) */}
+        <Route path="/hero-demo-standalone" element={<HeroDemoStandalone />} />
+        <Route path="/button-demo-standalone" element={<ButtonDemoStandalone />} />
+        <Route path="/main-navbar-demo-standalone" element={<MainNavbarDemoStandalone />} />
+        <Route path="/floating-cta-demo-standalone" element={<FloatingCTADemoStandalone />} />
+        <Route path="/schedule-tour-button-demo-standalone" element={<ScheduleTourButtonDemoStandalone />} />
+        <Route path="/rum-river-experience-demo-standalone" element={<RumRiverExperienceDemoStandalone />} />
+        <Route path="/menu-demo-standalone" element={<MenuDemoStandalone />} />
+        <Route path="/venue-demo-standalone" element={<VenueDemoStandalone />} />
+        <Route path="/spaces-demo-standalone" element={<SpacesDemoStandalone />} />
+        <Route path="/spaces-professional-standalone" element={<SpacesProfessionalStandalone />} />
+        <Route path="/spaces-gallery-showcase" element={<SpacesGalleryShowcase />} />
+        <Route path="/love-stories-demo-standalone" element={<LoveStoriesDemoStandalone />} />
+        <Route path="/social-proof-demo-standalone" element={<SocialProofDemoStandalone />} />
+        <Route path="/social-proof-001-demo-standalone" element={<SocialProof001DemoStandalone />} />
+        <Route path="/footer-demo-standalone" element={<FooterDemoStandalone />} />
+        <Route path="/schedule-tour-demo-standalone" element={<ScheduleTourDemoStandalone />} />
+        <Route path="/faq-accordion-demo-standalone" element={<FAQAccordionDemoStandalone />} />
+        <Route path="/find-your-way-demo-standalone" element={<FindYourWayDemoStandalone />} />
+        <Route path="/find-your-way-v2-demo-standalone" element={<FindYourWayV2DemoStandalone />} />
+        <Route path="/map-directions-standalone" element={<MapDirectionsStandalone />} />
+        <Route path="/history-timeline-standalone" element={<HistoryTimelineStandalone />} />
+        <Route path="/faq-standalone-single" element={<FAQStandaloneSingle />} />
         
         {/* Admin Panel */}
         <Route path="/admin" element={<AdminPanel />} />
@@ -80,7 +130,12 @@ export default function App() {
         <Route path="/social-proof-demo" element={<><DemoNavbar /><SocialProofStandalone /></>} />
         <Route path="/love-letters-demo" element={<><DemoNavbar /><LoveLettersStandalone /></>} />
         <Route path="/find-your-way-demo" element={<><DemoNavbar /><FindYourWayStandalone /></>} />
+        <Route path="/find-your-way-v2-demo" element={<><DemoNavbar /><FindYourWayV2Demo /></>} />
         <Route path="/schedule-visit-form-demo" element={<><DemoNavbar /><ScheduleVisitFormStandalone /></>} />
+        <Route path="/button-demo" element={<><DemoNavbar /><ButtonStandalone /></>} />
+        <Route path="/button-sandbox" element={<><DemoNavbar /><ButtonSandbox /></>} />
+        <Route path="/schedule-tour-demo" element={<><DemoNavbar /><ScheduleTourDemo /></>} />
+        <Route path="/history-timeline-demo" element={<><DemoNavbar /><HistoryTimelineStandalone /></>} />
         <Route path="/blog" element={<div>Blog Archive</div>} />
         <Route path="/blog/:slug" element={<div>Blog Post</div>} />
       </Routes>

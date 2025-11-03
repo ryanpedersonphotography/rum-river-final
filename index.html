@@ -15,8 +15,26 @@
 
       gtag('config', 'G-9NHVYQNKG7');
     </script>
+    
+    <!-- Netlify Identity Widget for email confirmations -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
+    <script>
+      // Handle Netlify Identity redirects (password reset, email confirmation, etc.)
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              // Redirect to admin after login if coming from email
+              if (window.location.hash && window.location.hash.includes('token')) {
+                document.location.href = "/test-admin.html";
+              }
+            });
+          }
+        });
+      }
+    </script>
     <div id="root"></div>
 
     <!-- Hidden forms for Netlify Forms detection -->

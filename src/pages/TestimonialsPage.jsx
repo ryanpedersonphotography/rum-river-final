@@ -122,7 +122,7 @@ export default function TestimonialsPage() {
       {/* All Testimonials Grid */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Love Letters</div>
             <h2 className="section-title">What Couples Say</h2>
             <p className="lead">Real stories from real couples who celebrated at Rum River Barn</p>
@@ -148,7 +148,7 @@ export default function TestimonialsPage() {
       {/* Stats Section */}
       <section className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">By the Numbers</div>
             <h2 className="section-title">Our Happy Couples</h2>
           </div>

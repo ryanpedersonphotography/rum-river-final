@@ -163,7 +163,8 @@
 }
 
 /* Accordion Styles */
-.section-header {
+/* Admin panel specific section headers - use a different class name to avoid conflicts */
+.admin-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,7 +175,7 @@
   transition: background-color 0.2s ease;
 }
 
-.section-header:hover {
+.admin-section-header:hover {
   background-color: #f8f9fa;
   margin: 0 -1rem 1rem;
   padding: 0.5rem 1rem;

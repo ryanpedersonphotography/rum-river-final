@@ -25,7 +25,7 @@ export default function ContactPage() {
       {/* Virtual Preview Section */}
       <section className="section section-cream">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Take a Peek Inside</div>
             <h2 className="section-title">Virtual 3D Tours</h2>
             <p className="lead">Explore our beautiful spaces before your visit with immersive virtual tours</p>
@@ -228,7 +228,7 @@ export default function ContactPage() {
       {/* Contact Info Section */}
       <section className="section">
         <div className="content-wrapper">
-          <div className="section-header center">
+          <div className="venue-discovery-content center">
             <div className="script-accent">Other Ways to Reach Us</div>
             <h2 className="section-title">Contact Information</h2>
           </div>

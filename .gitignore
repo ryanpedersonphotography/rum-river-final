@@ -54,3 +54,4 @@ src/generated/
 *.webp
 *.ico
 .env
+.contentfulrc.json

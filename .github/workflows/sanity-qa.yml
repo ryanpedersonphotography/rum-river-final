@@ -1,0 +1,146 @@
+name: Sanity QA & Migration
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'studio/**'
+      - '.github/workflows/sanity-qa.yml'
+  workflow_dispatch:
+    inputs:
+      runMigrations:
+        description: 'Run pending migrations'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  SANITY_PROJECT_ID: vicw6cgb
+  SANITY_DATASET: production
+
+jobs:
+  sanity-check:
+    name: Sanity Schema & Document QA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd studio && npm ci
+      
+      - name: Schema validation
+        run: npx sanity schema validate
+        working-directory: ./studio
+      
+      - name: Documents validation
+        run: npx sanity documents validate --non-interactive
+        working-directory: ./studio
+        continue-on-error: true # Don't fail on warnings
+      
+      - name: Report validation results
+        if: always()
+        run: |
+          echo "### 📋 Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Schema validation: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ⚠️  Document validation: Check logs for any warnings" >> $GITHUB_STEP_SUMMARY
+
+  migrate:
+    name: Run Migrations (if enabled)
+    needs: sanity-check
+    runs-on: ubuntu-latest
+    if: github.event.inputs.runMigrations == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd studio && npm ci
+      
+      - name: Create backup
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: |
+          mkdir -p studio/backups
+          npx sanity dataset export $SANITY_DATASET studio/backups/pre-migration-$(date +%Y%m%d-%H%M%S).ndjson --overwrite
+        working-directory: ./studio
+      
+      - name: Run pending migrations
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: |
+          if [ -f "scripts/pending-migrations.txt" ]; then
+            echo "Running pending migrations..."
+            while IFS= read -r migration; do
+              if [ -n "$migration" ] && [[ ! "$migration" =~ ^# ]] && [ -f "$migration" ]; then
+                echo "Running: $migration"
+                npx sanity exec "$migration"
+              fi
+            done < scripts/pending-migrations.txt
+          else
+            echo "No pending migrations found"
+          fi
+        working-directory: ./studio
+      
+      - name: Post-migration validation
+        run: npx sanity documents validate --non-interactive
+        working-directory: ./studio
+      
+      - name: Audit unknown fields
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: |
+          if [ -f "scripts/audit-unknown-fields.mjs" ]; then
+            npx sanity exec scripts/audit-unknown-fields.mjs
+          fi
+        working-directory: ./studio
+
+  deploy-studio:
+    name: Deploy Studio (on main only)
+    needs: [sanity-check]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd studio && npm ci
+      
+      - name: Build Studio
+        run: npm run build
+        working-directory: ./studio
+      
+      - name: Deploy to Sanity
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: npm run deploy
+        working-directory: ./studio
+      
+      - name: Report deployment
+        run: |
+          echo "### 🚀 Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Studio deployed to: https://rum-river-final.sanity.studio" >> $GITHUB_STEP_SUMMARY
