@@ -3,32 +3,35 @@ import { Link } from 'react-router-dom'
 import { createClient } from '@sanity/client'
 import PageTemplate from '../components/PageTemplate'
 
-// Check if we're in preview mode
-const isPreviewMode = typeof window !== 'undefined' &&
-  sessionStorage.getItem('sanity-preview-mode') === 'true'
-
-// Configure Sanity client
-const client = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
-  dataset: import.meta.env.VITE_SANITY_DATASET,
-  useCdn: !isPreviewMode, // Disable CDN in preview mode for fresh data
-  apiVersion: '2024-01-01',
-  perspective: isPreviewMode ? 'previewDrafts' : 'published', // Show drafts in preview
-  stega: {
-    enabled: isPreviewMode, // Enable stega encoding for visual editing
-    studioUrl: 'https://rum-river-final.sanity.studio',
-  }
-})
-
 export default function RealWeddingsPageSanity() {
   const [weddings, setWeddings] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [isPreviewMode, setIsPreviewMode] = useState(false)
 
   useEffect(() => {
     async function fetchWeddings() {
       try {
         setLoading(true)
+
+        // Check if we're in preview mode
+        const previewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
+        setIsPreviewMode(previewMode)
+
+        // Configure Sanity client based on preview mode
+        const client = createClient({
+          projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
+          dataset: import.meta.env.VITE_SANITY_DATASET,
+          useCdn: !previewMode, // Disable CDN in preview mode for fresh data
+          apiVersion: '2024-01-01',
+          perspective: previewMode ? 'previewDrafts' : 'published', // Show drafts in preview
+          stega: {
+            enabled: previewMode, // Enable stega encoding for visual editing
+            studioUrl: 'https://rum-river-final.sanity.studio',
+          }
+        })
+
+        console.log('Fetching weddings with preview mode:', previewMode)
 
         // Fetch published weddings from Sanity
         const data = await client.fetch(`
@@ -46,6 +49,7 @@ export default function RealWeddingsPageSanity() {
           }
         `)
 
+        console.log('Fetched weddings:', data.length)
         setWeddings(data)
         setError(null)
       } catch (err) {
@@ -70,13 +74,13 @@ export default function RealWeddingsPageSanity() {
       <div style={{
         marginTop: '1rem',
         padding: '0.5rem 1rem',
-        background: 'rgba(108, 99, 255, 0.1)',
-        border: '1px solid rgba(108, 99, 255, 0.3)',
+        background: isPreviewMode ? 'rgba(16, 185, 129, 0.1)' : 'rgba(108, 99, 255, 0.1)',
+        border: isPreviewMode ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(108, 99, 255, 0.3)',
         borderRadius: '4px',
         fontSize: '0.9rem',
-        color: '#6c63ff'
+        color: isPreviewMode ? '#10b981' : '#6c63ff'
       }}>
-        <strong>✨ Powered by Sanity CMS</strong> - Content is live from Sanity
+        <strong>{isPreviewMode ? '👁️ Preview Mode' : '✨ Powered by Sanity CMS'}</strong> - {isPreviewMode ? 'Viewing drafts and unpublished changes' : 'Content is live from Sanity'}
       </div>
     </>
   )
