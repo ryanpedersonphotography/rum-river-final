@@ -243,7 +243,10 @@ export default defineConfig({
     visionTool(),
     presentationTool({
       previewUrl: {
-        origin: process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : 'https://rum-river-final.netlify.app',
+        // Use localhost in dev, production URL when deployed
+        origin: typeof window !== 'undefined' && window.location.hostname === 'localhost'
+          ? 'http://localhost:5173'
+          : 'https://rum-river-final.netlify.app',
         previewMode: {
           enable: '/preview/enable',
           disable: '/preview/disable'
