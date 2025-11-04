@@ -40,6 +40,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'published',
+      title: 'Published',
+      type: 'boolean',
+      description: 'Make this wedding visible on the website',
+      initialValue: true,
+    },
+    {
       name: 'featured',
       title: 'Featured Wedding',
       type: 'boolean',

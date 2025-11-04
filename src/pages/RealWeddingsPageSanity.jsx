@@ -33,15 +33,19 @@ export default function RealWeddingsPageSanity() {
 
         console.log('Fetching weddings with preview mode:', previewMode)
 
-        // Fetch published weddings from Sanity
+        // In preview mode, show all weddings (including unpublished drafts)
+        // In normal mode, only show published weddings
+        const publishedFilter = previewMode ? '' : '&& published == true'
+
         const data = await client.fetch(`
-          *[_type == "wedding" && published == true] | order(weddingDate desc) {
+          *[_type == "wedding" ${publishedFilter}] | order(weddingDate desc) {
             _id,
             coupleName,
             weddingDate,
             season,
             excerpt,
             featured,
+            published,
             venue,
             "coverImageUrl": coverImage.asset->url,
             "slug": slug.current,
