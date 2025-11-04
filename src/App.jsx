@@ -73,12 +73,23 @@ export default function App() {
   const [isPreviewMode, setIsPreviewMode] = useState(false)
 
   useEffect(() => {
-    // Check sessionStorage for preview mode
+    // Check sessionStorage for preview mode on mount
     const previewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
     setIsPreviewMode(previewMode)
 
-    // Enable visual editing when in preview mode
-    if (previewMode) {
+    // Listen for storage changes (in case preview mode is toggled in another tab)
+    const handleStorageChange = () => {
+      const newPreviewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
+      setIsPreviewMode(newPreviewMode)
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, []) // Run only on mount
+
+  // Separate effect for enabling/disabling visual editing
+  useEffect(() => {
+    if (isPreviewMode) {
       console.log('🎨 Enabling visual editing...')
       const disable = enableVisualEditing({
         history: {
@@ -87,13 +98,16 @@ export default function App() {
             return () => {}
           },
           update: (update) => {
-            // Handle navigation updates if needed
+            // Handle navigation updates from Sanity Studio
+            console.log('📍 Navigation update:', update.type, update.url)
             if (update.type === 'push' || update.type === 'replace') {
               window.history[update.type === 'push' ? 'pushState' : 'replaceState'](
                 {},
                 '',
                 update.url
               )
+              // Trigger React Router navigation
+              window.dispatchEvent(new PopStateEvent('popstate'))
             }
           }
         },
@@ -105,16 +119,7 @@ export default function App() {
         disable()
       }
     }
-
-    // Listen for storage changes (in case preview mode is toggled in another tab)
-    const handleStorageChange = () => {
-      const newPreviewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
-      setIsPreviewMode(newPreviewMode)
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [isPreviewMode])
+  }, [isPreviewMode]) // Only re-run when preview mode changes
 
   if (isComponentLibrary) {
     return <ComponentLibrary />
