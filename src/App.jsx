@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { VisualEditing } from '@sanity/visual-editing/react-router'
+import { enableVisualEditing } from '@sanity/visual-editing'
 import HomePage from './pages/HomePage'
 import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
@@ -77,6 +77,35 @@ export default function App() {
     const previewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
     setIsPreviewMode(previewMode)
 
+    // Enable visual editing when in preview mode
+    if (previewMode) {
+      console.log('🎨 Enabling visual editing...')
+      const disable = enableVisualEditing({
+        history: {
+          subscribe: (navigate) => {
+            // Listen for navigation events from Sanity Studio
+            return () => {}
+          },
+          update: (update) => {
+            // Handle navigation updates if needed
+            if (update.type === 'push' || update.type === 'replace') {
+              window.history[update.type === 'push' ? 'pushState' : 'replaceState'](
+                {},
+                '',
+                update.url
+              )
+            }
+          }
+        },
+      })
+
+      // Return cleanup function
+      return () => {
+        console.log('🎨 Disabling visual editing...')
+        disable()
+      }
+    }
+
     // Listen for storage changes (in case preview mode is toggled in another tab)
     const handleStorageChange = () => {
       const newPreviewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
@@ -85,7 +114,7 @@ export default function App() {
 
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
+  }, [isPreviewMode])
 
   if (isComponentLibrary) {
     return <ComponentLibrary />
@@ -97,13 +126,6 @@ export default function App() {
 
   return (
     <Router>
-      {/* Enable visual editing when in preview mode */}
-      {isPreviewMode && (
-        <VisualEditing
-          projectId={import.meta.env.VITE_SANITY_PROJECT_ID}
-          dataset={import.meta.env.VITE_SANITY_DATASET}
-        />
-      )}
       <Routes>
         {/* Main site routes without DemoNavbar */}
         <Route path="/" element={<HomePage />} />
