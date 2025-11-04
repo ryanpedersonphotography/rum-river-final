@@ -251,6 +251,42 @@ export default defineConfig({
           enable: '/preview/enable',
           disable: '/preview/disable'
         }
+      },
+      // Allow previews from localhost and production
+      resolve: {
+        mainDocuments: (client, {documentId, documentType}) => {
+          // Define which URL to preview for each document type
+          if (documentType === 'wedding') {
+            return [{
+              route: '/real-weddings-sanity',
+              filter: `_type == "wedding" && _id == $documentId`,
+              params: {documentId}
+            }]
+          }
+          // Default: go to homepage
+          return [{route: '/'}]
+        },
+        locations: (client, {documentId, documentType}) => {
+          // Define all locations where a document appears
+          if (documentType === 'wedding') {
+            return client.fetch(
+              `*[_id == $documentId][0]{
+                "slug": slug.current,
+                "coupleName": coupleName
+              }`,
+              {documentId}
+            ).then((doc) => {
+              if (!doc) return []
+              return [
+                {
+                  title: doc.coupleName || 'Wedding',
+                  href: '/real-weddings-sanity'
+                }
+              ]
+            })
+          }
+          return []
+        }
       }
     }),
   ],
