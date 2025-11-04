@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { VisualEditing } from '@sanity/visual-editing/react'
+import { VisualEditing } from '@sanity/visual-editing/react-router'
 import HomePage from './pages/HomePage'
 import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
