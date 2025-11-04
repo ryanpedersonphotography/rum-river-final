@@ -2,6 +2,13 @@ export default {
   name: 'wedding',
   title: 'Wedding',
   type: 'document',
+  options: {
+    // Tell Presentation Tool where to preview this document
+    previewUrl: {
+      // Always preview on the real weddings sanity page
+      previewUrl: '/real-weddings-sanity',
+    },
+  },
   fields: [
     {
       name: 'title',
