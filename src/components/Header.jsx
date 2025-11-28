@@ -10,8 +10,8 @@ export default function Header() {
       const header = document.getElementById('header')
       if (header) {
         const isHome = location.pathname === '/'
-        // Trigger point: Full viewport for home, small offset for other pages
-        const triggerPoint = isHome ? window.innerHeight - 100 : 100
+        // Trigger point: 90% of viewport for home (full hero), 50% for other pages (shorter hero)
+        const triggerPoint = isHome ? window.innerHeight * 0.9 : window.innerHeight * 0.5
         
         if (window.scrollY > triggerPoint) {
           header.classList.add('scrolled')
