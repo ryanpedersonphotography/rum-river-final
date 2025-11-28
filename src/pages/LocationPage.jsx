@@ -205,7 +205,7 @@ export default function LocationPage() {
             </div>
 
             <div className="experience-image image-reveal">
-              <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800" alt="Outdoor camping" width="800" height="600" />
+              <img src="/images/venue/property-camping.jpg" alt="Outdoor camping" width="800" height="600" />
             </div>
           </div>
         </div>
@@ -308,7 +308,7 @@ export default function LocationPage() {
             </div>
 
             <div className="experience-image image-reveal">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Venue exterior" width="800" height="600" />
+              <img src="/images/venue/property-parking-lot.jpg" alt="Venue exterior" width="800" height="600" />
             </div>
           </div>
         </div>
