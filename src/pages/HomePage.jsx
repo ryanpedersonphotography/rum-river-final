@@ -140,7 +140,7 @@ export default function HomePage() {
               {pageContent?.hero?.description || 'Our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.'}
             </p>
             <div className="hero-buttons">
-              <CTAButton href={pageContent?.hero?.ctaLink || '/contact'} variant="primary">
+              <CTAButton href="#lets-connect-form" variant="primary">
                 {pageContent?.hero?.ctaText || 'Schedule Your Visit'}
               </CTAButton>
             </div>
@@ -403,6 +403,7 @@ export default function HomePage() {
 
       {/* ID: CONTACT_FORM_001 - Let's Connect Form Section */}
       <ScheduleTourForm
+        id="lets-connect-form"
         formName="home-schedule-tour"
         className=""
       />

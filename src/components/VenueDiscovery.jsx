@@ -153,9 +153,13 @@ export default function VenueDiscovery({
         
         <div className="venue-display-simple">
           <div className="venue-top-section">
-            <div className="venue-main-image">
+            <div 
+              className="venue-main-image" 
+              onClick={() => setIsFullscreen(true)}
+              style={{ cursor: 'pointer' }}
+            >
               <img 
-                src={venueData[activeVenue].images[0]} 
+                src={venueData[activeVenue].images[currentImageIndex]} 
                 alt={venueData[activeVenue].title} 
                 width="800" 
                 height="500" 

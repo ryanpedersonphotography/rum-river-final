@@ -16,13 +16,14 @@ export const ScheduleTourForm = ({
   submitText = 'Schedule Tour',
   loadingText = 'SCHEDULING...',
   className = '',
+  id = '',
   showHeader = true,
   sectionStyle = {},
   lightTheme = false,
   formType = 'tour' // 'tour' or 'vendor'
 }) => {
   return (
-    <section className={`cta-contact-section ${className}`.trim()} style={sectionStyle}>
+    <section id={id} className={`cta-contact-section ${className}`.trim()} style={sectionStyle}>
       <div className="cta-contact-container">
         {showHeader && (
           <div className="cta-contact-header" style={lightTheme ? {

@@ -94,6 +94,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-body);
   font-size: 1rem; /* Use --text-base */
@@ -4345,4 +4349,36 @@ html[data-theme="dark"] h2 {
   .floating-cta {
     display: none !important;
   }
+}
+/* Active Navigation States */
+
+/* Desktop Active State */
+.nav-menu a.active {
+  color: var(--dusty-rose);
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  width: 100%;
+  background: var(--dusty-rose);
+}
+
+/* Desktop Dropdown Parent Active State */
+.nav-menu .dropdown.active > .dropdown-trigger {
+  color: var(--dusty-rose);
+  font-weight: 600;
+}
+
+/* Mobile Active State */
+.mobile-link.active {
+  color: var(--dusty-rose) !important;
+  font-weight: 700;
+  background-color: rgba(212, 165, 165, 0.1);
+  border-left: 4px solid var(--dusty-rose);
+}
+
+.mobile-sublink.active {
+  color: var(--dusty-rose) !important;
+  font-weight: 700;
+  background-color: rgba(212, 165, 165, 0.1);
 }
