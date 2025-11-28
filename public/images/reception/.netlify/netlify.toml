@@ -1,0 +1,28 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/ryanpederson/Dev/websites/rum-river-final/public/images/reception/dist"
+publishOrigin = "config"
+commandOrigin = "config"
+base = "/Users/ryanpederson/Dev/websites/rum-river-final/public/images/reception"
+command = "npm run build"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
