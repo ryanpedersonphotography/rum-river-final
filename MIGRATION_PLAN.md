@@ -124,6 +124,115 @@ Add the following block to the `netlify.toml` file of the **OLD** site (`rumrive
   status = 301
   force = true
 
+# Real Wedding Blog Redirects (Root HTML pages)
+[[redirects]]
+  from = "/anthony-and-linnea.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/anthony-and-linnea"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/loria-and-jason-rolstad-agape.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/loria-and-jason-rolstad-agape"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mattea-courtney.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/mattea-courtney-photo-gallery"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kyle-carrie.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/kyle-carrie"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/emily-and-barron-nixon.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/emily-and-barron-nixon"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/joshua-and-teri.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/joshua-and-teri"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reins-wedding.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/reins-wedding"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kerry-dominic.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/kerry-dominic"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rachel-and-vince.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/rachel-and-vince"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/erin-kate.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/erin-kate"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kage.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/kage"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/dave-kayla.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/dave-kayla"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jenna-and-steven-tschirgi.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/jenna-and-steven-tschirgi"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nick-and-kayla.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/nick-and-kayla"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/allison-and-will.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/allison-and-will"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/james-and-denise-allen.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/james-and-denise-allen"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/casey-garret.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/casey-garret"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kristine-leuze.html"
+  to = "https://rumriverweddingbarn.com/real-weddings/kristine-leuze"
+  status = 301
+  force = true
+
 # Catch-all Redirect (Must be last)
 [[redirects]]
   from = "/*"
