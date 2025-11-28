@@ -9,9 +9,24 @@ export default function Header() {
     const handleScroll = () => {
       const header = document.getElementById('header')
       if (header) {
-        const isHome = location.pathname === '/'
-        // Trigger point: 90% of viewport for home (full hero), 50% for other pages (shorter hero)
-        const triggerPoint = isHome ? window.innerHeight * 0.9 : window.innerHeight * 0.5
+        let triggerPoint = 300 // Default fallback
+        
+        // Try to find the hero element
+        const homeHero = document.getElementById('home')
+        // Look for the hero container in PageTemplate (usually styled with a background image)
+        // In PageTemplate.jsx, it typically has a class or inline style. 
+        // Since we don't have a guaranteed class, we'll look for the first section or header-like element
+        const pageHero = document.querySelector('.page-hero') || document.querySelector('.hero-enhanced')
+        
+        if (homeHero) {
+          triggerPoint = homeHero.offsetHeight - 100
+        } else if (pageHero) {
+          triggerPoint = pageHero.offsetHeight - 100
+        } else {
+           // Fallback: 90vh for home, 50vh for others
+           const isHome = location.pathname === '/'
+           triggerPoint = isHome ? window.innerHeight * 0.9 : window.innerHeight * 0.5
+        }
         
         if (window.scrollY > triggerPoint) {
           header.classList.add('scrolled')
