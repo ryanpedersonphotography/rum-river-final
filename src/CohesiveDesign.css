@@ -335,21 +335,29 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 /* Enhanced Header */
 .header-enhanced {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   background: transparent;
   z-index: 900;
-  transition: var(--transition);
+  transition: background-color 0.3s ease, padding 0.3s ease;
   padding: 2rem 0;
 }
 
 .header-enhanced.scrolled {
+  position: fixed;
+  top: 0;
   background: rgba(251, 247, 244, 0.98);
   backdrop-filter: blur(20px);
   padding: 0.5rem 0;
   box-shadow: 0 4px 20px rgba(31, 29, 26, 0.12);
+  animation: headerSlideDown 0.4s ease-out forwards;
+}
+
+@keyframes headerSlideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
 }
 
 .header-enhanced.scrolled .nav-menu a {
