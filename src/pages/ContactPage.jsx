@@ -130,13 +130,12 @@ export default function ContactPage() {
                 lineHeight: 1.7,
                 color: 'var(--sage-green)'
               }}>
-                <strong>General Inquiries</strong><br />
-                info@rumriverbarn.com<br /><br />
-                <strong>Bookings</strong><br />
-                events@rumriverbarn.com
+                <strong>Email Us</strong><br />
+                evelyn@rumrivermn.com
               </p>
             </div>
 
+            {/* 
             <div className="testimonial-card">
               <h3 style={{
                 fontFamily: 'var(--font-display)',
@@ -159,6 +158,7 @@ export default function ContactPage() {
                 Pinterest: rumriverbarn
               </p>
             </div>
+            */}
           </div>
         </div>
       </section>
