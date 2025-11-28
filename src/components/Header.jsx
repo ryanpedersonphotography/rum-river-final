@@ -111,6 +111,7 @@ export default function Header() {
             </div>
             <nav className="mobile-nav-content">
               
+              <a href="/" className={`mobile-link ${isActive('/')}`} onClick={closeMenu}>Home</a>
               <a href="/events" className={`mobile-link ${isActive('/events')}`} onClick={closeMenu}>Events</a>
               <a href="/vendor-list" className={`mobile-link ${isActive('/vendor-list')}`} onClick={closeMenu}>Vendor List</a>
               
