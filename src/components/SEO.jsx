@@ -52,6 +52,46 @@ export default function SEO({
       <meta name="business:contact_data:locality" content="Hillman" />
       <meta name="business:contact_data:region" content="MN" />
       <meta name="business:contact_data:country_name" content="USA" />
+
+      {/* Schema.org JSON-LD */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WeddingVenue",
+          "name": siteName,
+          "image": fullImageUrl,
+          "url": fullUrl,
+          "telephone": "320-492-8584",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "42618 78th Street",
+            "addressLocality": "Hillman",
+            "addressRegion": "MN",
+            "postalCode": "56338",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 46.0441,
+            "longitude": -93.8842
+          },
+          "description": description,
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        })}
+      </script>
     </Helmet>
   )
 }

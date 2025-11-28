@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rumriverweddingbarn.com/sitemap.xml
