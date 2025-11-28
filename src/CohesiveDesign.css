@@ -420,12 +420,17 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 @media (max-width: 768px) {
+  /* Reduced header padding on mobile */
+  .header-enhanced {
+    padding: 1rem 0;
+  }
+
   .logo-svg {
-    height: 162px;
+    height: 100px; /* Reduced from 162px */
   }
   
   .header-enhanced.scrolled .logo-svg {
-    height: 100px;
+    height: 60px; /* Reduced from 100px */
   }
   
   .logo-line-1 {
