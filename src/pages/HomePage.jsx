@@ -152,6 +152,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Discover Our Spaces - Tabbed Venue Display */}
+      <VenueDiscovery />
+
       {/* Virtual Preview Section */}
       <section className="section section-cream">
         <div className="content-wrapper">

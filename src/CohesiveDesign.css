@@ -348,7 +348,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 .header-enhanced.scrolled {
   background: rgba(251, 247, 244, 0.98);
   backdrop-filter: blur(20px);
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   box-shadow: 0 4px 20px rgba(31, 29, 26, 0.12);
 }
 
@@ -376,7 +376,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 .logo-svg {
-  height: 240px;
+  height: 216px;
   width: auto;
   transition: var(--transition);
   filter: brightness(0) invert(1); /* White logo initially */
@@ -384,6 +384,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 .header-enhanced.scrolled .logo-svg {
+  height: 160px;
   filter: none; /* Original colors when scrolled */
   opacity: 1;
 }
@@ -412,7 +413,11 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 @media (max-width: 768px) {
   .logo-svg {
-    height: 180px;
+    height: 162px;
+  }
+  
+  .header-enhanced.scrolled .logo-svg {
+    height: 100px;
   }
   
   .logo-line-1 {

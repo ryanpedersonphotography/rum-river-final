@@ -10,7 +10,11 @@ export default function Header() {
     const handleScroll = () => {
       const header = document.getElementById('header')
       if (header) {
-        if (window.scrollY > 100) {
+        const isHome = location.pathname === '/'
+        // Trigger point: Full viewport for home, small offset for other pages
+        const triggerPoint = isHome ? window.innerHeight - 100 : 100
+        
+        if (window.scrollY > triggerPoint) {
           header.classList.add('scrolled')
         } else {
           header.classList.remove('scrolled')
@@ -18,9 +22,12 @@ export default function Header() {
       }
     }
 
+    // Check immediately on mount/route change
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [location.pathname])
 
   // Close mobile menu when route changes
   const closeMenu = () => setIsMobileMenuOpen(false)
