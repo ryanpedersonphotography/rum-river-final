@@ -316,7 +316,7 @@ export default function LocationPage() {
 
       {/* Schedule Your Visit Form */}
       <ScheduleTourForm
-        formName="location-schedule-tour"
+        formName="schedule-tour"
         title="Start Planning Your Perfect Day"
         subtitle="Let's Connect"
         description="We'd love to show you around our beautiful venue and discuss your wedding vision."

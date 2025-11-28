@@ -504,7 +504,7 @@ export default function HistoryPage() {
 
       {/* Schedule Your Visit Form */}
       <ScheduleTourForm
-        formName="history-schedule-tour"
+        formName="schedule-tour"
         title="Create Your Own History Here"
         subtitle="Become Part of Our Story"
         description="Join the legacy of celebrations at Minnesota's original barn and country venue."

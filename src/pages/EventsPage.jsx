@@ -183,7 +183,7 @@ export default function EventsPage() {
 
       {/* Contact Info Section */}
       <ScheduleTourForm
-        formName="events-schedule-tour"
+        formName="schedule-tour"
         title="Let's Start Planning Together"
         subtitle="Ready to Plan Your Event?"
         description="Contact us today to schedule a tour of our beautiful venue and discuss how we can make your special event unforgettable."
