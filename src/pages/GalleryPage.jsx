@@ -1,9 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Masonry } from 'masonic'
 import Lightbox from 'yet-another-react-lightbox'
-import Captions from 'yet-another-react-lightbox/plugins/captions'
 import 'yet-another-react-lightbox/styles.css'
-import 'yet-another-react-lightbox/plugins/captions.css'
 import PageTemplate from '../components/PageTemplate'
 import VenueTabs from '../components/VenueTabs'
 
@@ -85,6 +83,11 @@ const LazyImage = ({ src, alt, onLoad }) => {
     onLoad?.()
   }, [onLoad])
 
+  const handleError = useCallback(() => {
+    // Hide loader if image fails, maybe show a placeholder or just transparent
+    setIsLoaded(true) 
+  }, [])
+
   // Intersection Observer for lazy loading
   useEffect(() => {
     if (!imgRef.current) return
@@ -110,6 +113,7 @@ const LazyImage = ({ src, alt, onLoad }) => {
           src={src}
           alt={alt}
           onLoad={handleLoad}
+          onError={handleError}
           style={{
             width: '100%',
             height: 'auto',
@@ -267,11 +271,6 @@ export default function GalleryPage() {
         close={() => setLightboxOpen(false)}
         slides={slides}
         index={lightboxIndex}
-        plugins={[Captions]}
-        captions={{
-          showToggle: true,
-          descriptionTextAlign: 'center'
-        }}
       />
 
       <style>{`
