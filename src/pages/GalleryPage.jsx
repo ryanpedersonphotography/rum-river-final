@@ -53,7 +53,17 @@ const photos = [
   { id: 37, src: '/images/2014/05/Loria-Jason-wedding-1-0365.jpg', category: 'real-weddings', alt: 'Barn Wedding Party' },
   { id: 38, src: '/images/2014/05/Loria-Jason-wedding-1-0205.jpg', category: 'real-weddings', alt: 'First Dance' },
   { id: 39, src: '/images/2014/05/LB1_6499.jpg', category: 'real-weddings', alt: 'Golden Hour Couple' },
-  { id: 40, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'real-weddings', alt: 'Intimate Moment' }
+  { id: 40, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'real-weddings', alt: 'Intimate Moment' },
+  { id: 41, src: '/images/2014/05/Loria-Jason-wedding-1-0007.jpg', category: 'real-weddings', alt: 'Bridal Party' },
+  { id: 42, src: '/images/2014/04/Loria-Jason-wedding-2-0026.jpg', category: 'real-weddings', alt: 'Wedding Celebration' },
+  { id: 43, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0030.jpg', category: 'real-weddings', alt: 'Ceremony Moments' },
+  { id: 44, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0031.jpg', category: 'real-weddings', alt: 'Wedding Vows' },
+  { id: 45, src: '/images/2014/05/Loria-Jason-wedding-1-0006.jpg', category: 'real-weddings', alt: 'Ceremony Setup' },
+  { id: 46, src: '/images/2014/05/Loria-Jason-wedding-1-0012.jpg', category: 'real-weddings', alt: 'Twilight Ceremony' },
+  { id: 48, src: '/images/2014/05/LB1_6880.jpg', category: 'real-weddings', alt: 'Reception Details' },
+  { id: 49, src: '/images/2014/05/LB1_7023.jpg', category: 'real-weddings', alt: 'Reception Tables' },
+  { id: 50, src: '/images/2014/05/LB1_7342-2.jpg', category: 'real-weddings', alt: 'Dance Floor' },
+  { id: 51, src: '/images/2014/05/Reins-Wedding_1-631.jpg', category: 'real-weddings', alt: 'Barn Reception' }
 ]
 
 // Lazy Image Component with Intersection Observer
