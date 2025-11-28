@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import logo from '../assets/logo.svg'
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -35,10 +36,7 @@ export default function Header() {
       <div className="content-wrapper">
         <div className="header-content">
           <a href="/" className="logo-wrapper" onClick={closeMenu}>
-            <div className="logo-text">
-              <div className="logo-line-1">Rum River</div>
-              <div className="logo-line-2">Wedding Barn</div>
-            </div>
+            <img src={logo} alt="Rum River Wedding Barn" className="logo-svg" />
           </a>
 
           {/* Mobile Menu Toggle */}
@@ -55,7 +53,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="desktop-nav">
             <ul className="nav-menu">
-              <li><a href="/" className={isActive('/')} onClick={closeMenu}>Home</a></li>
+              
               <li>
                 <a href="/events" className={isActive('/events')} onClick={closeMenu}>Events</a>
               </li>
@@ -92,7 +90,7 @@ export default function Header() {
               </button>
             </div>
             <nav className="mobile-nav-content">
-              <a href="/" className={`mobile-link ${isActive('/')}`} onClick={closeMenu}>Home</a>
+              
               <a href="/events" className={`mobile-link ${isActive('/events')}`} onClick={closeMenu}>Events</a>
               <a href="/vendor-list" className={`mobile-link ${isActive('/vendor-list')}`} onClick={closeMenu}>Vendor List</a>
               

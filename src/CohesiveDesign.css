@@ -376,9 +376,16 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 .logo-svg {
-  height: 60px;
+  height: 240px;
   width: auto;
   transition: var(--transition);
+  filter: brightness(0) invert(1); /* White logo initially */
+  opacity: 0.8;
+}
+
+.header-enhanced.scrolled .logo-svg {
+  filter: none; /* Original colors when scrolled */
+  opacity: 1;
 }
 
 .logo-text {
@@ -405,7 +412,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 
 @media (max-width: 768px) {
   .logo-svg {
-    height: 50px;
+    height: 180px;
   }
   
   .logo-line-1 {
@@ -1254,8 +1261,8 @@ html[data-theme="dark"] .romantic-button.outline:hover {
     min-height: 115vh;
     /* Align content to top */
     align-items: flex-start;
-    /* Position right below header - adjusted to 6rem */
-    padding-top: 6rem;
+    /* Position right below header - adjusted for balanced distribution */
+    padding-top: 10rem;
     padding-bottom: 8rem;
     
     /* Shift background to show more of the barn structure on portrait screens */
@@ -1269,7 +1276,7 @@ html[data-theme="dark"] .romantic-button.outline:hover {
   .hero-enhanced .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 3rem;
     padding: 0 1.5rem;
   }
   
@@ -1295,7 +1302,7 @@ html[data-theme="dark"] .romantic-button.outline:hover {
 
 .hero-content {
   animation: fadeInUp 1.2s ease-out;
-  max-width: 700px;
+  max-width: 1200px;
   position: relative;
   z-index: 2;
   padding: 0 2rem;
@@ -1332,6 +1339,9 @@ html[data-theme="dark"] .romantic-button.outline:hover {
   margin-bottom: 3rem;
   opacity: 0.95;
   line-height: 1.8;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
