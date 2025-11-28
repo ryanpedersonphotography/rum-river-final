@@ -12,6 +12,7 @@ import RealWeddingPage from './pages/RealWeddingPage'
 import HistoryPage from './pages/HistoryPage'
 import EventsPage from './pages/EventsPage'
 import ThankYouPage from './pages/ThankYouPage'
+import VendorThankYouPage from './pages/VendorThankYouPage'
 import HeroStandalone from './pages/HeroStandalone'
 import VenueStandalone from './pages/VenueStandalone'
 import MenuStandalone from './pages/MenuStandalone'
@@ -83,6 +84,7 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/vendor-thank-you" element={<VendorThankYouPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
         <Route path="/real-weddings/:slug" element={<RealWeddingPage />} />

@@ -193,6 +193,7 @@ export default function VendorsPageWithToggle() {
         {/* Vendor Application Form */}
         <ScheduleTourForm
           formName="vendor-application"
+          redirectPath="/vendor-thank-you"
           title="Are You a Wedding Professional?"
           subtitle="Join Our Network"
           description="We're always looking for talented professionals to join our preferred vendor network. If you're interested in working with couples at Rum River Barn, we'd love to hear from you."
