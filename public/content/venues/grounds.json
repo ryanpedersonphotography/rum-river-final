@@ -4,10 +4,12 @@
   "description": "400 acres of rolling fields and rustic charm. Features our signature vineyard, scenic aerial views, guest camping, and beautiful outdoor ceremony spots near the barn.",
   "order": 5,
   "images": [
+    "/images/venue/aerials/aerial-full-estate.jpg",
     "/images/venue/grounds-barn-context.jpg",
     "/images/venue/grounds-ceremony-area.jpg",
     "/images/venue/aerials/aerial-property-overview.jpg",
-    "/images/venue/aerials/aerial-full-estate.jpg",
+    "/images/venue/aerials/aerial-vineyard-view.jpg",
+    "/images/venue/aerials/aerial-sunset-view.jpg",
     "/images/venue/vineyard-ground-level.jpg",
     "/images/venue/grounds-field.jpg",
     "/images/venue/grounds-swing.jpg",
