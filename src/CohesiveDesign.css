@@ -4411,3 +4411,16 @@ html[data-theme="dark"] h2 {
   font-weight: 700;
   background-color: rgba(212, 165, 165, 0.1);
 }
+
+/* Desktop Reset - Ensure mobile elements are hidden on larger screens */
+@media (min-width: 901px) {
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+  .desktop-nav {
+    display: block !important;
+  }
+}
