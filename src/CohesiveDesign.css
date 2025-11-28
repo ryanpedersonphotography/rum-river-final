@@ -4347,17 +4347,15 @@ html[data-theme="dark"] h2 {
 }
 
 
-/* Desktop Reset - Ensure mobile elements are hidden on larger screens */
-@media (min-width: 901px) {
-  .mobile-nav-overlay {
-    display: none !important;
-  }
-  .mobile-menu-toggle {
-    display: none !important;
-  }
-  .desktop-nav {
-    display: block !important;
-  }
+/* Ensure footer social icons are white */
+.footer-social a svg {
+  color: white;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-social a:hover svg {
+  transform: translateY(-3px);
+  opacity: 0.8;
 }
 /* Hide Floating CTA on mobile */
 @media (max-width: 900px) {
@@ -4367,24 +4365,40 @@ html[data-theme="dark"] h2 {
 }
 /* Active Navigation States */
 
-/* Desktop Active State */
+/* Desktop Active State - Default (Transparent Header / Hero) */
 .nav-menu a.active {
-  color: var(--dusty-rose);
-  font-weight: 600;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Shadow for readability on light parts of image */
 }
 
 .nav-menu a.active::after {
   width: 100%;
+  background: white;
+  height: 3px; /* Thicker underline */
+}
+
+/* Desktop Active State - Scrolled (White Header) */
+.header-enhanced.scrolled .nav-menu a.active {
+  color: var(--dusty-rose);
+  text-shadow: none;
+}
+
+.header-enhanced.scrolled .nav-menu a.active::after {
   background: var(--dusty-rose);
 }
 
 /* Desktop Dropdown Parent Active State */
 .nav-menu .dropdown.active > .dropdown-trigger {
-  color: var(--dusty-rose);
-  font-weight: 600;
+  font-weight: 700;
+  color: white; /* Force white on hero */
 }
 
-/* Mobile Active State */
+.header-enhanced.scrolled .nav-menu .dropdown.active > .dropdown-trigger {
+  color: var(--dusty-rose); /* Rose on white header */
+}
+
+/* Mobile Active State (Unchanged) */
 .mobile-link.active {
   color: var(--dusty-rose) !important;
   font-weight: 700;

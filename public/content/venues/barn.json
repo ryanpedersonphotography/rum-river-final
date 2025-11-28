@@ -1,34 +1,33 @@
 {
-  "title": "The Historic Barn",
+  "title": "The White Barn",
   "key": "barn",
-  "description": "Our crown jewel, this beautifully restored barn features soaring ceilings, original timber beams, and modern amenities seamlessly integrated into its historic charm.",
+  "description": "The heart of your celebration. The spacious upper loft features soaring ceilings for your ceremony or dance, while the lower-level lounge and attached balcony offer a perfect setting for cocktails and dinner.",
   "order": 1,
   "images": [
     "/images/venue/barn-interior-exposed-beams-chandeliers.jpg",
     "/images/venue/barn-interior-ceiling-beams-lighting.jpg",
     "/images/venue/barn-interior-string-lights-ceiling-detail.jpg",
-    "/images/venue/barn-exterior-full-view-landscape.jpg",
-    "/images/venue/barn-exterior-welcome-sign-entrance.jpg",
-    "/images/venue/barn-exterior-deck-stairs-trees.jpg",
-    "/images/venue/barn-exterior-full-deck-view-evening.jpg",
-    "/images/venue/barn-exterior-deck-swing-golden-hour.jpg"
+    "/images/venue/lounge-interior.jpg",
+    "/images/venue/barn-exterior-balcony.jpg",
+    "/images/venue/barn-patio-seating.jpg",
+    "/images/venue/barn-exterior-full-view-landscape.jpg"
   ],
   "features": [
     {
-      "label": "Capacity",
+      "label": "Loft Capacity",
       "value": "Up to 300 guests"
     },
     {
-      "label": "Features",
-      "value": "Built-in bar & dance floor"
-    },
-    {
-      "label": "Lighting",
-      "value": "Edison bulbs & chandeliers"
+      "label": "Lounge",
+      "value": "Built-in bar & relaxed seating"
     },
     {
       "label": "Climate",
       "value": "Heated & air conditioned"
+    },
+    {
+      "label": "Accessibility",
+      "value": "Wheelchair accessible levels"
     }
   ]
 }

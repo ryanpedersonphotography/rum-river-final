@@ -1,16 +1,14 @@
 {
-  "title": "Bridal Suite",
+  "title": "Bridal Cottage",
   "key": "bridal",
-  "description": "A private sanctuary for getting ready, complete with vintage furnishings, natural lighting, and peaceful garden views.",
+  "description": "A lovely retreat for the bridal party. The original homestead features a private getting-ready space and a secluded courtyard.",
   "order": 3,
   "images": [
+    "/images/venue/bridal-cottage-exterior.jpg",
+    "/images/venue/bridal-cottage-getting-ready.jpg",
+    "/images/venue/bridal-suite-interior.jpg",
     "/images/bridal-suite/1-large.jpeg",
-    "/images/bridal-suite/dsc_1766-large.jpeg",
-    "/images/bridal-suite/dsc_1768-large.jpeg",
-    "/images/bridal-suite/dsc_1770-2-large.jpeg",
-    "/images/bridal-suite/dsc_1773-large.jpeg",
-    "/images/bridal-suite/dsc_1774-large.jpeg",
-    "/images/bridal-suite/dsc_1776-large.jpeg"
+    "/images/bridal-suite/dsc_1766-large.jpeg"
   ],
   "features": [
     {
@@ -18,16 +16,16 @@
       "value": "Up to 12 people"
     },
     {
-      "label": "Features",
-      "value": "Professional lighting & mirrors"
-    },
-    {
       "label": "Amenities",
       "value": "Private bathroom & kitchenette"
     },
     {
-      "label": "Style",
-      "value": "Vintage charm meets modern comfort"
+      "label": "Outdoor",
+      "value": "Private bridal courtyard"
+    },
+    {
+      "label": "History",
+      "value": "Original property homestead"
     }
   ]
 }
