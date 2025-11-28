@@ -1,8 +1,8 @@
 {
   "title": "The Grounds",
   "key": "grounds",
-  "description": "400 acres of rustic charm. Features our signature vineyard, rolling fields, aerial views, and guest camping options.",
-  "order": 4,
+  "description": "400 acres of rolling fields and rustic charm. Features our signature vineyard, scenic aerial views, guest camping, and beautiful outdoor ceremony spots near the barn.",
+  "order": 5,
   "images": [
     "/images/venue/aerials/aerial-property-overview.jpg",
     "/images/venue/aerials/aerial-full-estate.jpg",
@@ -12,7 +12,8 @@
     "/images/venue/grounds-field.jpg",
     "/images/venue/grounds-swing.jpg",
     "/images/venue/property-camping.jpg",
-    "/images/venue/property-parking-lot.jpg"
+    "/images/venue/property-parking-lot.jpg",
+    "/images/venue/details-barn-sign-rustic-lettering.jpg"
   ],
   "features": [
     {
@@ -25,7 +26,7 @@
     },
     {
       "label": "Camping",
-      "value": "On-site campground available"
+      "value": "On-site campground"
     },
     {
       "label": "Parking",

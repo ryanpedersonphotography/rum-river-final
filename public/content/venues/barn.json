@@ -1,33 +1,32 @@
 {
-  "title": "The White Barn",
+  "title": "The Historic Barn",
   "key": "barn",
-  "description": "The heart of your celebration. The spacious upper loft features soaring ceilings for your ceremony or dance, while the lower-level lounge and attached balcony offer a perfect setting for cocktails and dinner.",
+  "description": "Our crown jewel. The original hay loft features soaring ceilings, exposed timber beams, and hardwood floors—creating a breathtaking backdrop for your ceremony or grand dance.",
   "order": 1,
   "images": [
     "/images/venue/barn-interior-exposed-beams-chandeliers.jpg",
     "/images/venue/barn-interior-ceiling-beams-lighting.jpg",
     "/images/venue/barn-interior-string-lights-ceiling-detail.jpg",
-    "/images/venue/lounge-interior.jpg",
-    "/images/venue/barn-exterior-balcony.jpg",
-    "/images/venue/barn-patio-seating.jpg",
-    "/images/venue/barn-exterior-full-view-landscape.jpg"
+    "/images/venue/barn-exterior-full-view-landscape.jpg",
+    "/images/venue/barn-exterior-deck-stairs-trees.jpg",
+    "/images/venue/barn-exterior-full-deck-view-evening.jpg"
   ],
   "features": [
     {
-      "label": "Loft Capacity",
+      "label": "Capacity",
       "value": "Up to 300 guests"
     },
     {
-      "label": "Lounge",
-      "value": "Built-in bar & relaxed seating"
+      "label": "Usage",
+      "value": "Ceremony & Dance"
+    },
+    {
+      "label": "Atmosphere",
+      "value": "Rustic Elegance"
     },
     {
       "label": "Climate",
-      "value": "Heated & air conditioned"
-    },
-    {
-      "label": "Accessibility",
-      "value": "Wheelchair accessible levels"
+      "value": "Heated & Air Conditioned"
     }
   ]
 }

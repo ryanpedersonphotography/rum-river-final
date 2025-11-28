@@ -16,7 +16,7 @@ export function useVenueData() {
         setError(null)
 
         // List of venue files to fetch
-        const venueFiles = ['barn', 'frame-barn', 'bridal', 'grounds']
+        const venueFiles = ['barn', 'lounge', 'frame-barn', 'bridal', 'grounds']
         
         const venuePromises = venueFiles.map(async (venueKey) => {
           const response = await fetch(`/content/venues/${venueKey}.json`)

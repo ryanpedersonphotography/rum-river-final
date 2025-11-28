@@ -1,0 +1,32 @@
+{
+  "title": "The Lounge",
+  "key": "lounge",
+  "description": "Located on the main level, the Lounge is perfect for an intimate dinner or cocktail hour. Featuring a full-service bar, ambient lighting, and access to the patio.",
+  "order": 2,
+  "images": [
+    "/images/venue/lounge-interior.jpg",
+    "/images/venue/reception-hall-wide.jpg",
+    "/images/venue/barn-exterior-balcony.jpg",
+    "/images/venue/barn-patio-seating.jpg",
+    "/images/reception/dsc_1786-enhanced-nr-large.jpeg",
+    "/images/reception/dsc_1788-large.jpeg"
+  ],
+  "features": [
+    {
+      "label": "Usage",
+      "value": "Dinner & Cocktails"
+    },
+    {
+      "label": "Bar",
+      "value": "Full Service Built-in"
+    },
+    {
+      "label": "Seating",
+      "value": "High-tops & Dining"
+    },
+    {
+      "label": "Access",
+      "value": "Walk-out Patio"
+    }
+  ]
+}
