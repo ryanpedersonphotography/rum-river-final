@@ -8,31 +8,30 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const header = document.getElementById('header')
-      if (header) {
-        let triggerPoint = 300 // Default fallback
-        
-        // Try to find the hero element
-        const homeHero = document.getElementById('home')
-        // Look for the hero container in PageTemplate (usually styled with a background image)
-        // In PageTemplate.jsx, it typically has a class or inline style. 
-        // Since we don't have a guaranteed class, we'll look for the first section or header-like element
-        const pageHero = document.querySelector('.page-hero') || document.querySelector('.hero-enhanced')
-        
-        if (homeHero) {
-          triggerPoint = homeHero.offsetHeight - 100
-        } else if (pageHero) {
-          triggerPoint = pageHero.offsetHeight - 100
-        } else {
-           // Fallback: 90vh for home, 50vh for others
-           const isHome = location.pathname === '/'
-           triggerPoint = isHome ? window.innerHeight * 0.9 : window.innerHeight * 0.5
-        }
-        
-        if (window.scrollY > triggerPoint) {
-          header.classList.add('scrolled')
-        } else {
-          header.classList.remove('scrolled')
-        }
+      if (!header) return
+
+      const homeHero = document.getElementById('home')
+      const pageHero = document.querySelector('.page-hero') || document.querySelector('.hero-enhanced')
+      
+      let triggerPoint = 300 // Safe default
+      
+      if (homeHero && homeHero.offsetHeight > 0) {
+        triggerPoint = homeHero.offsetHeight - 80
+      } else if (pageHero && pageHero.offsetHeight > 0) {
+        triggerPoint = pageHero.offsetHeight - 80
+      } else {
+        // Fallback if element not ready yet
+        const isHome = location.pathname === '/'
+        triggerPoint = isHome ? window.innerHeight * 0.9 : window.innerHeight * 0.5
+      }
+
+      // Ensure trigger point is never negative or too small
+      triggerPoint = Math.max(triggerPoint, 100)
+      
+      if (window.scrollY > triggerPoint) {
+        header.classList.add('scrolled')
+      } else {
+        header.classList.remove('scrolled')
       }
     }
 
