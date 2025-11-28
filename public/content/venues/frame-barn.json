@@ -4,8 +4,8 @@
   "description": "A rustic, open-air shelter perfect for outdoor ceremonies. Features white sheers and string lights for a romantic atmosphere, rain or shine.",
   "order": 2,
   "images": [
-    "/images/venue/frame-barn-exterior.jpg",
     "/images/venue/frame-barn-side-view.jpg",
+    "/images/venue/frame-barn-exterior.jpg",
     "/images/venue/frame-barn-ceremony.jpg"
   ],
   "features": [
