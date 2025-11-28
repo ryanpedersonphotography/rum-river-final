@@ -21,7 +21,7 @@ export async function getHomePageContent() {
         scriptAccent: "Where Dreams Begin",
         titleLine1: "Rum River",
         titleLine2: "Wedding Barn",
-        description: "Nestled along Minnesota's scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.",
+        description: "Our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.",
         ctaText: "Schedule Your Visit",
         ctaLink: "/contact"
       },
@@ -34,7 +34,7 @@ export async function getHomePageContent() {
             number: "01",
             title: "A Picturesque Location For Your Special Event",
             lead: "Near Milaca, Saint Paul, St Cloud, and Brainerd MN",
-            content: "When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.\n\nHere at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.\n\nOur goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at 612-801-0546!",
+            content: "When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.\n\nHere at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.\n\nOur goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at 320-492-8584!",
             imageAlt: "Special event venue"
           },
           {
@@ -52,8 +52,8 @@ export async function getHomePageContent() {
         description: "We don't just provide a space—we create an experience. From your first visit to your last dance, our dedicated team ensures every detail reflects your unique love story.",
         features: [
           {
-            title: "All-Inclusive Planning",
-            description: "Our experienced coordinators handle every detail, so you can focus on what matters most—each other."
+            title: "Day of Coordination",
+            description: "Our team helps make your day smooth and seamless, so you can focus on what matters most—each other."
           },
           {
             title: "Customizable Packages",

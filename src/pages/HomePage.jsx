@@ -132,12 +132,12 @@ export default function HomePage() {
         <div className="content-wrapper">
           <div className="hero-content">
             <div className="script-accent">{pageContent?.hero?.scriptAccent || 'Where Dreams Begin'}</div>
-            <h1 className="hero-headline">
+            <h1 className="hero-headline" style={{ marginBottom: '3rem' }}>
               {pageContent?.hero?.titleLine1 || 'Rum River'}<br />
               <span className="hero-accent">{pageContent?.hero?.titleLine2 || 'Wedding Barn'}</span>
             </h1>
             <p className="lead hero-lead">
-              {pageContent?.hero?.description || 'Nestled along Minnesota\'s scenic Rum River, our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.'}
+              {pageContent?.hero?.description || 'Our historic barn offers the perfect blend of rustic charm and modern elegance for your once-in-a-lifetime celebration.'}
             </p>
             <div className="hero-buttons">
               <CTAButton href={pageContent?.hero?.ctaLink || '/contact'} variant="primary">
@@ -174,7 +174,7 @@ export default function HomePage() {
                     <p className="lead">{block.lead}</p>
                     {block.content.split('\n\n').map((paragraph, pIndex) => (
                       <p key={pIndex} dangerouslySetInnerHTML={{ 
-                        __html: paragraph.replace(/612-801-0546/g, '<strong>612-801-0546</strong>') 
+                        __html: paragraph.replace(/320-492-8584/g, '<strong>320-492-8584</strong>') 
                       }} />
                     ))}
                   </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
                     <p className="lead">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</p>
                     <p>When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.</p>
                     <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
-                    <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
+                    <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>320-492-8584</strong>!</p>
                   </div>
                   <div className="block-image styled-image light no-link">
                     <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
@@ -277,7 +277,7 @@ export default function HomePage() {
                   pageContent.experience.features.map((feature, index) => {
                     // Map feature titles to icons
                     const iconMap = {
-                      'All-Inclusive Planning': 'check',
+                      'Day of Coordination': 'check',
                       'Customizable Packages': 'sparkles',
                       'Historic Charm': 'home'
                     }
@@ -303,8 +303,8 @@ export default function HomePage() {
                         <Icon name="check" size="lg" color="primary" />
                       </div>
                       <div className="feature-content">
-                        <h4>All-Inclusive Planning</h4>
-                        <p>Our experienced coordinators handle every detail, so you can focus on what matters most—each other.</p>
+                        <h4>Day of Coordination</h4>
+                        <p>Our team helps make your day smooth and seamless, so you can focus on what matters most—each other.</p>
                       </div>
                     </div>
                     <div className="feature-item">

@@ -1,64 +1,13 @@
-import { useState, useEffect } from 'react'
-import { createClient } from '@sanity/client'
 import PageTemplate from '../components/PageTemplate'
 import Icon from '../components/Icon'
 import ScheduleTourForm from '../components/ScheduleTourForm'
-import { getClientConfig } from '../config/sanity.config'
-
-// Sanity client
-const client = createClient(getClientConfig('frontend'))
 
 export default function VendorsPageWithToggle() {
-  const [useSanityData] = useState(() => {
-    const saved = localStorage.getItem('useSanityData')
-    return saved !== null ? JSON.parse(saved) : false
-  })
-  const [sanityData, setSanityData] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  // Fetch Sanity data when toggle is turned on
-  useEffect(() => {
-    if (useSanityData && !sanityData) {
-      setLoading(true)
-      setError(null)
-      
-      client.fetch(`
-        *[_id == "vendorsPage"][0]{
-          title,
-          hero,
-          vendorCategories[] {
-            title,
-            iconName,
-            vendors[] {
-              name,
-              phone,
-              description,
-              website
-            }
-          },
-          contactCta,
-          seo
-        }
-      `)
-      .then(data => {
-        setSanityData(data)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.error('Error fetching Sanity data:', err)
-        setError(err.message)
-        setLoading(false)
-      })
-    }
-  }, [useSanityData, sanityData])
-
   // Hardcoded data (current implementation)
-  const hardcodedHeroContent = (
+  const heroContent = (
     <>
       <h1 className="page-hero-title">
         Preferred Vendor Directory
-        <span className="data-source-indicator hardcoded">Hardcoded</span>
       </h1>
       <p className="page-hero-lead">
         Our carefully curated list of trusted wedding professionals who understand our venue and share our commitment to making your day perfect.
@@ -66,21 +15,8 @@ export default function VendorsPageWithToggle() {
     </>
   )
 
-  // Sanity hero content
-  const sanityHeroContent = sanityData && (
-    <>
-      <h1 className="page-hero-title">
-        {sanityData.hero?.title || sanityData.title || 'Preferred Vendors'}
-        <span className="data-source-indicator sanity">Sanity CMS</span>
-      </h1>
-      <p className="page-hero-lead">
-        {sanityData.hero?.lead || 'Loading...'}
-      </p>
-    </>
-  )
-
   // Hardcoded vendor categories
-  const hardcodedVendorCategories = [
+  const vendorCategories = [
     {
       title: "DJ & Entertainment",
       iconName: "music",
@@ -173,55 +109,11 @@ export default function VendorsPageWithToggle() {
     }
   ]
 
-  // Use Sanity data directly if available, otherwise use hardcoded
-  const vendorCategories = useSanityData && sanityData?.vendorCategories 
-    ? sanityData.vendorCategories 
-    : hardcodedVendorCategories
-  const heroContent = useSanityData ? sanityHeroContent : hardcodedHeroContent
-
   return (
     <PageTemplate 
         heroContent={heroContent}
         heroImage="/images/venue/barn-exterior-welcome-sign-entrance.jpg"
       >
-        
-        {/* Loading/Error States */}
-        {useSanityData && loading && (
-          <div className="section">
-            <div className="content-wrapper">
-              <p style={{ textAlign: 'center', padding: '2rem' }}>Loading Sanity data...</p>
-            </div>
-          </div>
-        )}
-
-        {useSanityData && error && (
-          <div className="section">
-            <div className="content-wrapper">
-              <p style={{ textAlign: 'center', color: 'red', padding: '2rem' }}>
-                Error loading Sanity data: {error}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Vendor Intro (Sanity only) */}
-        {useSanityData && sanityData?.vendorIntro && (
-          <section className="section section-cream">
-            <div className="content-wrapper">
-              <div className="section-header center">
-                <h2 className="section-title">{sanityData.vendorIntro.title}</h2>
-                <p className="section-lead">{sanityData.vendorIntro.content}</p>
-                {sanityData.vendorIntro.benefits && (
-                  <ul style={{ textAlign: 'left', maxWidth: '600px', margin: '2rem auto' }}>
-                    {sanityData.vendorIntro.benefits.map((benefit, idx) => (
-                      <li key={idx}>{benefit}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </section>
-        )}
         
         {/* Vendor Categories Section */}
         <section id="vendors" className="section">
@@ -234,14 +126,6 @@ export default function VendorsPageWithToggle() {
                   <h2 className="section-title">
                     {category.title}
                   </h2>
-                  {useSanityData && category.description && (
-                    <p className="lead">{category.description}</p>
-                  )}
-                  {useSanityData && category.vendorCount !== undefined && (
-                    <p style={{ color: '#999', fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                      {category.vendorCount} vendors in this category
-                    </p>
-                  )}
                 </div>
 
                 {/* Vendor Cards Grid */}
@@ -306,37 +190,13 @@ export default function VendorsPageWithToggle() {
           </div>
         </section>
 
-        {/* Vendor Resources (Sanity only) */}
-        {useSanityData && sanityData?.vendorResources && (
-          <section className="section section-light">
-            <div className="content-wrapper">
-              <div className="section-header center">
-                <h2 className="section-title">{sanityData.vendorResources.title}</h2>
-                <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginTop: '2rem' }}>
-                  {sanityData.vendorResources.resources?.map((resource, idx) => (
-                    <div key={idx} className="card" style={{ padding: '2rem', maxWidth: '300px' }}>
-                      <h3>{resource.title}</h3>
-                      <p>{resource.description}</p>
-                      {resource.downloadUrl && (
-                        <a href={resource.downloadUrl} className="button button-secondary">
-                          Download
-                        </a>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* Vendor Application Form */}
         <ScheduleTourForm
           formName="vendor-application"
-          title={useSanityData && sanityData?.becomeVendor?.title || "Are You a Wedding Professional?"}
+          title="Are You a Wedding Professional?"
           subtitle="Join Our Network"
-          description={useSanityData && sanityData?.becomeVendor?.description || "We're always looking for talented professionals to join our preferred vendor network. If you're interested in working with couples at Rum River Barn, we'd love to hear from you."}
-          submitText={useSanityData && sanityData?.becomeVendor?.buttonText || "Apply to Join"}
+          description="We're always looking for talented professionals to join our preferred vendor network. If you're interested in working with couples at Rum River Barn, we'd love to hear from you."
+          submitText="Apply to Join"
           loadingText="SUBMITTING APPLICATION..."
           lightTheme={true}
           formType="vendor"

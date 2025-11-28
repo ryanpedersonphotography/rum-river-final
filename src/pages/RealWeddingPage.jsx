@@ -1,105 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { createClient } from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
-import { PortableText } from '@portabletext/react'
-import { Masonry } from 'masonic'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
-import { getClientConfig } from '../config/sanity.config'
+import { realWeddings } from '../data/realWeddings'
 
-// Sanity client with standardized config
-const client = createClient(getClientConfig('frontend'))
-
-// Image URL builder
-const builder = imageUrlBuilder(client)
-function urlFor(source) {
-  return builder.image(source)
-}
-
-// GROQ queries
-const WEDDING_BY_SLUG = `
-  *[_type == "wedding" && slug.current == $slug][0] {
-    title,
-    slug,
-    coupleNames,
-    weddingDate,
-    coverImage,
-    gallery,
-    excerpt,
-    story,
-    venue,
-    season,
-    tags
-  }
-`
-
-const MORE_WEDDINGS = `
-  *[_type == "wedding" && slug.current != $slug && featured == true][0...3] {
-    title,
-    slug,
-    coupleNames,
-    coverImage
-  }
-`
-
-// Portable Text components
-const ptComponents = {
-  types: {
-    customImage: ({ value }) => (
-      <figure className="styled-image" style={{ margin: '2rem 0' }}>
-        <img
-          src={urlFor(value).width(800).height(600).fit('crop').auto('format').url()}
-          alt={value.alt || ''}
-          style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '4px'
-          }}
-        />
-        {value.caption && (
-          <figcaption style={{
-            textAlign: 'center',
-            fontSize: '0.875rem',
-            color: 'var(--sage-green)',
-            marginTop: '0.5rem',
-            fontStyle: 'italic'
-          }}>
-            {value.caption}
-          </figcaption>
-        )}
-      </figure>
-    )
-  },
-  block: {
-    h2: ({ children }) => (
-      <h2 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: '1.75rem',
-        color: 'var(--warm-walnut)',
-        marginTop: '2rem',
-        marginBottom: '1rem'
-      }}>
-        {children}
-      </h2>
-    ),
-    normal: ({ children }) => (
-      <p style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '1.1rem',
-        lineHeight: 1.7,
-        color: 'var(--sage-green)',
-        marginBottom: '1.5rem'
-      }}>
-        {children}
-      </p>
-    )
-  }
-}
-
-// Photo card for Masonic gallery
+// Photo card for gallery
 const PhotoCard = ({ data: photo, onClick }) => {
   return (
     <div
@@ -109,12 +16,14 @@ const PhotoCard = ({ data: photo, onClick }) => {
         overflow: 'hidden',
         borderRadius: '4px',
         cursor: 'pointer',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        marginBottom: '20px',
+        breakInside: 'avoid'
       }}
       className="wedding-photo-card"
     >
       <img
-        src={urlFor(photo).width(400).height(300).fit('crop').auto('format').url()}
+        src={photo.src}
         alt={photo.alt || 'Wedding photo'}
         style={{
           width: '100%',
@@ -129,32 +38,35 @@ const PhotoCard = ({ data: photo, onClick }) => {
 export default function RealWeddingPage() {
   const { slug } = useParams()
   const [wedding, setWedding] = useState(null)
-  const [moreWeddings, setMoreWeddings] = useState([])
   const [loading, setLoading] = useState(true)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
   useEffect(() => {
-    async function fetchWedding() {
-      try {
-        setLoading(true)
-        const [weddingData, moreWeddingsData] = await Promise.all([
-          client.fetch(WEDDING_BY_SLUG, { slug }),
-          client.fetch(MORE_WEDDINGS, { slug })
-        ])
+    setLoading(true)
+    // Find the wedding in static data
+    const foundWedding = realWeddings.find(w => w.slug === slug)
+    
+    if (foundWedding) {
+      // Transform static data to match component needs
+      // Combine all galleries into one list for the masonry view
+      const allPhotos = foundWedding.galleries 
+        ? foundWedding.galleries.flatMap(g => g.photos)
+        : []
         
-        setWedding(weddingData)
-        setMoreWeddings(moreWeddingsData)
-      } catch (error) {
-        console.error('Error fetching wedding:', error)
-      } finally {
-        setLoading(false)
-      }
+      setWedding({
+        ...foundWedding,
+        // Map mismatched fields
+        coupleNames: foundWedding.coupleName,
+        weddingDate: foundWedding.date,
+        // Static data usually has 'intro', map to story if story is missing
+        story: foundWedding.story || foundWedding.intro, 
+        gallery: allPhotos
+      })
+    } else {
+      setWedding(null)
     }
-
-    if (slug) {
-      fetchWedding()
-    }
+    setLoading(false)
   }, [slug])
 
   if (loading) {
@@ -198,25 +110,16 @@ export default function RealWeddingPage() {
   }
 
   const slides = galleryPhotos.map(photo => ({
-    src: urlFor(photo).width(1600).height(1200).fit('crop').auto('format').url(),
+    src: photo.src,
     alt: photo.alt || 'Wedding photo'
   }))
-
-  // Format date
-  const formattedDate = wedding.weddingDate 
-    ? new Date(wedding.weddingDate).toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      })
-    : ''
 
   return (
     <>
       <SEO 
         title={`${wedding.coupleNames} - Real Wedding`}
-        description={wedding.excerpt || `See ${wedding.coupleNames}' beautiful wedding at Rum River Barn`}
-        image={wedding.coverImage ? urlFor(wedding.coverImage).width(1200).height(630).fit('crop').auto('format').url() : undefined}
+        description={wedding.intro || `See ${wedding.coupleNames}' beautiful wedding at Rum River Barn`}
+        image={wedding.coverImage}
       />
 
       {/* Page Hero */}
@@ -230,7 +133,7 @@ export default function RealWeddingPage() {
           position: 'absolute',
           inset: 0,
           background: wedding.coverImage 
-            ? `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url(${urlFor(wedding.coverImage).width(1920).height(1080).fit('crop').auto('format').url()})`
+            ? `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url(${wedding.coverImage})`
             : 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), var(--sage-green)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -291,13 +194,13 @@ export default function RealWeddingPage() {
             opacity: 0.95,
             textShadow: '0 1px 10px rgba(0,0,0,0.3)'
           }}>
-            {formattedDate} • Rum River Barn • Hillman, Minnesota
+            {wedding.weddingDate} • Rum River Barn • Hillman, Minnesota
           </div>
         </div>
       </section>
 
       {/* Intro/Excerpt */}
-      {wedding.excerpt && (
+      {wedding.intro && (
         <section style={{
           padding: '4rem 2rem',
           maxWidth: '800px',
@@ -311,156 +214,45 @@ export default function RealWeddingPage() {
             color: 'var(--sage-green)',
             fontStyle: 'italic'
           }}>
-            {wedding.excerpt}
+            {wedding.intro}
           </p>
         </section>
       )}
 
-      {/* Wedding Story */}
-      {wedding.story && wedding.story.length > 0 && (
+      {/* Wedding Story (Simple Text for Static) */}
+      {wedding.story && wedding.story !== wedding.intro && (
         <section style={{
           padding: '2rem 2rem 4rem',
           maxWidth: '800px',
           margin: '0 auto'
         }}>
-          <PortableText 
-            value={wedding.story} 
-            components={ptComponents}
-          />
+          <div style={{
+             fontFamily: 'var(--font-body)',
+             fontSize: '1.1rem',
+             lineHeight: 1.7,
+             color: 'var(--sage-green)',
+             marginBottom: '1.5rem'
+          }}>
+             {wedding.story}
+          </div>
         </section>
       )}
 
       {/* Wedding Gallery */}
       {galleryPhotos.length > 0 && (
-        <section className="wedding-gallery" style={{
-          padding: '2rem 2rem 4rem',
-          maxWidth: '1400px',
-          margin: '0 auto'
-        }}>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '2rem',
-            textAlign: 'center',
-            color: 'var(--warm-walnut)',
-            marginBottom: '3rem'
-          }}>
-            Wedding Gallery
-          </h2>
-          
-          <Masonry
-            items={galleryPhotos.map((photo, index) => ({ ...photo, index }))}
-            render={({ data: photo }) => (
-              <PhotoCard
-                data={photo}
-                onClick={() => handlePhotoClick(photo.index)}
-              />
-            )}
-            columnGutter={20}
-            columnWidth={350}
-            overscanBy={5}
-          />
-        </section>
-      )}
-
-      {/* Venue Details */}
-      {wedding.venue && (
-        <section style={{
-          padding: '3rem 2rem',
-          background: 'var(--cream-pearl)',
-          borderTop: '1px solid rgba(0,0,0,0.05)'
-        }}>
-          <div style={{
-            maxWidth: '600px',
-            margin: '0 auto',
-            textAlign: 'center'
-          }}>
-            <h3 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.5rem',
-              fontWeight: 400,
-              color: 'var(--warm-walnut)',
-              marginBottom: '2rem'
-            }}>
-              Venue Details
-            </h3>
-            <div style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.95rem',
-              lineHeight: 2,
-              color: 'var(--sage-green)'
-            }}>
-              {wedding.venue.ceremony && (
-                <div><strong>Ceremony:</strong> {wedding.venue.ceremony.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
-              )}
-              {wedding.venue.reception && (
-                <div><strong>Reception:</strong> {wedding.venue.reception.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
-              )}
-              {wedding.season && (
-                <div><strong>Season:</strong> {wedding.season.charAt(0).toUpperCase() + wedding.season.slice(1)}</div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* More Real Weddings */}
-      {moreWeddings.length > 0 && (
-        <section style={{ padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h3 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '2rem',
-              textAlign: 'center',
-              color: 'var(--warm-walnut)',
-              marginBottom: '3rem'
-            }}>
-              More Real Weddings
-            </h3>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem'
-            }}>
-              {moreWeddings.map((moreWedding) => (
-                <Link
-                  key={moreWedding.slug.current}
-                  to={`/real-weddings/${moreWedding.slug.current}`}
-                  style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                >
-                  <div style={{
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-                  }}>
-                    {moreWedding.coverImage && (
-                      <img
-                        src={urlFor(moreWedding.coverImage).width(400).height(300).fit('crop').auto('format').url()}
-                        alt={`${moreWedding.coupleNames} wedding`}
-                        style={{
-                          width: '100%',
-                          height: '200px',
-                          objectFit: 'cover'
-                        }}
-                      />
-                    )}
-                    <div style={{ padding: '1.5rem' }}>
-                      <h4 style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '1.25rem',
-                        color: 'var(--warm-walnut)',
-                        marginBottom: '0.5rem'
-                      }}>
-                        {moreWedding.coupleNames}
-                      </h4>
-                    </div>
-                  </div>
-                </Link>
+        <section className="section">
+          <div className="content-wrapper">
+            <h2 className="section-title center">
+              Wedding Gallery
+            </h2>
+            
+            <div className="gallery-grid">
+              {galleryPhotos.map((photo, index) => (
+                <PhotoCard
+                  key={index}
+                  data={photo}
+                  onClick={() => handlePhotoClick(index)}
+                />
               ))}
             </div>
           </div>
@@ -503,6 +295,22 @@ export default function RealWeddingPage() {
         .wedding-photo-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .gallery-grid {
+          column-count: 3;
+          column-gap: 20px;
+          width: 100%;
+          max-width: 100%;
+        }
+        @media (max-width: 900px) {
+          .gallery-grid {
+            column-count: 2;
+          }
+        }
+        @media (max-width: 600px) {
+          .gallery-grid {
+            column-count: 1;
+          }
         }
       `}</style>
     </>

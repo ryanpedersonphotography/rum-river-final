@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
         <p className="footer-address">
           📍 42618 78th Street, Hillman, MN 56338<br />
-          📞 612-801-0546 | 320-492-8584
+          📞 320-492-8584
         </p>
       </div>
     </footer>

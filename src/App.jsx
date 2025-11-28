@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { enableVisualEditing } from '@sanity/visual-editing'
 import HomePage from './pages/HomePage'
 import VendorsPageWithToggle from './pages/VendorsPageWithToggle'
 import PropertyPage from './pages/PropertyPage'
@@ -10,7 +8,7 @@ import GalleryPage from './pages/GalleryPage'
 import ContactPage from './pages/ContactPage'
 import TestimonialsPage from './pages/TestimonialsPage'
 import RealWeddingsPage from './pages/RealWeddingsPage'
-import RealWeddingPost from './pages/RealWeddingPost'
+import RealWeddingPage from './pages/RealWeddingPage'
 import HistoryPage from './pages/HistoryPage'
 import EventsPage from './pages/EventsPage'
 import ThankYouPage from './pages/ThankYouPage'
@@ -58,68 +56,12 @@ import CohesiveDesign from './CohesiveDesign'
 import DemoNavbar from './components/DemoNavbar'
 import AdminPanel from './pages/AdminPanel'
 import AdminWeddings from './pages/AdminWeddings'
-import SanityWeddingsTest from './pages/SanityWeddingsTest'
-import RealWeddingsPageSanity from './pages/RealWeddingsPageSanity'
-import PreviewEnable from './pages/PreviewEnable'
-import PreviewDisable from './pages/PreviewDisable'
 import './components/DemoNavbar.css'
 
 export default function App() {
   // Check if we're in component library mode
   const isComponentLibrary = window.location.hash === '#components'
   const isCohesive = window.location.hash === '#cohesive'
-
-  // Check for Sanity preview mode
-  const [isPreviewMode, setIsPreviewMode] = useState(false)
-
-  useEffect(() => {
-    // Check sessionStorage for preview mode on mount
-    const previewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
-    setIsPreviewMode(previewMode)
-
-    // Listen for storage changes (in case preview mode is toggled in another tab)
-    const handleStorageChange = () => {
-      const newPreviewMode = sessionStorage.getItem('sanity-preview-mode') === 'true'
-      setIsPreviewMode(newPreviewMode)
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, []) // Run only on mount
-
-  // Separate effect for enabling/disabling visual editing
-  useEffect(() => {
-    if (isPreviewMode) {
-      console.log('🎨 Enabling visual editing...')
-      const disable = enableVisualEditing({
-        history: {
-          subscribe: (navigate) => {
-            // Listen for navigation events from Sanity Studio
-            return () => {}
-          },
-          update: (update) => {
-            // Handle navigation updates from Sanity Studio
-            console.log('📍 Navigation update:', update.type, update.url)
-            if (update.type === 'push' || update.type === 'replace') {
-              window.history[update.type === 'push' ? 'pushState' : 'replaceState'](
-                {},
-                '',
-                update.url
-              )
-              // Trigger React Router navigation
-              window.dispatchEvent(new PopStateEvent('popstate'))
-            }
-          }
-        },
-      })
-
-      // Return cleanup function
-      return () => {
-        console.log('🎨 Disabling visual editing...')
-        disable()
-      }
-    }
-  }, [isPreviewMode]) // Only re-run when preview mode changes
 
   if (isComponentLibrary) {
     return <ComponentLibrary />
@@ -144,7 +86,7 @@ export default function App() {
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/real-weddings" element={<RealWeddingsPage />} />
-        <Route path="/real-weddings/:slug" element={<RealWeddingPost />} />
+        <Route path="/real-weddings/:slug" element={<RealWeddingPage />} />
         <Route path="/history" element={<HistoryPage />} />
         
         {/* Standalone demo routes (no navigation) */}
@@ -174,16 +116,6 @@ export default function App() {
         {/* Admin Panel */}
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/admin/weddings" element={<AdminWeddings />} />
-
-        {/* Sanity Test Page */}
-        <Route path="/sanity-weddings-test" element={<SanityWeddingsTest />} />
-
-        {/* Sanity-Powered Pages */}
-        <Route path="/real-weddings-sanity" element={<RealWeddingsPageSanity />} />
-
-        {/* Sanity Preview Mode Routes */}
-        <Route path="/preview/enable" element={<PreviewEnable />} />
-        <Route path="/preview/disable" element={<PreviewDisable />} />
 
         {/* Demo routes with DemoNavbar */}
         <Route path="/hero-demo" element={<><DemoNavbar /><HeroStandalone /></>} />

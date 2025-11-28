@@ -70,7 +70,7 @@ export default function FAQAccordionStandalone() {
                 <span className="faq-toggle">+</span>
               </div>
               <div className="faq-answer">
-                <p>We recommend booking 12-18 months in advance, especially for peak season dates (May through October). However, we sometimes have last-minute availability, so don't hesitate to call us at 612-801-0546.</p>
+                <p>We recommend booking 12-18 months in advance, especially for peak season dates (May through October). However, we sometimes have last-minute availability, so don't hesitate to call us at 320-492-8584.</p>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function FAQAccordionStandalone() {
         <div className="faq-answer">
           <p>We recommend booking 12-18 months in advance, especially for peak season 
              dates (May through October). However, we sometimes have last-minute 
-             availability, so don't hesitate to call us at 612-801-0546.</p>
+             availability, so don't hesitate to call us at 320-492-8584.</p>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@ const faqData = [
   {
     id: 4,
     question: "How far in advance should we book?",
-    answer: "We recommend booking 12-18 months in advance, especially for peak season dates (May through October). However, we sometimes have last-minute availability, so don't hesitate to call us at 612-801-0546."
+    answer: "We recommend booking 12-18 months in advance, especially for peak season dates (May through October). However, we sometimes have last-minute availability, so don't hesitate to call us at 320-492-8584."
   }
 ]
 

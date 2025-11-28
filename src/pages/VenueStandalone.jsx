@@ -19,7 +19,7 @@ export default function VenueStandalone() {
                 <p className="lead">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</p>
                 <p>When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.</p>
                 <p>Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.</p>
-                <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>612-801-0546</strong>!</p>
+                <p>Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at <strong>320-492-8584</strong>!</p>
               </div>
               <div className="block-image styled-image light no-link">
                 <img src="/images/venue/barn-interior-ceiling-beams-lighting.jpg" alt="Special event venue" width="800" height="500" />
@@ -497,7 +497,7 @@ const defaultVenueBlocks: VenueBlock[] = [
     content: [
       "When it comes to special occasions such as weddings, birthday parties, or other events, it is important to have the perfect setting. You want to ensure that your event is at a location that people will remember.",
       "Here at Rum River Barn, we understand the importance of your special occasion. We are different from other special event venues because we allow you to pretty much run the show. When you choose us, you do not have to worry about us saying no.",
-      "Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at 612-801-0546!"
+      "Our goal is to help you have your perfect day. We tend to book up fast, so don't wait—call us today at 320-492-8584!"
     ],
     image: {
       src: "/images/venue/barn-interior-ceiling-beams-lighting.jpg",

@@ -510,6 +510,168 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 }
 
 /* ============================================
+   MOBILE MENU SYSTEM
+   ============================================ */
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* Above the mobile menu overlay */
+  padding: 0;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--warm-cream); /* Light color for default transparent header */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Header Scrolled State - Darker lines */
+.header-enhanced.scrolled .hamburger-line {
+  background-color: var(--deep-brown);
+}
+
+/* Mobile Menu Open State - Toggle Animation */
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+  background-color: var(--deep-brown); /* Always dark when menu is open (on light bg) */
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+  background-color: var(--deep-brown);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 900px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Hide Desktop Nav */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Mobile Navigation Overlay - Clean Slate */
+  .mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Slide out */
+    width: 100%;
+    height: 100vh;
+    background-color: #FAF6F2;
+    z-index: 9990; /* Below toggle but above content */
+    transition: right 0.3s ease-in-out;
+    padding-top: 0; /* Removed top padding, using header div instead */
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-nav-overlay.active {
+    right: 0;
+  }
+
+  .mobile-drawer-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+    background: transparent;
+  }
+
+  .drawer-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: #4A3426; /* Deep brown */
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 0.5;
+    transition: transform 0.2s;
+  }
+  
+  .drawer-close-btn:active {
+    transform: scale(0.9);
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 4rem;
+    padding-top: 1rem;
+  }
+
+  .mobile-link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--deep-brown);
+    text-decoration: none;
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(107, 78, 61, 0.1);
+  }
+
+  .mobile-group {
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(107, 78, 61, 0.1);
+  }
+
+  .mobile-group-title {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dusty-rose);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .mobile-sublink {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--muted-mauve);
+    text-decoration: none;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-sublink:active,
+  .mobile-link:active {
+    background-color: rgba(212, 165, 165, 0.1);
+  }
+  
+  .mobile-link.highlight {
+    color: var(--dusty-rose);
+    font-weight: 600;
+  }
+}
+
+/* ============================================
    UNIFIED BUTTON SYSTEM
    All buttons across the site controlled here
    Automatically adapts to dark/light backgrounds
@@ -1082,6 +1244,43 @@ html[data-theme="dark"] .romantic-button.outline:hover {
   color: white;
 }
 
+@media (max-width: 768px) {
+  .hero-enhanced {
+    /* Taller section for mobile to reduce claustrophobia */
+    min-height: 115vh;
+    /* Align content to top */
+    align-items: flex-start;
+    /* Position right below header - adjusted to 6rem */
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+    
+    /* Shift background to show more of the barn structure on portrait screens */
+    background-position: 65% center; 
+    
+    /* Reduced opacity overlay so the image is more visible */
+    background-image: linear-gradient(135deg, rgba(107, 78, 61, 0.6) 0%, rgba(58, 74, 60, 0.5) 100%), url('/images/venue/barn-exterior-full-deck-view-evening.jpg');
+  }
+
+  /* Distribute content nicely on mobile */
+  .hero-enhanced .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  
+  .hero-enhanced .hero-headline {
+    font-size: 3rem; /* Ensure it's not too huge */
+    line-height: 1.1;
+    margin-bottom: 0.5rem !important; /* Reduce bottom margin, let gap handle it */
+  }
+  
+  .hero-enhanced .hero-lead {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
 .romantic-overlay::after {
   content: '';
   position: absolute;
@@ -1135,6 +1334,15 @@ html[data-theme="dark"] .romantic-button.outline:hover {
   display: flex;
   gap: var(--rhythm-sm);
   margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-buttons .romantic-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    min-width: auto;
+    width: auto;
+  }
 }
 
 .hero-scroll-indicator {
@@ -4120,3 +4328,21 @@ html[data-theme="dark"] h2 {
 }
 
 
+/* Desktop Reset - Ensure mobile elements are hidden on larger screens */
+@media (min-width: 901px) {
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+  .desktop-nav {
+    display: block !important;
+  }
+}
+/* Hide Floating CTA on mobile */
+@media (max-width: 900px) {
+  .floating-cta {
+    display: none !important;
+  }
+}
