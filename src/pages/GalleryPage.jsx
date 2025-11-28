@@ -7,69 +7,53 @@ import VenueTabs from '../components/VenueTabs'
 
 // Photo data with categories
 const photos = [
-  // Barn Interior & Exterior
-  { id: 1, src: '/images/venue/barn-exterior-full-view-landscape.jpg', category: 'barn', alt: 'Rum River Barn exterior view' },
-  { id: 2, src: '/images/venue/barn-exterior-stone-wall-trees.jpg', category: 'barn', alt: 'Barn with stone wall and trees' },
-  { id: 3, src: '/images/venue/barn-exterior-welcome-sign-entrance.jpg', category: 'barn', alt: 'Welcome sign at entrance' },
-  { id: 4, src: '/images/venue/barn-exterior-front-entrance-concrete-pad.jpg', category: 'barn', alt: 'Main entrance' },
-  { id: 5, src: '/images/venue/barn-exterior-deck-stairs-trees.jpg', category: 'barn', alt: 'Deck and stairs' },
-  { id: 6, src: '/images/venue/barn-exterior-full-deck-view-evening.jpg', category: 'barn', alt: 'Evening view of deck' },
-  { id: 7, src: '/images/venue/barn-interior-exposed-beams-chandeliers.jpg', category: 'barn', alt: 'Interior with exposed beams' },
-  { id: 8, src: '/images/venue/barn-interior-ceiling-beams-lighting.jpg', category: 'barn', alt: 'Ceiling beams and lighting' },
-  { id: 9, src: '/images/venue/barn-interior-string-lights-ceiling-detail.jpg', category: 'barn', alt: 'String lights detail' },
-  { id: 10, src: '/images/venue/barn-exterior-deck-swing-golden-hour.jpg', category: 'barn', alt: 'Golden hour at the barn' },
-  { id: 11, src: '/images/venue/barn-exterior-landscaping-stone-border.jpg', category: 'property', alt: 'Landscaped grounds' },
-  { id: 12, src: '/images/venue/property-vineyard-perspective-hills.jpg', category: 'property', alt: 'Vineyard hills view' },
-  { id: 13, src: '/images/venue/property-landscape-rural-vista.jpg', category: 'property', alt: 'Rural landscape vista' },
-  { id: 14, src: '/images/venue/property-field-wildflowers-natural.jpg', category: 'property', alt: 'Wildflower fields' },
-  { id: 15, src: '/images/venue/barn-exterior-vintage-tractor-rustic.jpg', category: 'barn', alt: 'Vintage tractor decor' },
+  // The Historic Barn
+  { id: 1, src: '/images/venue/barn-exterior-full-view-landscape.jpg', category: 'barn', alt: 'Historic Barn Exterior' },
+  { id: 2, src: '/images/venue/barn-interior-exposed-beams-chandeliers.jpg', category: 'barn', alt: 'Grand Loft Interior' },
+  { id: 3, src: '/images/venue/barn-interior-ceiling-beams-lighting.jpg', category: 'barn', alt: 'Ceiling Beams & Lighting' },
+  { id: 4, src: '/images/venue/barn-interior-string-lights-ceiling-detail.jpg', category: 'barn', alt: 'String Lights Detail' },
+  { id: 5, src: '/images/venue/barn-exterior-hero.jpg', category: 'barn', alt: 'Barn Entrance' },
+  { id: 6, src: '/images/venue/barn-exterior-deck-stairs-trees.jpg', category: 'barn', alt: 'Deck & Stairs' },
 
-  // Bridal Suite
-  { id: 16, src: '/images/bridal-suite/1-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite interior' },
-  { id: 17, src: '/images/bridal-suite/dsc_1766-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite getting ready area' },
-  { id: 18, src: '/images/bridal-suite/dsc_1768-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite details' },
-  { id: 19, src: '/images/bridal-suite/dsc_1770-2-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite lounge' },
-  { id: 20, src: '/images/bridal-suite/dsc_1773-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite vanity' },
-  { id: 21, src: '/images/bridal-suite/dsc_1774-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite seating' },
-  { id: 22, src: '/images/bridal-suite/dsc_1776-large.jpeg', category: 'bridal-suite', alt: 'Bridal suite space' },
+  // The Lounge
+  { id: 7, src: '/images/venue/lounge-interior.jpg', category: 'lounge', alt: 'Lounge Interior' },
+  { id: 8, src: '/images/venue/reception-hall-wide.jpg', category: 'lounge', alt: 'Reception Hall Wide View' },
+  { id: 9, src: '/images/reception/dsc_1786-enhanced-nr-large.jpeg', category: 'lounge', alt: 'Dining Setup' },
+  { id: 10, src: '/images/reception/dsc_1788-large.jpeg', category: 'lounge', alt: 'Lounge Detail' },
 
-  // Reception Area
-  { id: 23, src: '/images/reception/dsc_1785-large.jpeg', category: 'reception-area', alt: 'Reception area setup' },
-  { id: 24, src: '/images/reception/dsc_1786-enhanced-nr-large.jpeg', category: 'reception-area', alt: 'Reception dining area' },
-  { id: 25, src: '/images/reception/dsc_1787-large.jpeg', category: 'reception-area', alt: 'Reception dance floor' },
-  { id: 26, src: '/images/reception/dsc_1788-large.jpeg', category: 'reception-area', alt: 'Reception details' },
-  { id: 27, src: '/images/reception/dsc_1790-large.jpeg', category: 'reception-area', alt: 'Reception space' },
+  // Frame Barn
+  { id: 11, src: '/images/venue/frame-barn-exterior.jpg', category: 'frame-barn', alt: 'Frame Barn Exterior' },
+  { id: 12, src: '/images/venue/frame-barn-side-view.jpg', category: 'frame-barn', alt: 'Frame Barn Side View' },
+  { id: 13, src: '/images/venue/frame-barn-ceremony.jpg', category: 'frame-barn', alt: 'Outdoor Ceremony Setup' },
 
-  // Details & Decor
-  { id: 28, src: '/images/venue/details-swing-rustic-romance.jpg', category: 'details', alt: 'Romantic swing' },
-  { id: 29, src: '/images/venue/details-antique-windmill-rustic.jpg', category: 'details', alt: 'Antique windmill' },
-  { id: 30, src: '/images/venue/details-americana-flag-decor.jpg', category: 'details', alt: 'Americana decor' },
-  { id: 31, src: '/images/venue/details-antique-wheel-stone-wall.jpg', category: 'details', alt: 'Antique wheel display' },
-  { id: 32, src: '/images/venue/details-barn-sign-rustic-lettering.jpg', category: 'details', alt: 'Barn signage' },
-  { id: 33, src: '/images/venue/details-rum-river-barn-vineyard-sign.jpg', category: 'details', alt: 'Rum River Barn sign' },
-  { id: 34, src: '/images/venue/details-building-entrance-windows.jpg', category: 'details', alt: 'Building details' },
-  { id: 35, src: '/images/venue/details-architectural-trim-windows.jpg', category: 'details', alt: 'Architectural details' },
+  // Bridal Cottage
+  { id: 14, src: '/images/venue/bridal-cottage-exterior.jpg', category: 'bridal-suite', alt: 'Bridal Cottage Exterior' },
+  { id: 15, src: '/images/venue/bridal-cottage-getting-ready.jpg', category: 'bridal-suite', alt: 'Getting Ready Moment' },
+  { id: 16, src: '/images/bridal-suite/1-large.jpeg', category: 'bridal-suite', alt: 'Bridal Suite Interior' },
+  { id: 17, src: '/images/bridal-suite/dsc_1766-large.jpeg', category: 'bridal-suite', alt: 'Bridal Vanity' },
 
-  // Real Weddings (merged wedding photos and ceremonies)
-  { id: 36, src: '/images/2014/05/Loria-Jason-wedding-1-0198.jpg', category: 'real-weddings', alt: 'Outdoor wedding ceremony' },
-  { id: 37, src: '/images/2014/05/Loria-Jason-wedding-1-0365.jpg', category: 'real-weddings', alt: 'Summer barn wedding' },
-  { id: 38, src: '/images/2014/05/Loria-Jason-wedding-1-0205.jpg', category: 'real-weddings', alt: 'Romantic first dance' },
-  { id: 39, src: '/images/2014/05/LB1_6499.jpg', category: 'real-weddings', alt: 'Golden hour portraits' },
-  { id: 40, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'real-weddings', alt: 'Intimate celebration' },
-  { id: 41, src: '/images/2014/05/Loria-Jason-wedding-1-0007.jpg', category: 'real-weddings', alt: 'Bridal party' },
-  { id: 42, src: '/images/2014/04/Loria-Jason-wedding-2-0026.jpg', category: 'real-weddings', alt: 'Wedding celebration' },
-  { id: 43, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0030.jpg', category: 'real-weddings', alt: 'Ceremony moments' },
-  { id: 44, src: '/images/2014/05/Loria-and-Jason-XORDER-2-0031.jpg', category: 'real-weddings', alt: 'Wedding vows' },
-  { id: 45, src: '/images/2014/05/Loria-Jason-wedding-1-0006.jpg', category: 'real-weddings', alt: 'Ceremony setup' },
-  { id: 46, src: '/images/2014/05/Loria-Jason-wedding-1-0012.jpg', category: 'real-weddings', alt: 'Twilight ceremony' },
-  { id: 47, src: '/images/venue/barn-exterior-deck-swing-under-tree.jpg', category: 'real-weddings', alt: 'Outdoor ceremony space' },
+  // Grounds & Vineyard
+  { id: 18, src: '/images/venue/aerials/aerial-full-estate.jpg', category: 'property', alt: 'Aerial Estate View' },
+  { id: 19, src: '/images/venue/aerials/aerial-vineyard-view.jpg', category: 'property', alt: 'Vineyard Aerial' },
+  { id: 20, src: '/images/venue/grounds-barn-context.jpg', category: 'property', alt: 'Barn & Grounds Context' },
+  { id: 21, src: '/images/venue/grounds-ceremony-area.jpg', category: 'property', alt: 'Outdoor Ceremony Grounds' },
+  { id: 22, src: '/images/venue/grounds-swing.jpg', category: 'property', alt: 'Romantic Swing' },
+  { id: 23, src: '/images/venue/grounds-field.jpg', category: 'property', alt: 'Rolling Fields' },
+  { id: 24, src: '/images/venue/property-parking-lot.jpg', category: 'property', alt: 'Ample Parking' },
+  { id: 25, src: '/images/venue/property-camping.jpg', category: 'property', alt: 'Camping Area' },
 
-  // Receptions
-  { id: 48, src: '/images/2014/05/LB1_6880.jpg', category: 'real-weddings', alt: 'Reception details' },
-  { id: 49, src: '/images/2014/05/LB1_7023.jpg', category: 'real-weddings', alt: 'Reception tables' },
-  { id: 50, src: '/images/2014/05/LB1_7342-2.jpg', category: 'real-weddings', alt: 'Dance floor' },
-  { id: 51, src: '/images/2014/05/Reins-Wedding_1-631.jpg', category: 'real-weddings', alt: 'Barn reception' },
+  // Details
+  { id: 26, src: '/images/venue/grounds-sign.jpg', category: 'details', alt: 'Rustic Signage' },
+  { id: 27, src: '/images/venue/grounds-wheel-detail.jpg', category: 'details', alt: 'Antique Wheel' },
+  { id: 28, src: '/images/venue/details-antique-windmill-rustic.jpg', category: 'details', alt: 'Antique Windmill' },
+  { id: 29, src: '/images/venue/details-americana-flag-decor.jpg', category: 'details', alt: 'Americana Decor' },
 
+  // Real Weddings Mix
+  { id: 36, src: '/images/2014/05/Loria-Jason-wedding-1-0198.jpg', category: 'real-weddings', alt: 'Outdoor Ceremony' },
+  { id: 37, src: '/images/2014/05/Loria-Jason-wedding-1-0365.jpg', category: 'real-weddings', alt: 'Barn Wedding Party' },
+  { id: 38, src: '/images/2014/05/Loria-Jason-wedding-1-0205.jpg', category: 'real-weddings', alt: 'First Dance' },
+  { id: 39, src: '/images/2014/05/LB1_6499.jpg', category: 'real-weddings', alt: 'Golden Hour Couple' },
+  { id: 40, src: '/images/2014/05/Loria-Jason-wedding-1-0013.jpg', category: 'real-weddings', alt: 'Intimate Moment' }
 ]
 
 // Lazy Image Component with Intersection Observer
@@ -84,11 +68,9 @@ const LazyImage = ({ src, alt, onLoad }) => {
   }, [onLoad])
 
   const handleError = useCallback(() => {
-    // Hide loader if image fails, maybe show a placeholder or just transparent
     setIsLoaded(true) 
   }, [])
 
-  // Intersection Observer for lazy loading
   useEffect(() => {
     if (!imgRef.current) return
 
@@ -143,7 +125,7 @@ const LazyImage = ({ src, alt, onLoad }) => {
   )
 }
 
-// Photo Card Component for Masonic
+// Photo Card Component
 const PhotoCard = ({ data: photo, onClick }) => {
   return (
     <div
@@ -161,25 +143,6 @@ const PhotoCard = ({ data: photo, onClick }) => {
         src={photo.src}
         alt={photo.alt}
       />
-      {/* Video Badge */}
-      {photo.isVideo && (
-        <div style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'rgba(0,0,0,0.7)',
-          color: 'white',
-          padding: '0.5rem 0.75rem',
-          borderRadius: '4px',
-          fontSize: '0.75rem',
-          fontWeight: 600,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.25rem'
-        }}>
-          ▶ VIDEO
-        </div>
-      )}
     </div>
   )
 }
@@ -201,9 +164,9 @@ export default function GalleryPage() {
     setLightboxOpen(true)
   }
 
-  // Prepare slides for lightbox with captions
+  // Prepare slides for lightbox
   const slides = filteredPhotos.map(photo => ({
-    src: photo.src.replace('w=800', 'w=1920'), // Higher res for lightbox
+    src: photo.src,
     alt: photo.alt,
     title: photo.alt,
     description: photo.alt
@@ -231,10 +194,11 @@ export default function GalleryPage() {
         <div className="content-wrapper">
           <VenueTabs
             tabs={[
-              { key: 'barn', label: 'The Barn' },
-              { key: 'bridal-suite', label: 'Bridal Suite' },
-              { key: 'reception-area', label: 'Reception Area' },
-              { key: 'property', label: 'Property & Grounds' },
+              { key: 'barn', label: 'The Historic Barn' },
+              { key: 'lounge', label: 'The Lounge' },
+              { key: 'frame-barn', label: 'Frame Barn' },
+              { key: 'bridal-suite', label: 'Bridal Cottage' },
+              { key: 'property', label: 'Grounds & Vineyard' },
               { key: 'real-weddings', label: 'Real Weddings' },
               { key: 'details', label: 'Details' },
               { key: 'all', label: 'All' }
@@ -294,50 +258,12 @@ export default function GalleryPage() {
           }
         }
 
-        /* Lightbox caption styling */
+        /* Lightbox styling overrides */
         .yarl__slide_description {
           font-family: 'Playfair Display', serif !important;
           font-size: 1.5rem !important;
-          font-weight: 400 !important;
-          font-style: italic !important;
-          line-height: 1.4 !important;
           color: #fff !important;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-          padding: 1rem 2rem !important;
-        }
-
-        /* Stagger animation for items */
-        .gallery-photo-card:nth-child(1) { animation-delay: 0s; }
-        .gallery-photo-card:nth-child(2) { animation-delay: 0.05s; }
-        .gallery-photo-card:nth-child(3) { animation-delay: 0.1s; }
-        .gallery-photo-card:nth-child(4) { animation-delay: 0.15s; }
-        .gallery-photo-card:nth-child(5) { animation-delay: 0.2s; }
-        .gallery-photo-card:nth-child(6) { animation-delay: 0.25s; }
-        .gallery-photo-card:nth-child(7) { animation-delay: 0.3s; }
-        .gallery-photo-card:nth-child(8) { animation-delay: 0.35s; }
-        .gallery-photo-card:nth-child(9) { animation-delay: 0.4s; }
-        .gallery-photo-card:nth-child(10) { animation-delay: 0.45s; }
-
-        /* Add active button animation */
-        .venue-tab.active {
-          animation: buttonPulse 0.3s ease-out;
-        }
-
-        @keyframes buttonPulse {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-
-        /* Loading state for gallery container */
-        .content-wrapper {
-          position: relative;
         }
       `}</style>
 
