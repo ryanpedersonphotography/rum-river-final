@@ -77,6 +77,63 @@ export default function PropertyPage() {
         description={pageContent?.venueDiscovery?.description || 'Every corner tells a story, every space creates memories'}
       />
 
+      {/* Detailed Features Section */}
+      <section className="alternating-blocks">
+        <div className="content-wrapper">
+          <div className="blocks-container">
+            
+            {/* Block 1: The Historic Loft */}
+            <div className="block-item">
+              <div className="block-content">
+                <h3>The Historic Loft</h3>
+                <p className="lead">Main Event Space</p>
+                <p>The white barn is the main event barn consisting of the large loft area and the lower level lounge. The original hay loft is spacious and open with tall ceilings and hardwood floors. The loft can accommodate guests for a ceremony, reception dinner, and/or a dance.</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/barn-interior-exposed-beams-chandeliers.jpg" alt="Historic Barn Loft with Beams" width="800" height="500" />
+              </div>
+            </div>
+
+            {/* Block 2: The Lounge & Bar */}
+            <div className="block-item reverse">
+              <div className="block-content">
+                <h3>The Lounge & Bar</h3>
+                <p className="lead">Cocktails & Intimate Gatherings</p>
+                <p>Located on the main level of the white barn, the Lounge is a perfect place for an intimate dinner or cocktail hour. Complete with high top tables, low lighting, and a full size bar, guests can have a drink or appetizers before moving to dinner or dancing upstairs.</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/lounge-interior.jpg" alt="Rustic Lounge and Bar" width="800" height="500" />
+              </div>
+            </div>
+
+            {/* Block 3: The Frame Barn */}
+            <div className="block-item">
+              <div className="block-content">
+                <h3>The Frame Barn</h3>
+                <p className="lead">Outdoor Ceremony Pavilion</p>
+                <p>This open timber frame barn is a rustic shelter just begging for white sheers hanging in the breeze with string lights overhead at an outdoor ceremony. Either as first choice or a rain back-up location, there is plenty of space for a wedding ceremony.</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/frame-barn-side-view.jpg" alt="Frame Barn Ceremony Space" width="800" height="500" />
+              </div>
+            </div>
+
+            {/* Block 4: The Grounds & Vineyard */}
+            <div className="block-item reverse">
+              <div className="block-content">
+                <h3>The Grounds & Vineyard</h3>
+                <p className="lead">Natural Beauty Everywhere</p>
+                <p>With plenty of open space and grassy fields, the grounds offer many places for outdoor celebrations. The Vineyards boast 14 of the 22 Minnesota hardy grapes produced by the University of Minnesota for making wine. These grapevines make a beautiful natural backdrop for an outdoor ceremony or cocktails on the lawn.</p>
+              </div>
+              <div className="block-image styled-image light no-link">
+                <img src="/images/venue/aerials/aerial-vineyard-view.jpg" alt="Vineyard Aerial View" width="800" height="500" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Virtual Preview Section */}
       <section className="section section-cream">
         <div className="content-wrapper">
