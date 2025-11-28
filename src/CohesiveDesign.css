@@ -744,7 +744,7 @@ section:not(.hero-enhanced):not(.alternating-blocks) .script-accent {
 /* Primary variant (filled button) - for light backgrounds */
 .romantic-button.primary {
   background: var(--dusty-rose);
-  color: white;
+  color: white !important;
   border-color: var(--dusty-rose);
 }
 
@@ -786,7 +786,7 @@ html[data-theme="dark"] .romantic-button {
   /* Auto-switch to light colors on dark backgrounds */
   /* Fallback for older browsers */
   background: white;
-  color: var(--warm-walnut);
+  color: var(--warm-walnut) !important;
   border-color: white;
   /* Modern color-mix() for better contrast */
   background: color-mix(in srgb, white 95%, var(--champagne-gold) 5%);
