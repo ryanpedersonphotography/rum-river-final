@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import logo from '../assets/logo.svg'
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -43,7 +42,7 @@ export default function Header() {
       <div className="content-wrapper">
         <div className="header-content">
           <a href="/" className="logo-wrapper" onClick={closeMenu}>
-            <img src={logo} alt="Rum River Wedding Barn" className="logo-svg" />
+            <img src="/logo.svg" alt="Rum River Wedding Barn" className="logo-svg" />
           </a>
 
           {/* Mobile Menu Toggle */}
