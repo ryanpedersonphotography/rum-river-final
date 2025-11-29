@@ -73,7 +73,11 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="desktop-nav">
             <ul className="nav-menu">
-              
+              {location.pathname !== '/' && (
+                <li>
+                  <a href="/" className={isActive('/')} onClick={closeMenu}>Home</a>
+                </li>
+              )}
               <li>
                 <a href="/events" className={isActive('/events')} onClick={closeMenu}>Events</a>
               </li>
